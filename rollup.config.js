@@ -14,7 +14,6 @@ import { nodeResolve } from '@rollup/plugin-node-resolve';
 import external from 'rollup-plugin-peer-deps-external';
 import esbuild from 'rollup-plugin-esbuild';
 import commonjs from '@rollup/plugin-commonjs';
-import terser from '@rollup/plugin-terser';
 import copy from 'rollup-plugin-copy';
 import clear from 'rollup-plugin-clear';
 
@@ -79,7 +78,6 @@ export default (env) => {
         esbuild({
           minify: isProduction
         }),
-        isProduction && terser(),
         copy({
           targets: [
             { src: 'package.json', dest: DIST },
