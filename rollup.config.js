@@ -14,6 +14,7 @@ import { nodeResolve } from '@rollup/plugin-node-resolve';
 import external from 'rollup-plugin-peer-deps-external';
 import esbuild from 'rollup-plugin-esbuild';
 import commonjs from '@rollup/plugin-commonjs';
+import json from '@rollup/plugin-json';
 import copy from 'rollup-plugin-copy';
 import clear from 'rollup-plugin-clear';
 
@@ -68,9 +69,9 @@ export default (env) => {
           targets: [DIST],
           watch: false,
         }),
-        external({
-          includeDependencies: true,
-        }),
+        // external({
+        //   includeDependencies: true,
+        // }),
         nodeResolve({
           preferBuiltins: true
         }),
@@ -78,6 +79,7 @@ export default (env) => {
         esbuild({
           minify: isProduction
         }),
+        json(),
         copy({
           targets: [
             { src: 'package.json', dest: DIST },
