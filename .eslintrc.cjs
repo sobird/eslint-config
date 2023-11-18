@@ -9,8 +9,8 @@
 module.exports = {
   'overrides': [
     {
-      'files': ['*.js', '*.ts'],
-      'extends': './dist/typescript.cjs'
-    }
+      'files': ['*.ts'],
+      'extends': './dist/typescript.cjs',
+    },
   ]
 };

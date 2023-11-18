@@ -15,7 +15,7 @@
   },
   "keywords": [
     "eslint",
-    "eslint-config"
+    "eslintconfig"
   ],
   "author": "sobird",
   "license": "MIT",
@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/sobird/eslint-config#readme",
   "dependencies": {
-    "eslint": "^8.53.0"
+    "eslint": "^8.54.0"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^25.0.7",
@@ -40,5 +40,8 @@
     "rollup-plugin-esbuild": "^6.1.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "typescript": "^5.2.2"
+  },
+  "peerDependencies": {
+    "eslint": ">= 3"
   }
 }
