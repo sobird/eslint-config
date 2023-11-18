@@ -34,8 +34,6 @@ const config: Linter.BaseConfig = {
   rules: {
     // todo
     '@typescript-eslint/indent': ['error', 2],
-    // 使用单引号，字符串中包含了一个其它引号 允许 "a string containing 'single' quotes"
-    'quotes': ['error', 'single', { 'avoidEscape': true }],
 
     // 'semi': ['error', 'always'],
     '@typescript-eslint/semi': ['error', 'always'],
@@ -49,8 +47,6 @@ const config: Linter.BaseConfig = {
         'ignoreRestSiblings': true
       }
     ],
-    // 不允许连续空格
-    'no-multi-spaces': 'error',
     // 逗号前后的空格
     '@typescript-eslint/comma-spacing': ['error', { 'before': false, 'after': true }],
     // 语句块前面必须有空格
@@ -67,7 +63,6 @@ const config: Linter.BaseConfig = {
     '@typescript-eslint/func-call-spacing': 'error',
     // 语句块使用一致的空格
     '@typescript-eslint/block-spacing': 'error',
-    'linebreak-style': ['error', 'unix'],
   }
 };
 
