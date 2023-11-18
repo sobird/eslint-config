@@ -1,5 +1,5 @@
 {
-  "name": "@sobird/eslint-config",
+  "name": "eslint-config-sobird",
   "version": "0.1.1",
   "description": "Sobird's ESLint config",
   "type": "module",
@@ -47,5 +47,8 @@
   },
   "peerDependencies": {
     "eslint": ">= 3"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
   }
 }
