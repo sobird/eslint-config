@@ -1,13 +1,16 @@
 {
   "name": "@sobird/eslint-config",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Sobird's ESLint config",
   "type": "module",
   "main": "index.js",
   "scripts": {
     "start": "rollup -c -w --environment NODE_ENV:development",
     "lint:eslint": "eslint src --ext ts --report-unused-disable-directives --max-warnings 10",
-    "build:rollup": "rollup -c --environment NODE_ENV:production"
+    "build:rollup": "rollup -c --environment NODE_ENV:production",
+    "preversion": "yarn lint:eslint",
+    "version": "git add -A src",
+    "postversion": "git push && git push --tags"
   },
   "repository": {
     "type": "git",
