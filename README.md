@@ -1,4 +1,4 @@
-# @sobird/eslint-config
+# eslint-config-sobird
 
 Sobird's ESLint config
 
@@ -8,12 +8,12 @@ Sobird's ESLint config
 
 <!-- Badges -->
 
-[npm]: https://img.shields.io/npm/v/@sobird/eslint-config.svg
-[npm-url]: https://www.npmjs.com/package/@sobird/eslint-config
+[npm]: https://img.shields.io/npm/v/eslint-config-sobird.svg
+[npm-url]: https://www.npmjs.com/package/eslint-config-sobird
 [build-status]: https://img.shields.io/github/actions/workflow/status/sobird/eslint-config/npm-publish.yml?label=CI&logo=github
 [build-status-url]: https://github.com/sobird/eslint-config/actions
-[size]: https://packagephobia.com/badge?p=@sobird/eslint-config
-[size-url]: https://packagephobia.com/result?p=@sobird/eslint-config
+[size]: https://packagephobia.com/badge?p=eslint-config-sobird
+[size-url]: https://packagephobia.com/result?p=eslint-config-sobird
 
 ## 使用
 
@@ -22,7 +22,7 @@ Sobird's ESLint config
 
 module.exports = {
   extends: [
-    '@sobird/eslint-config/typescript.cjs'
+    'eslint-config-sobird/typescript.cjs'
   ],
   rules: {
     // 
