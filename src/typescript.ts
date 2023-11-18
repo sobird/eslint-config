@@ -8,7 +8,7 @@ import { type Linter } from 'eslint';
 
 const config: Linter.BaseConfig = {
   extends: [
-    'eslint:recommended',
+    './standard.cjs',
     'plugin:@typescript-eslint/recommended',
   ],
   // plugins: ['@typescript-eslint'],
@@ -25,6 +25,7 @@ const config: Linter.BaseConfig = {
    * 自定义规则
    * 
    * @see https://eslint.org/docs/latest/use/configure/rules
+   * @see https://typescript-eslint.io/rules/[rule-id]
    * 
    * "off" or 0 - turn the rule off
    * "warn" or 1 - turn the rule on as a warning (doesn't affect exit code)
@@ -33,6 +34,40 @@ const config: Linter.BaseConfig = {
   rules: {
     // todo
     '@typescript-eslint/indent': ['error', 2],
+    // 使用单引号，字符串中包含了一个其它引号 允许 "a string containing 'single' quotes"
+    'quotes': ['error', 'single', { 'avoidEscape': true }],
+
+    // 'semi': ['error', 'always'],
+    '@typescript-eslint/semi': ['error', 'always'],
+
+    // 'no-unused-vars': 'off',
+    // 定义过的变量必须使用
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      {
+        'args': 'after-used',
+        'ignoreRestSiblings': true
+      }
+    ],
+    // 不允许连续空格
+    'no-multi-spaces': 'error',
+    // 逗号前后的空格
+    '@typescript-eslint/comma-spacing': ['error', { 'before': false, 'after': true }],
+    // 语句块前面必须有空格
+    '@typescript-eslint/space-before-blocks': ['error', 'never'],
+    // 对象使用一致的空格
+    '@typescript-eslint/object-curly-spacing': ['error', 'always'],
+    // 类型声明使用一致的空格
+    '@typescript-eslint/type-annotation-spacing': ['error'],
+    // 关键字使用一致的空格
+    '@typescript-eslint/keyword-spacing': ['error'],
+    // 字面量key使用一致的空格 todo move to 'standard',
+    'key-spacing': 'error',
+    // 函数调佣使用一致的空格
+    '@typescript-eslint/func-call-spacing': 'error',
+    // 语句块使用一致的空格
+    '@typescript-eslint/block-spacing': 'error',
+    'linebreak-style': ['error', 'unix'],
   }
 };
 
