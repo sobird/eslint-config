@@ -6,8 +6,8 @@
   "main": "index.js",
   "scripts": {
     "start": "rollup -c -w --environment NODE_ENV:development",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rollup -c --environment NODE_ENV:production"
+    "lint:eslint": "eslint src --ext ts --report-unused-disable-directives --max-warnings 10",
+    "build:rollup": "rollup -c --environment NODE_ENV:production"
   },
   "repository": {
     "type": "git",
