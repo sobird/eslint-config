@@ -1,6 +1,6 @@
 /**
  * Typescirpt ESLint
- * 
+ *
  * @see https://typescript-eslint.io/play
  */
 
@@ -8,12 +8,16 @@ import { type Linter } from 'eslint';
 
 const config: Linter.BaseConfig = {
   extends: [
-    './standard.cjs',
-    'plugin:@typescript-eslint/recommended',
+    'airbnb-base',
+    'airbnb-typescript/base',
+    // 'plugin:@typescript-eslint/recommended',
   ],
   // plugins: ['@typescript-eslint'],
   // 规则共享参数
   settings: {},
+  parserOptions: {
+    project: './tsconfig.json',
+  },
   // typescript 解析器
   // parser: '@typescript-eslint/parser',
   // 解析器配置项
@@ -23,10 +27,10 @@ const config: Linter.BaseConfig = {
 
   /**
    * 自定义规则
-   * 
+   *
    * @see https://eslint.org/docs/latest/use/configure/rules
    * @see https://typescript-eslint.io/rules/[rule-id]
-   * 
+   *
    * "off" or 0 - turn the rule off
    * "warn" or 1 - turn the rule on as a warning (doesn't affect exit code)
    * "error" or 2 - turn the rule on as an error (exit code will be 1)
@@ -43,12 +47,12 @@ const config: Linter.BaseConfig = {
     '@typescript-eslint/no-unused-vars': [
       'error',
       {
-        'args': 'after-used',
-        'ignoreRestSiblings': true
-      }
+        args: 'after-used',
+        ignoreRestSiblings: true,
+      },
     ],
     // 逗号前后的空格
-    '@typescript-eslint/comma-spacing': ['error', { 'before': false, 'after': true }],
+    '@typescript-eslint/comma-spacing': ['error', { before: false, after: true }],
     // 语句块前面必须有空格
     '@typescript-eslint/space-before-blocks': ['error', 'never'],
     // 对象使用一致的空格
@@ -63,7 +67,7 @@ const config: Linter.BaseConfig = {
     '@typescript-eslint/func-call-spacing': 'error',
     // 语句块使用一致的空格
     '@typescript-eslint/block-spacing': 'error',
-  }
+  },
 };
 
 export default config;
