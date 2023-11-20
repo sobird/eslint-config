@@ -1,5 +1,9 @@
 export default {
-  extends: ['airbnb', 'airbnb/hooks', 'plugin:react/recommended'],
+  extends: [
+    'airbnb',
+    'airbnb/hooks',
+    // 'plugin:react/recommended',
+  ],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
