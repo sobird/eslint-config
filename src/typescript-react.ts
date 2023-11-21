@@ -1,4 +1,10 @@
 export default {
-  extends: ['airbnb-typescript'],
+  extends: [
+    './react.cjs',
+    'airbnb-typescript',
+  ],
+  parserOptions: {
+    project: './tsconfig.json',
+  },
   rules: {},
 };
