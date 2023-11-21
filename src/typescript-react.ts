@@ -1,7 +1,7 @@
 export default {
   extends: [
-    './react.cjs',
     'airbnb-typescript',
+    './react.cjs',
   ],
   parserOptions: {
     project: './tsconfig.json',
