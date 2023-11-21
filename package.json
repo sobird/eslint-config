@@ -54,10 +54,6 @@
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "typescript": "^5.2.2"
   },
-  "peerDependencies": {
-    "eslint": ">= 3",
-    "eslint-config-airbnb-typescript": "^17.1.0"
-  },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   }
