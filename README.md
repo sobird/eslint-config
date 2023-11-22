@@ -21,8 +21,9 @@ Sobird's ESLint config
 // .eslintrc.cjs
 
 module.exports = {
+  root: true,
   extends: [
-    'eslint-config-sobird/typescript.cjs'
+    'sobird/typescript.cjs'
   ],
   rules: {
     // 
