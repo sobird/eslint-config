@@ -17,6 +17,25 @@ const config = {
     }],
     /** style: end */
 
+    /** errors: begin */
+    /** 不允许对函数参数赋值 */
+    'no-param-reassign': [
+      'error',
+      {
+        props: true,
+        ignorePropertyModificationsFor: [
+          'e', // for e.returnvalue
+          'ctx', // for Koa routing
+          'req', // for Express requests
+          'request', // for Express requests
+          'res', // for Express responses
+          'response', // for Express responses
+          'state', // for store state
+        ],
+      },
+    ],
+    /** errors: end */
+
     /** import: begin */
     'import/extensions': 'off',
     'import/no-import-module-exports': ['error', {
