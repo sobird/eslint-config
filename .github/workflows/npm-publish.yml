@@ -19,14 +19,17 @@ jobs:
         node-version: 18
         registry-url: https://registry.npmjs.org/
     - name: Cache node_modules
-      id: cache-dependencies
+      id: cache-npm
       uses: actions/cache@v3
       with:
         path: |
           **/node_modules
-        key: ${{ runner.os }}-sobird-${{ hashFiles('**/yarn.lock') }}
+        key: ${{ runner.os }}-sobird-${{ hashFiles('yarn.lock') }}
+        restore-keys: |
+            ${{ runner.os }}-sobird-
+            ${{ runner.os }}-
     - name: Install Dependencies 🔧
-      if: steps.cache-dependencies.outputs.cache-hit != 'true'
+      if: steps.cache-npm.outputs.cache-hit != 'true'
       run: |
         yarn
     - name: Build @sobird/eslint-config
