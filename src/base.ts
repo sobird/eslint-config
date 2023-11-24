@@ -10,7 +10,7 @@ const config = {
       code: 120,
       tabWidth: 2,
       ignoreUrls: true,
-      ignoreComments: false,
+      ignoreComments: true,
       ignoreRegExpLiterals: true,
       ignoreStrings: true,
       ignoreTemplateLiterals: true,
@@ -34,6 +34,8 @@ const config = {
         ],
       },
     ],
+    // 对 for 循环禁用
+    'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
     /** errors: end */
 
     /** import: begin */
@@ -42,6 +44,18 @@ const config = {
       exceptions: ['**/*'],
     }],
     /** import: end */
+
+    // 非 required 的 prop 必须有 defaultProps
+    // @off 不强制要求写 defaultProps
+    'react/require-default-props': 'off',
+    // 防止React被错误地标记为未使用
+    'react/jsx-uses-react': 'error',
+    // https://legacy.reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html#removing-unused-react-imports
+    'react/react-in-jsx-scope': 'off',
+    'react/no-unstable-nested-components': ['error', {
+      allowAsProps: true,
+    }],
+    'react-hooks/exhaustive-deps': 'off',
   },
 };
 
