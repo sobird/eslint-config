@@ -43,6 +43,7 @@ const config = {
     'import/no-import-module-exports': ['error', {
       exceptions: ['**/*'],
     }],
+    'import/no-webpack-loader-syntax': 'warn',
     /** import: end */
 
     // 非 required 的 prop 必须有 defaultProps
