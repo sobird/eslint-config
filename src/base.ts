@@ -15,6 +15,7 @@ const config = {
       ignoreStrings: true,
       ignoreTemplateLiterals: true,
     }],
+    'consistent-return': 'off',
     /** style: end */
 
     /** errors: begin */
@@ -57,6 +58,8 @@ const config = {
       allowAsProps: true,
     }],
     'react-hooks/exhaustive-deps': 'off',
+    // 禁用
+    'react/jsx-props-no-spreading': 'off',
   },
 };
 
