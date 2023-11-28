@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-sobird",
-  "version": "0.1.17",
+  "version": "0.1.18",
   "description": "Sobird's ESLint config",
   "type": "module",
   "main": "index.js",
