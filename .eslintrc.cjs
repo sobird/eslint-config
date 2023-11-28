@@ -7,7 +7,6 @@
  */
 
 module.exports = {
-  extends: './dist/base.cjs',
   overrides: [
     {
       files: ['*.ts'],

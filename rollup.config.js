@@ -69,9 +69,9 @@ export default (env) => {
           targets: [DIST],
           watch: false,
         }),
-        // external({
-        //   includeDependencies: true,
-        // }),
+        external({
+          includeDependencies: true,
+        }),
         nodeResolve({
           preferBuiltins: true
         }),
