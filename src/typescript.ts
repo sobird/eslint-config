@@ -8,9 +8,8 @@ import { type Linter } from 'eslint';
 
 const config: Linter.BaseConfig = {
   extends: [
-    'airbnb-base',
-    'airbnb-typescript/base',
     './base.cjs',
+    'airbnb-typescript/base',
     // 'plugin:@typescript-eslint/recommended',
   ],
   parserOptions: {
