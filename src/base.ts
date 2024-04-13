@@ -1,6 +1,9 @@
 // import { type Linter } from 'eslint';
 
 const config = {
+  extends: [
+    'airbnb-base',
+  ],
   rules: {
     /** style: begin */
     'arrow-body-style': ['error', 'always'],
@@ -45,6 +48,8 @@ const config = {
       exceptions: ['**/*'],
     }],
     'import/no-webpack-loader-syntax': 'warn',
+    // 默认导出 不是必须的
+    'import/prefer-default-export': 'off',
     /** import: end */
   },
 };

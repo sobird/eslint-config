@@ -1,8 +1,9 @@
 export default {
   extends: [
-    'airbnb',
-    'airbnb/hooks',
     './base.cjs',
+    'airbnb/rules/react',
+    'airbnb/rules/react-a11y',
+    'airbnb/hooks',
     // 'plugin:react/recommended',
   ],
   parserOptions: {
