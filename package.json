@@ -7,7 +7,7 @@
   "scripts": {
     "start": "rollup -c -w --environment NODE_ENV:development",
     "lint:eslint": "eslint src --ext ts --report-unused-disable-directives --max-warnings 10",
-    "build:rollup": "rollup -c --environment NODE_ENV:production",
+    "build": "rollup -c --environment NODE_ENV:production",
     "preversion": "yarn lint:eslint",
     "version": "git add -A src",
     "postversion": "git push && git push --tags"
