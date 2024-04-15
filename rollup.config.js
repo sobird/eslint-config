@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 /**
  * rollup.config.js
  * 打包压缩ts文件
