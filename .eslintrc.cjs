@@ -1,16 +1,21 @@
 module.exports = {
   root: true,
   extends: [
-    'sobird/base.cjs',
+    'sobird/typescript.cjs',
   ],
-  overrides: [
-    {
-      files: ['**/*.ts?(x)'],
-      extends: [
-        'sobird/typescript.cjs',
-      ],
-      rules: {},
-    },
-  ],
+  // parserOptions: {
+  //   project: 'tsconfig.eslint.json',
+  //   tsconfigRootDir: __dirname,
+  //   sourceType: 'module',
+  // },
+  // overrides: [
+  //   {
+  //     files: ['**/*.ts?(x)'],
+  //     extends: [
+  //       'sobird/typescript.cjs',
+  //     ],
+  //     rules: {},
+  //   },
+  // ],
   rules: {},
 };
