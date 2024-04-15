@@ -30,5 +30,9 @@ export default {
     'react-hooks/exhaustive-deps': 'off',
     // 禁用
     'react/jsx-props-no-spreading': 'off',
+
+    // 不允许使用未知DOM属性(Disallow usage of unknown DOM property)
+    // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-unknown-property.md
+    'react/no-unknown-property': ['error', { ignore: ['css'] }],
   },
 };
