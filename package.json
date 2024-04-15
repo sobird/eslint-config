@@ -55,6 +55,9 @@
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "typescript": "^5.2.2"
   },
+  "resolutions": {
+    "strip-ansi": "6.0.0"
+  },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   }
