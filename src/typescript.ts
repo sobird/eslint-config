@@ -4,9 +4,9 @@
  * @see https://typescript-eslint.io/play
  */
 
-import { type Linter } from 'eslint';
+import base from './base';
 
-const config: Linter.BaseConfig = {
+const config = {
   extends: [
     './base.cjs',
     'airbnb-typescript/base',
@@ -15,7 +15,19 @@ const config: Linter.BaseConfig = {
   parserOptions: {
     project: './tsconfig.json',
   },
-  rules: {},
+  rules: {
+    // Append 'ts' and 'tsx' to Airbnb 'import/extensions' rule
+    // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/extensions.md
+    'import/extensions': [
+      base.rules['import/extensions'][0],
+      base.rules['import/extensions'][1],
+      {
+        ...base.rules['import/extensions'][2] as any,
+        ts: 'never',
+        tsx: 'never',
+      },
+    ],
+  },
 };
 
 export default config;
