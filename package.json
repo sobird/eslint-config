@@ -9,8 +9,8 @@
     "lint:eslint": "eslint src --ext ts --report-unused-disable-directives --max-warnings 10",
     "build": "rollup -c --environment NODE_ENV:production",
     "preversion": "yarn lint:eslint",
-    "version": "git add -A src",
-    "postversion": "git push && git push --tags"
+    "version": "git add -A .",
+    "postversion": "git push --tags"
   },
   "repository": {
     "type": "git",
