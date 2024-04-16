@@ -1,9 +1,15 @@
 {
-  "name": "@sobird/eslint-config",
+  "name": "eslint-config-sobird",
   "version": "0.2.11",
   "description": "Sobird's ESLint config",
   "type": "module",
   "main": "index.js",
+  "exports": {
+    ".": {
+      "import": "./index.cjs",
+      "require": "./index.cjs"
+    }
+  },
   "scripts": {
     "start": "rollup -c -w --environment NODE_ENV:development",
     "lint:eslint": "eslint src --ext ts --report-unused-disable-directives --max-warnings 10",
@@ -27,6 +33,7 @@
   },
   "homepage": "https://github.com/sobird/eslint-config#readme",
   "dependencies": {
+    "@babel/preset-env": "^7.24.4",
     "@typescript-eslint/eslint-plugin": "^6.11.0",
     "@typescript-eslint/parser": "^6.11.0",
     "eslint": "8.54.0",
@@ -42,6 +49,8 @@
     "eslint-plugin-react-hooks": "^4.6.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.24.4",
+    "@babel/eslint-parser": "^7.24.1",
     "@rollup/plugin-commonjs": "^25.0.7",
     "@rollup/plugin-json": "^6.0.1",
     "@rollup/plugin-node-resolve": "^15.2.3",
