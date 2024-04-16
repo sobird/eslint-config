@@ -10,6 +10,11 @@ const config = {
   },
   rules: {
     // style
+
+    // Disallow bitwise operators
+    // https://eslint.org/docs/rules/no-bitwise
+    'no-bitwise': ['error', { int32Hint: true }],
+
     // 要求箭头函数体使用大括号(Require braces around arrow function bodies)
     // https://eslint.org/docs/latest/rules/arrow-body-style
     'arrow-body-style': ['error', 'always'],
