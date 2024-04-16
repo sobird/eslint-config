@@ -1,5 +1,5 @@
 {
-  "name": "eslint-config-sobird",
+  "name": "@sobird/eslint-config",
   "version": "0.2.6",
   "description": "Sobird's ESLint config",
   "type": "module",
