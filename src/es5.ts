@@ -1,7 +1,7 @@
 module.exports = {
   extends: [
     'airbnb-base/legacy',
-    // './base.js',
+    './base.cjs',
   ],
   parser: '@babel/eslint-parser',
   parserOptions: {
