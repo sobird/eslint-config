@@ -4,12 +4,6 @@
   "description": "Sobird's ESLint config",
   "type": "module",
   "main": "index.js",
-  "exports": {
-    ".": {
-      "import": "./index.cjs",
-      "require": "./index.cjs"
-    }
-  },
   "scripts": {
     "start": "rollup -c -w --environment NODE_ENV:development",
     "lint:eslint": "eslint src --ext ts --report-unused-disable-directives --max-warnings 10",

@@ -4,13 +4,14 @@
  * @see https://typescript-eslint.io/play
  */
 
-import base from './base';
+import baseImports from './import';
 
 const config = {
   extends: [
-    './base.cjs',
+    'airbnb-base',
     'airbnb-typescript/base',
-    // 'plugin:@typescript-eslint/recommended',
+    './base.cjs',
+    './import.cjs',
   ],
   parserOptions: {
     project: './tsconfig.json',
@@ -19,10 +20,10 @@ const config = {
     // Append 'ts' and 'tsx' to Airbnb 'import/extensions' rule
     // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/extensions.md
     'import/extensions': [
-      base.rules['import/extensions'][0],
-      base.rules['import/extensions'][1],
+      baseImports.rules['import/extensions'][0],
+      baseImports.rules['import/extensions'][1],
       {
-        ...base.rules['import/extensions'][2] as any,
+        ...baseImports.rules['import/extensions'][2] as any,
         ts: 'never',
         tsx: 'never',
       },
