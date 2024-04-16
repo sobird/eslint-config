@@ -1,5 +1,3 @@
-// import { type Linter } from 'eslint';
-
 const config = {
   extends: [
     'airbnb-base',
@@ -69,7 +67,12 @@ const config = {
     // import
     // Ensure consistent use of file extension within the import path
     // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/extensions.md
-    'import/extensions': 'off',
+    'import/extensions': ['error', 'ignorePackages', {
+      '': 'never',
+      js: 'never',
+      mjs: 'never',
+      jsx: 'never',
+    }],
 
     // Reports the use of import declarations with CommonJS exports in any module except for the main module.
     // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/no-import-module-exports.md
