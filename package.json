@@ -10,7 +10,7 @@
     "build": "rollup -c --environment NODE_ENV:production",
     "preversion": "yarn lint:eslint",
     "version": "git add -A .",
-    "postversion": "git push --tags"
+    "postversion": "git push && git push --tags"
   },
   "repository": {
     "type": "git",

@@ -34,6 +34,33 @@ const config = {
     // Require modules with a single export to use a default export
     // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/prefer-default-export.md
     'import/prefer-default-export': 'off',
+
+    // ensure absolute imports are above relative imports and that unassigned imports are ignored
+    // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/order.md
+    // TODO: enforce a stricter convention in module import order?
+    'import/order': ['error', {
+      groups: [
+        'builtin',
+        'external',
+        ['internal', 'parent', 'sibling', 'index', 'object', 'type'],
+        'unknown',
+      ],
+      pathGroups: [
+        {
+          // pattern：当前组中模块的最短路径匹配
+          pattern: '@/**', // 在规定的组中选其一，index、sibling、parent、internal、external、builtin、object、type、unknown
+          group: 'external',
+          // 定义组的位置，after、before
+          position: 'after',
+        },
+      ],
+      pathGroupsExcludedImportTypes: ['builtin'],
+      'newlines-between': 'always',
+      alphabetize: {
+        order: 'asc',
+        caseInsensitive: true,
+      },
+    }],
   },
 };
 
