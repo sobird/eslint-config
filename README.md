@@ -32,6 +32,16 @@ module.exports = {
 
 ```
 
+## ESLint Plugins
+
+* eslint-plugin-react-hooks
+* @eslint/css
+* @eslint/js
+* @eslint/json
+* @eslint/markdown
+* eslint-plugin-react
+* typescript-eslint
+
 
 ## 参考
 [Share Configurations](https://eslint.org/docs/latest/extend/shareable-configs)
