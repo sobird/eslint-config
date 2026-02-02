@@ -11,7 +11,8 @@
     "preversion": "yarn lint:eslint",
     "version": "git add -A .",
     "postversion": "git push && git push --tags",
-    "prepare": "husky"
+    "prepare": "husky",
+    "typecheck": "tsc --noEmit"
   },
   "repository": {
     "type": "git",
@@ -19,21 +20,19 @@
   },
   "keywords": [
     "eslint",
-    "eslintconfig"
+    "eslint-config"
   ],
   "author": "sobird",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/sobird/eslint-config/issues"
   },
-  "homepage": "https://github.com/sobird/eslint-config#readme",
+  "homepage": "https://github.com/sobird/eslint-config",
   "dependencies": {
     "@babel/core": "^7.24.4",
     "@babel/eslint-parser": "^7.24.1",
     "@babel/preset-env": "^7.24.4",
-    "@typescript-eslint/eslint-plugin": "^6.11.0",
-    "@typescript-eslint/parser": "^6.11.0",
-    "eslint": "8.54.0",
+    "eslint": "^9.39.2",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-airbnb-typescript": "^17.1.0",
@@ -43,7 +42,8 @@
     "eslint-plugin-n": "^16.3.1",
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-react": "^7.33.2",
-    "eslint-plugin-react-hooks": "^4.6.0"
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "typescript-eslint": "^8.54.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^20.4.0",
@@ -60,7 +60,7 @@
     "rollup-plugin-copy": "^3.5.0",
     "rollup-plugin-esbuild": "^6.1.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
-    "typescript": "^5.2.2"
+    "typescript": "^5.9.3"
   },
   "resolutions": {
     "strip-ansi": "6.0.0"
