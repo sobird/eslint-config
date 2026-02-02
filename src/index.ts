@@ -1,16 +1,14 @@
-const config = {
-  extends: [
-    'airbnb-base',
-    './base.cjs',
-    './import.cjs',
-  ],
-  parserOptions: {
-    ecmaVersion: 2020,
-    sourceType: 'module',
-  },
-  globals: {
-    Promise: true,
-  },
-};
+import { type Linter } from "eslint";
+import {type RulesConfig} from '@eslint/core'
 
-export default config;
+import { javascript } from "./configs/javascript";
+
+export interface ConfigObject<Rules extends RulesConfig> extends Linter.Config<Rules> {
+  languageOptions?: Linter.LanguageOptions
+}
+
+export function sobird() {
+  return [
+    ...javascript()
+  ]
+}
