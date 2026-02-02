@@ -7,11 +7,10 @@ on:
   workflow_dispatch:
 
 permissions:
+  id-token: write
   contents: write
   issues: write
   pull-requests: write
-  id-token: write
-
 
 jobs:
   release:
@@ -43,5 +42,5 @@ jobs:
   deploy:
     if: needs.release.outputs.created
     needs: release
-    uses: ./.github/workflows/publish.yml
+    uses: ./.github/workflows/publish.yaml
     secrets: inherit
