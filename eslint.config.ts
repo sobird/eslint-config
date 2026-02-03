@@ -19,4 +19,6 @@ import tseslint from 'typescript-eslint';
 //   },
 // );
 
-export default sobird();
+const test = process;
+
+// export default sobird();

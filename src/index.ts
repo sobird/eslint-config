@@ -25,7 +25,7 @@ export interface ConfigObject<Rules extends Record<string, any> = RulesConfig> e
 
 export function sobird() {
   return [
-    // ...javascript(),
+    ...javascript(),
     ...typescript()
   ]
 }

@@ -6,11 +6,33 @@
  */
 
 import type { ConfigObject, ExactProps } from "..";
-import { ESLintRules } from "eslint/rules";
+import type { ESLintRules } from "eslint/rules";
+import globals from "globals";
+
+
 
 export function javascript(): ConfigObject<ExactProps<ESLintRules>>[] {
   return [
     {
+      languageOptions: {
+        ecmaVersion: 2022,
+        globals: {
+          ...globals.browser,
+          ...globals.es2021,
+          ...globals.node,
+          document: 'readonly',
+          navigator: 'readonly',
+          window: 'readonly',
+        },
+        parserOptions: {
+          ecmaFeatures: {
+            jsx: true,
+          },
+          ecmaVersion: 2022,
+          sourceType: 'module',
+        },
+        sourceType: 'module',
+      },
       rules: {
         'accessor-pairs': ['error', { enforceForClassMembers: true, setWithoutGet: true }],
         'array-callback-return': ['error', { allowImplicit: true }],
