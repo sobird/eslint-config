@@ -32,6 +32,7 @@
     "@babel/core": "^7.24.4",
     "@babel/eslint-parser": "^7.24.1",
     "@babel/preset-env": "^7.24.4",
+    "@stylistic/eslint-plugin": "^5.7.1",
     "eslint": "^9.39.2",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-base": "^15.0.0",
