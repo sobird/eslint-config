@@ -1,5 +1,5 @@
 import { type Linter } from "eslint";
-import { type RuleConfig} from '@eslint/core'
+import { type RuleConfig, type RulesConfig} from '@eslint/core'
 
 import { javascript } from "./configs/javascript";
 
@@ -16,7 +16,7 @@ export type ExactProps<T> = {
   ]: T[K]
 };
 
-export interface ConfigObject<Rules extends Record<string, any>> extends Linter.Config<Rules> {
+export interface ConfigObject<Rules extends Record<string, any> = RulesConfig> extends Linter.Config<Rules> {
   languageOptions?: Linter.LanguageOptions
 }
 
