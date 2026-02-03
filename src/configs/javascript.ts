@@ -5,10 +5,10 @@
  * sobird<i@sobird.me> at 2024/10/23 23:08:17 created.
  */
 
-import { ConfigObject } from "..";
+import type { ConfigObject, ExactProps } from "..";
 import { ESLintRules } from "eslint/rules";
 
-export function javascript(): ConfigObject<ESLintRules>[] {
+export function javascript(): ConfigObject<ExactProps<ESLintRules>>[] {
   return [
     {
       rules: {
@@ -350,7 +350,11 @@ export function javascript(): ConfigObject<ESLintRules>[] {
         "use-isnan": "error",
         "valid-typeof": ['error', { requireStringLiterals: true }],
         "vars-on-top": "error",
-        "yoda": "error"
+        "yoda": "error",
+
+        // todo
+        'no-return-await': 'error',
+        'prefer-reflect': 'error'
       }
     }
   ]
