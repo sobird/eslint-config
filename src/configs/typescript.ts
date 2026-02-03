@@ -8,7 +8,7 @@ import type { ConfigObject } from "..";
 
 
 export function typescript(): ConfigObject[] {
-  const typeChecked = true;
+  const typeChecked = false;
   return [
     {
       name: 'typescript-eslint/base',
@@ -16,7 +16,7 @@ export function typescript(): ConfigObject[] {
         parser: tseslint.parser,
         sourceType: 'module',
         parserOptions: {
-          // projectService: true,
+          projectService: true,
         }
       },
       plugins: {
@@ -90,6 +90,7 @@ export function typescript(): ConfigObject[] {
         '@typescript-eslint/max-params': 'error',
         '@typescript-eslint/member-ordering': 'error',
         '@typescript-eslint/method-signature-style': 'error',
+        // type ?
         '@typescript-eslint/naming-convention': 'error',
         'no-array-constructor': 'off',
         '@typescript-eslint/no-array-constructor': 'error',
@@ -116,6 +117,7 @@ export function typescript(): ConfigObject[] {
         '@typescript-eslint/no-extraneous-class': 'error',
         // This rule requires type information to run, which comes with performance tradeoffs.
         // '@typescript-eslint/no-floating-promises': 'error',
+        // type ?
         '@typescript-eslint/no-for-in-array': 'error',
         'no-implied-eval': 'off',
         // This rule requires type information to run, which comes with performance tradeoffs.
@@ -187,6 +189,7 @@ export function typescript(): ConfigObject[] {
         // '@typescript-eslint/no-unsafe-return': 'error',
         // This rule requires type information to run, which comes with performance tradeoffs.
         // '@typescript-eslint/no-unsafe-type-assertion': 'error',
+        // type ?
         '@typescript-eslint/no-unsafe-unary-minus': 'error',
         'no-unused-expressions': 'off',
         '@typescript-eslint/no-unused-expressions': 'error',
@@ -245,15 +248,6 @@ export function typescript(): ConfigObject[] {
         // '@typescript-eslint/use-unknown-in-catch-callback-variable': 'error',
       },
     },
-// tseslint.configs.disableTypeChecked,
-    {
-    files: ['**/*.ts'],
-    // extends: [tseslint.configs.disableTypeChecked],
-  },
-
-    // {
-    //   files: ['**/*.js'],
-    //   extends: [tseslint.configs.disableTypeChecked],
-    // },
+    (typeChecked ? {} : tseslint.configs.disableTypeChecked),
   ]
 }
