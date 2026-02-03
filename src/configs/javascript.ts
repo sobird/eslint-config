@@ -344,7 +344,7 @@ export function javascript(): ConfigObject<ExactProps<ESLintRules>>[] {
         "sort-imports": "error",
         "sort-keys": "off",
         "sort-vars": "error",
-        "strict": "off",
+        "strict": "error",
         "symbol-description": "error",
         "unicode-bom": "error",
         "use-isnan": "error",
