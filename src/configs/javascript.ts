@@ -324,7 +324,10 @@ export const rules: Partial<ESLintRules> = {
   'one-var': ['error', 'never'],
   'operator-assignment': 'error',
   'prefer-arrow-callback': 'error',
-  'prefer-const': 'error',
+  'prefer-const': ['error', {
+    destructuring: 'any',
+    ignoreReadBeforeAssign: false,
+  }],
   'prefer-destructuring': 'error',
   'prefer-exponentiation-operator': 'error',
   'prefer-named-capture-group': 'off',
