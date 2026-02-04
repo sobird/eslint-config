@@ -302,7 +302,7 @@ export const rules: Partial<ESLintRules> = {
   'no-warning-comments': 'error',
   'no-with': 'error',
   'object-shorthand': 'error',
-  'one-var': ['error', 'consecutive'],
+  'one-var': ['error', 'never'],
   'operator-assignment': 'error',
   'prefer-arrow-callback': 'error',
   'prefer-const': 'error',
@@ -326,7 +326,7 @@ export const rules: Partial<ESLintRules> = {
   // todo
   'sort-imports': 'error',
   'sort-keys': 'off',
-  'sort-vars': 'error',
+  'sort-vars': 'off',
   'strict': 'error',
   'symbol-description': 'error',
   'unicode-bom': 'error',
