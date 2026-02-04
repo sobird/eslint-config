@@ -19,8 +19,12 @@ export type ExactProps<T> = {
   ]: T[K]
 };
 
-export interface ConfigObject<Rules extends Record<string, any> = RulesConfig> extends Linter.Config<Rules> {
-  languageOptions?: Linter.LanguageOptions
+interface LanguageOptions<P extends Linter.ParserOptions = Linter.ParserOptions> extends Linter.LanguageOptions {
+  parserOptions: P
+}
+
+export interface ConfigObject<Rules extends Record<string, any> = RulesConfig, ParserOptions extends Linter.ParserOptions = Linter.ParserOptions> extends Linter.Config<Rules> {
+  languageOptions?: LanguageOptions<ParserOptions>
 }
 
 export function sobird() {

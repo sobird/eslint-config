@@ -1,22 +1,27 @@
 // https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/src/configs/flat/all.ts
 // https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/src/configs/eslint-recommended-raw.ts
+// https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/src/configs/flat/disable-type-checked.ts
 
 import type { FlatConfig } from '@typescript-eslint/utils/ts-eslint';
 import tseslint from 'typescript-eslint';
 import type { ConfigObject } from "..";
+import type  { ParserOptions } from '@typescript-eslint/utils/ts-eslint';
 
 
 
-export function typescript(): ConfigObject[] {
+export function typescript(): ConfigObject<any, ParserOptions>[] {
   const typeChecked = false;
   return [
     {
-      name: 'typescript-eslint/base',
+      name: 'sobird:typescript:setup',
       languageOptions: {
         parser: tseslint.parser,
-        sourceType: 'module',
+        // https://typescript-eslint.io/packages/parser/#configuration
         parserOptions: {
-          projectService: true,
+          ecmaVersion: 'latest',
+          sourceType: 'module',
+          // We now recommend using projectService instead of project for easier configuration and faster linting.
+          ...typeChecked ? {projectService: true} : {}
         }
       },
       plugins: {
@@ -24,6 +29,7 @@ export function typescript(): ConfigObject[] {
       },
     },
     {
+      name: 'sobird:typescript:init',
       files: ['**/*.ts', '**/*.tsx', '**/*.mts', '**/*.cts'],
       rules: {
         'constructor-super': 'off', // ts(2335) & ts(2377)
