@@ -27,7 +27,7 @@ export function imports(): ConfigObject[] {
         'import/no-mutable-exports': 'error',
         'import/extensions': 'error',
         'import/no-restricted-paths': 'error',
-        'import/no-internal-modules': 'error',
+        'import/no-internal-modules': 'off',
         'import/group-exports': 'error',
         'import/no-relative-packages': 'error',
         'import/no-relative-parent-imports': 'off',
@@ -107,8 +107,11 @@ export function imports(): ConfigObject[] {
           '@typescript-eslint/parser': typeScriptExtensions,
         },
         'import/resolver': {
+          typescript: {
+            alwaysTryTypes: true,
+          },
           node: {
-            extensions: allExtensions,
+            extensions: ['.js', '.jsx', '.ts', '.tsx', '.mjs', '.cjs'],
           },
         },
       },
