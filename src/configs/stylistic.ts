@@ -1,7 +1,8 @@
-import pluginStylistic from '@stylistic/eslint-plugin';
+import pluginStylistic, { type RuleOptions } from '@stylistic/eslint-plugin';
 
 import type { ConfigObject, WrapRuleConfig } from '..';
-import type { RuleOptions } from '@stylistic/eslint-plugin';
+
+// import  from '@stylistic/eslint-plugin';
 
 export function stylistic(): ConfigObject<WrapRuleConfig<RuleOptions>>[] {
   let indent: number | string;
@@ -86,15 +87,15 @@ export function stylistic(): ConfigObject<WrapRuleConfig<RuleOptions>>[] {
         '@stylistic/jsx-first-prop-new-line': 'error',
         '@stylistic/jsx-function-call-newline': 'error',
         '@stylistic/jsx-indent-props': ['error', 2],
-        '@stylistic/jsx-indent': ['error', 2, { checkAttributes: true, indentLogicalExpressions: true }],
+        // '@stylistic/jsx-indent': ['error', 2, { checkAttributes: true, indentLogicalExpressions: true }],
         '@stylistic/jsx-max-props-per-line': ['error', { maximum: 1, when: 'multiline' }],
         '@stylistic/jsx-newline': 'error',
         '@stylistic/jsx-one-expression-per-line': ['error', { allow: 'single-child' }],
         '@stylistic/jsx-pascal-case': 'error',
-        '@stylistic/jsx-props-no-multi-spaces': 'error',
+        // '@stylistic/jsx-props-no-multi-spaces': 'error',
         '@stylistic/jsx-quotes': 'error',
         '@stylistic/jsx-self-closing-comp': 'error',
-        '@stylistic/jsx-sort-props': 'error',
+        // '@stylistic/jsx-sort-props': 'error',
         '@stylistic/jsx-tag-spacing': [
           'error',
           {
@@ -184,7 +185,7 @@ export function stylistic(): ConfigObject<WrapRuleConfig<RuleOptions>>[] {
         '@stylistic/padding-line-between-statements': 'error',
         // ['error', 'as-needed', { keywords: false, unnecessary: true, numbers: false }]
         '@stylistic/quote-props': ['error', 'consistent-as-needed'],
-        '@stylistic/quotes': ['error', 'single', { allowTemplateLiterals: true, avoidEscape: false }],
+        '@stylistic/quotes': ['error', 'single', { allowTemplateLiterals: 'always', avoidEscape: false }],
         '@stylistic/rest-spread-spacing': ['error', 'never'],
         '@stylistic/semi-spacing': ['error', { before: false, after: true }],
         '@stylistic/semi-style': ['error', 'last'],
