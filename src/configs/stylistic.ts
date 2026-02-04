@@ -5,8 +5,7 @@ import type { ConfigObject, WrapRuleConfig } from '..';
 // import  from '@stylistic/eslint-plugin';
 
 export function stylistic(): ConfigObject<WrapRuleConfig<RuleOptions>>[] {
-  let indent: number | string;
-  indent = 'tab';
+  const indent: number | string = 'tab';
 
   return [
     {
@@ -124,6 +123,7 @@ export function stylistic(): ConfigObject<WrapRuleConfig<RuleOptions>>[] {
         '@stylistic/linebreak-style': ['error', 'unix'],
         '@stylistic/lines-around-comment': ['error', { afterBlockComment: true }],
         '@stylistic/lines-between-class-members': ['error', 'always', { exceptAfterSingleLine: true }],
+        // eslint-disable-next-line @typescript-eslint/no-magic-numbers
         '@stylistic/max-len': ['error', 150, 2, {
           ignoreUrls: true,
           ignoreComments: false,
@@ -133,7 +133,7 @@ export function stylistic(): ConfigObject<WrapRuleConfig<RuleOptions>>[] {
         }],
         '@stylistic/max-statements-per-line': ['error', { max: 1 }],
         '@stylistic/member-delimiter-style': ['error', { multiline: { delimiter: 'none' } }],
-        '@stylistic/multiline-comment-style': 'error',
+        '@stylistic/multiline-comment-style': 'off',
         '@stylistic/multiline-ternary': ['error', 'always-multiline'],
         '@stylistic/new-parens': 'error',
         '@stylistic/newline-per-chained-call': ['error', { ignoreChainWithDepth: 4 }],
