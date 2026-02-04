@@ -6,10 +6,10 @@ import importPlugin from 'eslint-plugin-import';
 import { sobird } from './src';
 
 export default defineConfig(
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [importPlugin.flatConfigs.recommended, importPlugin.flatConfigs.typescript],
-    // other configs...
-  },
+  // {
+  //   files: ['**/*.{ts,tsx}'],
+  //   extends: [importPlugin.flatConfigs.recommended, importPlugin.flatConfigs.typescript],
+  //   // other configs...
+  // },
   sobird(),
 );
