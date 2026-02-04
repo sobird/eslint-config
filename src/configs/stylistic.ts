@@ -29,7 +29,7 @@ export function stylistic(): ConfigObject<WrapRuleConfig<RuleOptions>>[] {
         '@stylistic/curly-newline': ['error', { multiline: true }],
         '@stylistic/dot-location': ['error', 'property'],
         '@stylistic/eol-last': 'error',
-        '@stylistic/exp-list-style': 'error',
+        '@stylistic/exp-list-style': 'off',
         '@stylistic/function-call-argument-newline': ['error', 'consistent'],
         '@stylistic/function-call-spacing': 'error',
         '@stylistic/function-paren-newline': ['error', 'consistent'],
