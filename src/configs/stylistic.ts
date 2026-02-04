@@ -120,7 +120,7 @@ export function stylistic(): ConfigObject<WrapRuleConfig<RuleOptions>>[] {
 
         '@stylistic/key-spacing': ['error', { beforeColon: false, afterColon: true }],
         '@stylistic/keyword-spacing': ['error', { before: true, after: true }],
-        '@stylistic/line-comment-position': 'error',
+        '@stylistic/line-comment-position': 'off',
         '@stylistic/linebreak-style': ['error', 'unix'],
         '@stylistic/lines-around-comment': ['error', { afterBlockComment: true }],
         '@stylistic/lines-between-class-members': ['error', 'always', { exceptAfterSingleLine: true }],
