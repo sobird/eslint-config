@@ -5,20 +5,5 @@ import { defineConfig } from 'eslint/config';
 import { sobird } from "./src";
 import tseslint from 'typescript-eslint';
 
-// console.log('eslint', eslint, tseslint)
 
-// export default defineConfig(
-//   // eslint.configs.recommended,
-//   tseslint.configs.all,
-//   {
-//     languageOptions: {
-//       parserOptions: {
-//         projectService: true,
-//       },
-//     },
-//   },
-// );
-
-const test = process;
-
-// export default sobird();
+export default sobird();
