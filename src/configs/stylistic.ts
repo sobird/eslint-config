@@ -124,7 +124,7 @@ export function stylistic(): ConfigObject<WrapRuleConfig<RuleOptions>>[] {
         '@stylistic/linebreak-style': ['error', 'unix'],
         '@stylistic/lines-around-comment': ['error', { afterBlockComment: true }],
         '@stylistic/lines-between-class-members': ['error', 'always', { exceptAfterSingleLine: true }],
-        '@stylistic/max-len': ['error', 100, 2, {
+        '@stylistic/max-len': ['error', 150, 2, {
           ignoreUrls: true,
           ignoreComments: false,
           ignoreRegExpLiterals: true,
