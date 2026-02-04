@@ -48,7 +48,16 @@ export function imports(): ConfigObject[] {
         'import/no-named-default': 'error',
         'import/no-named-as-default': 'error',
         'import/no-named-as-default-member': 'warn',
-        'import/no-anonymous-default-export': 'error',
+        'import/no-anonymous-default-export': ['error', {
+          allowArray: false,
+          allowArrowFunction: true,
+          allowAnonymousClass: true,
+          allowAnonymousFunction: true,
+          allowCallExpression: true, // The true value here is for backward compatibility
+          allowNew: false,
+          allowLiteral: false,
+          allowObject: false,
+        }],
         'import/no-unused-modules': 'error',
         // see @typescript-eslint/no-require-imports
         'import/no-commonjs': 'error',
@@ -125,7 +134,7 @@ export function imports(): ConfigObject[] {
         // this is a terrible rule, do not use it.
         'import/no-named-export': 'off',
         'import/no-dynamic-require': 'error',
-        'import/unambiguous': 'error',
+        'import/unambiguous': 'off',
         'import/no-unassigned-import': 'error',
         'import/no-useless-path-segments': 'error',
         'import/dynamic-import-chunkname': 'error',

@@ -5,7 +5,7 @@ import { typescript } from './configs/typescript';
 import type { RuleConfig, RulesConfig } from '@eslint/core';
 import type { Linter } from 'eslint';
 
-export type WrapRuleConfig<T extends Record<string, any>> = {
+export type WrapRuleConfig<T extends Record<string, unknown>> = {
   [K in keyof T]: T[K] extends RuleConfig ? T[K] : RuleConfig<T[K]>
 };
 
@@ -22,7 +22,7 @@ interface LanguageOptions<P extends Linter.ParserOptions = Linter.ParserOptions>
   parserOptions: P
 }
 
-export interface ConfigObject<Rules extends Record<string, any> = RulesConfig, ParserOptions extends Linter.ParserOptions = Linter.ParserOptions> extends Linter.Config<Rules> {
+export interface ConfigObject<Rules extends Record<string, unknown> = RulesConfig, ParserOptions extends Linter.ParserOptions = Linter.ParserOptions> extends Linter.Config<Rules> {
   languageOptions?: LanguageOptions<ParserOptions>
 }
 
