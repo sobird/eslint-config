@@ -116,7 +116,8 @@ export function typescript(): ConfigObject<unknown, ParserOptions>[] {
             selector: 'function',
             format: ['camelCase', 'PascalCase'],
           },
-          // Airbnb recommends PascalCase for classes (23.3), and although Airbnb does not make TypeScript recommendations, we are assuming this rule would similarly apply to anything "type like", including interfaces, type aliases, and enums
+          // Airbnb recommends PascalCase for classes (23.3), and although Airbnb does not make TypeScript recommendations,
+          // we are assuming this rule would similarly apply to anything "type like", including interfaces, type aliases, and enums
           {
             selector: 'typeLike',
             format: ['PascalCase'],
@@ -180,6 +181,7 @@ export function typescript(): ConfigObject<unknown, ParserOptions>[] {
         '@typescript-eslint/no-redeclare': javascriptRules['no-redeclare'],
         // This rule requires type information to run, which comes with performance tradeoffs.
         '@typescript-eslint/no-redundant-type-constituents': 'error',
+        'import/no-commonjs': 'off',
         '@typescript-eslint/no-require-imports': 'error',
         'no-restricted-imports': 'off',
         '@typescript-eslint/no-restricted-imports': javascriptRules['no-restricted-imports'],
@@ -190,7 +192,10 @@ export function typescript(): ConfigObject<unknown, ParserOptions>[] {
         // This rule requires type information to run, which comes with performance tradeoffs.
         '@typescript-eslint/no-unnecessary-boolean-literal-compare': 'error',
         // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/no-unnecessary-condition': 'error',
+        '@typescript-eslint/no-unnecessary-condition': ['error', {
+          allowConstantLoopConditions: 'never',
+          checkTypePredicates: true,
+        }],
         '@typescript-eslint/no-unnecessary-parameter-property-assignment': 'error',
         // This rule requires type information to run, which comes with performance tradeoffs.
         '@typescript-eslint/no-unnecessary-qualifier': 'error',
@@ -295,7 +300,8 @@ export function typescript(): ConfigObject<unknown, ParserOptions>[] {
 
         'no-return-await': 'off',
         // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/return-await': [javascriptRules['no-return-await'], 'in-try-catch'],
+        // javascriptRules['no-return-await']
+        '@typescript-eslint/return-await': ['error', 'in-try-catch'],
         // This rule requires type information to run, which comes with performance tradeoffs.
         '@typescript-eslint/strict-boolean-expressions': 'error',
         // This rule requires type information to run, which comes with performance tradeoffs.
