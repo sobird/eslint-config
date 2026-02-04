@@ -5,9 +5,8 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "start": "rollup -c -w --environment NODE_ENV:development",
+    "build": "tsup",
     "lint:eslint": "eslint src --ext ts --report-unused-disable-directives --max-warnings 10",
-    "build": "rollup -c --environment NODE_ENV:production",
     "preversion": "yarn lint:eslint",
     "version": "git add -A .",
     "postversion": "git push && git push --tags",
@@ -50,23 +49,13 @@
   "devDependencies": {
     "@commitlint/cli": "^20.4.0",
     "@commitlint/config-conventional": "^20.4.0",
-    "@rollup/plugin-commonjs": "^25.0.7",
-    "@rollup/plugin-json": "^6.0.1",
-    "@rollup/plugin-node-resolve": "^15.2.3",
     "@types/node": "^25.2.0",
     "esbuild": "^0.19.5",
     "glob": "^10.3.10",
     "husky": "^9.1.7",
-    "rollup": "^4.4.1",
-    "rollup-plugin-clear": "^2.0.7",
-    "rollup-plugin-copy": "^3.5.0",
-    "rollup-plugin-esbuild": "^6.1.0",
-    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "tsup": "^8.5.1",
     "typescript": "^5.9.3",
     "vitest": "^4.0.18"
-  },
-  "resolutions": {
-    "strip-ansi": "6.0.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
