@@ -1,3 +1,5 @@
+const test = require('next.ts');
+
 module.exports = {
   extends: [
     'airbnb-base/legacy',

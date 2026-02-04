@@ -50,6 +50,7 @@ export function imports(): ConfigObject[] {
         'import/no-named-as-default-member': 'warn',
         'import/no-anonymous-default-export': 'error',
         'import/no-unused-modules': 'error',
+        // see @typescript-eslint/no-require-imports
         'import/no-commonjs': 'error',
         'import/no-amd': 'error',
         // 'no-duplicate-imports': 'off',
