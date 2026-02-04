@@ -1,6 +1,6 @@
 import importPlugin from 'eslint-plugin-import';
 
-import type { ConfigObject } from '@/index';
+import  { type ConfigObject } from '@/index';
 
 const typeScriptExtensions = ['.ts', '.cts', '.mts', '.tsx'],
 
@@ -32,8 +32,8 @@ export function imports(): ConfigObject[] {
         'import/no-internal-modules': 'error',
         'import/group-exports': 'error',
         'import/no-relative-packages': 'error',
-        'import/no-relative-parent-imports': 'error',
-        'import/consistent-type-specifier-style': 'error',
+        'import/no-relative-parent-imports': 'off',
+        // 'import/consistent-type-specifier-style': ['error', 'prefer-inline'],
         'import/no-self-import': 'error',
         'import/no-cycle': 'error',
         'import/no-named-default': 'error',
@@ -43,7 +43,8 @@ export function imports(): ConfigObject[] {
         'import/no-unused-modules': 'error',
         'import/no-commonjs': 'error',
         'import/no-amd': 'error',
-        'import/no-duplicates': 'error',
+        // 'no-duplicate-imports': 'off',
+        'import/no-duplicates': ['error', { 'considerQueryString': true, 'prefer-inline': true }],
         'import/first': 'error',
         'import/max-dependencies': 'error',
         'import/no-extraneous-dependencies': ['error', {

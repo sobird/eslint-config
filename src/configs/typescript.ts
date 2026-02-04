@@ -6,11 +6,11 @@
 
 // https://github.com/import-js/eslint-plugin-import/blob/main/config/typescript.js
 
+import { type ParserOptions } from '@typescript-eslint/utils/ts-eslint';
 import tseslint from 'typescript-eslint';
 
-import type { ConfigObject } from '..';
+import { type ConfigObject } from '..';
 import { rules as javascriptRules } from './javascript';
-import type { ParserOptions } from '@typescript-eslint/utils/ts-eslint';
 
 export function typescript(): ConfigObject<any, ParserOptions>[] {
   const typeChecked = true;
