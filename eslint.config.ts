@@ -1,5 +1,15 @@
 // https://eslint.org/docs/latest/use/configure/configuration-files
 
-import { sobird } from "./src";
+import { defineConfig } from 'eslint/config';
+import importPlugin from 'eslint-plugin-import';
 
-export default sobird();
+import { sobird } from './src';
+
+export default defineConfig(
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [importPlugin.flatConfigs.recommended, importPlugin.flatConfigs.typescript],
+    // other configs...
+  },
+  sobird(),
+);

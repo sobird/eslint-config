@@ -1,8 +1,9 @@
-import type { ConfigObject, WrapRuleConfig } from "..";
-import pluginStylistic, {RuleOptions} from '@stylistic/eslint-plugin'
+import pluginStylistic from '@stylistic/eslint-plugin';
+
+import type { ConfigObject, WrapRuleConfig } from '..';
+import type { RuleOptions } from '@stylistic/eslint-plugin';
 
 export function stylistic(): ConfigObject<WrapRuleConfig<RuleOptions>>[] {
-
   let indent: number | string;
   indent = 'tab';
 
@@ -14,7 +15,7 @@ export function stylistic(): ConfigObject<WrapRuleConfig<RuleOptions>>[] {
       },
       // 96
       rules: {
-        "@stylistic/array-bracket-newline": 'off',
+        '@stylistic/array-bracket-newline': 'off',
         '@stylistic/array-bracket-spacing': ['error', 'never'],
         '@stylistic/array-element-newline': 'off',
         '@stylistic/arrow-parens': ['error', 'as-needed', { requireForBlockBody: true }],
@@ -22,10 +23,10 @@ export function stylistic(): ConfigObject<WrapRuleConfig<RuleOptions>>[] {
         '@stylistic/block-spacing': ['error', 'always'],
         '@stylistic/brace-style': ['error', '1tbs', { allowSingleLine: true }],
         '@stylistic/comma-dangle': ['error', 'always-multiline'],
-        '@stylistic/comma-spacing': ['error', {  before: false, after: true}],
+        '@stylistic/comma-spacing': ['error', { before: false, after: true }],
         '@stylistic/comma-style': ['error', 'last'],
         '@stylistic/computed-property-spacing': ['error', 'never', { enforceForClassMembers: true }],
-        '@stylistic/curly-newline': ["error", { "multiline": true }],
+        '@stylistic/curly-newline': ['error', { multiline: true }],
         '@stylistic/dot-location': ['error', 'property'],
         '@stylistic/eol-last': 'error',
         '@stylistic/exp-list-style': 'error',
@@ -95,32 +96,32 @@ export function stylistic(): ConfigObject<WrapRuleConfig<RuleOptions>>[] {
         '@stylistic/jsx-self-closing-comp': 'error',
         '@stylistic/jsx-sort-props': 'error',
         '@stylistic/jsx-tag-spacing': [
-                'error',
-                {
-                  afterOpening: 'never',
-                  beforeClosing: 'never',
-                  beforeSelfClosing: 'always',
-                  closingSlash: 'never',
-                },
-              ],
+          'error',
+          {
+            afterOpening: 'never',
+            beforeClosing: 'never',
+            beforeSelfClosing: 'always',
+            closingSlash: 'never',
+          },
+        ],
         '@stylistic/jsx-wrap-multilines': [
-                'error',
-                {
-                  arrow: 'parens-new-line',
-                  assignment: 'parens-new-line',
-                  condition: 'parens-new-line',
-                  declaration: 'parens-new-line',
-                  logical: 'parens-new-line',
-                  prop: 'parens-new-line',
-                  return: 'parens-new-line',
-                },
-              ],
+          'error',
+          {
+            arrow: 'parens-new-line',
+            assignment: 'parens-new-line',
+            condition: 'parens-new-line',
+            declaration: 'parens-new-line',
+            logical: 'parens-new-line',
+            prop: 'parens-new-line',
+            return: 'parens-new-line',
+          },
+        ],
 
-        '@stylistic/key-spacing': ['error', {  beforeColon: false, afterColon: true }],
-        '@stylistic/keyword-spacing': ['error', {  before: true, after: true }],
+        '@stylistic/key-spacing': ['error', { beforeColon: false, afterColon: true }],
+        '@stylistic/keyword-spacing': ['error', { before: true, after: true }],
         '@stylistic/line-comment-position': 'error',
         '@stylistic/linebreak-style': ['error', 'unix'],
-        '@stylistic/lines-around-comment': ["error", { "afterBlockComment": true }],
+        '@stylistic/lines-around-comment': ['error', { afterBlockComment: true }],
         '@stylistic/lines-between-class-members': ['error', 'always', { exceptAfterSingleLine: true }],
         '@stylistic/max-len': ['error', 100, 2, {
           ignoreUrls: true,
@@ -141,7 +142,7 @@ export function stylistic(): ConfigObject<WrapRuleConfig<RuleOptions>>[] {
         '@stylistic/no-extra-parens': ['error', 'functions'],
         '@stylistic/no-extra-semi': 'error',
         '@stylistic/no-floating-decimal': 'error',
-        
+
         // todo
         '@stylistic/no-mixed-operators': ['error', {
           allowSamePrecedence: true,
@@ -152,9 +153,13 @@ export function stylistic(): ConfigObject<WrapRuleConfig<RuleOptions>>[] {
           ],
         }],
         '@stylistic/no-mixed-spaces-and-tabs': 'error',
-      //    ['error', {
-      //   ignoreEOLComments: false,
-      // }]
+
+        /*
+         *    ['error', {
+         *   ignoreEOLComments: false,
+         * }]
+         */
+
         '@stylistic/no-multi-spaces': 'error',
         '@stylistic/no-multiple-empty-lines': ['error', { max: 1, maxBOF: 0, maxEOF: 0 }],
         '@stylistic/no-tabs': indent === 'tab' ? 'off' : 'error',
@@ -181,10 +186,10 @@ export function stylistic(): ConfigObject<WrapRuleConfig<RuleOptions>>[] {
         '@stylistic/quote-props': ['error', 'consistent-as-needed'],
         '@stylistic/quotes': ['error', 'single', { allowTemplateLiterals: true, avoidEscape: false }],
         '@stylistic/rest-spread-spacing': ['error', 'never'],
-        '@stylistic/semi-spacing': ['error', {  before: false, after: true }],
+        '@stylistic/semi-spacing': ['error', { before: false, after: true }],
         '@stylistic/semi-style': ['error', 'last'],
         // todo
-        '@stylistic/semi': ['error', 'never'],
+        '@stylistic/semi': ['error', 'always'],
         '@stylistic/space-before-blocks': ['error', 'always'],
         '@stylistic/space-before-function-paren': ['error', { anonymous: 'always', asyncArrow: 'always', named: 'never' }],
         '@stylistic/space-in-parens': ['error', 'never'],
@@ -214,5 +219,5 @@ export function stylistic(): ConfigObject<WrapRuleConfig<RuleOptions>>[] {
         '@stylistic/yield-star-spacing': ['error', 'both'],
       },
     },
-  ]
+  ];
 }
