@@ -131,7 +131,7 @@ export const rules: Partial<ESLintRules> = {
   'no-implicit-globals': 'error',
   'no-implied-eval': 'error',
   'no-import-assign': 'error',
-  'no-inline-comments': 'error',
+  'no-inline-comments': 'off',
   'no-inner-declarations': 'error',
   'no-invalid-regexp': 'error',
   'no-invalid-this': 'error',
