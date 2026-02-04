@@ -6,19 +6,19 @@
 
 // https://github.com/import-js/eslint-plugin-import/blob/main/config/typescript.js
 
-import tseslint from 'typescript-eslint';
+import { parser, plugin, configs } from 'typescript-eslint';
 
 import type { ConfigObject } from '..';
 import { rules as javascriptRules } from './javascript';
 import type { ParserOptions } from '@typescript-eslint/utils/ts-eslint';
 
-export function typescript(): ConfigObject<any, ParserOptions>[] {
+export function typescript(): ConfigObject<unknown, ParserOptions>[] {
   const typeChecked = true;
   return [
     {
       name: 'sobird:typescript:setup',
       languageOptions: {
-        parser: tseslint.parser,
+        parser,
         // https://typescript-eslint.io/packages/parser/#configuration
         parserOptions: {
           ecmaVersion: 'latest',
@@ -28,7 +28,7 @@ export function typescript(): ConfigObject<any, ParserOptions>[] {
         },
       },
       plugins: {
-        '@typescript-eslint': tseslint.plugin,
+        '@typescript-eslint': plugin,
       },
     },
     {
@@ -141,7 +141,10 @@ export function typescript(): ConfigObject<any, ParserOptions>[] {
         'no-empty-function': 'off',
         '@typescript-eslint/no-empty-function': javascriptRules['no-empty-function'],
         '@typescript-eslint/no-empty-object-type': 'error',
-        '@typescript-eslint/no-explicit-any': 'error',
+        '@typescript-eslint/no-explicit-any': ['error', {
+          fixToUnknown: true,
+          ignoreRestArgs: true,
+        }],
         '@typescript-eslint/no-extra-non-null-assertion': 'error',
         '@typescript-eslint/no-extraneous-class': 'error',
         // This rule requires type information to run, which comes with performance tradeoffs.
@@ -307,6 +310,6 @@ export function typescript(): ConfigObject<any, ParserOptions>[] {
         '@typescript-eslint/use-unknown-in-catch-callback-variable': 'error',
       },
     },
-    (typeChecked ? {} : tseslint.configs.disableTypeChecked),
+    (typeChecked ? {} : configs.disableTypeChecked),
   ];
 }

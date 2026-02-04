@@ -11,11 +11,9 @@ export function imports(): ConfigObject[] {
   return [
     {
       name: 'sobird:imports',
-
       plugins: {
         import: importPlugin,
       },
-
       rules: {
         'import/no-unresolved': ['error', { commonjs: false, caseSensitive: true }],
         'import/named': 'error',
@@ -24,7 +22,20 @@ export function imports(): ConfigObject[] {
         'import/no-namespace': 'error',
         'import/export': 'error',
         'import/no-mutable-exports': 'error',
-        'import/extensions': 'error',
+        'import/extensions': [
+          'error',
+          'ignorePackages',
+          {
+            js: 'never',
+            mjs: 'never',
+            jsx: 'never',
+            ts: 'never',
+            tsx: 'never',
+            json: 'always',
+            svg: 'always',
+            css: 'always',
+          },
+        ],
         'import/no-restricted-paths': 'error',
         'import/no-internal-modules': 'off',
         // If you do not mind having your exports spread across the file, you can safely turn this rule off.
@@ -36,7 +47,7 @@ export function imports(): ConfigObject[] {
         'import/no-cycle': 'error',
         'import/no-named-default': 'error',
         'import/no-named-as-default': 'error',
-        'import/no-named-as-default-member': 'error',
+        'import/no-named-as-default-member': 'warn',
         'import/no-anonymous-default-export': 'error',
         'import/no-unused-modules': 'error',
         'import/no-commonjs': 'error',
@@ -46,6 +57,34 @@ export function imports(): ConfigObject[] {
         'import/first': 'error',
         'import/max-dependencies': 'error',
         'import/no-extraneous-dependencies': ['error', {
+          devDependencies: [
+            'test/**', // tape, common npm pattern
+            'tests/**', // also common npm pattern
+            'spec/**', // mocha, rspec-like pattern
+            '**/__tests__/**', // jest pattern
+            '**/__mocks__/**', // jest pattern
+            'test.{js,jsx}', // repos with a single test file
+            'test-*.{js,jsx}', // repos with multiple top-level test files
+            '**/*{.,_}{test,spec}.{js,jsx}', // tests where the extension or filename suffix denotes that it is a test
+            '**/vue.config.{js,ts}', // vue-cli config
+            '**/webpack.config.{js,ts}', // webpack config
+            '**/webpack.config.*.{js,ts}', // webpack config
+            '**/rollup.config.{js,ts}', // rollup config
+            '**/rollup.config.*.{js,ts}', // rollup config
+            '**/gulpfile.{js,ts}', // gulp config
+            '**/gulpfile.*.{js,ts}', // gulp config
+            '**/Gruntfile{,.js}', // grunt config
+            '**/protractor.conf.{js,ts}', // protractor config
+            '**/protractor.conf.*.{js,ts}', // protractor config
+            '**/karma.conf.{js,ts}', // karma config
+            '**/.eslintrc.{js,ts}', // eslint config
+            '**/jest.setup.{js,ts}', // jest setup
+            '**/jest.config.{js,ts}', // jest config
+            '**/vitest.config.{js,ts}',
+            '**/setupTests.{js,ts}',
+            '**/*.test.{js,ts,tsx}',
+            '**/*.spec.{js,ts,tsx}',
+          ],
           optionalDependencies: false,
         }],
         'import/no-absolute-path': 'error',
@@ -98,7 +137,6 @@ export function imports(): ConfigObject[] {
         'import/imports-first': 'error',
       },
     },
-
     {
       files: ['**/*.{ts,tsx}'],
       settings: {
@@ -117,10 +155,11 @@ export function imports(): ConfigObject[] {
         },
       },
     },
-
-    // {
-    //   files: ['**/*.{ts,tsx}'],
-    //   extends: [importPlugin.flatConfigs.recommended, importPlugin.flatConfigs.typescript],
-    // },
+    {
+      files: ['**/*.test.ts', '**/*.spec.ts'],
+      rules: {
+        'import/no-named-as-default-member': 'off',
+      },
+    },
   ];
 }
