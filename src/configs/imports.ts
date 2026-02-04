@@ -27,7 +27,8 @@ export function imports(): ConfigObject[] {
         'import/extensions': 'error',
         'import/no-restricted-paths': 'error',
         'import/no-internal-modules': 'off',
-        'import/group-exports': 'error',
+        // If you do not mind having your exports spread across the file, you can safely turn this rule off.
+        'import/group-exports': 'off',
         'import/no-relative-packages': 'error',
         'import/no-relative-parent-imports': 'off',
         // 'import/consistent-type-specifier-style': ['error', 'prefer-inline'],
@@ -77,8 +78,9 @@ export function imports(): ConfigObject[] {
           },
         }],
         'import/newline-after-import': ['error', { considerComments: true, count: 1 }],
-        'import/prefer-default-export': 'error',
-        // this is a terrible rule, do not use it.
+        //
+        'import/prefer-default-export': 'off',
+        // this is a terrible rule, do not use it. todo?
         'import/no-default-export': 'off',
         // this is a terrible rule, do not use it.
         'import/no-named-export': 'off',
@@ -90,7 +92,7 @@ export function imports(): ConfigObject[] {
         'import/no-import-module-exports': 'error',
         'import/no-empty-named-blocks': 'error',
         'import/enforce-node-protocol-usage': ['error', 'always'],
-        'import/exports-last': 'error',
+        'import/exports-last': 'off',
         'import/no-deprecated': 'error',
         // 废弃的别名规则也保留并添加前缀
         'import/imports-first': 'error',

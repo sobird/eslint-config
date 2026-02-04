@@ -144,7 +144,23 @@ export const rules: Partial<ESLintRules> = {
   'no-loop-func': 'error',
   'no-loss-of-precision': 'error',
   // todo
-  'no-magic-numbers': 'error',
+  'no-magic-numbers': [
+    'error',
+    {
+      ignore: [0, 1, 2, -1],
+      ignoreArrayIndexes: true,
+      ignoreDefaultValues: true,
+      ignoreClassFieldInitialValues: true,
+      enforceConst: true,
+      detectObjects: false,
+
+      // typescript
+      ignoreEnums: true,
+      ignoreNumericLiteralTypes: true,
+      ignoreReadonlyClassProperties: true,
+      ignoreTypeIndexes: true,
+    },
+  ],
   'no-misleading-character-class': 'error',
   'no-multi-assign': 'error',
   'no-multi-str': 'error',
@@ -299,7 +315,10 @@ export const rules: Partial<ESLintRules> = {
   'no-useless-return': 'error',
   'no-var': 'error',
   'no-void': 'error',
-  'no-warning-comments': 'error',
+  'no-warning-comments': ['error', {
+    terms: ['fixme', 'xxx'],
+    location: 'start',
+  }],
   'no-with': 'error',
   'object-shorthand': 'error',
   'one-var': ['error', 'never'],
