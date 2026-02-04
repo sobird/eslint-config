@@ -1,8 +1,8 @@
 import importPlugin from 'eslint-plugin-import';
 
-import  { type ConfigObject } from '@/index';
+import type { ConfigObject } from '@/index';
 
-const typeScriptExtensions = ['.ts', '.cts', '.mts', '.tsx'],
+const typeScriptExtensions = ['.ts', '.cts', '.mts', '.tsx', '.js', '.cjs'],
 
   allExtensions = [...typeScriptExtensions, '.js', '.jsx', '.mjs', '.cjs'];
 
@@ -13,11 +13,9 @@ export function imports(): ConfigObject[] {
     {
       name: 'sobird:imports',
 
-      /*
-       * plugins: {
-       *   import: importPlugin,
-       * },
-       */
+      plugins: {
+        import: importPlugin,
+      },
 
       rules: {
         'import/no-unresolved': ['error', { commonjs: false, caseSensitive: true }],
@@ -100,21 +98,21 @@ export function imports(): ConfigObject[] {
       },
     },
 
-    // {
-    //   files: ['**/*.{ts,tsx}'],
-    //   settings: {
-    //     'import/extensions': allExtensions,
-    //     'import/external-module-folders': ['node_modules', 'node_modules/@types'],
-    //     'import/parsers': {
-    //       '@typescript-eslint/parser': typeScriptExtensions,
-    //     },
-    //     'import/resolver': {
-    //       node: {
-    //         extensions: allExtensions,
-    //       },
-    //     },
-    //   },
-    // },
+    {
+      files: ['**/*.{ts,tsx}'],
+      settings: {
+        'import/extensions': allExtensions,
+        'import/external-module-folders': ['node_modules', 'node_modules/@types'],
+        'import/parsers': {
+          '@typescript-eslint/parser': typeScriptExtensions,
+        },
+        'import/resolver': {
+          node: {
+            extensions: allExtensions,
+          },
+        },
+      },
+    },
 
     // {
     //   files: ['**/*.{ts,tsx}'],

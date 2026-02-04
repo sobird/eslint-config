@@ -1,6 +1,4 @@
-import nodePlugin from 'eslint-plugin-n';
-
-import type { Configs } from 'eslint-plugin-n';
+import nodePlugin, { type Configs } from 'eslint-plugin-n';
 
 export function node(): Configs['flat/all'][] {
   return [
