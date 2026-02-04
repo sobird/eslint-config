@@ -2,9 +2,8 @@ import importPlugin from 'eslint-plugin-import';
 
 import type { ConfigObject } from '@/index';
 
-const typeScriptExtensions = ['.ts', '.cts', '.mts', '.tsx', '.js', '.cjs'],
-
-  allExtensions = [...typeScriptExtensions, '.js', '.jsx', '.mjs', '.cjs'];
+const typeScriptExtensions = ['.ts', '.cts', '.mts', '.tsx', '.js', '.cjs'];
+const allExtensions = [...typeScriptExtensions, '.js', '.jsx', '.mjs', '.cjs'];
 
 export function imports(): ConfigObject[] {
   const stylistic = true;
