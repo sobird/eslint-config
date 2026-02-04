@@ -1,12 +1,16 @@
-// https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/src/configs/flat/all.ts
-// https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/src/configs/eslint-recommended-raw.ts
-// https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/src/configs/flat/disable-type-checked.ts
+/*
+ * https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/src/configs/flat/all.ts
+ * https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/src/configs/eslint-recommended-raw.ts
+ * https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/src/configs/flat/disable-type-checked.ts
+ */
 
-import type { ParserOptions } from '@typescript-eslint/utils/ts-eslint';
+// https://github.com/import-js/eslint-plugin-import/blob/main/config/typescript.js
+
 import tseslint from 'typescript-eslint';
-import type { ConfigObject } from "..";
 
-import {rules as javascriptRules} from './javascript'
+import type { ConfigObject } from '..';
+import { rules as javascriptRules } from './javascript';
+import type { ParserOptions } from '@typescript-eslint/utils/ts-eslint';
 
 export function typescript(): ConfigObject<any, ParserOptions>[] {
   const typeChecked = true;
@@ -20,8 +24,8 @@ export function typescript(): ConfigObject<any, ParserOptions>[] {
           ecmaVersion: 'latest',
           sourceType: 'module',
           // We now recommend using projectService instead of project for easier configuration and faster linting.
-          ...typeChecked ? {projectService: true} : {}
-        }
+          ...typeChecked ? { projectService: true } : {},
+        },
       },
       plugins: {
         '@typescript-eslint': tseslint.plugin,
@@ -41,12 +45,14 @@ export function typescript(): ConfigObject<any, ParserOptions>[] {
         'no-func-assign': 'off', // ts(2630)
         'no-import-assign': 'off', // ts(2632) & ts(2540)
         'no-new-native-nonconstructor': 'off', // ts(7009)
-        // "no-new-symbol" was deprecated in ESLint 9.0.0 and will be removed in
-        // ESLint v11.0.0. See:
-        // https://eslint.org/docs/latest/rules/no-new-symbol
-        // We need to keep the rule disabled until TSESLint drops support for
-        // ESlint 8. See:
-        // https://github.com/typescript-eslint/typescript-eslint/pull/8895
+        /*
+         * "no-new-symbol" was deprecated in ESLint 9.0.0 and will be removed in
+         * ESLint v11.0.0. See:
+         * https://eslint.org/docs/latest/rules/no-new-symbol
+         * We need to keep the rule disabled until TSESLint drops support for
+         * ESlint 8. See:
+         * https://github.com/typescript-eslint/typescript-eslint/pull/8895
+         */
         'no-new-symbol': 'off', // ts(7009)
         'no-obj-calls': 'off', // ts(2349)
         'no-redeclare': 'off', // ts(2451)
@@ -114,8 +120,7 @@ export function typescript(): ConfigObject<any, ParserOptions>[] {
           {
             selector: 'typeLike',
             format: ['PascalCase'],
-          },
-        ],
+          }],
         'no-array-constructor': 'off',
         '@typescript-eslint/no-array-constructor': javascriptRules['no-array-constructor'],
         // This rule requires type information to run, which comes with performance tradeoffs.
@@ -280,9 +285,11 @@ export function typescript(): ConfigObject<any, ParserOptions>[] {
         '@typescript-eslint/restrict-plus-operands': 'error',
         // This rule requires type information to run, which comes with performance tradeoffs.
         '@typescript-eslint/restrict-template-expressions': 'error',
+
         /**
-         * @deprecated 
+         * @deprecated
          */
+
         'no-return-await': 'off',
         // This rule requires type information to run, which comes with performance tradeoffs.
         '@typescript-eslint/return-await': [javascriptRules['no-return-await'], 'in-try-catch'],
@@ -301,5 +308,5 @@ export function typescript(): ConfigObject<any, ParserOptions>[] {
       },
     },
     (typeChecked ? {} : tseslint.configs.disableTypeChecked),
-  ]
+  ];
 }
