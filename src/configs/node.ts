@@ -10,7 +10,7 @@ export function node(): Configs['flat/all'][] {
       rules: {
         'node/callback-return': 'error',
         'node/exports-style': 'error',
-        'node/file-extension-in-import': ['error', 'never'],
+        'node/file-extension-in-import': ['off', 'never'],
         'node/global-require': 'error',
         'node/handle-callback-err': ['error', '^(err|error)$'],
         'node/no-callback-literal': 'error',
