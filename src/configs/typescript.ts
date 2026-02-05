@@ -95,9 +95,16 @@ export function typescript(): ConfigObject<unknown, ParserOptions>[] {
         'dot-notation': 'off',
         // This rule requires type information to run, which comes with performance tradeoffs.
         '@typescript-eslint/dot-notation': javascriptRules['dot-notation'],
-        '@typescript-eslint/explicit-function-return-type': 'error',
+        '@typescript-eslint/explicit-function-return-type': ['warn', {
+          allowExpressions: true,
+          allowTypedFunctionExpressions: true,
+          allowHigherOrderFunctions: true,
+          allowDirectConstAssertionInArrowFunctions: true,
+          allowFunctionsWithoutTypeParameters: true,
+          allowIIFEs: true,
+        }],
         '@typescript-eslint/explicit-member-accessibility': 'error',
-        '@typescript-eslint/explicit-module-boundary-types': 'error',
+        '@typescript-eslint/explicit-module-boundary-types': 'warn',
         'init-declarations': 'off',
         '@typescript-eslint/init-declarations': javascriptRules['init-declarations'],
         'max-params': 'off',
@@ -303,7 +310,16 @@ export function typescript(): ConfigObject<unknown, ParserOptions>[] {
         // javascriptRules['no-return-await']
         '@typescript-eslint/return-await': ['error', 'in-try-catch'],
         // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/strict-boolean-expressions': 'error',
+        '@typescript-eslint/strict-boolean-expressions': ['error', {
+          allowString: true,
+          allowNumber: true,
+          allowNullableObject: true,
+          allowNullableBoolean: false,
+          allowNullableString: false,
+          allowNullableNumber: false,
+          allowNullableEnum: false,
+          allowAny: false,
+        }],
         // This rule requires type information to run, which comes with performance tradeoffs.
         '@typescript-eslint/strict-void-return': 'error',
         // This rule requires type information to run, which comes with performance tradeoffs.

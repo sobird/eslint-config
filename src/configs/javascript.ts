@@ -35,7 +35,7 @@ export const rules: Partial<ESLintRules> = {
   'consistent-return': 'error',
   'consistent-this': 'error',
   'constructor-super': 'error',
-  'curly': ['error', 'multi-line'],
+  'curly': ['error', 'all'],
   'default-case': ['error', { commentPattern: '^no default$' }],
   'default-case-last': 'error',
   'default-param-last': 'error',
@@ -282,7 +282,7 @@ export const rules: Partial<ESLintRules> = {
   'no-unassigned-vars': 'error',
   'no-undef': 'error',
   'no-undef-init': 'error',
-  'no-undefined': 'error',
+  'no-undefined': 'off',
   // todo
   'no-underscore-dangle': 'error',
   'no-unexpected-multiline': 'error',
