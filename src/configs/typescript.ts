@@ -104,6 +104,7 @@ export function typescript(): ConfigObject<unknown, ParserOptions>[] {
           allowIIFEs: true,
         }],
         '@typescript-eslint/explicit-member-accessibility': 'error',
+        // todo
         '@typescript-eslint/explicit-module-boundary-types': 'warn',
         'init-declarations': 'off',
         '@typescript-eslint/init-declarations': javascriptRules['init-declarations'],
@@ -308,7 +309,7 @@ export function typescript(): ConfigObject<unknown, ParserOptions>[] {
         'no-return-await': 'off',
         // This rule requires type information to run, which comes with performance tradeoffs.
         // javascriptRules['no-return-await']
-        '@typescript-eslint/return-await': ['error', 'in-try-catch'],
+        '@typescript-eslint/return-await': ['off', 'in-try-catch'],
         // This rule requires type information to run, which comes with performance tradeoffs.
         '@typescript-eslint/strict-boolean-expressions': ['error', {
           allowString: true,

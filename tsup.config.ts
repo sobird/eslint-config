@@ -1,4 +1,4 @@
-import { defineConfig } from 'tsup'
+import { defineConfig } from 'tsup';
 
 export default defineConfig({
   entry: [
@@ -8,5 +8,5 @@ export default defineConfig({
   shims: true,
   clean: true,
   dts: true,
-  minify: true
-})
+  minify: true,
+});
