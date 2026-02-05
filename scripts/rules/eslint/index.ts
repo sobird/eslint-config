@@ -14,9 +14,10 @@ export function getRuleMetaData() {
     if (meta === undefined) {
       return;
     }
-    if (name in versions.added) {
+    if (ruleName in versions.added) {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       meta.version = versions.added[ruleName];
+      console.log('meta.version', meta.version);
     }
     map.set(ruleName, meta);
   });

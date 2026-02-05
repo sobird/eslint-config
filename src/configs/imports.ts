@@ -68,6 +68,11 @@ export function imports(): ConfigObject[] {
         'import/max-dependencies': 'error',
         'import/no-extraneous-dependencies': ['error', {
           devDependencies: [
+            // 测试文件
+            '**/*.{test,spec}.{js,jsx,ts,tsx}',
+            'test.{js,jsx}',
+            'test-*.{js,jsx}',
+            // 测试目录
             '**/tests/**/*',
             '**/test/**/*',
             '**/__tests__/**/*',
@@ -76,43 +81,43 @@ export function imports(): ConfigObject[] {
             '**/e2e/**/*',
             '**/cypress/**/*',
             '**/playwright/**/*',
-            'test.{js,jsx}',
-            'test-*.{js,jsx}',
 
-            '**/*.{test,spec}.{js,jsx,ts,tsx}',
-
-            '**/eslint.config.{js,mjs,cjs,ts}',
-            '**/vue.config.{js,ts}',
-            '**/vite.config.*.{js,ts}',
+            // 构建工具
             '**/webpack.config.{js,ts}',
             '**/webpack.config.*.{js,ts}',
+            '**/vite.config.*.{js,ts}',
             '**/rollup.config.{js,ts}',
             '**/rollup.config.*.{js,ts}',
-            '**/gulpfile.{js,ts}',
-            '**/gulpfile.*.{js,ts}',
-            '**/Gruntfile{,.js}', // grunt config
+            '**/tsup.config.*',
+            '**/gulpfile.{js,ts}', // ⚠️ Gulp 很少用了
+            '**/gulpfile.*.{js,ts}', // ⚠️ Gulp 很少用了
+            '**/Gruntfile{,.js}', // ❌ Grunt 已过时
+            // 框架
+            '**/next.config.{js,ts}',
+            '**/nuxt.config.{js,ts}',
+            '**/vue.config.{js,ts}',
+            // 测试
             '**/jest.config.{js,ts}',
             '**/vitest.config.{js,ts}',
             '**/playwright.config.{js,ts}',
-            '**/cypress.config.{js,ts}',
-            '**/next.config.{js,ts}',
-            '**/nuxt.config.{js,ts}',
-            '**/prisma/seed.{js,ts}',
-            '**/protractor.conf.{js,ts}',
-            '**/protractor.conf.*.{js,ts}',
-            '**/karma.conf.{js,ts}',
-            '**/.eslintrc.{js,ts}',
+            '**/cypress.config.{js.ts}',
             '**/jest.setup.{js,ts}',
             '**/jest.config.{js,ts}',
             '**/setupTests.{js,ts}',
-
+            // 其他
+            '**/eslint.config.{js,mjs,cjs,ts}',
+            '**/prisma/seed.{js,ts}',
+            '**/protractor.conf.{js,ts}', // ❌ Protractor 已弃用（Angular 官方放弃）
+            '**/protractor.conf.*.{js,ts}',
+            '**/karma.conf.{js,ts}', // ⚠️ Karma 很少用了（现代用 Vitest/Jest）
+            // 脚本
             '**/scripts/**/*',
             '**/bin/**/*',
           ],
           optionalDependencies: false,
         }],
         'import/no-absolute-path': 'error',
-        'import/no-nodejs-modules': 'error',
+        'import/no-nodejs-modules': 'off',
         'import/no-webpack-loader-syntax': 'error',
         'sort-imports': 'off',
         'import/order': ['error', {

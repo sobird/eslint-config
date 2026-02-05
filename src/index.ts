@@ -6,6 +6,11 @@ import { stylistic } from './configs/stylistic';
 import { typescript } from './configs/typescript';
 import type { RuleConfig, RulesConfig } from '@eslint/core';
 import type { Linter } from 'eslint';
+import type { RuleOptions } from 'types/rules/eslint';
+
+export interface Test extends RuleOptions {
+
+}
 
 
 export type WrapRuleConfig<T extends Record<string, any>> = {
@@ -22,11 +27,11 @@ export type ExactProps<T> = {
 };
 
 interface LanguageOptions<P extends Linter.ParserOptions = Linter.ParserOptions> extends Linter.LanguageOptions {
-  parserOptions: P
+  parserOptions: P;
 }
 
 export interface ConfigObject<Rules extends Record<string, any> = RulesConfig, ParserOptions extends Linter.ParserOptions = Linter.ParserOptions> extends Linter.Config<Rules> {
-  languageOptions?: LanguageOptions<ParserOptions>
+  languageOptions?: LanguageOptions<ParserOptions>;
 }
 
 export function sobird() {

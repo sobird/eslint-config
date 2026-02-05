@@ -132,7 +132,8 @@ export function stylistic(): ConfigObject<WrapRuleConfig<RuleOptions>>[] {
           ignoreTemplateLiterals: true,
         }],
         '@stylistic/max-statements-per-line': ['error', { max: 1 }],
-        '@stylistic/member-delimiter-style': ['error', { multiline: { delimiter: 'none' } }],
+        // @see semi
+        '@stylistic/member-delimiter-style': ['error'],
         '@stylistic/multiline-comment-style': 'off',
         '@stylistic/multiline-ternary': ['error', 'always-multiline'],
         '@stylistic/new-parens': 'error',
@@ -186,7 +187,7 @@ export function stylistic(): ConfigObject<WrapRuleConfig<RuleOptions>>[] {
         '@stylistic/padding-line-between-statements': 'error',
         // ['error', 'as-needed', { keywords: false, unnecessary: true, numbers: false }]
         '@stylistic/quote-props': ['error', 'consistent-as-needed'],
-        '@stylistic/quotes': ['error', 'single', { allowTemplateLiterals: 'always', avoidEscape: false }],
+        '@stylistic/quotes': ['error', 'single', { allowTemplateLiterals: 'avoidEscape', avoidEscape: false }],
         '@stylistic/rest-spread-spacing': ['error', 'never'],
         '@stylistic/semi-spacing': ['error', { before: false, after: true }],
         '@stylistic/semi-style': ['error', 'last'],

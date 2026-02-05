@@ -207,7 +207,7 @@ export const rules: Partial<ESLintRules> = {
   'no-restricted-globals': ['error', { message: 'Use `globalThis` instead.', name: 'global' }, { message: 'Use `globalThis` instead.', name: 'self' }, {
     name: 'isFinite',
     message:
-        'Use Number.isFinite instead',
+      'Use Number.isFinite instead',
   }, {
     name: 'isNaN',
     message:
@@ -252,14 +252,24 @@ export const rules: Partial<ESLintRules> = {
     object: 'Math',
     property: 'pow',
     message: 'Use the exponentiation operator (**) instead.',
-  }, { message: 'Use `Object.getPrototypeOf` or `Object.setPrototypeOf` instead.', property: '__proto__' }, { message: 'Use `Object.getOwnPropertyDescriptor` instead.', property: '__lookupGetter__' }, { message: 'Use `Object.getOwnPropertyDescriptor` instead.', property: '__lookupSetter__' }],
+  },
+  { message: 'Use `Object.getPrototypeOf` or `Object.setPrototypeOf` instead.', property: '__proto__' },
+  { message: 'Use `Object.getOwnPropertyDescriptor` instead.', property: '__lookupGetter__' },
+  { message: 'Use `Object.getOwnPropertyDescriptor` instead.', property: '__lookupSetter__' },
+  ],
   'no-restricted-syntax': ['error', {
     selector: 'ForInStatement',
     message: 'for..in loops iterate over the entire prototype chain, which is virtually never what you want. Use Object.{keys,values,entries}, and iterate over the resulting array.',
   }, {
-    selector: 'ForOfStatement',
-    message: 'iterators/generators require regenerator-runtime, which is too heavyweight for this guide to allow them. Separately, loops should be avoided in favor of array iterations.',
-  }, {
+    selector: 'ForStatement',
+    message: 'Prohibit the use of the original for loop. It is recommended to use modern traversal methods such as for of/Array. prototype. forEach/map/filter',
+  },
+  // {
+  //   selector: 'ForOfStatement',
+  //   message: `iterators/generators require regenerator-runtime, which is too heavyweight for this guide to allow them.
+  //   Separately, loops should be avoided in favor of array iterations.`,
+  // },
+  {
     selector: 'LabeledStatement',
     message: 'Labels are a form of GOTO; using them makes code confusing and hard to maintain and understand.',
   }, {
