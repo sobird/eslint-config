@@ -68,33 +68,46 @@ export function imports(): ConfigObject[] {
         'import/max-dependencies': 'error',
         'import/no-extraneous-dependencies': ['error', {
           devDependencies: [
-            'scripts/**',
-            'test/**', // tape, common npm pattern
-            'tests/**', // also common npm pattern
-            'spec/**', // mocha, rspec-like pattern
-            '**/__tests__/**', // jest pattern
-            '**/__mocks__/**', // jest pattern
-            'test.{js,jsx}', // repos with a single test file
-            'test-*.{js,jsx}', // repos with multiple top-level test files
-            '**/*{.,_}{test,spec}.{js,jsx}', // tests where the extension or filename suffix denotes that it is a test
-            '**/vue.config.{js,ts}', // vue-cli config
-            '**/webpack.config.{js,ts}', // webpack config
-            '**/webpack.config.*.{js,ts}', // webpack config
-            '**/rollup.config.{js,ts}', // rollup config
-            '**/rollup.config.*.{js,ts}', // rollup config
-            '**/gulpfile.{js,ts}', // gulp config
-            '**/gulpfile.*.{js,ts}', // gulp config
+            '**/tests/**/*',
+            '**/test/**/*',
+            '**/__tests__/**/*',
+            '**/__mocks__/**/*',
+            '**/spec/**/*',
+            '**/e2e/**/*',
+            '**/cypress/**/*',
+            '**/playwright/**/*',
+            'test.{js,jsx}',
+            'test-*.{js,jsx}',
+
+            '**/*.{test,spec}.{js,jsx,ts,tsx}',
+
+            '**/eslint.config.{js,mjs,cjs,ts}',
+            '**/vue.config.{js,ts}',
+            '**/vite.config.*.{js,ts}',
+            '**/webpack.config.{js,ts}',
+            '**/webpack.config.*.{js,ts}',
+            '**/rollup.config.{js,ts}',
+            '**/rollup.config.*.{js,ts}',
+            '**/gulpfile.{js,ts}',
+            '**/gulpfile.*.{js,ts}',
             '**/Gruntfile{,.js}', // grunt config
-            '**/protractor.conf.{js,ts}', // protractor config
-            '**/protractor.conf.*.{js,ts}', // protractor config
-            '**/karma.conf.{js,ts}', // karma config
-            '**/.eslintrc.{js,ts}', // eslint config
-            '**/jest.setup.{js,ts}', // jest setup
-            '**/jest.config.{js,ts}', // jest config
+            '**/jest.config.{js,ts}',
             '**/vitest.config.{js,ts}',
+            '**/playwright.config.{js,ts}',
+            '**/cypress.config.{js,ts}',
+            '**/next.config.{js,ts}',
+            '**/nuxt.config.{js,ts}',
+            '**/prisma/seed.{js,ts}',
+            '**/protractor.conf.{js,ts}',
+            '**/protractor.conf.*.{js,ts}',
+            '**/karma.conf.{js,ts}',
+            '**/.eslintrc.{js,ts}',
+            '**/jest.setup.{js,ts}',
+            '**/jest.config.{js,ts}',
             '**/setupTests.{js,ts}',
-            '**/*.test.{js,ts,tsx}',
-            '**/*.spec.{js,ts,tsx}',
+
+            '**/scripts/**/*',
+            '**/bin/**/*',
           ],
           optionalDependencies: false,
         }],
