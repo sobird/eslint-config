@@ -358,7 +358,7 @@ export const rules: Partial<ESLintRules> = {
   'yoda': 'error',
 
   // todo
-  'no-return-await': 'error',
+  'no-return-await': 'off',
   'prefer-reflect': 'error',
 };
 
@@ -381,6 +381,12 @@ export function javascript(): ConfigObject<ExactProps<ESLintRules>>[] {
         reportUnusedDisableDirectives: true,
       },
       rules,
+    },
+    {
+      files: ['**/*.test.ts', '**/*.test.js', 'scripts/**/*'],
+      rules: {
+        'no-console': 'off',
+      },
     },
   ];
 }
