@@ -21,12 +21,12 @@ export function stylistic(): ConfigObject<WrapRuleConfig<RuleOptions>>[] {
         '@stylistic/arrow-parens': ['error', 'as-needed', { requireForBlockBody: true }],
         '@stylistic/arrow-spacing': ['error', { before: true, after: true }],
         '@stylistic/block-spacing': ['error', 'always'],
-        '@stylistic/brace-style': ['error', '1tbs', { allowSingleLine: true }],
+        '@stylistic/brace-style': ['error', '1tbs', { allowSingleLine: false }],
         '@stylistic/comma-dangle': ['error', 'always-multiline'],
         '@stylistic/comma-spacing': ['error', { before: false, after: true }],
         '@stylistic/comma-style': ['error', 'last'],
         '@stylistic/computed-property-spacing': ['error', 'never', { enforceForClassMembers: true }],
-        '@stylistic/curly-newline': ['error', { multiline: true }],
+        '@stylistic/curly-newline': ['error', { consistent: true }],
         '@stylistic/dot-location': ['error', 'property'],
         '@stylistic/eol-last': 'error',
         '@stylistic/exp-list-style': 'off',
@@ -162,13 +162,14 @@ export function stylistic(): ConfigObject<WrapRuleConfig<RuleOptions>>[] {
          */
 
         '@stylistic/no-multi-spaces': 'error',
-        '@stylistic/no-multiple-empty-lines': ['error', { max: 1, maxBOF: 0, maxEOF: 0 }],
+        '@stylistic/no-multiple-empty-lines': ['error', { max: 2, maxBOF: 0, maxEOF: 0 }],
         '@stylistic/no-tabs': indent === 'tab' ? 'off' : 'error',
         '@stylistic/no-trailing-spaces': ['error', {
           ignoreComments: false,
         }],
         '@stylistic/no-whitespace-before-property': 'error',
-        '@stylistic/nonblock-statement-body-position': ['error', 'beside', { overrides: {} }],
+        // @see eslint 'curly': ['error', 'all'],
+        '@stylistic/nonblock-statement-body-position': ['off', 'beside', { overrides: {} }],
         '@stylistic/object-curly-newline': ['error', {
           ObjectExpression: { minProperties: 4, multiline: true, consistent: true },
           ObjectPattern: { minProperties: 4, multiline: true, consistent: true },

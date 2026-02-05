@@ -68,6 +68,7 @@ export function imports(): ConfigObject[] {
         'import/max-dependencies': 'error',
         'import/no-extraneous-dependencies': ['error', {
           devDependencies: [
+            'scripts/**',
             'test/**', // tape, common npm pattern
             'tests/**', // also common npm pattern
             'spec/**', // mocha, rspec-like pattern
