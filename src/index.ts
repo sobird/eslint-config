@@ -6,11 +6,7 @@ import { stylistic } from './configs/stylistic';
 import { typescript } from './configs/typescript';
 import type { RuleConfig, RulesConfig } from '@eslint/core';
 import type { Linter } from 'eslint';
-import type { Test } from 'types';
 
-export interface Sobird extends Test {
-  age: number
-}
 
 export type WrapRuleConfig<T extends Record<string, any>> = {
   [K in keyof T]: T[K] extends RuleConfig ? T[K] : RuleConfig<T[K]>
