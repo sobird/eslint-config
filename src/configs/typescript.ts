@@ -271,7 +271,7 @@ export function typescript(): ConfigObject<unknown, ParserOptions>[] {
         // This rule requires type information to run, which comes with performance tradeoffs.
         '@typescript-eslint/prefer-readonly': 'error',
         // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/prefer-readonly-parameter-types': 'error',
+        '@typescript-eslint/prefer-readonly-parameter-types': 'off',
         // This rule requires type information to run, which comes with performance tradeoffs.
         '@typescript-eslint/prefer-reduce-type-parameter': 'error',
         // This rule requires type information to run, which comes with performance tradeoffs.
