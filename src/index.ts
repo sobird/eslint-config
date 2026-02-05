@@ -1,5 +1,6 @@
 import { imports } from './configs/imports';
 import { javascript } from './configs/javascript';
+import { node } from './configs/node';
 import { stylistic } from './configs/stylistic';
 import { typescript } from './configs/typescript';
 import type { RuleConfig, RulesConfig } from '@eslint/core';
@@ -28,9 +29,10 @@ export interface ConfigObject<Rules extends Record<string, unknown> = RulesConfi
 
 export function sobird() {
   return [
-    ...javascript(),
-    ...imports(),
-    ...stylistic(),
-    ...typescript(),
+    javascript(),
+    node(),
+    imports(),
+    stylistic(),
+    typescript(),
   ];
 }
