@@ -9,28 +9,42 @@ import type { ConfigObject, ExactProps } from '..';
 import type { ESLintRules } from 'eslint/rules';
 
 export const rules: Partial<ESLintRules> = {
-  'accessor-pairs': ['error', { enforceForClassMembers: true, setWithoutGet: true }],
+  'accessor-pairs': [
+    'error',
+    { enforceForClassMembers: true, setWithoutGet: true },
+  ],
   'array-callback-return': ['error', { allowImplicit: true }],
-  'arrow-body-style': ['error', 'as-needed', {
-    requireReturnForObjectLiteral: false,
-  }],
+  'arrow-body-style': [
+    'error',
+    'as-needed',
+    {
+      requireReturnForObjectLiteral: false,
+    },
+  ],
   'block-scoped-var': 'error',
   'camelcase': ['error', { properties: 'never', ignoreDestructuring: true }],
-  'capitalized-comments': ['off', 'never', {
-    line: {
-      ignorePattern: '.*',
-      ignoreInlineComments: true,
-      ignoreConsecutiveComments: true,
+  'capitalized-comments': [
+    'off',
+    'never',
+    {
+      line: {
+        ignorePattern: '.*',
+        ignoreInlineComments: true,
+        ignoreConsecutiveComments: true,
+      },
+      block: {
+        ignorePattern: '.*',
+        ignoreInlineComments: true,
+        ignoreConsecutiveComments: true,
+      },
     },
-    block: {
-      ignorePattern: '.*',
-      ignoreInlineComments: true,
-      ignoreConsecutiveComments: true,
+  ],
+  'class-methods-use-this': [
+    'error',
+    {
+      exceptMethods: [],
     },
-  }],
-  'class-methods-use-this': ['error', {
-    exceptMethods: [],
-  }],
+  ],
   'complexity': 'off',
   'consistent-return': 'error',
   'consistent-this': 'error',
@@ -42,12 +56,20 @@ export const rules: Partial<ESLintRules> = {
   'dot-notation': ['error', { allowKeywords: false }],
   'eqeqeq': ['error', 'always', { null: 'ignore' }],
   'for-direction': 'error',
-  'func-name-matching': ['off', 'always', {
-    includeCommonJSModuleExports: false,
-    considerPropertyDescriptor: true,
-  }],
+  'func-name-matching': [
+    'off',
+    'always',
+    {
+      includeCommonJSModuleExports: false,
+      considerPropertyDescriptor: true,
+    },
+  ],
   'func-names': 'warn',
-  'func-style': ['error', 'declaration', { allowArrowFunctions: true, allowTypeAnnotation: true }],
+  'func-style': [
+    'error',
+    'declaration',
+    { allowArrowFunctions: true, allowTypeAnnotation: true },
+  ],
   'getter-return': ['error', { allowImplicit: true }],
   'grouped-accessor-pairs': 'error',
   'guard-for-in': 'error',
@@ -58,26 +80,35 @@ export const rules: Partial<ESLintRules> = {
   'logical-assignment-operators': 'error',
   'max-classes-per-file': 'error',
   'max-depth': 'error',
-  'max-lines': ['error', {
-    max: 500,
-    skipBlankLines: true,
-    skipComments: true,
-  }],
-  'max-lines-per-function': ['off', {
-    max: 50,
-    skipBlankLines: true,
-    skipComments: true,
-    IIFEs: true,
-  }],
+  'max-lines': [
+    'warn',
+    {
+      max: 300,
+      skipBlankLines: true,
+      skipComments: true,
+    },
+  ],
+  'max-lines-per-function': [
+    'off',
+    {
+      max: 50,
+      skipBlankLines: true,
+      skipComments: true,
+      IIFEs: true,
+    },
+  ],
   'max-nested-callbacks': 'error',
   'max-params': 'off',
   'max-statements': 'off',
-  'new-cap': ['error', {
-    newIsCap: true,
-    newIsCapExceptions: [],
-    capIsNew: false,
-    capIsNewExceptions: ['Immutable.Map', 'Immutable.Set', 'Immutable.List'],
-  }],
+  'new-cap': [
+    'error',
+    {
+      newIsCap: true,
+      newIsCapExceptions: [],
+      capIsNew: false,
+      capIsNewExceptions: ['Immutable.Map', 'Immutable.Set', 'Immutable.List'],
+    },
+  ],
   'no-alert': 'warn',
   'no-array-constructor': 'error',
   'no-async-promise-executor': 'error',
@@ -108,13 +139,12 @@ export const rules: Partial<ESLintRules> = {
   'no-else-return': ['error', { allowElseIf: false }],
   'no-empty': 'error',
   'no-empty-character-class': 'error',
-  'no-empty-function': ['error', {
-    allow: [
-      'arrowFunctions',
-      'functions',
-      'methods',
-    ],
-  }],
+  'no-empty-function': [
+    'error',
+    {
+      allow: ['arrowFunctions', 'functions', 'methods'],
+    },
+  ],
   'no-empty-pattern': 'error',
   'no-empty-static-block': 'error',
   'no-eq-null': 'error',
@@ -175,107 +205,147 @@ export const rules: Partial<ESLintRules> = {
   'no-object-constructor': 'error',
   'no-octal': 'error',
   'no-octal-escape': 'error',
-  'no-param-reassign': ['error', {
-    props: true,
-    ignorePropertyModificationsFor: [
-      'acc', // for reduce accumulators
-      'accumulator', // for reduce accumulators
-      'e', // for e.returnvalue
-      'ctx', // for Koa routing
-      'context', // for Koa routing
-      'req', // for Express requests
-      'request', // for Express requests
-      'res', // for Express responses
-      'response', // for Express responses
-      '$scope', // for Angular 1 scopes
-      'staticContext', // for ReactRouter context
-    ],
-  }],
+  'no-param-reassign': [
+    'error',
+    {
+      props: true,
+      ignorePropertyModificationsFor: [
+        'acc', // for reduce accumulators
+        'accumulator', // for reduce accumulators
+        'e', // for e.returnvalue
+        'ctx', // for Koa routing
+        'context', // for Koa routing
+        'req', // for Express requests
+        'request', // for Express requests
+        'res', // for Express responses
+        'response', // for Express responses
+        '$scope', // for Angular 1 scopes
+        'staticContext', // for ReactRouter context
+      ],
+    },
+  ],
   'no-plusplus': 'error',
   'no-promise-executor-return': 'error',
   'no-proto': 'error',
   'no-prototype-builtins': 'error',
   'no-redeclare': 'error',
   'no-regex-spaces': 'error',
-  'no-restricted-exports': ['error', {
-    restrictedNamedExports: [
-      'default', // use `export default` to provide a default export
-      'then', // this will cause tons of confusion when your module is dynamically `import()`ed, and will break in most node ESM versions
-    ],
-  }],
-  // todo confusingBrowserGlobals
-  'no-restricted-globals': ['error', { message: 'Use `globalThis` instead.', name: 'global' }, { message: 'Use `globalThis` instead.', name: 'self' }, {
-    name: 'isFinite',
-    message:
-      'Use Number.isFinite instead',
-  }, {
-    name: 'isNaN',
-    message:
-        'Use Number.isNaN instead.',
-  }],
-  'no-restricted-imports': 'off',
-  'no-restricted-properties': ['error', {
-    object: 'arguments',
-    property: 'callee',
-    message: 'arguments.callee is deprecated',
-  }, {
-    object: 'global',
-    property: 'isFinite',
-    message: 'Please use Number.isFinite instead',
-  }, {
-    object: 'self',
-    property: 'isFinite',
-    message: 'Please use Number.isFinite instead',
-  }, {
-    object: 'window',
-    property: 'isFinite',
-    message: 'Please use Number.isFinite instead',
-  }, {
-    object: 'global',
-    property: 'isNaN',
-    message: 'Please use Number.isNaN instead',
-  }, {
-    object: 'self',
-    property: 'isNaN',
-    message: 'Please use Number.isNaN instead',
-  }, {
-    object: 'window',
-    property: 'isNaN',
-    message: 'Please use Number.isNaN instead',
-  }, {
-    property: '__defineGetter__',
-    message: 'Please use Object.defineProperty instead.',
-  }, {
-    property: '__defineSetter__',
-    message: 'Please use Object.defineProperty instead.',
-  }, {
-    object: 'Math',
-    property: 'pow',
-    message: 'Use the exponentiation operator (**) instead.',
-  },
-  { message: 'Use `Object.getPrototypeOf` or `Object.setPrototypeOf` instead.', property: '__proto__' },
-  { message: 'Use `Object.getOwnPropertyDescriptor` instead.', property: '__lookupGetter__' },
-  { message: 'Use `Object.getOwnPropertyDescriptor` instead.', property: '__lookupSetter__' },
+  'no-restricted-exports': [
+    'error',
+    {
+      restrictedNamedExports: [
+        'default', // use `export default` to provide a default export
+        'then', // this will cause tons of confusion when your module is dynamically `import()`ed, and will break in most node ESM versions
+      ],
+    },
   ],
-  'no-restricted-syntax': ['error', {
-    selector: 'ForInStatement',
-    message: 'for..in loops iterate over the entire prototype chain, which is virtually never what you want. Use Object.{keys,values,entries}, and iterate over the resulting array.',
-  }, {
-    selector: 'ForStatement',
-    message: 'Prohibit the use of the original for loop. It is recommended to use modern traversal methods such as for of/Array. prototype. forEach/map/filter',
-  },
-  // {
-  //   selector: 'ForOfStatement',
-  //   message: `iterators/generators require regenerator-runtime, which is too heavyweight for this guide to allow them.
-  //   Separately, loops should be avoided in favor of array iterations.`,
-  // },
-  {
-    selector: 'LabeledStatement',
-    message: 'Labels are a form of GOTO; using them makes code confusing and hard to maintain and understand.',
-  }, {
-    selector: 'WithStatement',
-    message: '`with` is disallowed in strict mode because it makes code impossible to predict and optimize.',
-  }],
+  // todo confusingBrowserGlobals
+  'no-restricted-globals': [
+    'error',
+    { message: 'Use `globalThis` instead.', name: 'global' },
+    { message: 'Use `globalThis` instead.', name: 'self' },
+    {
+      name: 'isFinite',
+      message: 'Use Number.isFinite instead',
+    },
+    {
+      name: 'isNaN',
+      message: 'Use Number.isNaN instead.',
+    },
+  ],
+  'no-restricted-imports': 'off',
+  'no-restricted-properties': [
+    'error',
+    {
+      object: 'arguments',
+      property: 'callee',
+      message: 'arguments.callee is deprecated',
+    },
+    {
+      object: 'global',
+      property: 'isFinite',
+      message: 'Please use Number.isFinite instead',
+    },
+    {
+      object: 'self',
+      property: 'isFinite',
+      message: 'Please use Number.isFinite instead',
+    },
+    {
+      object: 'window',
+      property: 'isFinite',
+      message: 'Please use Number.isFinite instead',
+    },
+    {
+      object: 'global',
+      property: 'isNaN',
+      message: 'Please use Number.isNaN instead',
+    },
+    {
+      object: 'self',
+      property: 'isNaN',
+      message: 'Please use Number.isNaN instead',
+    },
+    {
+      object: 'window',
+      property: 'isNaN',
+      message: 'Please use Number.isNaN instead',
+    },
+    {
+      property: '__defineGetter__',
+      message: 'Please use Object.defineProperty instead.',
+    },
+    {
+      property: '__defineSetter__',
+      message: 'Please use Object.defineProperty instead.',
+    },
+    {
+      object: 'Math',
+      property: 'pow',
+      message: 'Use the exponentiation operator (**) instead.',
+    },
+    {
+      message:
+        'Use `Object.getPrototypeOf` or `Object.setPrototypeOf` instead.',
+      property: '__proto__',
+    },
+    {
+      message: 'Use `Object.getOwnPropertyDescriptor` instead.',
+      property: '__lookupGetter__',
+    },
+    {
+      message: 'Use `Object.getOwnPropertyDescriptor` instead.',
+      property: '__lookupSetter__',
+    },
+  ],
+  'no-restricted-syntax': [
+    'error',
+    {
+      selector: 'ForInStatement',
+      message:
+        'for..in loops iterate over the entire prototype chain, which is virtually never what you want. Use Object.{keys,values,entries}, and iterate over the resulting array.',
+    },
+    {
+      selector: 'ForStatement',
+      message:
+        'Prohibit the use of the original for loop. It is recommended to use modern traversal methods such as for of/Array. prototype. forEach/map/filter',
+    },
+    // {
+    //   selector: 'ForOfStatement',
+    //   message: `iterators/generators require regenerator-runtime, which is too heavyweight for this guide to allow them.
+    //   Separately, loops should be avoided in favor of array iterations.`,
+    // },
+    {
+      selector: 'LabeledStatement',
+      message:
+        'Labels are a form of GOTO; using them makes code confusing and hard to maintain and understand.',
+    },
+    {
+      selector: 'WithStatement',
+      message:
+        '`with` is disallowed in strict mode because it makes code impossible to predict and optimize.',
+    },
+  ],
   'no-return-assign': 'error',
   'no-script-url': 'error',
   'no-self-assign': ['error', { props: true }],
@@ -302,17 +372,29 @@ export const rules: Partial<ESLintRules> = {
   'no-unreachable-loop': 'error',
   'no-unsafe-finally': 'error',
   'no-unsafe-negation': 'error',
-  'no-unsafe-optional-chaining': ['error', { disallowArithmeticOperators: true }],
+  'no-unsafe-optional-chaining': [
+    'error',
+    { disallowArithmeticOperators: true },
+  ],
   // todo
-  'no-unused-expressions': ['error', {
-    allowShortCircuit: true,
-    allowTaggedTemplates: true,
-    allowTernary: true,
-  }],
+  'no-unused-expressions': [
+    'error',
+    {
+      allowShortCircuit: true,
+      allowTaggedTemplates: true,
+      allowTernary: true,
+    },
+  ],
   'no-unused-labels': 'error',
   'no-unused-private-class-members': 'error',
-  'no-unused-vars': ['error', { vars: 'all', args: 'after-used', ignoreRestSiblings: true }],
-  'no-use-before-define': ['error', { functions: true, classes: true, variables: true }],
+  'no-unused-vars': [
+    'error',
+    { vars: 'all', args: 'after-used', ignoreRestSiblings: true },
+  ],
+  'no-use-before-define': [
+    'error',
+    { functions: true, classes: true, variables: true },
+  ],
   'no-useless-assignment': 'error',
   'no-useless-backreference': 'error',
   'no-useless-call': 'error',
@@ -325,19 +407,25 @@ export const rules: Partial<ESLintRules> = {
   'no-useless-return': 'error',
   'no-var': 'error',
   'no-void': 'error',
-  'no-warning-comments': ['error', {
-    terms: ['fixme', 'xxx'],
-    location: 'start',
-  }],
+  'no-warning-comments': [
+    'error',
+    {
+      terms: ['fixme', 'xxx'],
+      location: 'start',
+    },
+  ],
   'no-with': 'error',
   'object-shorthand': 'error',
   'one-var': ['error', 'never'],
   'operator-assignment': 'error',
   'prefer-arrow-callback': 'error',
-  'prefer-const': ['error', {
-    destructuring: 'any',
-    ignoreReadBeforeAssign: false,
-  }],
+  'prefer-const': [
+    'error',
+    {
+      destructuring: 'any',
+      ignoreReadBeforeAssign: false,
+    },
+  ],
   'prefer-destructuring': 'error',
   'prefer-exponentiation-operator': 'error',
   'prefer-named-capture-group': 'off',
@@ -417,7 +505,6 @@ const config = {
      * 要求箭头函数体使用大括号(Require braces around arrow function bodies)
      * https://eslint.org/docs/latest/rules/arrow-body-style
      */
-
     'arrow-body-style': ['error', 'always'],
 
     /*
@@ -432,15 +519,18 @@ const config = {
      * https://eslint.org/docs/rules/max-len
      */
 
-    'max-len': ['error', {
-      code: 150,
-      tabWidth: 2,
-      ignoreUrls: true,
-      ignoreComments: true,
-      ignoreRegExpLiterals: true,
-      ignoreStrings: true,
-      ignoreTemplateLiterals: true,
-    }],
+    'max-len': [
+      'error',
+      {
+        code: 150,
+        tabWidth: 2,
+        ignoreUrls: true,
+        ignoreComments: true,
+        ignoreRegExpLiterals: true,
+        ignoreStrings: true,
+        ignoreTemplateLiterals: true,
+      },
+    ],
 
     /*
      * 要求使用一致的 return 语句(require return statements to either always or never specify values)
@@ -454,12 +544,15 @@ const config = {
      * https://eslint.org/docs/rules/no-underscore-dangle
      */
 
-    'no-underscore-dangle': ['error', {
-      allow: ['__filename', '__dirname'],
-      allowAfterThis: false,
-      allowAfterSuper: false,
-      enforceInMethodNames: true,
-    }],
+    'no-underscore-dangle': [
+      'error',
+      {
+        allow: ['__filename', '__dirname'],
+        allowAfterThis: false,
+        allowAfterSuper: false,
+        enforceInMethodNames: true,
+      },
+    ],
 
     /*
      * best-practices
@@ -468,19 +561,22 @@ const config = {
      * rule: https://eslint.org/docs/rules/no-param-reassign.html
      */
 
-    'no-param-reassign': ['error', {
-      props: true,
-      ignorePropertyModificationsFor: [
-        'e', // for e.returnvalue
-        'ctx', // for Koa routing
-        'req', // for Express requests
-        'request', // for Express requests
-        'res', // for Express responses
-        'response', // for Express responses
-        'state', // for store state
-        'accu', // for reduce
-      ],
-    }],
+    'no-param-reassign': [
+      'error',
+      {
+        props: true,
+        ignorePropertyModificationsFor: [
+          'e', // for e.returnvalue
+          'ctx', // for Koa routing
+          'req', // for Express requests
+          'request', // for Express requests
+          'res', // for Express responses
+          'response', // for Express responses
+          'state', // for store state
+          'accu', // for reduce
+        ],
+      },
+    ],
   },
 };
 
