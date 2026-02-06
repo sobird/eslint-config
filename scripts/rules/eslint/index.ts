@@ -24,3 +24,44 @@ export function getRuleMetaData() {
 
   return map;
 }
+
+export function ruleMetaToJSONSchema() {
+  const liner = new Linter({ configType: 'eslintrc' });
+  const rules = liner.getRules();
+  return [...rules].map(([ruleName, ruleModule]) => {
+    const { meta } = ruleModule;
+    if (!meta) {
+      return [];
+    }
+
+    const oldRefPrefix = '"$ref":"#/';
+    const newRefPrefix = `"$ref":"#/$defs/${ruleName}/properties/${ruleName}/`;
+
+    let ruleSchema = meta.schema;
+    ruleSchema = JSON.parse(JSON.stringify(ruleSchema).replaceAll(oldRefPrefix, newRefPrefix));
+
+
+    if (Array.isArray(meta.schema)) {
+      const JSONSchema: Rule.RuleMetaData['schema'] = {
+        // 'title': ruleName,
+        description: meta.docs?.description,
+        type: 'array',
+        items: ruleSchema,
+        // 'x-comment': meta.docs?.description,
+      };
+      return [ruleName, JSONSchema];
+    }
+    const JSONSchema: Rule.RuleMetaData['schema'] = {
+      // 'title': ruleName,
+      'description': meta.docs?.description,
+      'x-comment': meta.docs?.description,
+      // ...ruleSchema,
+    };
+    return [ruleName, JSONSchema];
+  });
+}
+
+const liner = new Linter({ configType: 'eslintrc' });
+const rules = liner.getRules();
+
+export const ArrayElementNewline = rules.get('array-element-newline');
