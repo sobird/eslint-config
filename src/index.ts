@@ -8,10 +8,6 @@ import type { RuleConfig, RulesConfig } from '@eslint/core';
 import type { Linter } from 'eslint';
 import type { RuleOptions } from 'types/rules/eslint';
 
-export interface Test extends RuleOptions {
-
-}
-
 
 export type WrapRuleConfig<T extends Record<string, any>> = {
   [K in keyof T]: T[K] extends RuleConfig ? T[K] : RuleConfig<T[K]>
