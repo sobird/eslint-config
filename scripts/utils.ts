@@ -28,15 +28,15 @@ function formatDeprecation(deprecated?: DeprecatedInfo | boolean, legacyReplaced
           if (typeof item.rule.url === 'string') {
             replacement.push(`{@link ${item.rule.url} \`${item.rule.name}\`}`);
           } else {
-            replacement.push(item.rule.name);
+            replacement.push(`\`${item.rule.name}\``);
           }
         }
 
         if (typeof item.plugin?.name === 'string') {
-          if (item.plugin.url === 'string') {
+          if (typeof item.plugin.url === 'string') {
             replacement.push(`{@link ${item.plugin.url} \`${item.plugin.name}\`}`);
           } else {
-            replacement.push(item.plugin.name);
+            replacement.push(`\`${item.plugin.name}\``);
           }
         }
 
