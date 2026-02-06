@@ -35,7 +35,7 @@ export function ruleMetaToJSONSchema() {
     }
 
     const oldRefPrefix = '"$ref":"#/';
-    const newRefPrefix = `"$ref":"#/$defs/${ruleName}/properties/${ruleName}/`;
+    const newRefPrefix = `"$ref":"#/properties/${ruleName}/allOf/0/`;
 
     let ruleSchema = meta.schema;
     ruleSchema = JSON.parse(JSON.stringify(ruleSchema).replaceAll(oldRefPrefix, newRefPrefix));
@@ -43,25 +43,27 @@ export function ruleMetaToJSONSchema() {
 
     if (Array.isArray(meta.schema)) {
       const JSONSchema: Rule.RuleMetaData['schema'] = {
-        // 'title': ruleName,
         description: meta.docs?.description,
-        type: 'array',
-        items: ruleSchema,
+        allOf: [
+          {
+            title: ruleName,
+            type: 'array',
+            items: ruleSchema,
+          },
+        ],
         // 'x-comment': meta.docs?.description,
       };
       return [ruleName, JSONSchema];
     }
     const JSONSchema: Rule.RuleMetaData['schema'] = {
-      // 'title': ruleName,
-      'description': meta.docs?.description,
-      'x-comment': meta.docs?.description,
-      // ...ruleSchema,
+      description: meta.docs?.description,
+      allOf: [
+        {
+          title: ruleName,
+          ...ruleSchema,
+        },
+      ],
     };
     return [ruleName, JSONSchema];
   });
 }
-
-const liner = new Linter({ configType: 'eslintrc' });
-const rules = liner.getRules();
-
-export const ArrayElementNewline = rules.get('array-element-newline');
