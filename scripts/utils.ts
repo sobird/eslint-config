@@ -2,7 +2,7 @@ import type { DeprecatedInfo } from '@eslint/core';
 import type { Rule } from 'eslint';
 import type { JSONSchema4 } from 'json-schema';
 
-function formatDeprecation(deprecated?: DeprecatedInfo | boolean, legacyReplacedBy?: readonly string[]): string {
+function formatDeprecation(deprecated?: DeprecatedInfo | boolean, legacyReplacedBy?: readonly string[], title?: string): string {
   let message = '';
   if (deprecated === true) {
     message = 'This rule is deprecated.';
@@ -12,7 +12,7 @@ function formatDeprecation(deprecated?: DeprecatedInfo | boolean, legacyReplaced
   } else if (typeof deprecated === 'object') {
     const { deprecatedSince, availableUntil, replacedBy } = deprecated;
     if (typeof deprecatedSince === 'string') {
-      message += `This rule was \`deprecated\` in ESLint v${deprecatedSince}.`;
+      message += `This rule was \`deprecated\` in ${title} v${deprecatedSince}.`;
     } else {
       message += 'This rule is deprecated.';
     }
@@ -22,7 +22,26 @@ function formatDeprecation(deprecated?: DeprecatedInfo | boolean, legacyReplaced
     }
 
     if (replacedBy && replacedBy.length > 0) {
-      const names = replacedBy.map(item => [`{@link ${item.rule?.url} ${item.rule?.name}}`, `{@link ${item.plugin?.url} ${item.plugin?.name}}`].join(' in '));
+      const names = replacedBy.map((item) => {
+        const replacement: string[] = [];
+        if (typeof item.rule?.name === 'string') {
+          if (typeof item.rule.url === 'string') {
+            replacement.push(`{@link ${item.rule.url} \`${item.rule.name}\`}`);
+          } else {
+            replacement.push(item.rule.name);
+          }
+        }
+
+        if (typeof item.plugin?.name === 'string') {
+          if (item.plugin.url === 'string') {
+            replacement.push(`{@link ${item.plugin.url} \`${item.plugin.name}\`}`);
+          } else {
+            replacement.push(item.plugin.name);
+          }
+        }
+
+        return replacement.join(' in ');
+      });
       message += ` Please use the ${names.join(',')} rule instead.`;
     } else {
       message += ' There is no replacement rule.';
@@ -35,7 +54,7 @@ function formatDeprecation(deprecated?: DeprecatedInfo | boolean, legacyReplaced
   return message;
 }
 
-export function describe(meta: Rule.RuleModule['meta'], ruleName: string): string {
+export function describe(meta: Rule.RuleModule['meta'], ruleName: string, title: string): string {
   if (!meta) {
     return '';
   }
@@ -51,7 +70,7 @@ export function describe(meta: Rule.RuleModule['meta'], ruleName: string): strin
 
   desc.push(`@see {@link ${docs?.url} ${ruleName}}`);
 
-  const deprecation = formatDeprecation(deprecated, replacedBy);
+  const deprecation = formatDeprecation(deprecated, replacedBy, title);
   if (deprecation !== '') {
     desc.push(`@deprecated ${deprecation}`);
   }
@@ -81,7 +100,7 @@ export function rulesToJSONSchema(rules: Map<string, Rule.RuleModule>, title: st
 
     if (Array.isArray(ruleSchema)) {
       const ruleJSONSchema: Rule.RuleMetaData['schema'] = {
-        description: describe(meta, ruleName),
+        description: describe(meta, ruleName, title),
         allOf: [
           {
             title: ruleName,
@@ -96,7 +115,7 @@ export function rulesToJSONSchema(rules: Map<string, Rule.RuleModule>, title: st
     }
 
     const ruleJSONSchema: Rule.RuleMetaData['schema'] = {
-      description: describe(meta, ruleName),
+      description: describe(meta, ruleName, title),
       allOf: [
         {
           title: ruleName,
