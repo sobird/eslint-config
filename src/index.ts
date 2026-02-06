@@ -6,11 +6,17 @@ import { stylistic } from './configs/stylistic';
 import { typescript } from './configs/typescript';
 import type { RuleConfig, RulesConfig } from '@eslint/core';
 import type { Linter } from 'eslint';
+import type { AllESLintCustomRuleSchemas } from 'test.d';
 import type { RuleOptions } from 'types/rules/eslint';
 
 
 export type WrapRuleConfig<T extends Record<string, any>> = {
   [K in keyof T]: T[K] extends RuleConfig ? T[K] : RuleConfig<T[K]>
+};
+
+type Test = WrapRuleConfig<AllESLintCustomRuleSchemas>;
+const test: Test = {
+  'accessor-pairs': ['error', { getWithoutSet: true }],
 };
 
 export type ExactProps<T> = {

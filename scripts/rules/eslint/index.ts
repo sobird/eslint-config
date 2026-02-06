@@ -1,69 +1,28 @@
 import { Linter, type Rule } from 'eslint';
 
 import versions from './versions.json';
-
-export const name = 'eslint';
-
-export function getRuleMetaData() {
-  const liner = new Linter({ configType: 'eslintrc' });
-  const rules = liner.getRules();
-  const map = new Map<string, Rule.RuleMetaData>();
-
-  rules.forEach((rule, ruleName) => {
-    const { meta } = rule;
-    if (meta === undefined) {
-      return;
-    }
-    if (ruleName in versions.added) {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-      meta.version = versions.added[ruleName];
-      console.log('meta.version', meta.version);
-    }
-    map.set(ruleName, meta);
-  });
-
-  return map;
-}
-
-export function ruleMetaToJSONSchema() {
-  const liner = new Linter({ configType: 'eslintrc' });
-  const rules = liner.getRules();
-  return [...rules].map(([ruleName, ruleModule]) => {
-    const { meta } = ruleModule;
-    if (!meta) {
-      return [];
-    }
-
-    const oldRefPrefix = '"$ref":"#/';
-    const newRefPrefix = `"$ref":"#/properties/${ruleName}/allOf/0/`;
-
-    let ruleSchema = meta.schema;
-    ruleSchema = JSON.parse(JSON.stringify(ruleSchema).replaceAll(oldRefPrefix, newRefPrefix));
+import type { JSONSchema4 } from 'json-schema';
+import { rulesToJSONSchema } from 'scripts/utils';
 
 
-    if (Array.isArray(meta.schema)) {
-      const JSONSchema: Rule.RuleMetaData['schema'] = {
-        description: meta.docs?.description,
-        allOf: [
-          {
-            title: ruleName,
-            type: 'array',
-            items: ruleSchema,
-          },
-        ],
-        // 'x-comment': meta.docs?.description,
-      };
-      return [ruleName, JSONSchema];
-    }
-    const JSONSchema: Rule.RuleMetaData['schema'] = {
-      description: meta.docs?.description,
-      allOf: [
-        {
-          title: ruleName,
-          ...ruleSchema,
-        },
-      ],
-    };
-    return [ruleName, JSONSchema];
-  });
-}
+// eslint-disable-next-line import/no-anonymous-default-export
+export default {
+  name: 'eslint',
+  get schema(): JSONSchema4 {
+    const liner = new Linter({ configType: 'eslintrc' });
+    const rules = liner.getRules();
+    const { added } = versions;
+
+    const entries = Array.from(rules, ([ruleName, ruleModel]) => {
+      if (ruleName in added) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
+        const version = added[ruleName as keyof typeof added];
+        Object.assign(ruleModel.meta ?? {}, { version });
+      }
+
+      return [ruleName, ruleModel] as const;
+    });
+
+    return rulesToJSONSchema(new Map<string, Rule.RuleModule>(entries), 'ESLint', '');
+  },
+};

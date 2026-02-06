@@ -9,5 +9,5 @@ declare module 'eslint' {
 }
 
 export interface RuleMeta extends Rule.RuleMetaData {
-  version: string;
+  version?: string;
 }

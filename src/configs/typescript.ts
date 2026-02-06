@@ -312,10 +312,10 @@ export function typescript(): ConfigObject<unknown, ParserOptions>[] {
         '@typescript-eslint/return-await': ['off', 'in-try-catch'],
         // This rule requires type information to run, which comes with performance tradeoffs.
         '@typescript-eslint/strict-boolean-expressions': ['error', {
-          allowString: true,
-          allowNumber: true,
+          allowString: false,
+          allowNumber: false,
           allowNullableObject: true,
-          allowNullableBoolean: false,
+          allowNullableBoolean: true,
           allowNullableString: false,
           allowNullableNumber: false,
           allowNullableEnum: false,
