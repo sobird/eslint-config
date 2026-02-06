@@ -22,7 +22,7 @@ function formatDeprecation(deprecated?: DeprecatedInfo | boolean, legacyReplaced
     }
 
     if (replacedBy && replacedBy.length > 0) {
-      const names = replacedBy.map(item => [`{@link ${item.plugin?.url} ${item.plugin?.name}}`, `{@link ${item.rule?.url} ${item.rule?.name}}`].join('-'));
+      const names = replacedBy.map(item => [`{@link ${item.rule?.url} ${item.rule?.name}}`, `{@link ${item.plugin?.url} ${item.plugin?.name}}`].join(' in '));
       message += ` Please use the ${names.join(',')} rule instead.`;
     } else {
       message += ' There is no replacement rule.';
