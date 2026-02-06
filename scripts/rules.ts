@@ -6,13 +6,14 @@ import { compile } from 'json-schema-to-typescript';
 
 import eslint from './rules/eslint';
 import node from './rules/node';
+import typescript from './rules/typescript';
 
 const dir = path.join('types', 'rules');
 
 await fs.mkdir(dir, { recursive: true });
 
 
-for (const item of [eslint, node]) {
+for (const item of [eslint, node, typescript]) {
   const { schema, name } = item;
 
   if (schema !== undefined) {
