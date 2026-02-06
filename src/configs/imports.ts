@@ -65,7 +65,10 @@ export function imports(): ConfigObject[] {
         // 'no-duplicate-imports': 'off',
         'import/no-duplicates': ['error', { 'considerQueryString': true, 'prefer-inline': true }],
         'import/first': 'error',
-        'import/max-dependencies': 'error',
+        'import/max-dependencies': ['warn', {
+          max: 15,
+          ignoreTypeImports: true,
+        }],
         'import/no-extraneous-dependencies': ['error', {
           devDependencies: [
             // 测试文件

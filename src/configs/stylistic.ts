@@ -13,6 +13,7 @@ export function stylistic(): ConfigObject<WrapRuleConfig<RuleOptions>>[] {
       plugins: {
         '@stylistic': pluginStylistic,
       },
+
       // 96
       rules: {
         '@stylistic/array-bracket-newline': 'off',
@@ -86,14 +87,17 @@ export function stylistic(): ConfigObject<WrapRuleConfig<RuleOptions>>[] {
         '@stylistic/jsx-first-prop-new-line': 'error',
         '@stylistic/jsx-function-call-newline': 'error',
         '@stylistic/jsx-indent-props': ['error', 2],
+
         // '@stylistic/jsx-indent': ['error', 2, { checkAttributes: true, indentLogicalExpressions: true }],
         '@stylistic/jsx-max-props-per-line': ['error', { maximum: 1, when: 'multiline' }],
         '@stylistic/jsx-newline': 'error',
         '@stylistic/jsx-one-expression-per-line': ['error', { allow: 'single-child' }],
         '@stylistic/jsx-pascal-case': 'error',
+
         // '@stylistic/jsx-props-no-multi-spaces': 'error',
         '@stylistic/jsx-quotes': 'error',
         '@stylistic/jsx-self-closing-comp': 'error',
+
         // '@stylistic/jsx-sort-props': 'error',
         '@stylistic/jsx-tag-spacing': [
           'error',
@@ -121,7 +125,9 @@ export function stylistic(): ConfigObject<WrapRuleConfig<RuleOptions>>[] {
         '@stylistic/keyword-spacing': ['error', { before: true, after: true }],
         '@stylistic/line-comment-position': 'off',
         '@stylistic/linebreak-style': ['error', 'unix'],
-        '@stylistic/lines-around-comment': ['error', { afterBlockComment: true }],
+        '@stylistic/lines-around-comment': ['error', {
+          afterHashbangComment: true,
+        }],
         '@stylistic/lines-between-class-members': ['error', 'always', { exceptAfterSingleLine: true }],
         // eslint-disable-next-line @typescript-eslint/no-magic-numbers
         '@stylistic/max-len': ['error', 150, 2, {
@@ -132,6 +138,7 @@ export function stylistic(): ConfigObject<WrapRuleConfig<RuleOptions>>[] {
           ignoreTemplateLiterals: true,
         }],
         '@stylistic/max-statements-per-line': ['error', { max: 1 }],
+
         // @see semi
         '@stylistic/member-delimiter-style': ['error'],
         '@stylistic/multiline-comment-style': 'off',
@@ -169,6 +176,7 @@ export function stylistic(): ConfigObject<WrapRuleConfig<RuleOptions>>[] {
           ignoreComments: false,
         }],
         '@stylistic/no-whitespace-before-property': 'error',
+
         // @see eslint 'curly': ['error', 'all'],
         '@stylistic/nonblock-statement-body-position': ['off', 'beside', { overrides: {} }],
         '@stylistic/object-curly-newline': ['error', {
@@ -185,12 +193,14 @@ export function stylistic(): ConfigObject<WrapRuleConfig<RuleOptions>>[] {
         '@stylistic/operator-linebreak': ['error', 'before', { overrides: { '=': 'none' } }],
         '@stylistic/padded-blocks': ['error', { blocks: 'never', classes: 'never', switches: 'never' }],
         '@stylistic/padding-line-between-statements': 'error',
+
         // ['error', 'as-needed', { keywords: false, unnecessary: true, numbers: false }]
         '@stylistic/quote-props': ['error', 'consistent-as-needed'],
         '@stylistic/quotes': ['error', 'single', { allowTemplateLiterals: 'avoidEscape', avoidEscape: false }],
         '@stylistic/rest-spread-spacing': ['error', 'never'],
         '@stylistic/semi-spacing': ['error', { before: false, after: true }],
         '@stylistic/semi-style': ['error', 'last'],
+
         // todo
         '@stylistic/semi': ['error', 'always'],
         '@stylistic/space-before-blocks': ['error', 'always'],
@@ -198,6 +208,7 @@ export function stylistic(): ConfigObject<WrapRuleConfig<RuleOptions>>[] {
         '@stylistic/space-in-parens': ['error', 'never'],
         '@stylistic/space-infix-ops': 'error',
         '@stylistic/space-unary-ops': ['error', { nonwords: false, words: true }],
+
         // todo
         '@stylistic/spaced-comment': ['error', 'always', {
           block: {
@@ -218,6 +229,7 @@ export function stylistic(): ConfigObject<WrapRuleConfig<RuleOptions>>[] {
         '@stylistic/type-named-tuple-spacing': 'error',
         '@stylistic/wrap-iife': ['error', 'outside', { functionPrototypeMethods: false }],
         '@stylistic/wrap-regex': 'error',
+
         // todo
         '@stylistic/yield-star-spacing': ['error', 'both'],
       },
