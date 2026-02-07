@@ -3361,7 +3361,7 @@ export type Yoda = [
 ];
 
 /**
- * ESLint rules for ESLint
+ * 292 ESLint rules for ESLint
  *
  * @package `eslint`
  */
