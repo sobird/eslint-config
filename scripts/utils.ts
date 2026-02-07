@@ -58,7 +58,6 @@ export function describe(meta: Rule.RuleModule['meta'], ruleName: string, title:
   if (!meta) {
     return '';
   }
-  // eslint-disable-next-line @typescript-eslint/no-deprecated
   const { docs, deprecated, replacedBy } = meta;
 
   const desc: string[] = [];
@@ -89,7 +88,6 @@ export function rulesToJSONSchema(
   namespace = '',
   description?: string,
 ): JSONSchema4 {
-  // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
   const title = namespace.trim() || 'ESLint';
   const prefix = namespace.trim();
 
@@ -110,7 +108,6 @@ export function rulesToJSONSchema(
     const oldRefPrefix = '"$ref":"#/';
     const newRefPrefix = `"$ref":"#/properties/${escapeJsonPointer(ruleNameWithPrefix)}/allOf/0/`;
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const ruleSchema: JSONSchema4[] | JSONSchema4 = JSON.parse(JSON.stringify(schema).replaceAll(oldRefPrefix, newRefPrefix));
 
     if (Array.isArray(ruleSchema)) {
@@ -141,7 +138,6 @@ export function rulesToJSONSchema(
     return [ruleNameWithPrefix, ruleJSONSchema];
   });
 
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const properties: Record<string, JSONSchema4> = Object.fromEntries(entries);
 
 
