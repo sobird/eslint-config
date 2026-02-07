@@ -2269,7 +2269,7 @@ export type YieldStarSpacing = [
 ];
 
 /**
- * ESLint rules for stylistic
+ * 96 ESLint rules for stylistic
  *
  * @package `@stylistic/eslint-plugin`
  * @namespace `@stylistic`

@@ -1,6 +1,7 @@
 import type { ESLintRules } from './eslint';
 import type { ImportRules } from './import';
 import type { NodeRules } from './node';
+import type { ReactRules } from './react';
 import type { StylisticRules } from './stylistic';
 import type { TypescriptRules } from './typescript';
 
@@ -8,7 +9,8 @@ export type BuiltinRules = ESLintRules
   & ImportRules
   & NodeRules
   & StylisticRules
-  & TypescriptRules;
+  & TypescriptRules
+  & ReactRules;
 
 export interface ConfigOptions {
   typescript?: boolean | object;
