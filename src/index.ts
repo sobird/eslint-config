@@ -3,6 +3,7 @@ import { javascript } from './configs/javascript';
 import { node } from './configs/node';
 import { stylistic } from './configs/stylistic';
 import { typescript } from './configs/typescript';
+import { ConfigOptions, InferBuiltinRules } from 'types/rules';
 
 
 // export type WrapRuleConfig<T extends Record<string, any>> = {
@@ -24,7 +25,11 @@ export type ExactProps<T> = {
 };
 
 
-export function sobird() {
+interface Options extends ConfigOptions {
+
+}
+
+export function sobird<T extends Options>(config: T & { rules?: InferBuiltinRules<T> }) {
   return [
     javascript(),
     node(),
