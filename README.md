@@ -10,7 +10,7 @@ Sobird's ESLint config
 
 [npm]: https://img.shields.io/npm/v/eslint-config-sobird.svg
 [npm-url]: https://www.npmjs.com/package/eslint-config-sobird
-[build-status]: https://img.shields.io/github/actions/workflow/status/sobird/eslint-config/release.yml?label=CI&logo=github
+[build-status]: https://img.shields.io/github/actions/workflow/status/sobird/eslint-config/release.yaml?label=CI&logo=github
 [build-status-url]: https://github.com/sobird/eslint-config/actions
 [size]: https://packagephobia.com/badge?p=eslint-config-sobird
 [size-url]: https://packagephobia.com/result?p=eslint-config-sobird
