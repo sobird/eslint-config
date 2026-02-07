@@ -26,10 +26,17 @@ export type ExactProps<T> = {
   ]: T[K]
 };
 
-export type ESLintPlugin = Pick<ESLint.Plugin, 'meta' | 'rules'> & {
-  meta?: {
-    title?: string;
+export type ESLintPlugin = Pick<ESLint.Plugin, 'rules'> & {
+  meta: {
+    pkgname?: string;
+    version?: string;
+
+    /**
+     * rule prefix
+     */
+    namespace: string;
   };
+  filename: string;
 };
 // declare module 'eslint' {
 //   export namespace Rule {
