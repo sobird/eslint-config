@@ -1,39 +1,45 @@
-import nodePlugin from 'eslint-plugin-n';
+import pluginNode from 'eslint-plugin-n';
 
-import type { ESLintConfigObject } from 'types';
+import type { ESLintConfigObject, ESLintPlugin } from '@/types';
+
+const {
+  name = 'eslint-plugin-n',
+  version,
+  namespace = 'n',
+} = pluginNode.meta || {};
 
 export function node(): ESLintConfigObject[] {
   return [
     {
       name: 'sobird:node',
       plugins: {
-        node: nodePlugin,
+        [namespace]: pluginNode,
       },
       rules: {
-        'node/callback-return': 'error',
-        'node/exports-style': 'error',
-        'node/file-extension-in-import': ['off', 'never'],
-        'node/global-require': 'error',
-        'node/handle-callback-err': ['error', '^(err|error)$'],
-        'node/no-callback-literal': 'error',
-        'node/no-deprecated-api': 'error',
-        'node/no-exports-assign': 'error',
-        'node/no-extraneous-import': 'error',
-        'node/no-extraneous-require': 'error',
+        'n/callback-return': 'error',
+        'n/exports-style': 'error',
+        'n/file-extension-in-import': ['off', 'never'],
+        'n/global-require': 'error',
+        'n/handle-callback-err': ['error', '^(err|error)$'],
+        'n/no-callback-literal': 'error',
+        'n/no-deprecated-api': 'error',
+        'n/no-exports-assign': 'error',
+        'n/no-extraneous-import': 'error',
+        'n/no-extraneous-require': 'error',
         // see import/no-unresolved
-        'node/no-missing-import': 'off',
-        'node/no-missing-require': 'off',
-        'node/no-mixed-requires': 'error',
-        'node/no-new-require': 'error',
-        'node/no-path-concat': 'error',
-        'node/no-process-env': 'error',
-        'node/no-process-exit': 'error',
-        'node/no-restricted-import': 'error',
-        'node/no-restricted-require': 'error',
-        'node/no-sync': 'error',
-        // 'node/no-top-level-await': 'error',
-        'node/no-unpublished-bin': 'error',
-        'node/no-unpublished-import': [
+        'n/no-missing-import': 'off',
+        'n/no-missing-require': 'off',
+        'n/no-mixed-requires': 'error',
+        'n/no-new-require': 'error',
+        'n/no-path-concat': 'error',
+        'n/no-process-env': 'error',
+        'n/no-process-exit': 'error',
+        'n/no-restricted-import': 'error',
+        'n/no-restricted-require': 'error',
+        'n/no-sync': 'error',
+        // 'n/no-top-level-await': 'error',
+        'n/no-unpublished-bin': 'error',
+        'n/no-unpublished-import': [
           'error',
           {
             ignorePrivate: true,
@@ -42,25 +48,25 @@ export function node(): ESLintConfigObject[] {
             allowModules: [],
           },
         ],
-        'node/no-unpublished-require': 'error',
-        'node/no-unsupported-features/es-builtins': 'error',
-        'node/no-unsupported-features/es-syntax': 'error',
-        'node/no-unsupported-features/node-builtins': 'error',
-        'node/prefer-global/buffer': ['error', 'never'],
-        'node/prefer-global/console': 'error',
-        'node/prefer-global/process': ['error', 'never'],
-        'node/prefer-global/text-decoder': 'error',
-        'node/prefer-global/text-encoder': 'error',
-        'node/prefer-global/url-search-params': 'error',
-        'node/prefer-global/url': 'error',
-        'node/prefer-node-protocol': 'error',
-        'node/prefer-promises/dns': 'error',
-        'node/prefer-promises/fs': 'error',
-        'node/process-exit-as-throw': 'error',
-        'node/hashbang': 'error',
+        'n/no-unpublished-require': 'error',
+        'n/no-unsupported-features/es-builtins': 'error',
+        'n/no-unsupported-features/es-syntax': 'error',
+        'n/no-unsupported-features/node-builtins': 'error',
+        'n/prefer-global/buffer': ['error', 'never'],
+        'n/prefer-global/console': 'error',
+        'n/prefer-global/process': ['error', 'never'],
+        'n/prefer-global/text-decoder': 'error',
+        'n/prefer-global/text-encoder': 'error',
+        'n/prefer-global/url-search-params': 'error',
+        'n/prefer-global/url': 'error',
+        'n/prefer-node-protocol': 'error',
+        'n/prefer-promises/dns': 'error',
+        'n/prefer-promises/fs': 'error',
+        'n/process-exit-as-throw': 'error',
+        'n/hashbang': 'error',
         // 废弃规则也添加前缀
-        'node/no-hide-core-modules': 'error',
-        'node/shebang': 'error',
+        'n/no-hide-core-modules': 'error',
+        'n/shebang': 'error',
       },
     },
 
@@ -68,8 +74,18 @@ export function node(): ESLintConfigObject[] {
       files: ['**/*.test.ts', '**/*.test.js', 'scripts/**/*'],
       rules: {
         // 测试/脚本文件不检查「未发布导入」（因为这些文件本身不会被发布）
-        'node/no-unpublished-import': 'off',
+        'n/no-unpublished-import': 'off',
       },
     },
   ];
 }
+
+export const nodePlugin: ESLintPlugin = {
+  meta: {
+    pkgname: name,
+    namespace,
+    version,
+    title: 'node',
+  },
+  rules: pluginNode.rules,
+};
