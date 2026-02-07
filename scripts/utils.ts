@@ -141,7 +141,7 @@ export function ESlintPluginRulesToJSONSchema(plugin: ESLintPlugin): JSONSchema4
     return [ruleNameWithPrefix, ruleJSONSchema];
   });
   const properties: Record<string, JSONSchema4> = Object.fromEntries(entries);
-  const description = [`ESLint rules for ${title}\n`];
+  const description = [`${entries.length} ESLint rules for ${title}\n`];
 
   if (pkgname) {
     description.push(`@package \`${pkgname}\``);

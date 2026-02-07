@@ -43,6 +43,8 @@ export function typescript(options: Options = {}): ESLintConfigObject<ParserOpti
         parserOptions: {
           ecmaVersion: 'latest',
           sourceType: 'module',
+          project: './tsconfig.json',
+          tsconfigRootDir: process.cwd(),
           // We now recommend using projectService instead of project for easier configuration and faster linting.
           ...typed ? { projectService: true } : {},
           ...parserOptions,
