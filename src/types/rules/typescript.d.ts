@@ -4570,7 +4570,7 @@ export type UnifiedSignatures = [
 export type UseUnknownInCatchCallbackVariable = [];
 
 /**
- * ESLint rules for typescript
+ * 134 ESLint rules for typescript
  *
  * @package `@typescript-eslint/eslint-plugin`
  * @namespace `@typescript-eslint`

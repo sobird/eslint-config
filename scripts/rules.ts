@@ -10,6 +10,7 @@ import {
   eslintPlugin,
   typescriptPlugin,
   nodePlugin,
+  reactPlugin,
 } from '@/configs';
 
 import { ESlintPluginRulesToJSONSchema } from './utils';
@@ -24,6 +25,7 @@ const plugins = [
   stylisticPlugin,
   nodePlugin,
   typescriptPlugin,
+  reactPlugin,
 ];
 
 for (const plugin of plugins) {
