@@ -148,7 +148,7 @@ export function rulesToJSONSchema(
   return {
     $schema: 'http://json-schema.org/draft-04/schema#',
     type: 'object',
-    title: `${title}RuleOptions`,
+    title: `${title}Rules`,
     description: description ?? `ESLint rule options for ${title}`,
     properties,
     additionalProperties: false,
