@@ -1,7 +1,8 @@
+import type { ESLintPlugin } from '@/types';
+
 import type { DeprecatedInfo } from '@eslint/core';
 import type { Rule } from 'eslint';
 import type { JSONSchema4 } from 'json-schema';
-import type { ESLintPlugin } from 'types';
 
 function formatDeprecation(deprecated?: DeprecatedInfo | boolean, legacyReplacedBy?: readonly string[], title?: string): string {
   let message = '';
@@ -85,10 +86,9 @@ function escapeJsonPointer(str: string): string {
 export function ESlintPluginRulesToJSONSchema(plugin: ESLintPlugin): JSONSchema4 {
   const { meta: pluginMeta, rules = {} } = plugin;
   const {
-    pkgname, version, namespace,
+    pkgname, version, namespace, title,
   } = pluginMeta;
 
-  const title = namespace;
   let prefix = '';
   if (namespace) {
     prefix = namespace.endsWith('/') ? namespace : `${namespace}/`;

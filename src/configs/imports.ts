@@ -1,6 +1,6 @@
 import pluginImport from 'eslint-plugin-import';
 
-import type { ESLintConfigObject, ESLintPlugin } from 'types';
+import type { ESLintConfigObject, ESLintPlugin } from '@/types';
 
 const namespace = 'import';
 
@@ -199,10 +199,10 @@ export function imports(): ESLintConfigObject[] {
 }
 
 export const importPlugin: ESLintPlugin = {
-  filename: 'imports',
   meta: {
     pkgname: 'eslint-plugin-import',
     namespace,
+    title: 'import',
   },
   rules: pluginImport.rules,
 };

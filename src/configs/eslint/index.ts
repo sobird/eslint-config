@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 /**
  * @see https://github.com/eslint/eslint/blob/main/packages/js/src/configs/eslint-all.js
  * @see https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb-base
@@ -5,10 +6,13 @@
  * sobird<i@sobird.me> at 2024/10/23 23:08:17 created.
  */
 
-import type { ConfigObject, ExactProps } from '..';
-import type { ESLintRules } from 'eslint/rules';
+import { Linter } from 'eslint';
 
-export const rules: Partial<ESLintRules> = {
+import type { ESLintConfigObject, ESLintPlugin } from '@/types';
+
+import versions from './versions.json';
+
+export const rules: NonNullable<ESLintConfigObject['rules']> = {
   'accessor-pairs': [
     'error',
     { enforceForClassMembers: true, setWithoutGet: true },
@@ -460,7 +464,7 @@ export const rules: Partial<ESLintRules> = {
   'prefer-reflect': 'error',
 };
 
-export function javascript(): ConfigObject<ExactProps<ESLintRules>>[] {
+export function javascript(): ESLintConfigObject[] {
   return [
     {
       languageOptions: {
@@ -580,4 +584,25 @@ const config = {
   },
 };
 
-export default config;
+export const eslintPlugin: ESLintPlugin = {
+  meta: {
+    pkgname: 'eslint',
+    namespace: '',
+    title: 'ESLint',
+  },
+  get rules() {
+    const liner = new Linter({ configType: 'eslintrc' });
+    const eslintRules = liner.getRules();
+    const { added } = versions;
+
+    const entries = Array.from(eslintRules, ([ruleName, ruleModel]) => {
+      if (ruleName in added) {
+        const version = added[ruleName as keyof typeof added];
+        Object.assign(ruleModel.meta ?? {}, { version });
+      }
+      return [ruleName, ruleModel] as const;
+    });
+
+    return Object.fromEntries(entries);
+  },
+};

@@ -2269,7 +2269,7 @@ export type YieldStarSpacing = [
 ];
 
 /**
- * ESLint rules for @stylistic
+ * ESLint rules for stylistic
  *
  * @package `@stylistic/eslint-plugin`
  * @namespace `@stylistic`
@@ -2460,7 +2460,7 @@ export interface StylisticRules {
    * Enforce JSX indentation. Deprecated, use `indent` rule instead.
    *
    * @see {@link https://eslint.style/rules/jsx-indent jsx-indent}
-   * @deprecated This rule was `deprecated` in @stylistic v5.0.0. Please use the {@link https://eslint.style/rules/indent `indent`} rule instead.
+   * @deprecated This rule was `deprecated` in stylistic v5.0.0. Please use the {@link https://eslint.style/rules/indent `indent`} rule instead.
    */
   "@stylistic/jsx-indent"?: JsxIndent;
   /**
@@ -2497,7 +2497,7 @@ export interface StylisticRules {
    * Disallow multiple spaces between inline JSX props. Deprecated, use `no-multi-spaces` rule instead.
    *
    * @see {@link https://eslint.style/rules/jsx-props-no-multi-spaces jsx-props-no-multi-spaces}
-   * @deprecated This rule was `deprecated` in @stylistic v5.0.0. Please use the {@link https://eslint.style/rules/no-multi-spaces `no-multi-spaces`} rule instead.
+   * @deprecated This rule was `deprecated` in stylistic v5.0.0. Please use the {@link https://eslint.style/rules/no-multi-spaces `no-multi-spaces`} rule instead.
    */
   "@stylistic/jsx-props-no-multi-spaces"?: JsxPropsNoMultiSpaces;
   /**
@@ -2516,7 +2516,7 @@ export interface StylisticRules {
    * Enforce props alphabetical sorting
    *
    * @see {@link https://eslint.style/rules/jsx-sort-props jsx-sort-props}
-   * @deprecated This rule was `deprecated` in @stylistic v5.7.0. Please use the {@link https://perfectionist.dev/rules/sort-jsx-props `sort-jsx-props`} in {@link https://perfectionist.dev `eslint-plugin-perfectionist`} rule instead.
+   * @deprecated This rule was `deprecated` in stylistic v5.7.0. Please use the {@link https://perfectionist.dev/rules/sort-jsx-props `sort-jsx-props`} in {@link https://perfectionist.dev `eslint-plugin-perfectionist`} rule instead.
    */
   "@stylistic/jsx-sort-props"?: JsxSortProps;
   /**
