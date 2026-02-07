@@ -1,4 +1,4 @@
-import type { BuiltinRules } from './rules';
+import type { BuiltinRules, InferBuiltinRules } from './rules';
 import type { RuleConfig } from '@eslint/core';
 import type { Rule, Linter } from 'eslint';
 
