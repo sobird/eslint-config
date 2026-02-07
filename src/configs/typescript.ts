@@ -13,14 +13,17 @@ import { renameRules } from '../utils';
 import type { ParserOptions } from '@typescript-eslint/utils/ts-eslint';
 import type { ESLintConfigObject } from 'types';
 
-
 interface Options {
-  typeChecked?: boolean;
+
+  /**
+   * Enable typescript type checking
+   */
+  typed?: boolean;
   parserOptions?: ParserOptions;
 }
 
 export function typescript(options: Options = {}): ESLintConfigObject<ParserOptions>[] {
-  const { typeChecked = false } = options;
+  const { typed = false, parserOptions = {} } = options;
   const { disableTypeChecked } = configs;
 
   disableTypeChecked.rules = renameRules(
@@ -40,7 +43,8 @@ export function typescript(options: Options = {}): ESLintConfigObject<ParserOpti
           ecmaVersion: 'latest',
           sourceType: 'module',
           // We now recommend using projectService instead of project for easier configuration and faster linting.
-          ...typeChecked ? { projectService: true } : {},
+          ...typed ? { projectService: true } : {},
+          ...parserOptions,
         },
       },
       plugins: {
@@ -48,8 +52,8 @@ export function typescript(options: Options = {}): ESLintConfigObject<ParserOpti
       },
     },
     {
-      name: 'sobird:typescript:init',
-      files: ['**/*.ts', '**/*.tsx', '**/*.mts', '**/*.cts'],
+      name: 'sobird:typescript:reset',
+      files: ['**/*.ts', '**/*.mts', '**/*.cts', '**/*.tsx', '**/*.mtsx', '**/*.ctsx'],
       rules: {
         'constructor-super': 'off', // ts(2335) & ts(2377)
         'getter-return': 'off', // ts(2378)
@@ -352,6 +356,6 @@ export function typescript(options: Options = {}): ESLintConfigObject<ParserOpti
         '@typescript/use-unknown-in-catch-callback-variable': 'error',
       },
     },
-    (typeChecked ? {} : disableTypeChecked),
+    (typed ? {} : disableTypeChecked),
   ];
 }

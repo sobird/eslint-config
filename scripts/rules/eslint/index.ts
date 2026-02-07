@@ -4,7 +4,6 @@ import versions from './versions.json';
 import type { JSONSchema4 } from 'json-schema';
 import { rulesToJSONSchema } from 'scripts/utils';
 
-
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
   name: 'eslint',
@@ -15,7 +14,6 @@ export default {
 
     const entries = Array.from(rules, ([ruleName, ruleModel]) => {
       if (ruleName in added) {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
         const version = added[ruleName as keyof typeof added];
         Object.assign(ruleModel.meta ?? {}, { version });
       }

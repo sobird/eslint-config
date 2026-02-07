@@ -170,7 +170,7 @@ export function stylistic(): ConfigObject<WrapRuleConfig<RuleOptions>>[] {
          */
 
         '@stylistic/no-multi-spaces': 'error',
-        '@stylistic/no-multiple-empty-lines': ['error', { max: 2, maxBOF: 0, maxEOF: 0 }],
+        '@stylistic/no-multiple-empty-lines': ['error', { max: 1, maxBOF: 0, maxEOF: 0 }],
         '@stylistic/no-tabs': indent === 'tab' ? 'off' : 'error',
         '@stylistic/no-trailing-spaces': ['error', {
           ignoreComments: false,
