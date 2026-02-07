@@ -2,6 +2,7 @@
 /**
  * @see https://github.com/eslint/eslint/blob/main/packages/js/src/configs/eslint-all.js
  * @see https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb-base
+ * @see https://github.com/eslint/eslint/blob/main/docs/src/_data/rule_versions.json
  *
  * sobird<i@sobird.me> at 2024/10/23 23:08:17 created.
  */
