@@ -9,7 +9,7 @@ export default {
   get schema() {
     if (typeof importPlugin.rules === 'object') {
       const entries = Object.entries(importPlugin.rules);
-      return rulesToJSONSchema(new Map<string, Rule.RuleModule>(entries), 'ESLint-plugin-import', '');
+      return rulesToJSONSchema(new Map<string, Rule.RuleModule>(entries), '@import/');
     }
   },
 };

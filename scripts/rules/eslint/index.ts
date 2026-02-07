@@ -23,6 +23,6 @@ export default {
       return [ruleName, ruleModel] as const;
     });
 
-    return rulesToJSONSchema(new Map<string, Rule.RuleModule>(entries), 'ESLint', '');
+    return rulesToJSONSchema(new Map<string, Rule.RuleModule>(entries));
   },
 };

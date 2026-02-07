@@ -79,21 +79,36 @@ export function describe(meta: Rule.RuleModule['meta'], ruleName: string, title:
   return desc.join('\n');
 }
 
-export function rulesToJSONSchema(rules: Map<string, Rule.RuleModule>, title: string, description: string): JSONSchema4 {
+
+function escapeJsonPointer(str: string): string {
+  return str.replace(/~/gu, '~0').replace(/\//gu, '~1');
+}
+
+export function rulesToJSONSchema(
+  rules: Map<string, Rule.RuleModule>,
+  namespace = '',
+  description?: string,
+): JSONSchema4 {
+  // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+  const title = namespace.trim() || 'ESLint';
+  const prefix = namespace.trim();
+
   const entries = Array.from(rules, ([ruleName, ruleModule]) => {
+    const ruleNameWithPrefix = prefix + ruleName;
+
     const { meta } = ruleModule;
     if (!meta) {
-      return [ruleName, {}];
+      return [ruleNameWithPrefix, {}];
     }
 
     const { schema } = meta;
     if (typeof schema !== 'object') {
-      return [ruleName, {}];
+      return [ruleNameWithPrefix, {}];
     }
 
     // replace $ref json pointer
     const oldRefPrefix = '"$ref":"#/';
-    const newRefPrefix = `"$ref":"#/properties/${ruleName}/allOf/0/`;
+    const newRefPrefix = `"$ref":"#/properties/${escapeJsonPointer(ruleNameWithPrefix)}/allOf/0/`;
 
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const ruleSchema: JSONSchema4[] | JSONSchema4 = JSON.parse(JSON.stringify(schema).replaceAll(oldRefPrefix, newRefPrefix));
@@ -111,7 +126,7 @@ export function rulesToJSONSchema(rules: Map<string, Rule.RuleModule>, title: st
           },
         ],
       };
-      return [ruleName, ruleJSONSchema];
+      return [ruleNameWithPrefix, ruleJSONSchema];
     }
 
     const ruleJSONSchema: Rule.RuleMetaData['schema'] = {
@@ -123,17 +138,18 @@ export function rulesToJSONSchema(rules: Map<string, Rule.RuleModule>, title: st
         },
       ],
     };
-    return [ruleName, ruleJSONSchema];
+    return [ruleNameWithPrefix, ruleJSONSchema];
   });
 
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const properties: Record<string, JSONSchema4> = Object.fromEntries(entries);
 
+
   return {
     $schema: 'http://json-schema.org/draft-04/schema#',
     type: 'object',
     title: `${title}RuleOptions`,
-    description,
+    description: description ?? `ESLint rule options for ${title}`,
     properties,
     additionalProperties: false,
   };
