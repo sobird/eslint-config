@@ -14,7 +14,6 @@ interface Options extends ConfigOptions {
   };
 }
 
-// eslint-disable-next-line @typescript/explicit-function-return-type, @typescript/explicit-module-boundary-types
 export function sobird<T extends Options>(
   config?: T & { rules?: InferBuiltinRules<T> },
 ) {

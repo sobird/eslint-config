@@ -14,11 +14,12 @@ import { rules as javascriptRules } from './eslint';
 import type { ParserOptions } from '@typescript-eslint/utils/ts-eslint';
 import type { ESLint } from 'eslint';
 
+const { rules, meta = {} } = plugin as ESLint.Plugin;
 const {
   name = 'eslint-plugin-n',
   version = '',
   namespace = '@typescript-eslint',
-} = (plugin as ESLint.Plugin).meta || {};
+} = meta;
 
 interface Options {
 
@@ -367,5 +368,5 @@ export const typescriptPlugin: ESLintPlugin = {
     version,
     title: 'typescript',
   },
-  rules: (plugin as ESLint.Plugin).rules,
+  rules,
 };
