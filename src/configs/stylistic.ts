@@ -1,21 +1,23 @@
-import pluginStylistic, { type RuleOptions } from '@stylistic/eslint-plugin';
+import pluginStylistic from '@stylistic/eslint-plugin';
 
-import type { ConfigObject, WrapRuleConfig } from '..';
+import type { ESLintConfigObject, ESLintPlugin } from 'types';
 
-// import  from '@stylistic/eslint-plugin';
+const {
+  name = '@stylistic/eslint-plugin',
+  namespace = '@stylistic',
+  version,
+} = (pluginStylistic as ESLintPlugin).meta || {};
 
-export function stylistic(): ConfigObject<WrapRuleConfig<RuleOptions>>[] {
+export function stylistic(): ESLintConfigObject[] {
   const indent: number | string = 'tab';
 
   return [
     {
       name: 'sobird:stylistic',
       plugins: {
-        '@stylistic': pluginStylistic,
+        [namespace]: pluginStylistic,
       },
-
-      // 96
-      rules: {
+      rules: { // 96
         '@stylistic/array-bracket-newline': 'off',
         '@stylistic/array-bracket-spacing': ['error', 'never'],
         '@stylistic/array-element-newline': 'off',
@@ -129,7 +131,6 @@ export function stylistic(): ConfigObject<WrapRuleConfig<RuleOptions>>[] {
           afterHashbangComment: true,
         }],
         '@stylistic/lines-between-class-members': ['error', 'always', { exceptAfterSingleLine: true }],
-        // eslint-disable-next-line @typescript-eslint/no-magic-numbers
         '@stylistic/max-len': ['error', 150, 2, {
           ignoreUrls: true,
           ignoreComments: false,
@@ -236,3 +237,13 @@ export function stylistic(): ConfigObject<WrapRuleConfig<RuleOptions>>[] {
     },
   ];
 }
+
+export const stylisticPlugin: ESLintPlugin = {
+  meta: {
+    name,
+    namespace,
+    version,
+    title: 'stylistic',
+  },
+  rules: pluginStylistic.rules,
+};
