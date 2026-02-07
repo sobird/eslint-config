@@ -4,6 +4,7 @@ import { node } from './configs/node';
 import { stylistic } from './configs/stylistic';
 import { typescript } from './configs/typescript';
 import { ConfigOptions, InferBuiltinRules } from 'types/rules';
+import { defineConfig, globalIgnores } from 'eslint/config';
 
 
 // export type WrapRuleConfig<T extends Record<string, any>> = {
@@ -29,12 +30,13 @@ interface Options extends ConfigOptions {
 
 }
 
-export function sobird<T extends Options>(config: T & { rules?: InferBuiltinRules<T> }) {
-  return [
+export function sobird<T extends Options>(config?: T & { rules?: InferBuiltinRules<T> }) {
+
+  return defineConfig(
     javascript(),
     node(),
     imports(),
     stylistic(),
     typescript(),
-  ];
+  )
 }
