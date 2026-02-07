@@ -9,7 +9,7 @@ export default {
   get schema() {
     if (plugin.rules) {
       const entries = Object.entries(plugin.rules);
-      return rulesToJSONSchema(new Map<string, Rule.RuleModule>(entries), 'Typescript-ESLint', '');
+      return rulesToJSONSchema(new Map<string, Rule.RuleModule>(entries), '@typescript/', '');
     }
   },
 };
