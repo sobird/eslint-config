@@ -9,8 +9,10 @@
 import { parser, plugin, configs } from 'typescript-eslint';
 
 import { rules as javascriptRules } from './javascript';
+import { renameRules } from '../utils';
 import type { ParserOptions } from '@typescript-eslint/utils/ts-eslint';
 import type { ESLintConfigObject } from 'types';
+
 
 interface Options {
   typeChecked?: boolean;
@@ -19,6 +21,14 @@ interface Options {
 
 export function typescript(options: Options = {}): ESLintConfigObject<ParserOptions>[] {
   const { typeChecked = false } = options;
+  const { disableTypeChecked } = configs;
+
+  disableTypeChecked.rules = renameRules(
+    // eslint-disable-next-line @typescript/no-non-null-assertion
+    disableTypeChecked.rules!,
+    '@typescript-eslint/',
+    '@typescript/',
+  );
 
   return [
     {
@@ -342,6 +352,6 @@ export function typescript(options: Options = {}): ESLintConfigObject<ParserOpti
         '@typescript/use-unknown-in-catch-callback-variable': 'error',
       },
     },
-    (typeChecked ? {} : configs.disableTypeChecked),
+    (typeChecked ? {} : disableTypeChecked),
   ];
 }

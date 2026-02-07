@@ -11,5 +11,10 @@ export default defineConfig(
   //   extends: [importPlugin.flatConfigs.recommended, importPlugin.flatConfigs.typescript],
   //   // other configs...
   // },
-  sobird(),
+  sobird({
+    typescript: true,
+    rules: {
+      '@typescript/no-explicit-any': [{ fixToUnknown: true }],
+    },
+  }),
 );
