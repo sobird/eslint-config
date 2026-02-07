@@ -10,7 +10,7 @@ export default {
   get schema() {
     if (nodePlugin.rules) {
       const entries = Object.entries(nodePlugin.rules);
-      return rulesToJSONSchema(new Map<string, Rule.RuleModule>(entries), 'ESLint-plugin-n', '');
+      return rulesToJSONSchema(new Map<string, Rule.RuleModule>(entries), '@node/');
     }
   },
 };
