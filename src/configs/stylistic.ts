@@ -1,12 +1,13 @@
 import pluginStylistic from '@stylistic/eslint-plugin';
 
+import type { ESLint } from 'eslint';
 import type { ESLintConfigObject, ESLintPlugin } from 'types';
 
 const {
   name = '@stylistic/eslint-plugin',
   namespace = '@stylistic',
   version,
-} = (pluginStylistic as ESLintPlugin).meta || {};
+} = (pluginStylistic as ESLint.Plugin).meta || {};
 
 export function stylistic(): ESLintConfigObject[] {
   const indent: number | string = 'tab';
@@ -239,11 +240,11 @@ export function stylistic(): ESLintConfigObject[] {
 }
 
 export const stylisticPlugin: ESLintPlugin = {
+  filename: 'stylistic',
   meta: {
-    name,
+    pkgname: name,
     namespace,
     version,
-    title: 'stylistic',
   },
   rules: pluginStylistic.rules,
 };

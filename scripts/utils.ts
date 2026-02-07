@@ -83,11 +83,12 @@ function escapeJsonPointer(str: string): string {
 }
 
 export function ESlintPluginRulesToJSONSchema(plugin: ESLintPlugin): JSONSchema4 {
-  const { meta: pluginMeta = {}, rules = {} } = plugin;
+  const { meta: pluginMeta, rules = {} } = plugin;
   const {
-    name, version, namespace, title = 'ESLint',
+    pkgname, version, namespace,
   } = pluginMeta;
 
+  const title = namespace;
   let prefix = '';
   if (namespace) {
     prefix = namespace.endsWith('/') ? namespace : `${namespace}/`;
@@ -142,8 +143,8 @@ export function ESlintPluginRulesToJSONSchema(plugin: ESLintPlugin): JSONSchema4
   const properties: Record<string, JSONSchema4> = Object.fromEntries(entries);
   const description = [`ESLint rules for ${title}\n`];
 
-  if (name) {
-    description.push(`@package \`${name}\``);
+  if (pkgname) {
+    description.push(`@package \`${pkgname}\``);
   }
   if (namespace) {
     description.push(`@namespace \`${namespace}\``);
