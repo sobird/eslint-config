@@ -1,6 +1,8 @@
-import nodePlugin, { type Configs } from 'eslint-plugin-n';
+import nodePlugin from 'eslint-plugin-n';
 
-export function node(): Configs['flat/all'][] {
+import type { ESLintConfigObject } from 'types';
+
+export function node(): ESLintConfigObject[] {
   return [
     {
       name: 'sobird:node',
