@@ -35,8 +35,9 @@ export type ESLintPlugin = Pick<ESLint.Plugin, 'rules'> & {
      * rule prefix
      */
     namespace: string;
+    title: string;
   };
-  filename: string;
+
 };
 // declare module 'eslint' {
 //   export namespace Rule {
