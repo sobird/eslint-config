@@ -1,9 +1,8 @@
 import type { ESLintRules } from './eslint';
-import type { ImportRules } from './imports';
+import type { ImportRules } from './import';
 import type { NodeRules } from './node';
 import type { StylisticRules } from './stylistic';
 import type { TypescriptRules } from './typescript';
-
 
 export type BuiltinRules = ESLintRules
   & ImportRules

@@ -4,22 +4,31 @@ import path from 'node:path';
 
 import { compile } from 'json-schema-to-typescript';
 
-import { stylisticPlugin, importPlugin } from '@/configs';
+import {
+  stylisticPlugin,
+  importPlugin,
+  eslintPlugin,
+  typescriptPlugin,
+  nodePlugin,
+} from '@/configs';
 
 import { ESlintPluginRulesToJSONSchema } from './utils';
 
-const dir = path.join('types', 'rules');
+const dir = path.join('src', 'types', 'rules');
 
 await fs.mkdir(dir, { recursive: true });
 
 const plugins = [
+  eslintPlugin,
   importPlugin,
   stylisticPlugin,
+  nodePlugin,
+  typescriptPlugin,
 ];
 
 for (const plugin of plugins) {
-  const { filename } = plugin;
+  const { meta: { title } } = plugin;
   const schema = ESlintPluginRulesToJSONSchema(plugin);
   const result = await compile(schema, '', { bannerComment: '/* eslint-disable */' });
-  await fs.writeFile(path.join(dir, `${filename}.d.ts`), result);
+  await fs.writeFile(path.join(dir, `${title.toLowerCase()}.d.ts`), result);
 }

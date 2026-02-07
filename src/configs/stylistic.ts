@@ -1,7 +1,8 @@
 import pluginStylistic from '@stylistic/eslint-plugin';
 
+import type { ESLintConfigObject, ESLintPlugin } from '@/types';
+
 import type { ESLint } from 'eslint';
-import type { ESLintConfigObject, ESLintPlugin } from 'types';
 
 const {
   name = '@stylistic/eslint-plugin',
@@ -240,11 +241,11 @@ export function stylistic(): ESLintConfigObject[] {
 }
 
 export const stylisticPlugin: ESLintPlugin = {
-  filename: 'stylistic',
   meta: {
     pkgname: name,
     namespace,
     version,
+    title: 'stylistic',
   },
   rules: pluginStylistic.rules,
 };
