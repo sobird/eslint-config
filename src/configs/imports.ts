@@ -1,18 +1,20 @@
-import importPlugin from 'eslint-plugin-import';
+import pluginImport from 'eslint-plugin-import';
 
-import type { ConfigObject } from '@/index';
+import type { ESLintConfigObject, ESLintPlugin } from 'types';
+
+const namespace = 'import';
 
 const typeScriptExtensions = ['.ts', '.cts', '.mts', '.tsx', '.js', '.cjs'];
 const allExtensions = [...typeScriptExtensions, '.js', '.jsx', '.mjs', '.cjs'];
 
-export function imports(): ConfigObject[] {
+export function imports(): ESLintConfigObject[] {
   const stylistic = true;
 
   return [
     {
       name: 'sobird:imports',
       plugins: {
-        import: importPlugin,
+        [namespace]: pluginImport,
       },
       rules: {
         'import/no-unresolved': ['error', { commonjs: false, caseSensitive: true }],
@@ -195,3 +197,12 @@ export function imports(): ConfigObject[] {
     },
   ];
 }
+
+export const importPlugin: ESLintPlugin = {
+  filename: 'imports',
+  meta: {
+    pkgname: 'eslint-plugin-import',
+    namespace,
+  },
+  rules: pluginImport.rules,
+};
