@@ -7,16 +7,6 @@ import { stylistic } from './configs/stylistic';
 import { typescript } from './configs/typescript';
 import type { ConfigOptions, InferBuiltinRules } from 'types/rules';
 
-export type ExactProps<T> = {
-  [K in keyof T as
-  string extends K ? never
-    : number extends K ? never
-      : symbol extends K ? never
-        : K
-  ]: T[K]
-};
-
-
 interface Options extends ConfigOptions {
   typescript?: {
     hh: string;

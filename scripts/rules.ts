@@ -4,21 +4,21 @@ import path from 'node:path';
 
 import { compile } from 'json-schema-to-typescript';
 
-import eslint from './rules/eslint';
-import imports from './rules/imports';
-import node from './rules/node';
-import stylistic from './rules/stylistic';
-import typescript from './rules/typescript';
+import { stylisticPlugin } from '@/configs';
+
+import { ESlintPluginRulesToJSONSchema } from './utils';
 
 const dir = path.join('types', 'rules');
 
 await fs.mkdir(dir, { recursive: true });
 
+const plugins = [
+  stylisticPlugin,
+];
 
-for (const item of [eslint, imports, node, stylistic, typescript]) {
-  const { schema, name } = item;
-  if (schema !== undefined) {
-    const result = await compile(schema, '', { bannerComment: '/* eslint-disable */' });
-    await fs.writeFile(path.join(dir, `${name}.d.ts`), result);
-  }
+for (const plugin of plugins) {
+  const { meta } = plugin;
+  const schema = ESlintPluginRulesToJSONSchema(plugin);
+  const result = await compile(schema, '', { bannerComment: '/* eslint-disable */' });
+  await fs.writeFile(path.join(dir, `${meta?.title}.d.ts`), result);
 }

@@ -1,6 +1,7 @@
 import type { DeprecatedInfo } from '@eslint/core';
 import type { Rule } from 'eslint';
 import type { JSONSchema4 } from 'json-schema';
+import type { ESLintPlugin } from 'types';
 
 function formatDeprecation(deprecated?: DeprecatedInfo | boolean, legacyReplacedBy?: readonly string[], title?: string): string {
   let message = '';
@@ -74,24 +75,25 @@ export function describe(meta: Rule.RuleModule['meta'], ruleName: string, title:
     desc.push(`@deprecated ${deprecation}`);
   }
 
-
   return desc.join('\n');
 }
-
 
 function escapeJsonPointer(str: string): string {
   return str.replace(/~/gu, '~0').replace(/\//gu, '~1');
 }
 
-export function rulesToJSONSchema(
-  rules: Map<string, Rule.RuleModule>,
-  namespace = '',
-  description?: string,
-): JSONSchema4 {
-  const title = namespace.trim() || 'ESLint';
-  const prefix = namespace.trim();
+export function ESlintPluginRulesToJSONSchema(plugin: ESLintPlugin): JSONSchema4 {
+  const { meta: pluginMeta = {}, rules = {} } = plugin;
+  const {
+    name, version, namespace, title = 'ESLint',
+  } = pluginMeta;
 
-  const entries = Array.from(rules, ([ruleName, ruleModule]) => {
+  let prefix = '';
+  if (namespace) {
+    prefix = namespace.endsWith('/') ? namespace : `${namespace}/`;
+  }
+
+  const entries = Object.entries(rules).map(([ruleName, ruleModule]) => {
     const ruleNameWithPrefix = prefix + ruleName;
 
     const { meta } = ruleModule;
@@ -137,15 +139,24 @@ export function rulesToJSONSchema(
     };
     return [ruleNameWithPrefix, ruleJSONSchema];
   });
-
   const properties: Record<string, JSONSchema4> = Object.fromEntries(entries);
+  const description = [`ESLint rules for ${title}\n`];
 
+  if (name) {
+    description.push(`@package \`${name}\``);
+  }
+  if (namespace) {
+    description.push(`@namespace \`${namespace}\``);
+  }
+  if (version) {
+    description.push(`@version ${version}`);
+  }
 
   return {
     $schema: 'http://json-schema.org/draft-04/schema#',
     type: 'object',
     title: `${title}Rules`,
-    description: description ?? `ESLint rule options for ${title}`,
+    description: description.join('\n'),
     properties,
     additionalProperties: false,
   };
