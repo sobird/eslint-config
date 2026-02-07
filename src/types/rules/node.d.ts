@@ -3325,7 +3325,7 @@ export type Shebang = [
 ];
 
 /**
- * ESLint rules for node
+ * 41 ESLint rules for node
  *
  * @package `eslint-plugin-n`
  * @namespace `n`

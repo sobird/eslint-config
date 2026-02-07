@@ -553,7 +553,7 @@ export type NoDeprecated = [];
 export type ImportsFirst = ["absolute-first" | "disable-absolute-first"];
 
 /**
- * ESLint rules for import
+ * 46 ESLint rules for import
  *
  * @package `eslint-plugin-import`
  * @namespace `import`
