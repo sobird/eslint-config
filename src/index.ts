@@ -1,20 +1,11 @@
+import { defineConfig, globalIgnores } from 'eslint/config';
+
 import { imports } from './configs/imports';
 import { javascript } from './configs/javascript';
 import { node } from './configs/node';
 import { stylistic } from './configs/stylistic';
 import { typescript } from './configs/typescript';
-import { ConfigOptions, InferBuiltinRules } from 'types/rules';
-import { defineConfig, globalIgnores } from 'eslint/config';
-
-
-// export type WrapRuleConfig<T extends Record<string, any>> = {
-//   [K in keyof T]: T[K] extends RuleConfig ? T[K] : RuleConfig<NonNullable<T[K]>>
-// };
-
-// type Test = WrapRuleConfig<ESLintRuleOptions>;
-// const test: Test = {
-//   'accessor-pairs': ['error', {}],
-// };
+import type { ConfigOptions, InferBuiltinRules } from 'types/rules';
 
 export type ExactProps<T> = {
   [K in keyof T as
@@ -27,16 +18,20 @@ export type ExactProps<T> = {
 
 
 interface Options extends ConfigOptions {
-
+  typescript?: {
+    hh: string;
+  };
 }
 
-export function sobird<T extends Options>(config?: T & { rules?: InferBuiltinRules<T> }) {
-
+// eslint-disable-next-line @typescript/explicit-function-return-type, @typescript/explicit-module-boundary-types
+export function sobird<T extends Options>(
+  config?: T & { rules?: InferBuiltinRules<T> },
+) {
   return defineConfig(
     javascript(),
     node(),
     imports(),
     stylistic(),
     typescript(),
-  )
+  );
 }
