@@ -6,17 +6,34 @@ import { stylistic } from './configs/stylistic';
 import { typescript } from './configs/typescript';
 import type { RuleConfig, RulesConfig } from '@eslint/core';
 import type { Linter } from 'eslint';
-import type { AllESLintCustomRuleSchemas } from 'test.d';
-import type { RuleOptions } from 'types/rules/eslint';
+import type { ESLintRuleOptions } from 'types/rules/eslint';
+import type { TypescriptESLintRuleOptions } from 'types/rules/typescript';
 
 
-export type WrapRuleConfig<T extends Record<string, any>> = {
-  [K in keyof T]: T[K] extends RuleConfig ? T[K] : RuleConfig<T[K]>
+type AddSlash<T extends string> = T extends '' ? '' : T extends `${string}/` ? T : `${T}/`;
+
+type Prefix<T extends Record<string, any>, Pre extends string> = {
+  [K in keyof T as `${Pre}${K & string}`]: T[K];
 };
 
-type Test = WrapRuleConfig<AllESLintCustomRuleSchemas>;
+type ESLintRuleOptions1 = Prefix<ESLintRuleOptions, 'test'>;
+type TypescriptESLintRuleOptions1 = Prefix<TypescriptESLintRuleOptions, 'test1'>;
+
+type HHH = ESLintRuleOptions1 & TypescriptESLintRuleOptions1;
+
+type MergeIntersection<T extends Record<any, any>> = {
+  [K in keyof T]: T[K];
+} & {};
+
+type My = MergeIntersection<HHH>;
+
+export type WrapRuleConfig<T extends Record<string, any>> = {
+  [K in keyof T]: T[K] extends RuleConfig ? T[K] : RuleConfig<NonNullable<T[K]>>
+};
+
+type Test = WrapRuleConfig<ESLintRuleOptions>;
 const test: Test = {
-  'accessor-pairs': ['error', { getWithoutSet: true }],
+  'accessor-pairs': ['error', {}],
 };
 
 export type ExactProps<T> = {

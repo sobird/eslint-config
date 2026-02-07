@@ -17,7 +17,6 @@ await fs.mkdir(dir, { recursive: true });
 
 for (const item of [eslint, imports, node, stylistic, typescript]) {
   const { schema, name } = item;
-
   if (schema !== undefined) {
     const result = await compile(schema, '', { bannerComment: '/* eslint-disable */' });
     await fs.writeFile(path.join(dir, `${name}.d.ts`), result);
