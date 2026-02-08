@@ -124,6 +124,7 @@ export function imports(): ESLintConfigObject[] {
         'import/no-absolute-path': 'error',
         'import/no-nodejs-modules': 'off',
         'import/no-webpack-loader-syntax': 'error',
+        // @see sort-imports
         'sort-imports': 'off',
         'import/order': ['error', {
           'groups': [
