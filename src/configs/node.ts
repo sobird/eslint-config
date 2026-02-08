@@ -1,6 +1,6 @@
 import pluginNode from 'eslint-plugin-n';
 
-import type { ESLintConfigObject, ESLintPlugin } from '@/types';
+import type { ESLintConfigObject, ESLintPlugin } from '../types';
 
 const {
   name = 'eslint-plugin-n',

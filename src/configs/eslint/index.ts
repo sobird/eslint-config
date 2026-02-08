@@ -9,9 +9,8 @@
 
 import { Linter } from 'eslint';
 
-import type { ESLintConfigObject, ESLintPlugin } from '@/types';
-
 import versions from './versions.json';
+import type { ESLintConfigObject, ESLintPlugin } from '../../types';
 
 export const rules: NonNullable<ESLintConfigObject['rules']> = {
   'accessor-pairs': [

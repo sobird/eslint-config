@@ -1,10 +1,9 @@
 import { defineConfig, globalIgnores } from 'eslint/config';
 
-import type { ConfigOptions, InferBuiltinRules } from '@/types/rules';
-
 import {
   javascript, imports, node, stylistic, typescript,
 } from './configs';
+import type { ConfigOptions, InferBuiltinRules } from './types/rules';
 
 interface Options extends ConfigOptions {
   typescript?: {
