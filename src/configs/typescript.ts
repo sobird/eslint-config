@@ -6,7 +6,7 @@
 
 // https://github.com/import-js/eslint-plugin-import/blob/main/config/typescript.js
 
-import { parser, plugin, configs } from 'typescript-eslint';
+import { configs, parser, plugin } from 'typescript-eslint';
 
 import type { ESLintConfigObject, ESLintPlugin } from '../types';
 import { rules as javascriptRules } from './eslint';
@@ -33,29 +33,31 @@ export function typescript(options: Options = {}): ESLintConfigObject<ParserOpti
   const { typed = false, parserOptions = {} } = options;
   const { disableTypeChecked } = configs;
 
+  const files = ['**/*.ts', '**/*.mts', '**/*.cts', '**/*.tsx', '**/*.mtsx', '**/*.ctsx'];
+
   return [
     {
       name: 'sobird:typescript:setup',
-      languageOptions: {
-        parser,
-        // https://typescript-eslint.io/packages/parser/#configuration
-        parserOptions: {
-          ecmaVersion: 'latest',
-          sourceType: 'module',
-          project: './tsconfig.json',
-          tsconfigRootDir: process.cwd(),
-          // We now recommend using projectService instead of project for easier configuration and faster linting.
-          ...typed ? { projectService: true } : {},
-          ...parserOptions,
-        },
-      },
       plugins: {
         [namespace]: plugin,
       },
     },
     {
       name: 'sobird:typescript:reset',
-      files: ['**/*.ts', '**/*.mts', '**/*.cts', '**/*.tsx', '**/*.mtsx', '**/*.ctsx'],
+      files,
+      languageOptions: {
+        parser,
+        // https://typescript-eslint.io/packages/parser/#configuration
+        parserOptions: {
+          ecmaVersion: 'latest',
+          sourceType: 'module',
+          // project: './tsconfig.json',
+          // tsconfigRootDir: process.cwd(),
+          // We now recommend using projectService instead of project for easier configuration and faster linting.
+          ...typed ? { projectService: true } : {},
+          ...parserOptions,
+        },
+      },
       rules: {
         'constructor-super': 'off', // ts(2335) & ts(2377)
         'getter-return': 'off', // ts(2378)
@@ -91,7 +93,8 @@ export function typescript(options: Options = {}): ESLintConfigObject<ParserOpti
       },
     },
     {
-      name: 'sobird:typescript',
+      name: 'sobird:typescript:rules',
+      files,
       rules: {
         '@typescript-eslint/adjacent-overload-signatures': 'error',
         '@typescript-eslint/array-type': 'error',

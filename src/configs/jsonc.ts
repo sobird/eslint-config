@@ -1,9 +1,10 @@
-import PluginJSONC from 'eslint-plugin-jsonc';
+import eslintPluginJsonc from 'eslint-plugin-jsonc';
+import jsoncParser from 'jsonc-eslint-parser';
 
 import type { ESLintConfigObject, ESLintPlugin } from '../types';
 import type { ESLint } from 'eslint';
 
-const { meta, rules } = PluginJSONC;
+const { meta, rules } = eslintPluginJsonc;
 const {
   name = 'eslint-plugin-jsonc',
   version,
@@ -22,21 +23,36 @@ export const jsoncPlugin: ESLintPlugin = {
 
 export function jsonc(): ESLintConfigObject[] {
   return [
+    // {
+    //   files: ['**/*.json', '**/*.json5', '**/*.jsonc'],
+    //   rules: {
+    //     // ESLint core rules known to cause problems with JSON.
+    //   strict: "off",
+    //   "no-unused-expressions": "off",
+    //   "no-unused-vars": "off",
+    //   }
+    // },
     {
-      name: 'sobird:jsonc',
+      name: 'sobird:jsonc:rules',
+      files: ['**/*.json', '**/*.json5', '**/*.jsonc'],
       plugins: {
-        [namespace]: PluginJSONC as ESLint.Plugin,
+        jsonc: eslintPluginJsonc as ESLint.Plugin,
+      },
+      languageOptions: {
+        parser: jsoncParser,
+        parserOptions: {},
       },
       rules: {
         'jsonc/array-bracket-newline': 'error',
         'jsonc/array-bracket-spacing': 'error',
         'jsonc/array-element-newline': 'error',
-        'jsonc/auto': 'error',
+        // 'jsonc/auto': 'error',
         'jsonc/comma-dangle': 'error',
         'jsonc/comma-style': 'error',
-        'jsonc/indent': 'error',
-        'jsonc/key-name-casing': 'error',
-        'jsonc/key-spacing': 'error',
+        // todo
+        'jsonc/indent': ['error', 2],
+        'jsonc/key-name-casing': 'off',
+        'jsonc/key-spacing': ['error', { afterColon: true, beforeColon: false }],
         'jsonc/no-bigint-literals': 'error',
         'jsonc/no-binary-expression': 'error',
         'jsonc/no-binary-numeric-literals': 'error',
@@ -72,6 +88,91 @@ export function jsonc(): ESLintConfigObject[] {
         'jsonc/space-unary-ops': 'error',
         'jsonc/valid-json-number': 'error',
         'jsonc/vue-custom-block/no-parsing-error': 'error',
+      },
+    },
+    {
+      files: ['**/package.json'],
+      name: 'sobird:sort-package',
+      rules: {
+        'jsonc/sort-array-values': [
+          'error',
+          {
+            order: { type: 'asc' },
+            pathPattern: '^files$',
+          },
+        ],
+        'jsonc/sort-keys': [
+          'error',
+          {
+            order: [
+              'publisher',
+              'name',
+              'displayName',
+              'type',
+              'version',
+              'private',
+              'packageManager',
+              'description',
+              'author',
+              'license',
+              'funding',
+              'homepage',
+              'repository',
+              'bugs',
+              'keywords',
+              'categories',
+              'sideEffects',
+              'exports',
+              'main',
+              'module',
+              'unpkg',
+              'jsdelivr',
+              'types',
+              'typesVersions',
+              'bin',
+              'icon',
+              'files',
+              'engines',
+              'activationEvents',
+              'contributes',
+              'scripts',
+              'peerDependencies',
+              'peerDependenciesMeta',
+              'dependencies',
+              'optionalDependencies',
+              'devDependencies',
+              'pnpm',
+              'overrides',
+              'resolutions',
+              'husky',
+              'simple-git-hooks',
+              'lint-staged',
+              'eslintConfig',
+            ],
+            pathPattern: '^$',
+          },
+          {
+            order: { type: 'asc' },
+            pathPattern: '^(?:dev|peer|optional|bundled)?[Dd]ependencies$',
+          },
+          {
+            order: { type: 'asc' },
+            pathPattern: '^resolutions$',
+          },
+          {
+            order: { type: 'asc' },
+            pathPattern: '^pnpm.overrides$',
+          },
+          {
+            order: [
+              'types',
+              'import',
+              'require',
+              'default',
+            ],
+            pathPattern: '^exports.*$',
+          },
+        ],
       },
     },
   ];
