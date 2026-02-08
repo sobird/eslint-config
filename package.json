@@ -15,10 +15,21 @@
   },
   "keywords": [
     "eslint",
-    "eslint-config"
+    "eslint-config",
+    "eslint-config-sobird"
   ],
-  "main": "index.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "files": ["dist"],
+  "engines": {
+    "node": ">=22.16.0"
+  },
   "scripts": {
     "build": "tsup",
     "lint": "eslint src --ext ts --report-unused-disable-directives --max-warnings 10",
@@ -30,6 +41,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@eslint/compat": "^2.0.2",
     "@next/eslint-plugin-next": "^16.1.6",
     "@stylistic/eslint-plugin": "^5.7.1",
     "eslint": "^9.39.2",
