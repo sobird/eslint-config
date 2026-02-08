@@ -4,6 +4,7 @@ import path from 'node:path';
 
 import { compile } from 'json-schema-to-typescript';
 
+import { ESlintPluginRulesToJSONSchema } from './utils';
 import {
   stylisticPlugin,
   importPlugin,
@@ -11,9 +12,8 @@ import {
   typescriptPlugin,
   nodePlugin,
   reactPlugin,
-} from '@/configs';
-
-import { ESlintPluginRulesToJSONSchema } from './utils';
+  nextPlugin,
+} from '../src/configs';
 
 const dir = path.join('src', 'types', 'rules');
 
@@ -26,6 +26,7 @@ const plugins = [
   nodePlugin,
   typescriptPlugin,
   reactPlugin,
+  nextPlugin,
 ];
 
 for (const plugin of plugins) {
