@@ -4,13 +4,15 @@ import type { NodeRules } from './node';
 import type { ReactRules } from './react';
 import type { StylisticRules } from './stylistic';
 import type { TypescriptRules } from './typescript';
+import type { NextRules } from './next';
 
 export type BuiltinRules = ESLintRules
   & ImportRules
   & NodeRules
   & StylisticRules
   & TypescriptRules
-  & ReactRules;
+  & ReactRules
+  & NextRules;
 
 export interface ConfigOptions {
   typescript?: boolean | object;

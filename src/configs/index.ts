@@ -4,3 +4,4 @@ export * from './eslint';
 export * from './node';
 export * from './typescript';
 export * from './react';
+export * from './next';

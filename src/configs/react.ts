@@ -1,7 +1,6 @@
 import pluginReact from 'eslint-plugin-react';
 
 import type { ESLintConfigObject, ESLintPlugin } from '../types';
-import { allRules } from '../utils';
 
 const { rules } = pluginReact;
 
@@ -13,10 +12,6 @@ export const reactPlugin: ESLintPlugin = {
   },
   rules,
 };
-
-const rulesConfig = allRules(rules, 'react/');
-console.log('rulesConfig', rulesConfig);
-console.log('__dirname', process.cwd());
 
 export function react(): ESLintConfigObject[] {
   return [
