@@ -36,7 +36,8 @@ export function node(): ESLintConfigObject[] {
         'n/no-process-exit': 'error',
         'n/no-restricted-import': 'error',
         'n/no-restricted-require': 'error',
-        'n/no-sync': 'error',
+        // requires type information,
+        // 'n/no-sync': 'error',
         // 'n/no-top-level-await': 'error',
         'n/no-unpublished-bin': 'error',
         'n/no-unpublished-import': [

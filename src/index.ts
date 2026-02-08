@@ -1,7 +1,7 @@
 import { defineConfig, globalIgnores } from 'eslint/config';
 
 import {
-  imports, javascript, jsonc, node, stylistic, typescript,
+  imports, javascript, jsonc, node, stylistic, typescript, ignores,
 } from './configs';
 import type { ConfigOptions, InferBuiltinRules } from './types/rules';
 
@@ -15,6 +15,7 @@ export function sobird<T extends Options>(
   config?: T & { rules?: InferBuiltinRules<T> },
 ) {
   return defineConfig(
+    ignores(),
     javascript(),
     node(),
     imports(),
