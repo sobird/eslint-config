@@ -1,10 +1,11 @@
 import type { ESLintRules } from './eslint';
 import type { ImportRules } from './import';
+import type { JsoncRules } from './jsonc';
+import type { NextRules } from './next';
 import type { NodeRules } from './node';
 import type { ReactRules } from './react';
 import type { StylisticRules } from './stylistic';
 import type { TypescriptRules } from './typescript';
-import type { NextRules } from './next';
 
 export type BuiltinRules = ESLintRules
   & ImportRules
@@ -12,7 +13,8 @@ export type BuiltinRules = ESLintRules
   & StylisticRules
   & TypescriptRules
   & ReactRules
-  & NextRules;
+  & NextRules
+  & JsoncRules;
 
 export interface ConfigOptions {
   typescript?: boolean | object;

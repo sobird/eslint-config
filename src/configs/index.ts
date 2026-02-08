@@ -5,3 +5,4 @@ export * from './node';
 export * from './typescript';
 export * from './react';
 export * from './next';
+export * from './jsonc';
