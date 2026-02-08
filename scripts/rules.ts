@@ -14,6 +14,7 @@ import {
   reactPlugin,
   nextPlugin,
   jsoncPlugin,
+  vuePlugin,
 } from '../src/configs';
 
 const dir = path.join('src', 'types', 'rules');
@@ -29,6 +30,7 @@ const plugins = [
   reactPlugin,
   nextPlugin,
   jsoncPlugin,
+  vuePlugin,
 ];
 
 for (const plugin of plugins) {

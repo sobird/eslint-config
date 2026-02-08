@@ -6,3 +6,4 @@ export * from './typescript';
 export * from './react';
 export * from './next';
 export * from './jsonc';
+export * from './vue';
