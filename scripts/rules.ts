@@ -13,6 +13,7 @@ import {
   nodePlugin,
   reactPlugin,
   nextPlugin,
+  jsoncPlugin,
 } from '../src/configs';
 
 const dir = path.join('src', 'types', 'rules');
@@ -27,6 +28,7 @@ const plugins = [
   typescriptPlugin,
   reactPlugin,
   nextPlugin,
+  jsoncPlugin,
 ];
 
 for (const plugin of plugins) {
