@@ -1,6 +1,6 @@
 import pluginImport from 'eslint-plugin-import';
 
-import type { ESLintConfigObject, ESLintPlugin } from '@/types';
+import type { ESLintConfigObject, ESLintPlugin } from '../types';
 
 const namespace = 'import';
 
