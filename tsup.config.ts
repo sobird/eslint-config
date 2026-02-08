@@ -7,7 +7,7 @@ export default defineConfig({
   format: ['esm', 'cjs'],
   shims: true,
   clean: true,
-  dts: true,
+  dts: { resolve: false },
   treeshake: true,
-  // minify: true,
+  minify: true,
 });
