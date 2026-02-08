@@ -1,7 +1,6 @@
 import pluginStylistic from '@stylistic/eslint-plugin';
 
-import type { ESLintConfigObject, ESLintPlugin } from '@/types';
-
+import type { ESLintConfigObject, ESLintPlugin } from '../types';
 import type { ESLint } from 'eslint';
 
 const {
