@@ -1,7 +1,7 @@
 import { defineConfig, globalIgnores } from 'eslint/config';
 
 import {
-  javascript, imports, node, stylistic, typescript,
+  imports, javascript, jsonc, node, stylistic, typescript,
 } from './configs';
 import type { ConfigOptions, InferBuiltinRules } from './types/rules';
 
@@ -19,6 +19,7 @@ export function sobird<T extends Options>(
     node(),
     imports(),
     stylistic(),
+    jsonc(),
     typescript(),
   );
 }

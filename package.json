@@ -1,9 +1,24 @@
 {
   "name": "eslint-config-sobird",
+  "type": "module",
   "version": "0.2.16",
   "description": "Sobird's ESLint config",
-  "type": "module",
+  "author": "sobird",
+  "license": "MIT",
+  "homepage": "https://github.com/sobird/eslint-config",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sobird/eslint-config.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sobird/eslint-config/issues"
+  },
+  "keywords": [
+    "eslint",
+    "eslint-config"
+  ],
   "main": "index.js",
+  "files": ["dist"],
   "scripts": {
     "build": "tsup",
     "lint": "eslint src --ext ts --report-unused-disable-directives --max-warnings 10",
@@ -14,20 +29,6 @@
     "prepare": "husky",
     "typecheck": "tsc --noEmit"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/sobird/eslint-config.git"
-  },
-  "keywords": [
-    "eslint",
-    "eslint-config"
-  ],
-  "author": "sobird",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/sobird/eslint-config/issues"
-  },
-  "homepage": "https://github.com/sobird/eslint-config",
   "dependencies": {
     "@next/eslint-plugin-next": "^16.1.6",
     "@stylistic/eslint-plugin": "^5.7.1",
@@ -45,6 +46,7 @@
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-vue": "^10.7.0",
     "globals": "^17.3.0",
+    "jsonc-eslint-parser": "^2.4.2",
     "pkg-types": "^2.3.0",
     "typescript-eslint": "^8.54.0"
   },
@@ -62,8 +64,5 @@
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
-  },
-  "files": [
-    "dist"
-  ]
+  }
 }
