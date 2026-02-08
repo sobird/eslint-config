@@ -475,6 +475,7 @@ export function javascript(): ESLintConfigObject[] {
   const files = ['**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'];
   return [
     {
+      name: 'sobird:javascript:rules',
       files,
       languageOptions: {
         ecmaVersion: 'latest',
@@ -494,7 +495,13 @@ export function javascript(): ESLintConfigObject[] {
       rules,
     },
     {
-      files: ['**/*.test.ts', '**/*.test.js', 'scripts/**/*'],
+      name: 'sobird:javascript:test',
+      files: [
+        'test.{js,mjs,cjs,ts,mts,cts,jsx,tsx}',
+        '**/*.test.{js,mjs,cjs,ts,mts,cts,jsx,tsx}',
+        '**/*.{test,spec}.{js,jsx,ts,tsx}',
+        'scripts/**/*',
+      ],
       rules: {
         'no-console': 'off',
       },

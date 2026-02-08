@@ -10,7 +10,8 @@ import { configs, parser, plugin } from 'typescript-eslint';
 
 import type { ESLintConfigObject, ESLintPlugin } from '../types';
 import { rules as javascriptRules } from './eslint';
-import type { ParserOptions } from '@typescript-eslint/utils/ts-eslint';
+import { TS_FILES } from '../files';
+import type { ParserOptions } from '@typescript-eslint/parser';
 import type { ESLint } from 'eslint';
 
 const { rules, meta = {} } = plugin as ESLint.Plugin;
@@ -33,7 +34,7 @@ export function typescript(options: Options = {}): ESLintConfigObject<ParserOpti
   const { typed = false, parserOptions = {} } = options;
   const { disableTypeChecked } = configs;
 
-  const files = ['**/*.ts', '**/*.mts', '**/*.cts', '**/*.tsx', '**/*.mtsx', '**/*.ctsx'];
+  const files = [...TS_FILES];
 
   return [
     {
@@ -134,7 +135,7 @@ export function typescript(options: Options = {}): ESLintConfigObject<ParserOpti
         'init-declarations': 'off',
         '@typescript-eslint/init-declarations': javascriptRules['init-declarations'],
         'max-params': 'off',
-        '@typescript-eslint/max-params': javascriptRules['max-params'],
+        '@typescript-eslint/max-params': ['off'],
         '@typescript-eslint/member-ordering': 'error',
         '@typescript-eslint/method-signature-style': 'error',
         // This rule requires type information to run, which comes with performance tradeoffs.
@@ -173,7 +174,13 @@ export function typescript(options: Options = {}): ESLintConfigObject<ParserOpti
         '@typescript-eslint/no-duplicate-type-constituents': 'error',
         '@typescript-eslint/no-dynamic-delete': 'error',
         'no-empty-function': 'off',
-        '@typescript-eslint/no-empty-function': javascriptRules['no-empty-function'],
+        // @see no-empty-function
+        '@typescript-eslint/no-empty-function': [
+          'error',
+          {
+            allow: ['arrowFunctions', 'functions', 'methods'],
+          },
+        ],
         '@typescript-eslint/no-empty-object-type': ['error', {
           allowInterfaces: 'always',
           allowObjectTypes: 'always',
@@ -329,11 +336,6 @@ export function typescript(options: Options = {}): ESLintConfigObject<ParserOpti
         '@typescript-eslint/restrict-plus-operands': 'error',
         // This rule requires type information to run, which comes with performance tradeoffs.
         '@typescript-eslint/restrict-template-expressions': 'error',
-
-        /**
-         * @deprecated
-         */
-
         'no-return-await': 'off',
         // This rule requires type information to run, which comes with performance tradeoffs.
         // javascriptRules['no-return-await']
