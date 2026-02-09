@@ -32,6 +32,7 @@
   },
   "scripts": {
     "build": "tsup",
+    "test": "vitest",
     "lint": "eslint src --ext ts --report-unused-disable-directives --max-warnings 10",
     "rules:types": "tsx scripts/rules",
     "preversion": "yarn lint:eslint",

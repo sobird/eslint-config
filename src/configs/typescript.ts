@@ -51,6 +51,9 @@ export function typescript(options: Options = {}): ESLintConfigObject<ParserOpti
         // https://typescript-eslint.io/packages/parser/#configuration
         parserOptions: {
           ecmaVersion: 'latest',
+          ecmaFeatures: {
+            jsx: true,
+          },
           sourceType: 'module',
           // project: './tsconfig.json',
           // tsconfigRootDir: process.cwd(),
