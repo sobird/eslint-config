@@ -1,14 +1,22 @@
+// https://github.com/import-js/eslint-plugin-import/blob/main/config/typescript.js
+
 import pluginImport from 'eslint-plugin-import';
 
 import type { ESLintConfigObject, ESLintPlugin } from '../types';
 
 const namespace = 'import';
 
-const typeScriptExtensions = ['.ts', '.cts', '.mts', '.tsx', '.js', '.cjs'];
-const allExtensions = [...typeScriptExtensions, '.js', '.jsx', '.mjs', '.cjs'];
+export const IMPORT: ESLintPlugin = {
+  meta: {
+    pkgname: 'eslint-plugin-import',
+    namespace,
+    title: 'import',
+  },
+  rules: pluginImport.rules,
+};
 
 export function imports(): ESLintConfigObject[] {
-  const stylistic = true;
+  // const stylistic = true;
 
   return [
     {
@@ -190,24 +198,6 @@ export function imports(): ESLintConfigObject[] {
       },
     },
     {
-      files: ['**/*.{ts,tsx}'],
-      settings: {
-        'import/extensions': allExtensions,
-        'import/external-module-folders': ['node_modules', 'node_modules/@types'],
-        'import/parsers': {
-          '@typescript-eslint/parser': typeScriptExtensions,
-        },
-        'import/resolver': {
-          typescript: {
-            alwaysTryTypes: true,
-          },
-          node: {
-            extensions: ['.js', '.jsx', '.ts', '.tsx', '.mjs', '.cjs'],
-          },
-        },
-      },
-    },
-    {
       files: ['**/*.test.ts', '**/*.spec.ts'],
       rules: {
         'import/no-named-as-default-member': 'off',
@@ -215,12 +205,3 @@ export function imports(): ESLintConfigObject[] {
     },
   ];
 }
-
-export const importPlugin: ESLintPlugin = {
-  meta: {
-    pkgname: 'eslint-plugin-import',
-    namespace,
-    title: 'import',
-  },
-  rules: pluginImport.rules,
-};
