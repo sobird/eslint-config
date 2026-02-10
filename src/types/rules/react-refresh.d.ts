@@ -23,7 +23,6 @@ export interface ReactRefreshRules {
   /**
    *
    *
-   * @see {@link undefined only-export-components}
    */
   "react-refresh/only-export-components"?: OnlyExportComponents;
 }

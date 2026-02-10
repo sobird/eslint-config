@@ -230,7 +230,6 @@ export interface NextRules {
   /**
    * Prevent common typos in Next.js data fetching functions.
    *
-   * @see {@link undefined no-typos}
    */
   "@next/next/no-typos"?: NoTypos;
   /**
