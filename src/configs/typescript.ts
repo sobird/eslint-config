@@ -22,6 +22,16 @@ const {
   namespace = '@typescript-eslint',
 } = meta;
 
+export const TYPESCRIPT: ESLintPlugin = {
+  meta: {
+    pkgname: name,
+    namespace,
+    version,
+    title: 'typescript',
+  },
+  rules,
+};
+
 interface Options {
 
   /**
@@ -385,13 +395,3 @@ export function typescript(options: Options = {}): ESLintConfigObject<ParserOpti
     (typed ? {} : disableTypeChecked),
   ];
 }
-
-export const typescriptPlugin: ESLintPlugin = {
-  meta: {
-    pkgname: name,
-    namespace,
-    version,
-    title: 'typescript',
-  },
-  rules,
-};

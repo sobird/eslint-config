@@ -4,7 +4,7 @@ import type { ESLintConfigObject, ESLintPlugin } from '../types';
 
 const { rules } = pluginReact;
 
-export const reactPlugin: ESLintPlugin = {
+export const REACT: ESLintPlugin = {
   meta: {
     pkgname: 'eslint-plugin-react',
     namespace: 'react',

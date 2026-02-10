@@ -10,7 +10,7 @@ import type { ESLintConfigObject, ESLintPlugin } from '../types';
 
 const { rules } = ESLintPluginNext;
 
-export const nextPlugin: ESLintPlugin = {
+export const NEXT: ESLintPlugin = {
   meta: {
     pkgname: '@next/eslint-plugin-next',
     namespace: '@next/next',

@@ -1,4 +1,8 @@
 import PluginVue from 'eslint-plugin-vue';
+import { parser } from 'typescript-eslint';
+import vueParser from 'vue-eslint-parser';
+
+import { VUE_FILES } from '../files';
 
 import type { ESLintConfigObject, ESLintPlugin } from '../types';
 import type { ESLint } from 'eslint';
@@ -10,7 +14,7 @@ const {
 } = meta;
 const namespace = 'vue';
 
-export const vuePlugin: ESLintPlugin = {
+export const VUE: ESLintPlugin = {
   meta: {
     pkgname: name,
     namespace,
@@ -26,6 +30,21 @@ export function vue(): ESLintConfigObject[] {
       name: 'sobird:vue',
       plugins: {
         [namespace]: PluginVue as ESLint.Plugin,
+      },
+    },
+    {
+      files: [...VUE_FILES],
+      name: 'sobird:vue:rules',
+      languageOptions: {
+        parser: vueParser,
+        parserOptions: {
+          ecmaFeatures: {
+            jsx: true,
+          },
+          extraFileExtensions: ['.vue'],
+          parser,
+          sourceType: 'module',
+        },
       },
       rules: {
         'vue/array-bracket-newline': 'error',
