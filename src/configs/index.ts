@@ -8,3 +8,4 @@ export * from './next';
 export * from './jsonc';
 export * from './vue';
 export * from './ignores';
+export * from './jsx';
