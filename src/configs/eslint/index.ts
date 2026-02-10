@@ -10,6 +10,8 @@
 import { Linter } from 'eslint';
 
 import versions from './versions.json';
+import { MISC_FILES } from '../../files';
+
 import type { ESLintConfigObject, ESLintPlugin } from '../../types';
 
 export const rules: NonNullable<ESLintConfigObject['rules']> = {
@@ -455,7 +457,7 @@ export const rules: NonNullable<ESLintConfigObject['rules']> = {
   'require-unicode-regexp': 'error',
   'require-yield': 'error',
   // todo
-  'sort-imports': 'error',
+  'sort-imports': ['error', { ignoreDeclarationSort: true }],
   'sort-keys': 'off',
   'sort-vars': 'off',
   'strict': 'error',
@@ -472,11 +474,9 @@ export const rules: NonNullable<ESLintConfigObject['rules']> = {
 };
 
 export function javascript(): ESLintConfigObject[] {
-  const files = ['**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'];
   return [
     {
       name: 'sobird:javascript:rules',
-      files,
       languageOptions: {
         ecmaVersion: 'latest',
         sourceType: 'module',
@@ -496,12 +496,7 @@ export function javascript(): ESLintConfigObject[] {
     },
     {
       name: 'sobird:javascript:test',
-      files: [
-        'test.{js,mjs,cjs,ts,mts,cts,jsx,tsx}',
-        '**/*.test.{js,mjs,cjs,ts,mts,cts,jsx,tsx}',
-        '**/*.{test,spec}.{js,jsx,ts,tsx}',
-        'scripts/**/*',
-      ],
+      files: [...MISC_FILES],
       rules: {
         'no-console': 'off',
       },

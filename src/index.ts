@@ -3,6 +3,7 @@ import { defineConfig, globalIgnores } from 'eslint/config';
 import {
   imports, javascript, jsonc, node, stylistic, typescript, ignores,
 } from './configs';
+
 import type { ConfigOptions, InferBuiltinRules } from './types/rules';
 
 interface Options extends ConfigOptions {
