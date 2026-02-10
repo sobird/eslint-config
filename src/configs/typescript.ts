@@ -8,9 +8,10 @@
 
 import { configs, parser, plugin } from 'typescript-eslint';
 
-import type { ESLintConfigObject, ESLintPlugin } from '../types';
 import { rules as javascriptRules } from './eslint';
 import { TS_FILES } from '../files';
+
+import type { ESLintConfigObject, ESLintPlugin } from '../types';
 import type { ParserOptions } from '@typescript-eslint/parser';
 import type { ESLint } from 'eslint';
 
