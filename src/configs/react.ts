@@ -1,3 +1,4 @@
+import eslintPluginJsxA11y from 'eslint-plugin-jsx-a11y';
 import eslintPluginReact from 'eslint-plugin-react';
 import eslintPluginReactHooks from 'eslint-plugin-react-hooks';
 import eslintPluginReactRefresh from 'eslint-plugin-react-refresh';
@@ -36,6 +37,16 @@ export const REACT_REFRESH: ESLintPlugin = {
     version: (eslintPluginReactRefresh as ESLint.Plugin).meta?.version || '',
   },
   rules: eslintPluginReactRefresh.rules,
+};
+
+export const JSX_A11Y: ESLintPlugin = {
+  meta: {
+    pkgname: (eslintPluginJsxA11y as ESLint.Plugin).meta?.name || 'eslint-plugin-jsx-a11y',
+    namespace: 'jsx-a11y',
+    title: 'jsx-a11y',
+    version: (eslintPluginJsxA11y as ESLint.Plugin).meta?.version || '',
+  },
+  rules: eslintPluginJsxA11y.rules,
 };
 
 export function react(): ESLintConfigObject[] {
