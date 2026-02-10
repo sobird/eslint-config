@@ -1,8 +1,10 @@
 import eslintPluginReact from 'eslint-plugin-react';
+import eslintPluginReactHooks from 'eslint-plugin-react-hooks';
 
 import { REACT_FILES, TS_FILES } from '../files';
 
 import type { ESLintConfigObject, ESLintPlugin } from '../types';
+import type { ESLint } from 'eslint';
 
 const { rules } = eslintPluginReact;
 
@@ -15,13 +17,24 @@ export const REACT: ESLintPlugin = {
   rules,
 };
 
+export const REACT_HOOKS: ESLintPlugin = {
+  meta: {
+    pkgname: eslintPluginReactHooks.meta.name || 'eslint-plugin-react-hooks',
+    namespace: 'react-hooks',
+    title: 'react-hooks',
+    version: eslintPluginReactHooks.meta.version,
+  },
+  rules: eslintPluginReactHooks.rules,
+};
+
 export function react(): ESLintConfigObject[] {
   return [
     {
       name: 'sobird:react:rules',
       files: [...REACT_FILES],
       plugins: {
-        react: eslintPluginReact,
+        'react': eslintPluginReact,
+        'react-hooks': eslintPluginReactHooks as ESLint.Plugin,
       },
       rules: {
         'react/boolean-prop-naming': ['warn', {
