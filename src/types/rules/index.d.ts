@@ -5,6 +5,7 @@ import type { NextRules } from './next';
 import type { NodeRules } from './node';
 import type { ReactRules } from './react';
 import type { ReactHooksRules } from './react-hooks';
+import type { ReactRefreshRules } from './react-refresh';
 import type { StylisticRules } from './stylistic';
 import type { TypescriptRules } from './typescript';
 import type { VueRules } from './vue';
@@ -18,7 +19,8 @@ export type BuiltinRules = ESLintRules
   & NextRules
   & JsoncRules
   & VueRules
-  & ReactHooksRules;
+  & ReactHooksRules
+  & ReactRefreshRules;
 
 export interface ConfigOptions {
   typescript?: boolean | object;
