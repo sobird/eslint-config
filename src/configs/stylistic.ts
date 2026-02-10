@@ -9,6 +9,16 @@ const {
   version,
 } = (pluginStylistic as ESLint.Plugin).meta || {};
 
+export const STYLISTIC: ESLintPlugin = {
+  meta: {
+    pkgname: name,
+    namespace,
+    version,
+    title: 'stylistic',
+  },
+  rules: pluginStylistic.rules,
+};
+
 export function stylistic(): ESLintConfigObject[] {
   const indent: number | string = 'tab';
 
@@ -132,6 +142,7 @@ export function stylistic(): ESLintConfigObject[] {
           afterHashbangComment: true,
         }],
         '@stylistic/lines-between-class-members': ['error', 'always', { exceptAfterSingleLine: true }],
+        // eslint-disable-next-line @typescript-eslint/no-magic-numbers
         '@stylistic/max-len': ['error', 150, 2, {
           ignoreUrls: true,
           ignoreComments: false,
@@ -166,11 +177,10 @@ export function stylistic(): ESLintConfigObject[] {
         '@stylistic/no-mixed-spaces-and-tabs': 'error',
 
         /*
-         *    ['error', {
+         * ['error', {
          *   ignoreEOLComments: false,
          * }]
          */
-
         '@stylistic/no-multi-spaces': 'error',
         '@stylistic/no-multiple-empty-lines': ['error', { max: 1, maxBOF: 0, maxEOF: 0 }],
         '@stylistic/no-tabs': indent === 'tab' ? 'off' : 'error',
@@ -238,13 +248,3 @@ export function stylistic(): ESLintConfigObject[] {
     },
   ];
 }
-
-export const stylisticPlugin: ESLintPlugin = {
-  meta: {
-    pkgname: name,
-    namespace,
-    version,
-    title: 'stylistic',
-  },
-  rules: pluginStylistic.rules,
-};

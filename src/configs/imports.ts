@@ -32,9 +32,7 @@ export function imports(): ESLintConfigObject[] {
         'import/no-namespace': 'error',
         'import/export': 'error',
         'import/no-mutable-exports': 'error',
-        'import/extensions': [
-          'error',
-          'ignorePackages',
+        'import/extensions': ['error', 'ignorePackages',
           {
             js: 'never',
             mjs: 'never',
