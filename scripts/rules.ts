@@ -6,8 +6,8 @@ import { compile } from 'json-schema-to-typescript';
 
 import { ESlintPluginRulesToJSONSchema } from './utils';
 import {
-  eslintPlugin,
-  importPlugin,
+  JAVASCRIPT,
+  IMPORT,
   jsoncPlugin,
   nextPlugin,
   nodePlugin,
@@ -22,8 +22,8 @@ const dir = path.join('src', 'types', 'rules');
 await fs.mkdir(dir, { recursive: true });
 
 const plugins = [
-  eslintPlugin,
-  importPlugin,
+  JAVASCRIPT,
+  IMPORT,
   stylisticPlugin,
   nodePlugin,
   typescriptPlugin,

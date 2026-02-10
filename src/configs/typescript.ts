@@ -8,8 +8,8 @@
 
 import { configs, parser, plugin } from 'typescript-eslint';
 
-import { rules as javascriptRules } from './eslint';
-import { TS_FILES } from '../files';
+import { JAVASCRIPT_RULES } from './eslint';
+import { TS_FILES, SCRIPT_FILES } from '../files';
 
 import type { ESLintConfigObject, ESLintPlugin } from '../types';
 import type { ParserOptions } from '@typescript-eslint/parser';
@@ -63,6 +63,21 @@ export function typescript(options: Options = {}): ESLintConfigObject<ParserOpti
           ...parserOptions,
         },
       },
+      settings: {
+        'import/extensions': SCRIPT_FILES,
+        'import/external-module-folders': ['node_modules', 'node_modules/@types'],
+        'import/parsers': {
+          '@typescript-eslint/parser': files,
+        },
+        'import/resolver': {
+          typescript: {
+            alwaysTryTypes: true,
+          },
+          node: {
+            extensions: ['.js', '.jsx', '.ts', '.tsx', '.mjs', '.cjs'],
+          },
+        },
+      },
       rules: {
         'constructor-super': 'off', // ts(2335) & ts(2377)
         'getter-return': 'off', // ts(2378)
@@ -109,22 +124,22 @@ export function typescript(options: Options = {}): ESLintConfigObject<ParserOpti
         '@typescript-eslint/ban-tslint-comment': 'error',
         '@typescript-eslint/class-literal-property-style': 'error',
         'class-methods-use-this': 'off',
-        '@typescript-eslint/class-methods-use-this': javascriptRules['class-methods-use-this'],
+        '@typescript-eslint/class-methods-use-this': JAVASCRIPT_RULES['class-methods-use-this'],
         '@typescript-eslint/consistent-generic-constructors': 'error',
         '@typescript-eslint/consistent-indexed-object-style': 'error',
         'consistent-return': 'off',
         // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/consistent-return': javascriptRules['consistent-return'],
+        '@typescript-eslint/consistent-return': JAVASCRIPT_RULES['consistent-return'],
         '@typescript-eslint/consistent-type-assertions': 'error',
         '@typescript-eslint/consistent-type-definitions': 'error',
         // This rule requires type information to run, which comes with performance tradeoffs.
         '@typescript-eslint/consistent-type-exports': 'error',
         '@typescript-eslint/consistent-type-imports': 'error',
         'default-param-last': 'off',
-        '@typescript-eslint/default-param-last': javascriptRules['default-param-last'],
+        '@typescript-eslint/default-param-last': JAVASCRIPT_RULES['default-param-last'],
         'dot-notation': 'off',
         // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/dot-notation': javascriptRules['dot-notation'],
+        '@typescript-eslint/dot-notation': JAVASCRIPT_RULES['dot-notation'],
         '@typescript-eslint/explicit-function-return-type': ['warn', {
           allowExpressions: true,
           allowTypedFunctionExpressions: true,
@@ -137,7 +152,7 @@ export function typescript(options: Options = {}): ESLintConfigObject<ParserOpti
         // todo
         '@typescript-eslint/explicit-module-boundary-types': 'warn',
         'init-declarations': 'off',
-        '@typescript-eslint/init-declarations': javascriptRules['init-declarations'],
+        '@typescript-eslint/init-declarations': JAVASCRIPT_RULES['init-declarations'],
         'max-params': 'off',
         '@typescript-eslint/max-params': ['off'],
         '@typescript-eslint/member-ordering': 'error',
@@ -161,7 +176,7 @@ export function typescript(options: Options = {}): ESLintConfigObject<ParserOpti
             format: ['PascalCase'],
           }],
         'no-array-constructor': 'off',
-        '@typescript-eslint/no-array-constructor': javascriptRules['no-array-constructor'],
+        '@typescript-eslint/no-array-constructor': JAVASCRIPT_RULES['no-array-constructor'],
         // This rule requires type information to run, which comes with performance tradeoffs.
         '@typescript-eslint/no-array-delete': 'error',
         // This rule requires type information to run, which comes with performance tradeoffs.
@@ -172,7 +187,7 @@ export function typescript(options: Options = {}): ESLintConfigObject<ParserOpti
         // 💭 This rule requires type information to run, which comes with performance tradeoffs.
         '@typescript-eslint/no-deprecated': 'error',
         'no-dupe-class-members': 'off',
-        '@typescript-eslint/no-dupe-class-members': javascriptRules['no-dupe-class-members'],
+        '@typescript-eslint/no-dupe-class-members': JAVASCRIPT_RULES['no-dupe-class-members'],
         '@typescript-eslint/no-duplicate-enum-values': 'error',
         // This rule requires type information to run, which comes with performance tradeoffs.
         '@typescript-eslint/no-duplicate-type-constituents': 'error',
@@ -201,16 +216,16 @@ export function typescript(options: Options = {}): ESLintConfigObject<ParserOpti
         '@typescript-eslint/no-for-in-array': 'error',
         'no-implied-eval': 'off',
         // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/no-implied-eval': javascriptRules['no-implied-eval'],
+        '@typescript-eslint/no-implied-eval': JAVASCRIPT_RULES['no-implied-eval'],
         '@typescript-eslint/no-import-type-side-effects': 'error',
         '@typescript-eslint/no-inferrable-types': 'error',
         'no-invalid-this': 'off',
-        '@typescript-eslint/no-invalid-this': javascriptRules['no-invalid-this'],
+        '@typescript-eslint/no-invalid-this': JAVASCRIPT_RULES['no-invalid-this'],
         '@typescript-eslint/no-invalid-void-type': 'error',
         'no-loop-func': 'off',
-        '@typescript-eslint/no-loop-func': javascriptRules['no-loop-func'],
+        '@typescript-eslint/no-loop-func': JAVASCRIPT_RULES['no-loop-func'],
         'no-magic-numbers': 'off',
-        '@typescript-eslint/no-magic-numbers': javascriptRules['no-magic-numbers'],
+        '@typescript-eslint/no-magic-numbers': JAVASCRIPT_RULES['no-magic-numbers'],
         // This rule requires type information to run, which comes with performance tradeoffs.
         '@typescript-eslint/no-meaningless-void-operator': 'error',
         '@typescript-eslint/no-misused-new': 'error',
@@ -225,16 +240,16 @@ export function typescript(options: Options = {}): ESLintConfigObject<ParserOpti
         '@typescript-eslint/no-non-null-asserted-optional-chain': 'error',
         '@typescript-eslint/no-non-null-assertion': 'error',
         'no-redeclare': 'off',
-        '@typescript-eslint/no-redeclare': javascriptRules['no-redeclare'],
+        '@typescript-eslint/no-redeclare': JAVASCRIPT_RULES['no-redeclare'],
         // This rule requires type information to run, which comes with performance tradeoffs.
         '@typescript-eslint/no-redundant-type-constituents': 'error',
         'import/no-commonjs': 'off',
         '@typescript-eslint/no-require-imports': 'error',
         'no-restricted-imports': 'off',
-        '@typescript-eslint/no-restricted-imports': javascriptRules['no-restricted-imports'],
+        '@typescript-eslint/no-restricted-imports': JAVASCRIPT_RULES['no-restricted-imports'],
         '@typescript-eslint/no-restricted-types': 'error',
         'no-shadow': 'off',
-        '@typescript-eslint/no-shadow': javascriptRules['no-shadow'],
+        '@typescript-eslint/no-shadow': JAVASCRIPT_RULES['no-shadow'],
         '@typescript-eslint/no-this-alias': 'error',
         // This rule requires type information to run, which comes with performance tradeoffs.
         '@typescript-eslint/no-unnecessary-boolean-literal-compare': 'error',
@@ -276,15 +291,15 @@ export function typescript(options: Options = {}): ESLintConfigObject<ParserOpti
         // This rule requires type information to run, which comes with performance tradeoffs.
         '@typescript-eslint/no-unsafe-unary-minus': 'error',
         'no-unused-expressions': 'off',
-        '@typescript-eslint/no-unused-expressions': javascriptRules['no-unused-expressions'],
+        '@typescript-eslint/no-unused-expressions': JAVASCRIPT_RULES['no-unused-expressions'],
         'no-unused-private-class-members': 'off',
-        '@typescript-eslint/no-unused-private-class-members': javascriptRules['no-unused-private-class-members'],
+        '@typescript-eslint/no-unused-private-class-members': JAVASCRIPT_RULES['no-unused-private-class-members'],
         'no-unused-vars': 'off',
-        '@typescript-eslint/no-unused-vars': javascriptRules['no-unused-vars'],
+        '@typescript-eslint/no-unused-vars': JAVASCRIPT_RULES['no-unused-vars'],
         'no-use-before-define': 'off',
-        '@typescript-eslint/no-use-before-define': javascriptRules['no-use-before-define'],
+        '@typescript-eslint/no-use-before-define': JAVASCRIPT_RULES['no-use-before-define'],
         'no-useless-constructor': 'off',
-        '@typescript-eslint/no-useless-constructor': javascriptRules['no-useless-constructor'],
+        '@typescript-eslint/no-useless-constructor': JAVASCRIPT_RULES['no-useless-constructor'],
         // This rule requires type information to run, which comes with performance tradeoffs.
         '@typescript-eslint/no-useless-default-assignment': 'error',
         '@typescript-eslint/no-useless-empty-export': 'error',
@@ -293,12 +308,12 @@ export function typescript(options: Options = {}): ESLintConfigObject<ParserOpti
         '@typescript-eslint/non-nullable-type-assertion-style': 'error',
         'no-throw-literal': 'off',
         // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/only-throw-error': javascriptRules['no-throw-literal'],
+        '@typescript-eslint/only-throw-error': JAVASCRIPT_RULES['no-throw-literal'],
         '@typescript-eslint/parameter-properties': 'error',
         '@typescript-eslint/prefer-as-const': 'error',
         'prefer-destructuring': 'off',
         // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/prefer-destructuring': javascriptRules['prefer-destructuring'],
+        '@typescript-eslint/prefer-destructuring': JAVASCRIPT_RULES['prefer-destructuring'],
         '@typescript-eslint/prefer-enum-initializers': 'error',
         // This rule requires type information to run, which comes with performance tradeoffs.
         '@typescript-eslint/prefer-find': 'error',
@@ -314,7 +329,7 @@ export function typescript(options: Options = {}): ESLintConfigObject<ParserOpti
         '@typescript-eslint/prefer-optional-chain': 'error',
         'prefer-promise-reject-errors': 'off',
         // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/prefer-promise-reject-errors': javascriptRules['prefer-promise-reject-errors'],
+        '@typescript-eslint/prefer-promise-reject-errors': JAVASCRIPT_RULES['prefer-promise-reject-errors'],
         // This rule requires type information to run, which comes with performance tradeoffs.
         '@typescript-eslint/prefer-readonly': 'error',
         // This rule requires type information to run, which comes with performance tradeoffs.
@@ -335,14 +350,14 @@ export function typescript(options: Options = {}): ESLintConfigObject<ParserOpti
         '@typescript-eslint/require-array-sort-compare': 'error',
         'require-await': 'off',
         // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/require-await': javascriptRules['require-await'],
+        '@typescript-eslint/require-await': JAVASCRIPT_RULES['require-await'],
         // This rule requires type information to run, which comes with performance tradeoffs.
         '@typescript-eslint/restrict-plus-operands': 'error',
         // This rule requires type information to run, which comes with performance tradeoffs.
         '@typescript-eslint/restrict-template-expressions': 'error',
         'no-return-await': 'off',
         // This rule requires type information to run, which comes with performance tradeoffs.
-        // javascriptRules['no-return-await']
+        // JAVASCRIPT_RULES['no-return-await']
         '@typescript-eslint/return-await': ['off', 'in-try-catch'],
         // This rule requires type information to run, which comes with performance tradeoffs.
         '@typescript-eslint/strict-boolean-expressions': ['error', {
