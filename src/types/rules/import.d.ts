@@ -797,7 +797,6 @@ export interface ImportRules {
   /**
    * Forbid import statements with CommonJS module.exports.
    *
-   * @see {@link undefined no-import-module-exports}
    */
   "import/no-import-module-exports"?: NoImportModuleExports;
   /**

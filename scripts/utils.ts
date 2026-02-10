@@ -68,7 +68,9 @@ export function describe(meta: Rule.RuleModule['meta'], ruleName: string, title:
     desc.push(`@since v${meta.version}`);
   }
 
-  desc.push(`@see {@link ${docs?.url} ${ruleName}}`);
+  if (docs?.url) {
+    desc.push(`@see {@link ${docs?.url} ${ruleName}}`);
+  }
 
   const deprecation = formatDeprecation(deprecated, replacedBy, title);
   if (deprecation !== '') {

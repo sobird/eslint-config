@@ -1,6 +1,7 @@
 import type { ESLintRules } from './eslint';
 import type { ImportRules } from './import';
 import type { JsoncRules } from './jsonc';
+import type { JsxA11YRules } from './jsx-a11y';
 import type { NextRules } from './next';
 import type { NodeRules } from './node';
 import type { ReactRules } from './react';
@@ -20,7 +21,8 @@ export type BuiltinRules = ESLintRules
   & JsoncRules
   & VueRules
   & ReactHooksRules
-  & ReactRefreshRules;
+  & ReactRefreshRules
+  & JsxA11YRules;
 
 export interface ConfigOptions {
   typescript?: boolean | object;
