@@ -8,6 +8,7 @@
  */
 
 import { Linter } from 'eslint';
+import globals from 'globals';
 
 import versions from './versions.json';
 import { MISC_FILES } from '../../files';
@@ -503,7 +504,10 @@ export function javascript(): ESLintConfigObject[] {
       languageOptions: {
         ecmaVersion: 'latest',
         sourceType: 'module',
-        globals: {},
+        globals: {
+          ...globals.browser,
+          ...globals.node,
+        },
         parserOptions: {
           ecmaVersion: 'latest',
           sourceType: 'module',
