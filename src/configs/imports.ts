@@ -128,28 +128,45 @@ export function imports(): ESLintConfigObject[] {
         'sort-imports': 'off',
         'import/order': ['error', {
           'groups': [
-            // 内置模块
             'builtin',
-            // 第三方包
             'external',
-            ['internal', 'parent', 'sibling', 'index', 'object', 'type'],
+            'internal',
+            ['parent', 'sibling', 'index'],
+            'object',
+            'type',
             'unknown',
           ],
           'pathGroups': [
             {
-              // pattern：当前组中模块的最短路径匹配
-              pattern: '@/**', // 在规定的组中选其一，index、sibling、parent、internal、external、builtin、object、type、unknown
+              pattern: 'react{,-dom,-dom/**}',
               group: 'external',
-              // 定义组的位置，after、before
+              position: 'before',
+            },
+            {
+              pattern: '*.{css,scss,sass,less}',
+              group: 'unknown',
+              position: 'after',
+            },
+            {
+              pattern: '**/*.{css,scss,sass,less}',
+              group: 'unknown',
+              position: 'after',
+            },
+            {
+              pattern: '@/**',
+              group: 'external',
               position: 'after',
             },
           ],
+          'distinctGroup': false,
           'pathGroupsExcludedImportTypes': ['builtin'],
           'newlines-between': 'always',
           'alphabetize': {
             order: 'asc',
             caseInsensitive: true,
+            orderImportKind: 'asc',
           },
+          'warnOnUnassignedImports': true,
         }],
         'import/newline-after-import': ['error', { considerComments: true, count: 1 }],
         //
