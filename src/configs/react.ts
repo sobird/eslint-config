@@ -1,5 +1,6 @@
 import eslintPluginReact from 'eslint-plugin-react';
 import eslintPluginReactHooks from 'eslint-plugin-react-hooks';
+import eslintPluginReactRefresh from 'eslint-plugin-react-refresh';
 
 import { REACT_FILES, TS_FILES } from '../files';
 
@@ -25,6 +26,16 @@ export const REACT_HOOKS: ESLintPlugin = {
     version: eslintPluginReactHooks.meta.version,
   },
   rules: eslintPluginReactHooks.rules,
+};
+
+export const REACT_REFRESH: ESLintPlugin = {
+  meta: {
+    pkgname: (eslintPluginReactRefresh as ESLint.Plugin).meta?.name || 'eslint-plugin-react-refresh',
+    namespace: 'react-refresh',
+    title: 'react-refresh',
+    version: (eslintPluginReactRefresh as ESLint.Plugin).meta?.version || '',
+  },
+  rules: eslintPluginReactRefresh.rules,
 };
 
 export function react(): ESLintConfigObject[] {
