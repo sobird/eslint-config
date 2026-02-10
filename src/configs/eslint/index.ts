@@ -14,7 +14,30 @@ import { MISC_FILES } from '../../files';
 
 import type { ESLintConfigObject, ESLintPlugin } from '../../types';
 
-export const rules: NonNullable<ESLintConfigObject['rules']> = {
+export const JAVASCRIPT: ESLintPlugin = {
+  meta: {
+    pkgname: 'eslint',
+    namespace: '',
+    title: 'ESLint',
+  },
+  get rules() {
+    const liner = new Linter({ configType: 'eslintrc' });
+    const eslintRules = liner.getRules();
+    const { added } = versions;
+
+    const entries = Array.from(eslintRules, ([ruleName, ruleModel]) => {
+      if (ruleName in added) {
+        const version = added[ruleName as keyof typeof added];
+        Object.assign(ruleModel.meta ?? {}, { version });
+      }
+      return [ruleName, ruleModel] as const;
+    });
+
+    return Object.fromEntries(entries);
+  },
+};
+
+export const JAVASCRIPT_RULES: NonNullable<ESLintConfigObject['rules']> = {
   'accessor-pairs': [
     'error',
     { enforceForClassMembers: true, setWithoutGet: true },
@@ -492,7 +515,7 @@ export function javascript(): ESLintConfigObject[] {
       linterOptions: {
         reportUnusedDisableDirectives: true,
       },
-      rules,
+      rules: JAVASCRIPT_RULES,
     },
     {
       name: 'sobird:javascript:test',
@@ -503,26 +526,3 @@ export function javascript(): ESLintConfigObject[] {
     },
   ];
 }
-
-export const eslintPlugin: ESLintPlugin = {
-  meta: {
-    pkgname: 'eslint',
-    namespace: '',
-    title: 'ESLint',
-  },
-  get rules() {
-    const liner = new Linter({ configType: 'eslintrc' });
-    const eslintRules = liner.getRules();
-    const { added } = versions;
-
-    const entries = Array.from(eslintRules, ([ruleName, ruleModel]) => {
-      if (ruleName in added) {
-        const version = added[ruleName as keyof typeof added];
-        Object.assign(ruleModel.meta ?? {}, { version });
-      }
-      return [ruleName, ruleModel] as const;
-    });
-
-    return Object.fromEntries(entries);
-  },
-};
