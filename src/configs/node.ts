@@ -8,6 +8,16 @@ const {
   namespace = 'n',
 } = pluginNode.meta || {};
 
+export const NODE: ESLintPlugin = {
+  meta: {
+    pkgname: name,
+    namespace,
+    version,
+    title: 'node',
+  },
+  rules: pluginNode.rules,
+};
+
 export function node(): ESLintConfigObject[] {
   return [
     {
@@ -80,13 +90,3 @@ export function node(): ESLintConfigObject[] {
     },
   ];
 }
-
-export const nodePlugin: ESLintPlugin = {
-  meta: {
-    pkgname: name,
-    namespace,
-    version,
-    title: 'node',
-  },
-  rules: pluginNode.rules,
-};

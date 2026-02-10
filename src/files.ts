@@ -9,8 +9,8 @@ export const TS_FILES = [`**/*.${TS_EXT}`];
 export const JSX_FILES = [`**/*.${JSX_EXT}`];
 
 export const REACT_FILES = [`**/*.${SCRIPT_EXT}`];
-export const VUE_FILES = ['**/*.vue'];
 export const JSON_FILES = ['**/*.{json,json5,jsonc}'];
+export const VUE_FILES = ['**/*.vue'];
 
 export const TEST_FILES = [
   `**/*.{test,spec}.${SCRIPT_EXT}`,

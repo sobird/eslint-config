@@ -1,6 +1,8 @@
 import eslintPluginJsonc from 'eslint-plugin-jsonc';
 import jsoncParser from 'jsonc-eslint-parser';
 
+import { JSON_FILES } from '../files';
+
 import type { ESLintConfigObject, ESLintPlugin } from '../types';
 import type { ESLint } from 'eslint';
 
@@ -11,7 +13,7 @@ const {
 } = meta;
 const namespace = 'jsonc';
 
-export const jsoncPlugin: ESLintPlugin = {
+export const JSONC: ESLintPlugin = {
   meta: {
     pkgname: name,
     namespace,
@@ -23,18 +25,9 @@ export const jsoncPlugin: ESLintPlugin = {
 
 export function jsonc(): ESLintConfigObject[] {
   return [
-    // {
-    //   files: ['**/*.json', '**/*.json5', '**/*.jsonc'],
-    //   rules: {
-    //     // ESLint core rules known to cause problems with JSON.
-    //   strict: "off",
-    //   "no-unused-expressions": "off",
-    //   "no-unused-vars": "off",
-    //   }
-    // },
     {
       name: 'sobird:jsonc:rules',
-      files: ['**/*.json', '**/*.json5', '**/*.jsonc'],
+      files: [...JSON_FILES],
       plugins: {
         jsonc: eslintPluginJsonc as ESLint.Plugin,
       },
@@ -43,6 +36,9 @@ export function jsonc(): ESLintConfigObject[] {
         parserOptions: {},
       },
       rules: {
+        // strict: "off",
+        // "no-unused-expressions": "off",
+        // "no-unused-vars": "off",
         'jsonc/array-bracket-newline': 'error',
         'jsonc/array-bracket-spacing': 'error',
         'jsonc/array-element-newline': 'error',
@@ -92,7 +88,7 @@ export function jsonc(): ESLintConfigObject[] {
     },
     {
       files: ['**/package.json'],
-      name: 'sobird:sort-package',
+      name: 'sobird:sort/package',
       rules: {
         'jsonc/sort-array-values': [
           'error',
@@ -176,7 +172,7 @@ export function jsonc(): ESLintConfigObject[] {
       },
     },
     {
-      name: 'sobird:sort-tsconfig',
+      name: 'sobird:sort/tsconfig',
       files: ['**/tsconfig.json', '**/tsconfig.*.json'],
       rules: {
         'jsonc/sort-keys': [
