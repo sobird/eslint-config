@@ -6,14 +6,14 @@ import { compile } from 'json-schema-to-typescript';
 
 import { ESlintPluginRulesToJSONSchema } from './utils';
 import {
-  stylisticPlugin,
-  importPlugin,
   eslintPlugin,
-  typescriptPlugin,
+  importPlugin,
+  jsoncPlugin,
+  nextPlugin,
   nodePlugin,
   reactPlugin,
-  nextPlugin,
-  jsoncPlugin,
+  stylisticPlugin,
+  typescriptPlugin,
   vuePlugin,
 } from '../src/configs';
 
