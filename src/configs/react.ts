@@ -51,6 +51,14 @@ export function react(): ESLintConfigObject[] {
     {
       name: 'sobird:react:rules',
       files: [...REACT_FILES],
+      languageOptions: {
+        parserOptions: {
+          ecmaFeatures: {
+            jsx: true,
+          },
+        },
+        sourceType: 'module',
+      },
       rules: {
         'react/boolean-prop-naming': ['warn', {
           // propTypeNames: ['bool', 'mutuallyExclusiveTrueProps'],
