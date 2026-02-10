@@ -8,13 +8,13 @@ import { ESlintPluginRulesToJSONSchema } from './utils';
 import {
   JAVASCRIPT,
   IMPORT,
-  jsoncPlugin,
-  nextPlugin,
-  nodePlugin,
-  reactPlugin,
-  stylisticPlugin,
-  typescriptPlugin,
-  vuePlugin,
+  JSONC,
+  NEXT,
+  NODE,
+  REACT,
+  STYLISTIC,
+  TYPESCRIPT,
+  VUE,
 } from '../src/configs';
 
 const dir = path.join('src', 'types', 'rules');
@@ -24,13 +24,13 @@ await fs.mkdir(dir, { recursive: true });
 const plugins = [
   JAVASCRIPT,
   IMPORT,
-  stylisticPlugin,
-  nodePlugin,
-  typescriptPlugin,
-  reactPlugin,
-  nextPlugin,
-  jsoncPlugin,
-  vuePlugin,
+  STYLISTIC,
+  NODE,
+  TYPESCRIPT,
+  REACT,
+  NEXT,
+  JSONC,
+  VUE,
 ];
 
 for (const plugin of plugins) {
