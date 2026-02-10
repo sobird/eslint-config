@@ -4,6 +4,7 @@ import type { JsoncRules } from './jsonc';
 import type { NextRules } from './next';
 import type { NodeRules } from './node';
 import type { ReactRules } from './react';
+import type { ReactHooksRules } from './react-hooks';
 import type { StylisticRules } from './stylistic';
 import type { TypescriptRules } from './typescript';
 import type { VueRules } from './vue';
@@ -16,7 +17,8 @@ export type BuiltinRules = ESLintRules
   & ReactRules
   & NextRules
   & JsoncRules
-  & VueRules;
+  & VueRules
+  & ReactHooksRules;
 
 export interface ConfigOptions {
   typescript?: boolean | object;
