@@ -16,7 +16,6 @@ export const JSX_A11Y: ESLintPlugin = {
 };
 
 export interface JsxOptions {
-
   /**
    * Enable JSX accessibility rules.
    *

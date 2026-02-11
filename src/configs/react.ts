@@ -5,6 +5,7 @@ import eslintPluginReactHooks from 'eslint-plugin-react-hooks';
 import eslintPluginReactRefresh from 'eslint-plugin-react-refresh';
 
 import { REACT_FILES, TS_FILES } from '../files';
+import { isPackagePresent } from '../utils';
 
 import type { ESLintConfigObject, ESLintPlugin } from '../types';
 import type { ESLint } from 'eslint';
@@ -38,7 +39,26 @@ export const REACT_REFRESH: ESLintPlugin = {
   rules: eslintPluginReactRefresh.rules,
 };
 
-export function react(): ESLintConfigObject[] {
+interface Options {
+
+}
+
+export type ReactOptions = Options | boolean;
+
+const ReactPackages = [
+  'react',
+];
+
+const enableReact = ReactPackages.some((i) => {
+  return isPackagePresent(i);
+});
+
+export function react(options: ReactOptions = enableReact): ESLintConfigObject[] {
+  if (options === false) {
+    return [];
+  }
+  const resolvedOptions = options === true ? {} : options;
+
   return [
     {
       name: 'sobird:react:setup',
@@ -75,6 +95,7 @@ export function react(): ESLintConfigObject[] {
         'react/destructuring-assignment': ['warn', 'always',
           { ignoreClassFields: true },
         ],
+
         // 'react/display-name': 'error',
         // 'react/forbid-component-props': 'error',
         // 'react/forbid-dom-props': 'error',
@@ -130,6 +151,7 @@ export function react(): ESLintConfigObject[] {
         ],
         'react/jsx-max-depth': ['warn', { max: 5 }],
         'react/jsx-max-props-per-line': ['error', { maximum: 1, when: 'multiline' }],
+
         // 'react/jsx-newline': 'error',
         // todo
         'react/jsx-no-bind': ['error', {
@@ -143,6 +165,7 @@ export function react(): ESLintConfigObject[] {
         'react/jsx-no-constructed-context-values': 'error', // done
         'react/jsx-no-duplicate-props': ['error', { ignoreCase: true }],
         'react/jsx-no-leaked-render': 'error',
+
         // 'react/jsx-no-literals': 'error',
         'react/jsx-no-script-url': [
           'error',
@@ -176,6 +199,7 @@ export function react(): ESLintConfigObject[] {
           exceptions: [],
         }],
         'react/jsx-props-no-spread-multi': 'error',
+
         // 'react/jsx-sort-default-props': 'error',
         'react/jsx-sort-props': ['error', {
           ignoreCase: true,
@@ -185,6 +209,7 @@ export function react(): ESLintConfigObject[] {
           reservedFirst: true,
           multiline: 'last',
         }],
+
         // 'react/jsx-space-before-closing': 'error',
         'react/jsx-tag-spacing': ['error', {
           closingSlash: 'never',
@@ -192,6 +217,7 @@ export function react(): ESLintConfigObject[] {
           afterOpening: 'never',
           beforeClosing: 'never',
         }],
+
         // 'react/jsx-uses-react': 'error',
         'react/jsx-uses-vars': 'error', // done
         'react/jsx-wrap-multilines': ['error', {
@@ -250,9 +276,11 @@ export function react(): ESLintConfigObject[] {
         'react/no-object-type-as-default-prop': 'error',
         'react/no-will-update-set-state': 'error', // done
         'react/prefer-es6-class': ['error', 'always'],
+
         // 'react/prefer-exact-props': 'error',
         'react/prefer-read-only-props': 'error', // done
         'react/prefer-stateless-function': ['error', { ignorePureComponents: true }],
+
         // 'react/prop-types': 'error',
         // 'react/react-in-jsx-scope': 'error',
         'react/require-default-props': ['error',
@@ -369,3 +397,4 @@ export function react(): ESLintConfigObject[] {
     },
   ];
 }
+react();
