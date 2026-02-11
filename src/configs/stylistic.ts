@@ -138,8 +138,18 @@ export function stylistic(): ESLintConfigObject[] {
         '@stylistic/keyword-spacing': ['error', { before: true, after: true }],
         '@stylistic/line-comment-position': 'off',
         '@stylistic/linebreak-style': ['error', 'unix'],
+        // pragma
         '@stylistic/lines-around-comment': ['error', {
+          beforeBlockComment: true,
+          beforeLineComment: true,
+          allowInterfaceStart: true,
           afterHashbangComment: true,
+          allowBlockStart: true,
+          allowBlockEnd: false,
+          allowObjectStart: true,
+          allowArrayStart: true,
+          allowClassStart: true,
+          ignorePattern: 'pragma|eslint|eslint-disable',
         }],
         '@stylistic/lines-between-class-members': ['error', 'always', { exceptAfterSingleLine: true }],
         // eslint-disable-next-line @typescript-eslint/no-magic-numbers
