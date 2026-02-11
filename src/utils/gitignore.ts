@@ -4,7 +4,9 @@ import process from 'node:process';
 
 import { includeIgnoreFile } from '@eslint/compat';
 
-export function gitignore(customPath: string) {
+import type { ESLintConfigObject } from '../types';
+
+export function gitignore(customPath: string): ESLintConfigObject {
   const possiblePaths = [
     customPath,
     path.resolve(process.cwd(), '.gitignore'),
@@ -15,8 +17,7 @@ export function gitignore(customPath: string) {
     if (fs.existsSync(p)) {
       try {
         return includeIgnoreFile(p);
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      } catch (error) {
+      } catch {
         // eslint-disable-next-line no-console
         console.warn(`Get .gitignore file error: ${p}`);
         return {};
