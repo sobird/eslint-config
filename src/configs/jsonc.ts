@@ -6,7 +6,7 @@ import { JSON_FILES } from '../files';
 import type { ESLintConfigObject, ESLintPlugin } from '../types';
 import type { ESLint } from 'eslint';
 
-const { meta, rules } = eslintPluginJsonc;
+const { meta, rules: pluginRules } = eslintPluginJsonc;
 const {
   name = 'eslint-plugin-jsonc',
   version,
@@ -20,10 +20,27 @@ export const JSONC: ESLintPlugin = {
     title: namespace,
     version,
   },
-  rules,
+  rules: pluginRules,
 };
 
-export function jsonc(): ESLintConfigObject[] {
+interface Options {
+  pkg?: boolean;
+  tsconfig?: boolean;
+  rules?: {};
+}
+
+export type JsoncOptions = Options | boolean;
+
+export function jsonc(options: JsoncOptions = true): ESLintConfigObject[] {
+  if (options === false) {
+    return [];
+  }
+  const {
+    pkg = true,
+    tsconfig = true,
+    rules = {},
+  } = options === true ? {} : options;
+
   return [
     {
       name: 'sobird:jsonc:rules',
@@ -42,9 +59,11 @@ export function jsonc(): ESLintConfigObject[] {
         'jsonc/array-bracket-newline': 'error',
         'jsonc/array-bracket-spacing': 'error',
         'jsonc/array-element-newline': 'error',
+
         // 'jsonc/auto': 'error',
         'jsonc/comma-dangle': 'error',
         'jsonc/comma-style': 'error',
+
         // todo
         'jsonc/indent': ['error', 2],
         'jsonc/key-name-casing': 'off',
@@ -52,6 +71,7 @@ export function jsonc(): ESLintConfigObject[] {
         'jsonc/no-bigint-literals': 'error',
         'jsonc/no-binary-expression': 'error',
         'jsonc/no-binary-numeric-literals': 'error',
+
         // 'jsonc/no-comments': 'error',
         'jsonc/no-dupe-keys': 'error',
         'jsonc/no-escape-sequence-in-identifier': 'error',
@@ -79,226 +99,234 @@ export function jsonc(): ESLintConfigObject[] {
         'jsonc/object-property-newline': 'error',
         'jsonc/quote-props': 'error',
         'jsonc/quotes': 'error',
+
         // 'jsonc/sort-array-values': 'error',
         // 'jsonc/sort-keys': 'error',
         'jsonc/space-unary-ops': 'error',
         'jsonc/valid-json-number': 'error',
         'jsonc/vue-custom-block/no-parsing-error': 'error',
+
+        ...rules,
       },
     },
-    {
-      files: ['**/package.json'],
-      name: 'sobird:sort/package',
-      rules: {
-        'jsonc/sort-array-values': [
-          'error',
-          {
-            order: { type: 'asc' },
-            pathPattern: '^files$',
-          },
-        ],
-        'jsonc/sort-keys': [
-          'error',
-          {
-            order: [
-              'publisher',
-              'name',
-              'displayName',
-              'type',
-              'version',
-              'private',
-              'packageManager',
-              'description',
-              'author',
-              'license',
-              'funding',
-              'homepage',
-              'repository',
-              'bugs',
-              'keywords',
-              'categories',
-              'sideEffects',
-              'exports',
-              'main',
-              'module',
-              'unpkg',
-              'jsdelivr',
-              'types',
-              'typesVersions',
-              'bin',
-              'icon',
-              'files',
-              'engines',
-              'activationEvents',
-              'contributes',
-              'scripts',
-              'peerDependencies',
-              'peerDependenciesMeta',
-              'dependencies',
-              'optionalDependencies',
-              'devDependencies',
-              'pnpm',
-              'overrides',
-              'resolutions',
-              'husky',
-              'simple-git-hooks',
-              'lint-staged',
-              'eslintConfig',
+    pkg
+      ? {
+          files: ['**/package.json'],
+          name: 'sobird:sort/package',
+          rules: {
+            'jsonc/sort-array-values': [
+              'error',
+              {
+                order: { type: 'asc' },
+                pathPattern: '^files$',
+              },
             ],
-            pathPattern: '^$',
-          },
-          {
-            order: { type: 'asc' },
-            pathPattern: '^(?:dev|peer|optional|bundled)?[Dd]ependencies$',
-          },
-          {
-            order: { type: 'asc' },
-            pathPattern: '^resolutions$',
-          },
-          {
-            order: { type: 'asc' },
-            pathPattern: '^pnpm.overrides$',
-          },
-          {
-            order: [
-              'types',
-              'import',
-              'require',
-              'default',
+            'jsonc/sort-keys': [
+              'error',
+              {
+                order: [
+                  'publisher',
+                  'name',
+                  'displayName',
+                  'type',
+                  'version',
+                  'private',
+                  'packageManager',
+                  'description',
+                  'author',
+                  'license',
+                  'funding',
+                  'homepage',
+                  'repository',
+                  'bugs',
+                  'keywords',
+                  'categories',
+                  'sideEffects',
+                  'exports',
+                  'main',
+                  'module',
+                  'unpkg',
+                  'jsdelivr',
+                  'types',
+                  'typesVersions',
+                  'bin',
+                  'icon',
+                  'files',
+                  'engines',
+                  'activationEvents',
+                  'contributes',
+                  'scripts',
+                  'peerDependencies',
+                  'peerDependenciesMeta',
+                  'dependencies',
+                  'optionalDependencies',
+                  'devDependencies',
+                  'pnpm',
+                  'overrides',
+                  'resolutions',
+                  'husky',
+                  'simple-git-hooks',
+                  'lint-staged',
+                  'eslintConfig',
+                ],
+                pathPattern: '^$',
+              },
+              {
+                order: { type: 'asc' },
+                pathPattern: '^(?:dev|peer|optional|bundled)?[Dd]ependencies$',
+              },
+              {
+                order: { type: 'asc' },
+                pathPattern: '^resolutions$',
+              },
+              {
+                order: { type: 'asc' },
+                pathPattern: '^pnpm.overrides$',
+              },
+              {
+                order: [
+                  'types',
+                  'import',
+                  'require',
+                  'default',
+                ],
+                pathPattern: '^exports.*$',
+              },
             ],
-            pathPattern: '^exports.*$',
           },
-        ],
-      },
-    },
-    {
-      name: 'sobird:sort/tsconfig',
-      files: ['**/tsconfig.json', '**/tsconfig.*.json'],
-      rules: {
-        'jsonc/sort-keys': [
-          'error',
-          {
-            order: [
-              'extends',
-              'compilerOptions',
-              'references',
-              'files',
-              'include',
-              'exclude',
+        }
+      : {},
+
+    tsconfig
+      // eslint-disable-next-line @stylistic/multiline-ternary
+      ? {
+          name: 'sobird:sort/tsconfig',
+          files: ['**/tsconfig.json', '**/tsconfig.*.json'],
+          rules: {
+            'jsonc/sort-keys': [
+              'error',
+              {
+                order: [
+                  'extends',
+                  'compilerOptions',
+                  'references',
+                  'files',
+                  'include',
+                  'exclude',
+                ],
+                pathPattern: '^$',
+              },
+              {
+                order: [
+
+                  /* Projects */
+                  'incremental',
+                  'composite',
+                  'tsBuildInfoFile',
+                  'disableSourceOfProjectReferenceRedirect',
+                  'disableSolutionSearching',
+                  'disableReferencedProjectLoad',
+
+                  /* Language and Environment */
+                  'target',
+                  'jsx',
+                  'jsxFactory',
+                  'jsxFragmentFactory',
+                  'jsxImportSource',
+                  'lib',
+                  'moduleDetection',
+                  'noLib',
+                  'reactNamespace',
+                  'useDefineForClassFields',
+                  'emitDecoratorMetadata',
+                  'experimentalDecorators',
+
+                  /* Modules */
+                  'baseUrl',
+                  'rootDir',
+                  'rootDirs',
+                  'customConditions',
+                  'module',
+                  'moduleResolution',
+                  'moduleSuffixes',
+                  'noResolve',
+                  'paths',
+                  'resolveJsonModule',
+                  'resolvePackageJsonExports',
+                  'resolvePackageJsonImports',
+                  'typeRoots',
+                  'types',
+                  'allowArbitraryExtensions',
+                  'allowImportingTsExtensions',
+                  'allowUmdGlobalAccess',
+
+                  /* JavaScript Support */
+                  'allowJs',
+                  'checkJs',
+                  'maxNodeModuleJsDepth',
+
+                  /* Type Checking */
+                  'strict',
+                  'strictBindCallApply',
+                  'strictFunctionTypes',
+                  'strictNullChecks',
+                  'strictPropertyInitialization',
+                  'allowUnreachableCode',
+                  'allowUnusedLabels',
+                  'alwaysStrict',
+                  'exactOptionalPropertyTypes',
+                  'noFallthroughCasesInSwitch',
+                  'noImplicitAny',
+                  'noImplicitOverride',
+                  'noImplicitReturns',
+                  'noImplicitThis',
+                  'noPropertyAccessFromIndexSignature',
+                  'noUncheckedIndexedAccess',
+                  'noUnusedLocals',
+                  'noUnusedParameters',
+                  'useUnknownInCatchVariables',
+
+                  /* Emit */
+                  'declaration',
+                  'declarationDir',
+                  'declarationMap',
+                  'downlevelIteration',
+                  'emitBOM',
+                  'emitDeclarationOnly',
+                  'importHelpers',
+                  'importsNotUsedAsValues',
+                  'inlineSourceMap',
+                  'inlineSources',
+                  'mapRoot',
+                  'newLine',
+                  'noEmit',
+                  'noEmitHelpers',
+                  'noEmitOnError',
+                  'outDir',
+                  'outFile',
+                  'preserveConstEnums',
+                  'preserveValueImports',
+                  'removeComments',
+                  'sourceMap',
+                  'sourceRoot',
+                  'stripInternal',
+
+                  /* Interop Constraints */
+                  'allowSyntheticDefaultImports',
+                  'esModuleInterop',
+                  'forceConsistentCasingInFileNames',
+                  'isolatedModules',
+                  'preserveSymlinks',
+                  'verbatimModuleSyntax',
+
+                  /* Completeness */
+                  'skipDefaultLibCheck',
+                  'skipLibCheck',
+                ],
+                pathPattern: '^compilerOptions$',
+              },
             ],
-            pathPattern: '^$',
           },
-          {
-            order: [
-
-              /* Projects */
-              'incremental',
-              'composite',
-              'tsBuildInfoFile',
-              'disableSourceOfProjectReferenceRedirect',
-              'disableSolutionSearching',
-              'disableReferencedProjectLoad',
-
-              /* Language and Environment */
-              'target',
-              'jsx',
-              'jsxFactory',
-              'jsxFragmentFactory',
-              'jsxImportSource',
-              'lib',
-              'moduleDetection',
-              'noLib',
-              'reactNamespace',
-              'useDefineForClassFields',
-              'emitDecoratorMetadata',
-              'experimentalDecorators',
-
-              /* Modules */
-              'baseUrl',
-              'rootDir',
-              'rootDirs',
-              'customConditions',
-              'module',
-              'moduleResolution',
-              'moduleSuffixes',
-              'noResolve',
-              'paths',
-              'resolveJsonModule',
-              'resolvePackageJsonExports',
-              'resolvePackageJsonImports',
-              'typeRoots',
-              'types',
-              'allowArbitraryExtensions',
-              'allowImportingTsExtensions',
-              'allowUmdGlobalAccess',
-
-              /* JavaScript Support */
-              'allowJs',
-              'checkJs',
-              'maxNodeModuleJsDepth',
-
-              /* Type Checking */
-              'strict',
-              'strictBindCallApply',
-              'strictFunctionTypes',
-              'strictNullChecks',
-              'strictPropertyInitialization',
-              'allowUnreachableCode',
-              'allowUnusedLabels',
-              'alwaysStrict',
-              'exactOptionalPropertyTypes',
-              'noFallthroughCasesInSwitch',
-              'noImplicitAny',
-              'noImplicitOverride',
-              'noImplicitReturns',
-              'noImplicitThis',
-              'noPropertyAccessFromIndexSignature',
-              'noUncheckedIndexedAccess',
-              'noUnusedLocals',
-              'noUnusedParameters',
-              'useUnknownInCatchVariables',
-
-              /* Emit */
-              'declaration',
-              'declarationDir',
-              'declarationMap',
-              'downlevelIteration',
-              'emitBOM',
-              'emitDeclarationOnly',
-              'importHelpers',
-              'importsNotUsedAsValues',
-              'inlineSourceMap',
-              'inlineSources',
-              'mapRoot',
-              'newLine',
-              'noEmit',
-              'noEmitHelpers',
-              'noEmitOnError',
-              'outDir',
-              'outFile',
-              'preserveConstEnums',
-              'preserveValueImports',
-              'removeComments',
-              'sourceMap',
-              'sourceRoot',
-              'stripInternal',
-
-              /* Interop Constraints */
-              'allowSyntheticDefaultImports',
-              'esModuleInterop',
-              'forceConsistentCasingInFileNames',
-              'isolatedModules',
-              'preserveSymlinks',
-              'verbatimModuleSyntax',
-
-              /* Completeness */
-              'skipDefaultLibCheck',
-              'skipLibCheck',
-            ],
-            pathPattern: '^compilerOptions$',
-          },
-        ],
-      },
-    },
+        } : {},
   ];
 }
