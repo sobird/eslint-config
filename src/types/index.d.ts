@@ -1,16 +1,15 @@
 import type { BuiltinRules, InferBuiltinRules } from './rules';
-import type { RuleConfig } from '@eslint/core';
-import type { Rule, Linter, ESLint } from 'eslint';
+import type { Linter, ESLint } from 'eslint';
 
 export type BuiltinRulesConfig = WrapRuleConfig<BuiltinRules>;
 export type InferBuiltinRulesConfig<T> = WrapRuleConfig<InferBuiltinRules<T>>;
 
 export type WrapRuleConfig<T extends Record<string, unknown>> = {
-  [K in keyof T]: T[K] extends RuleConfig ? T[K] : RuleConfig<NonNullable<T[K]>>
+  [K in keyof T]: T[K] extends Linter.RuleEntry ? T[K] : Linter.RuleEntry<NonNullable<T[K]>>
 };
 
 interface LanguageOptions<P extends Linter.ParserOptions = Linter.ParserOptions> extends Linter.LanguageOptions {
-  parserOptions: P;
+  parserOptions?: P;
 }
 
 export interface ESLintConfigObject<ParserOptions extends Linter.ParserOptions = Linter.ParserOptions,
