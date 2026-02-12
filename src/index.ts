@@ -16,7 +16,7 @@ interface Options extends ConfigOptions {
 }
 
 export function sobird<T extends Options>(
-  config?: T & { rules?: BuiltinRulesInfer },
+  config?: Omit<T, 'rules'> & { rules?: BuiltinRulesInfer },
 ): Config[] {
   const { react: reactOptions } = config || {};
 

@@ -68,6 +68,11 @@ export function react(options: ReactOptions = env.isReact): ESLintConfigObject[]
         'react-hooks': eslintPluginReactHooks as ESLint.Plugin,
         'react-refresh': eslintPluginReactRefresh,
       },
+      settings: {
+        react: {
+          version: 'detect',
+        },
+      },
     },
     {
       name: 'sobird:react:rules',
