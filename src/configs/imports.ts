@@ -15,8 +15,19 @@ export const IMPORT: ESLintPlugin = {
   rules: pluginImport.rules,
 };
 
-export function imports(): ESLintConfigObject[] {
-  // const stylistic = true;
+interface Options {
+  rules?: {};
+}
+
+export type ImportOptions = Options | boolean;
+
+export function imports(options: ImportOptions = true): ESLintConfigObject[] {
+  if (options === false) {
+    return [];
+  }
+  const {
+    rules = {},
+  } = options === true ? {} : options;
 
   return [
     {
@@ -46,10 +57,12 @@ export function imports(): ESLintConfigObject[] {
         ],
         'import/no-restricted-paths': 'error',
         'import/no-internal-modules': 'off',
+
         // If you do not mind having your exports spread across the file, you can safely turn this rule off.
         'import/group-exports': 'off',
         'import/no-relative-packages': 'error',
         'import/no-relative-parent-imports': 'off',
+
         // 'import/consistent-type-specifier-style': ['error', 'prefer-inline'],
         'import/no-self-import': 'error',
         'import/no-cycle': 'error',
@@ -70,6 +83,7 @@ export function imports(): ESLintConfigObject[] {
         // see @typescript-eslint/no-require-imports
         'import/no-commonjs': 'error',
         'import/no-amd': 'error',
+
         // 'no-duplicate-imports': 'off',
         'import/no-duplicates': ['error', { 'considerQueryString': true, 'prefer-inline': true }],
         'import/first': 'error',
@@ -83,6 +97,7 @@ export function imports(): ESLintConfigObject[] {
             '**/*.{test,spec}.{js,jsx,ts,tsx}',
             'test.{js,jsx}',
             'test-*.{js,jsx}',
+
             // 测试目录
             '**/tests/**/*',
             '**/test/**/*',
@@ -107,6 +122,7 @@ export function imports(): ESLintConfigObject[] {
             '**/next.config.{js,ts}',
             '**/nuxt.config.{js,ts}',
             '**/vue.config.{js,ts}',
+
             // 测试
             '**/jest.config.{js,ts}',
             '**/vitest.config.{js,ts}',
@@ -115,6 +131,7 @@ export function imports(): ESLintConfigObject[] {
             '**/jest.setup.{js,ts}',
             '**/jest.config.{js,ts}',
             '**/setupTests.{js,ts}',
+
             // 其他
             '**/eslint.config.{js,mjs,cjs,ts}',
             '**/prisma/seed.{js,ts}',
@@ -130,6 +147,7 @@ export function imports(): ESLintConfigObject[] {
         'import/no-absolute-path': 'error',
         'import/no-nodejs-modules': 'off',
         'import/no-webpack-loader-syntax': 'error',
+
         // @see sort-imports
         'sort-imports': 'off',
         'import/order': ['error', {
@@ -175,10 +193,13 @@ export function imports(): ESLintConfigObject[] {
           'warnOnUnassignedImports': true,
         }],
         'import/newline-after-import': ['error', { considerComments: true, count: 1 }],
+
         //
         'import/prefer-default-export': 'off',
+
         // this is a terrible rule, do not use it. todo?
         'import/no-default-export': 'off',
+
         // this is a terrible rule, do not use it.
         'import/no-named-export': 'off',
         'import/no-dynamic-require': 'error',
@@ -191,8 +212,11 @@ export function imports(): ESLintConfigObject[] {
         'import/enforce-node-protocol-usage': ['error', 'always'],
         'import/exports-last': 'off',
         'import/no-deprecated': 'error',
+
         // 废弃的别名规则也保留并添加前缀
         'import/imports-first': 'error',
+
+        ...rules,
       },
     },
     {
