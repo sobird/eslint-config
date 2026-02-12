@@ -4,6 +4,7 @@ import {
   imports, javascript, jsonc, node, stylistic, typescript, ignores, vue, react,
   type ImportOptions,
   type ReactOptions,
+  type JsoncOptions,
 } from './configs';
 
 import type { InferBuiltinRulesConfig, ESLintConfigObject } from './types';
@@ -16,6 +17,7 @@ interface Options {
    */
   import?: ImportOptions;
   react?: ReactOptions;
+  jsonc?: JsoncOptions;
 }
 
 export function sobird<T extends Options>(

@@ -1,10 +1,12 @@
 // https://github.com/import-js/eslint-plugin-import/blob/main/config/typescript.js
 
-import pluginImport from 'eslint-plugin-import';
+import eslintPluginImport from 'eslint-plugin-import';
 
 import type { ESLintConfigObject, ESLintPlugin } from '../types';
 
 const namespace = 'import';
+
+const { rules: pluginRules } = eslintPluginImport;
 
 export const IMPORT: ESLintPlugin = {
   meta: {
@@ -12,7 +14,7 @@ export const IMPORT: ESLintPlugin = {
     namespace,
     title: 'import',
   },
-  rules: pluginImport.rules,
+  rules: pluginRules,
 };
 
 interface Options {
@@ -33,7 +35,7 @@ export function imports(options: ImportOptions = true): ESLintConfigObject[] {
     {
       name: 'sobird:imports',
       plugins: {
-        [namespace]: pluginImport,
+        [namespace]: eslintPluginImport,
       },
       rules: {
         'import/no-unresolved': ['error', { commonjs: false, caseSensitive: true }],
