@@ -5,7 +5,7 @@ import eslintPluginReactHooks from 'eslint-plugin-react-hooks';
 import eslintPluginReactRefresh from 'eslint-plugin-react-refresh';
 
 import { REACT_FILES, TS_FILES } from '../files';
-import { isPackagePresent } from '../utils';
+import { env } from '../utils';
 
 import type { ESLintConfigObject, ESLintPlugin } from '../types';
 import type { ESLint } from 'eslint';
@@ -40,24 +40,25 @@ export const REACT_REFRESH: ESLintPlugin = {
 };
 
 interface Options {
-
+  hooks?: boolean;
+  refresh?: boolean;
+  files?: string[];
+  rules: string[];
 }
 
 export type ReactOptions = Options | boolean;
 
-const ReactPackages = [
-  'react',
-];
-
-const enableReact = ReactPackages.some((i) => {
-  return isPackagePresent(i);
-});
-
-export function react(options: ReactOptions = enableReact): ESLintConfigObject[] {
+export function react(options: ReactOptions = env.isReact): ESLintConfigObject[] {
   if (options === false) {
     return [];
   }
-  const resolvedOptions = options === true ? {} : options;
+  const {
+    hooks = true, refresh = true, files = REACT_FILES, rules: userRules = {},
+  } = options === true ? {} : options;
+
+  const {
+    isVite, isRemix, isReactRouter, isNext,
+  } = env;
 
   return [
     {
@@ -70,7 +71,7 @@ export function react(options: ReactOptions = enableReact): ESLintConfigObject[]
     },
     {
       name: 'sobird:react:rules',
-      files: [...REACT_FILES],
+      files,
       languageOptions: {
         parserOptions: {
           ecmaFeatures: {
@@ -360,41 +361,100 @@ export function react(options: ReactOptions = enableReact): ESLintConfigObject[]
         'react/void-dom-elements-no-children': 'error', // done
       },
     },
-    {
-      name: 'sobird:react-hooks:rules',
-      rules: {
-        'react-hooks/rules-of-hooks': 'error',
-        'react-hooks/exhaustive-deps': 'warn',
-        'react-hooks/static-components': 'error',
-        'react-hooks/use-memo': 'error',
-        'react-hooks/void-use-memo': 'error',
-        'react-hooks/component-hook-factories': 'error',
-        'react-hooks/preserve-manual-memoization': 'error',
-        'react-hooks/incompatible-library': 'warn',
-        'react-hooks/immutability': 'error',
-        'react-hooks/globals': 'error',
-        'react-hooks/refs': 'error',
-        'react-hooks/set-state-in-effect': 'error',
-        'react-hooks/error-boundaries': 'error',
-        'react-hooks/purity': 'error',
-        'react-hooks/set-state-in-render': 'error',
-        'react-hooks/unsupported-syntax': 'warn',
-        'react-hooks/config': 'error',
-        'react-hooks/gating': 'error',
-      },
-    },
-    {
-      name: 'sobird:react-refresh:rules',
-      rules: {
-        'react-refresh/only-export-components': ['error'],
-      },
-    },
+
+    hooks
+      ? {
+          name: 'sobird:react-hooks:rules',
+          files,
+          rules: {
+            'react-hooks/rules-of-hooks': 'error',
+            'react-hooks/exhaustive-deps': 'warn',
+            'react-hooks/static-components': 'error',
+            'react-hooks/use-memo': 'error',
+            'react-hooks/void-use-memo': 'error',
+            'react-hooks/component-hook-factories': 'error',
+            'react-hooks/preserve-manual-memoization': 'error',
+            'react-hooks/incompatible-library': 'warn',
+            'react-hooks/immutability': 'error',
+            'react-hooks/globals': 'error',
+            'react-hooks/refs': 'error',
+            'react-hooks/set-state-in-effect': 'error',
+            'react-hooks/error-boundaries': 'error',
+            'react-hooks/purity': 'error',
+            'react-hooks/set-state-in-render': 'error',
+            'react-hooks/unsupported-syntax': 'warn',
+            'react-hooks/config': 'error',
+            'react-hooks/gating': 'error',
+          },
+        }
+      : {},
+
+    refresh
+      // eslint-disable-next-line @stylistic/multiline-ternary
+      ? {
+          name: 'sobird:react-refresh:rules',
+          rules: {
+            'react-refresh/only-export-components': ['error', {
+              allowConstantExport: isVite,
+              allowExportNames: [
+                ...(isNext
+                  ? [
+                      // https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config
+                      'dynamic',
+                      'dynamicParams',
+                      'revalidate',
+                      'fetchCache',
+                      'runtime',
+                      'preferredRegion',
+                      'maxDuration',
+
+                      // https://nextjs.org/docs/app/api-reference/functions/generate-static-params
+                      'generateStaticParams',
+
+                      // https://nextjs.org/docs/app/api-reference/functions/generate-metadata
+                      'metadata',
+                      'generateMetadata',
+
+                      // https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+                      'viewport',
+                      'generateViewport',
+
+                      // https://nextjs.org/docs/app/api-reference/functions/generate-image-metadata
+                      'generateImageMetadata',
+
+                      // https://nextjs.org/docs/app/api-reference/functions/generate-sitemaps
+                      'generateSitemaps',
+                    ]
+                  : []),
+                ...(isRemix || isReactRouter
+                  ? [
+                      'meta',
+                      'links',
+                      'headers',
+                      'loader',
+                      'action',
+                      'clientLoader',
+                      'clientAction',
+                      'handle',
+                      'shouldRevalidate',
+                    ]
+                  : []),
+              ],
+            }],
+          },
+        } : {},
     {
       files: [...TS_FILES],
       rules: {
         'react/jsx-uses-vars': 'off',
       },
     },
+    {
+      name: 'sobird:react:overrides',
+      files,
+      rules: {
+        ...userRules,
+      },
+    },
   ];
 }
-react();
