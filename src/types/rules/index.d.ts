@@ -17,18 +17,24 @@ export type BuiltinRules = ESLintRules
   & StylisticRules
   & TypescriptRules
   & ReactRules
+  & ReactHooksRules
+  & ReactRefreshRules
   & NextRules
   & JsoncRules
   & VueRules
-  & ReactHooksRules
-  & ReactRefreshRules
   & JsxA11YRules;
 
 export interface ConfigOptions {
   typescript?: boolean | object;
   stylistic?: boolean | object;
+  react?: boolean | object;
+  vue?: boolean | object;
 }
 
 export type InferBuiltinRules<T extends ConfigOptions> = ESLintRules
   & (T['typescript'] extends true | object ? TypescriptRules : {})
-  & (T['stylistice'] extends true | object ? StylisticRules : {});
+  & (T['stylistice'] extends true | object ? StylisticRules : {})
+  & (T['react'] extends true | object ? ReactRules : {})
+  & (T['react']['hooks'] extends true | object ? ReactHooksRules : {})
+  & (T['react']['refresh'] extends true | object ? ReactRefreshRules : {})
+  & (T['vue'] extends true | object ? ReactRules : {});
