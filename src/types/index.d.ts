@@ -3,7 +3,7 @@ import type { RuleConfig } from '@eslint/core';
 import type { Rule, Linter, ESLint } from 'eslint';
 
 export type BuiltinRulesConfig = WrapRuleConfig<BuiltinRules>;
-export type BuiltinRulesInfer = WrapRuleConfig<InferBuiltinRules<{ vue: true }>>;
+export type InferBuiltinRulesConfig<T> = WrapRuleConfig<InferBuiltinRules<T>>;
 
 export type WrapRuleConfig<T extends Record<string, unknown>> = {
   [K in keyof T]: T[K] extends RuleConfig ? T[K] : RuleConfig<NonNullable<T[K]>>
