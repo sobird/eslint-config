@@ -46,7 +46,8 @@ export const JAVASCRIPT_RULES: NonNullable<ESLintConfigObject['rules']> = {
   'array-callback-return': ['error', { allowImplicit: true }],
   'arrow-body-style': [
     'error',
-    'always',
+    'as-needed',
+
     // {
     //   requireReturnForObjectLiteral: false,
     // },
@@ -149,6 +150,7 @@ export const JAVASCRIPT_RULES: NonNullable<ESLintConfigObject['rules']> = {
   'no-class-assign': 'error',
   'no-compare-neg-zero': 'error',
   'no-cond-assign': 'error',
+
   // todo
   'no-console': 'error',
   'no-const-assign': 'error',
@@ -203,6 +205,7 @@ export const JAVASCRIPT_RULES: NonNullable<ESLintConfigObject['rules']> = {
   'no-lonely-if': 'error',
   'no-loop-func': 'error',
   'no-loss-of-precision': 'error',
+
   // todo
   'no-magic-numbers': [
     'error',
@@ -269,6 +272,7 @@ export const JAVASCRIPT_RULES: NonNullable<ESLintConfigObject['rules']> = {
       ],
     },
   ],
+
   // todo confusingBrowserGlobals
   'no-restricted-globals': [
     'error',
@@ -360,6 +364,7 @@ export const JAVASCRIPT_RULES: NonNullable<ESLintConfigObject['rules']> = {
       message:
         'Prohibit the use of the original for loop. It is recommended to use modern traversal methods such as for of/Array. prototype. forEach/map/filter',
     },
+
     // {
     //   selector: 'ForOfStatement',
     //   message: `iterators/generators require regenerator-runtime, which is too heavyweight for this guide to allow them.
@@ -393,6 +398,7 @@ export const JAVASCRIPT_RULES: NonNullable<ESLintConfigObject['rules']> = {
   'no-undef': 'error',
   'no-undef-init': 'error',
   'no-undefined': 'off',
+
   // todo
   'no-underscore-dangle': ['error',
     {
@@ -413,6 +419,7 @@ export const JAVASCRIPT_RULES: NonNullable<ESLintConfigObject['rules']> = {
     'error',
     { disallowArithmeticOperators: true },
   ],
+
   // todo
   'no-unused-expressions': [
     'error',
@@ -480,6 +487,7 @@ export const JAVASCRIPT_RULES: NonNullable<ESLintConfigObject['rules']> = {
   'require-await': 'error',
   'require-unicode-regexp': 'error',
   'require-yield': 'error',
+
   // todo
   'sort-imports': ['error', { ignoreDeclarationSort: true }],
   'sort-keys': 'off',

@@ -3,8 +3,8 @@
 import { sobird } from './src';
 
 export default sobird({
-  typescript: true,
+  react: true,
   rules: {
-    '@typescript/no-explicit-any': [{ fixToUnknown: true }],
+    'accessor-pairs': 'error',
   },
 });
