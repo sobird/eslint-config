@@ -2,9 +2,4 @@
 
 import { sobird } from './src';
 
-export default sobird({
-  react: true,
-  rules: {
-    'accessor-pairs': 'error',
-  },
-});
+export default sobird();
