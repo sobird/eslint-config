@@ -13,17 +13,18 @@ import type { VueRules } from './vue';
 
 export type BuiltinRules = ESLintRules
   & ImportRules
+  & JsoncRules
+  & JsxA11YRules
+  & NextRules
   & NodeRules
-  & StylisticRules
-  & TypescriptRules
   & ReactRules
   & ReactHooksRules
   & ReactRefreshRules
-  & NextRules
-  & JsoncRules
-  & VueRules
-  & JsxA11YRules;
+  & StylisticRules
+  & TypescriptRules
+  & VueRules;
 
+// todo
 export type InferBuiltinRules<T> = ESLintRules
   & (T['typescript'] extends true | object ? TypescriptRules : {})
   & (T['stylistice'] extends true | object ? StylisticRules : {})
