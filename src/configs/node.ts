@@ -34,8 +34,10 @@ export function node(): ESLintConfigObject[] {
         'n/no-callback-literal': 'error',
         'n/no-deprecated-api': 'error',
         'n/no-exports-assign': 'error',
-        'n/no-extraneous-import': 'error',
-        'n/no-extraneous-require': 'error',
+
+        // 'n/no-extraneous-import': 'error',
+        // 'n/no-extraneous-require': 'error',
+
         // see import/no-unresolved
         'n/no-missing-import': 'off',
         'n/no-missing-require': 'off',
@@ -46,6 +48,7 @@ export function node(): ESLintConfigObject[] {
         'n/no-process-exit': 'error',
         'n/no-restricted-import': 'error',
         'n/no-restricted-require': 'error',
+
         // requires type information,
         // 'n/no-sync': 'error',
         // 'n/no-top-level-await': 'error',
@@ -75,6 +78,7 @@ export function node(): ESLintConfigObject[] {
         'n/prefer-promises/fs': 'error',
         'n/process-exit-as-throw': 'error',
         'n/hashbang': 'error',
+
         // 废弃规则也添加前缀
         'n/no-hide-core-modules': 'error',
         'n/shebang': 'error',
