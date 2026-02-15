@@ -1,8 +1,9 @@
-import type { BuiltinRules, InferBuiltinRules } from './rules';
+import type { BuiltinRules, InferBuiltinRules, ComposeRules } from './rules';
 import type { Linter, ESLint } from 'eslint';
 
 export type BuiltinRulesConfig = WrapRuleConfig<BuiltinRules>;
 export type InferBuiltinRulesConfig<T> = WrapRuleConfig<InferBuiltinRules<T>>;
+export type ComposeRulesConfig<T> = WrapRuleConfig<ComposeRules<T>>;
 
 export type WrapRuleConfig<T extends Record<string, unknown>> = {
   [K in keyof T]: T[K] extends Linter.RuleEntry ? T[K] : Linter.RuleEntry<NonNullable<T[K]>>
