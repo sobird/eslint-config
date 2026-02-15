@@ -41,7 +41,8 @@ export function node(): ESLintConfigObject[] {
         // see import/no-unresolved
         'n/no-missing-import': 'off',
         'n/no-missing-require': 'off',
-        'n/no-mixed-requires': 'error',
+
+        // 'n/no-mixed-requires': 'error',
         'n/no-new-require': 'error',
         'n/no-path-concat': 'error',
         'n/no-process-env': 'error',
@@ -68,6 +69,8 @@ export function node(): ESLintConfigObject[] {
         'n/no-unsupported-features/node-builtins': 'error',
         'n/prefer-global/buffer': ['error', 'never'],
         'n/prefer-global/console': 'error',
+
+        // todo
         'n/prefer-global/process': ['error', 'never'],
         'n/prefer-global/text-decoder': 'error',
         'n/prefer-global/text-encoder': 'error',
@@ -90,6 +93,7 @@ export function node(): ESLintConfigObject[] {
       rules: {
         // 测试/脚本文件不检查「未发布导入」（因为这些文件本身不会被发布）
         'n/no-unpublished-import': 'off',
+        'n/no-unpublished-require': 'off',
       },
     },
   ];

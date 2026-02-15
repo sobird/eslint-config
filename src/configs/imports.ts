@@ -2,7 +2,7 @@
 
 import eslintPluginImport from 'eslint-plugin-import';
 
-import type { ESLintConfigObject, ESLintPlugin } from '../types';
+import type { ESLintConfigObject, ESLintPlugin, ComposeRulesConfig } from '../types';
 
 const namespace = 'import';
 
@@ -18,7 +18,7 @@ export const IMPORT: ESLintPlugin = {
 };
 
 interface Options {
-  rules?: {};
+  rules?: ComposeRulesConfig<'import'>;
 }
 
 export type ImportOptions = Options | boolean;
