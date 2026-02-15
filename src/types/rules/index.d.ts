@@ -11,18 +11,26 @@ import type { StylisticRules } from './stylistic';
 import type { TypescriptRules } from './typescript';
 import type { VueRules } from './vue';
 
-export type BuiltinRules = ESLintRules
-  & ImportRules
-  & JsoncRules
-  & JsxA11YRules
-  & NextRules
-  & NodeRules
-  & ReactRules
-  & ReactHooksRules
-  & ReactRefreshRules
-  & StylisticRules
-  & TypescriptRules
-  & VueRules;
+interface Rules {
+  eslint: ESLintRules;
+  import: ImportRules;
+  jsonc: JsoncRules;
+  jsxA11y: JsxA11YRules;
+  next: NextRules;
+  node: NodeRules;
+  react: ReactRules;
+  reactHooks: ReactHooksRules;
+  reactRefresh: ReactRefreshRules;
+  stylistic: StylisticRules;
+  typescript: TypescriptRules;
+  vue: VueRules;
+}
+
+type RulesName = keyof Rules;
+
+export type ComposeRules<T extends RulesName = RulesName> = { [K in T]: Rules[K] }[T];
+
+export type BuiltinRules = ComposeRules;
 
 // todo
 export type InferBuiltinRules<T> = ESLintRules
