@@ -65,6 +65,7 @@ export function imports(options: ImportOptions = true): ESLintConfigObject[] {
         'import/no-relative-packages': 'error',
         'import/no-relative-parent-imports': 'off',
 
+        // @see @typescript-eslint/no-import-type-side-effects
         // 'import/consistent-type-specifier-style': ['error', 'prefer-inline'],
         'import/no-self-import': 'error',
         'import/no-cycle': 'error',
