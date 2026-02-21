@@ -5,7 +5,7 @@ import { sobird } from './src';
 export default sobird({
   import: {
     rules: {
-
+      //
     },
   },
 });
