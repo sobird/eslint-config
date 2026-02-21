@@ -26,11 +26,12 @@ interface Rules {
   vue: VueRules;
 }
 
-type RulesName = keyof Rules;
+export type RulesName = keyof Rules;
 
-export type ComposeRules<T extends RulesName = RulesName> = { [K in T]: Rules[K] }[T];
-
+export type ComposeRules<T extends RulesName = RulesName> = UnionToIntersection<Rules[T]>;
 export type BuiltinRules = ComposeRules;
+
+type UnionToIntersection<U> = (U extends unknown ? (k: U) => void : never) extends (k: infer I) => void ? I : never;
 
 // todo
 export type InferBuiltinRules<T> = ESLintRules

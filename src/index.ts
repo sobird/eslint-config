@@ -2,9 +2,7 @@ import { defineConfig, type Config } from 'eslint/config';
 
 import {
   imports, javascript, jsonc, node, stylistic, typescript, ignores, vue, react,
-  type ImportOptions,
-  type ReactOptions,
-  type JsoncOptions,
+  type ImportOptions, type ReactOptions, type JsoncOptions,
 } from './configs';
 
 import type { InferBuiltinRulesConfig, ESLintConfigObject } from './types';
