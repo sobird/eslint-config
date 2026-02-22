@@ -2,12 +2,13 @@ import { defineConfig, type Config } from 'eslint/config';
 
 import {
   imports, javascript, jsonc, node, stylistic, typescript, ignores, vue, react,
-  type ImportOptions, type ReactOptions, type JsoncOptions,
+  type ImportOptions, type ReactOptions, type JsoncOptions, type TypeScriptOptions,
 } from './configs';
 
 import type { InferBuiltinRulesConfig, ESLintConfigObject } from './types';
 
 interface Options {
+  typescript?: TypeScriptOptions;
   /**
    * Options for eslint-plugin-import.
    *
@@ -22,7 +23,7 @@ export function sobird<T extends Options>(
   config?: Omit<T, 'rules'> & { rules?: InferBuiltinRulesConfig<T> },
   ...configs: ESLintConfigObject[]
 ): Config[] {
-  const { import: importOptions, react: reactOptions } = config || {};
+  const { import: importOptions, react: reactOptions, typescript: typescriptOptions } = config || {};
 
   return defineConfig(
     ignores(),
@@ -31,7 +32,7 @@ export function sobird<T extends Options>(
     imports(importOptions),
     stylistic(),
     jsonc(),
-    typescript(),
+    typescript(typescriptOptions),
     vue(),
     react(reactOptions),
     ...configs,

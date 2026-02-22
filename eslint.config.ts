@@ -3,6 +3,7 @@
 import { sobird } from './src';
 
 export default sobird({
+  typescript: true,
   import: {
     rules: {
       //
