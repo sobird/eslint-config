@@ -1,6 +1,7 @@
 import { isPackagePresent } from './isPackagePresent';
 
 const PACKAGES = {
+  typescript: ['typescript'],
   next: ['next'],
   vite: ['vite'],
   react: ['react', 'next', '@remix-run/react', '@react-router/react'],
@@ -26,6 +27,10 @@ export const detect = (key: PackageKey): boolean => {
 };
 
 export const env = {
+  get isTypeScript() {
+    return detect('typescript');
+  },
+
   // framework
   get isReact() {
     return detect('react');

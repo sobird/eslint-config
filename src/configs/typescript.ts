@@ -10,12 +10,13 @@ import { configs, parser, plugin } from 'typescript-eslint';
 
 import { JAVASCRIPT_RULES } from './eslint';
 import { TS_FILES, SCRIPT_FILES } from '../files';
+import { env } from '../utils';
 
-import type { ESLintConfigObject, ESLintPlugin } from '../types';
+import type { ESLintConfigObject, ESLintPlugin, ComposeRulesConfig } from '../types';
 import type { ParserOptions } from '@typescript-eslint/parser';
 import type { ESLint } from 'eslint';
 
-const { rules, meta = {} } = plugin as ESLint.Plugin;
+const { rules: pluginRules, meta = {} } = plugin as ESLint.Plugin;
 const {
   name = 'eslint-plugin-n',
   version = '',
@@ -29,7 +30,7 @@ export const TYPESCRIPT: ESLintPlugin = {
     version,
     title: 'typescript',
   },
-  rules,
+  rules: pluginRules,
 };
 
 interface Options {
@@ -39,10 +40,17 @@ interface Options {
    */
   typed?: boolean;
   parserOptions?: ParserOptions;
+  rules?: ComposeRulesConfig<'typescript'>;
 }
 
-export function typescript(options: Options = {}): ESLintConfigObject<ParserOptions>[] {
-  const { typed = false, parserOptions = {} } = options;
+export type TypeScriptOptions = Options | boolean;
+
+export function typescript(options: TypeScriptOptions = env.isTypeScript): ESLintConfigObject<ParserOptions>[] {
+  if (options === false) {
+    return [];
+  }
+
+  const { typed = false, parserOptions = {}, rules = {} } = options === true ? {} : options;
   const { disableTypeChecked } = configs;
 
   const files = [...TS_FILES];
@@ -121,6 +129,7 @@ export function typescript(options: Options = {}): ESLintConfigObject<ParserOpti
         'prefer-const': 'error', // ts provides better types with const
         'prefer-rest-params': 'error', // ts provides better types with rest args over arguments
         'prefer-spread': 'error', // ts transpiles spread to apply, so no need for manual apply
+        ...rules,
       },
     },
     {
