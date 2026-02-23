@@ -13,7 +13,7 @@ import globals from 'globals';
 import versions from './versions.json';
 import { MISC_FILES } from '../../files';
 
-import type { ESLintConfigObject, ESLintPlugin } from '../../types';
+import type { ESLintConfigObject, ESLintPlugin, ComposeRulesConfig } from '../../types';
 
 export const JAVASCRIPT: ESLintPlugin = {
   meta: {
@@ -37,7 +37,6 @@ export const JAVASCRIPT: ESLintPlugin = {
     return Object.fromEntries(entries);
   },
 };
-
 export const JAVASCRIPT_RULES: NonNullable<ESLintConfigObject['rules']> = {
   'accessor-pairs': [
     'error',
@@ -505,7 +504,14 @@ export const JAVASCRIPT_RULES: NonNullable<ESLintConfigObject['rules']> = {
   'prefer-reflect': 'error',
 };
 
-export function javascript(): ESLintConfigObject[] {
+interface Options {
+  rules?: ComposeRulesConfig<'eslint'>;
+}
+
+export type JavaScriptOptions = Options;
+
+export function javascript(options: JavaScriptOptions = {}): ESLintConfigObject[] {
+  const { rules } = options;
   return [
     {
       name: 'sobird:javascript:rules',
@@ -527,7 +533,10 @@ export function javascript(): ESLintConfigObject[] {
       linterOptions: {
         reportUnusedDisableDirectives: true,
       },
-      rules: JAVASCRIPT_RULES,
+      rules: {
+        ...JAVASCRIPT_RULES,
+        ...rules,
+      },
     },
     {
       name: 'sobird:javascript:test',

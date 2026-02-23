@@ -1,6 +1,6 @@
 import pluginNode from 'eslint-plugin-n';
 
-import type { ESLintConfigObject, ESLintPlugin } from '../types';
+import type { ESLintConfigObject, ESLintPlugin, ComposeRulesConfig } from '../types';
 
 const {
   name = 'eslint-plugin-n',
@@ -18,7 +18,17 @@ export const NODE: ESLintPlugin = {
   rules: pluginNode.rules,
 };
 
-export function node(): ESLintConfigObject[] {
+interface Options {
+  rules?: ComposeRulesConfig<'node'>;
+}
+export type NodeOptions = Options | boolean;
+
+export function node(options: NodeOptions = true): ESLintConfigObject[] {
+  if (options === false) {
+    return [];
+  }
+  const { rules = {} } = options === true ? {} : options;
+
   return [
     {
       name: 'sobird:node',
@@ -85,6 +95,7 @@ export function node(): ESLintConfigObject[] {
         // 废弃规则也添加前缀
         'n/no-hide-core-modules': 'error',
         'n/shebang': 'error',
+        ...rules,
       },
     },
 

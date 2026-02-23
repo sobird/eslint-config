@@ -1,13 +1,15 @@
+/* eslint-disable max-lines */
 import PluginVue from 'eslint-plugin-vue';
 import { parser } from 'typescript-eslint';
 import vueParser from 'vue-eslint-parser';
 
 import { VUE_FILES } from '../files';
+import { env } from '../utils';
 
-import type { ESLintConfigObject, ESLintPlugin } from '../types';
+import type { ESLintConfigObject, ESLintPlugin, ComposeRulesConfig } from '../types';
 import type { ESLint } from 'eslint';
 
-const { meta, rules } = PluginVue;
+const { meta, rules: pluginRules } = PluginVue;
 const {
   name = 'eslint-plugin-vue',
   version,
@@ -21,10 +23,20 @@ export const VUE: ESLintPlugin = {
     title: namespace,
     version,
   },
-  rules,
+  rules: pluginRules,
 };
 
-export function vue(): ESLintConfigObject[] {
+interface Options {
+  rules?: ComposeRulesConfig<'vue'>;
+}
+export type VueOptions = Options | boolean;
+
+export function vue(options: VueOptions = env.isVue): ESLintConfigObject[] {
+  if (options === false) {
+    return [];
+  }
+  const { rules = {} } = options === true ? {} : options;
+
   return [
     {
       name: 'sobird:vue',
@@ -297,6 +309,8 @@ export function vue(): ESLintConfigObject[] {
         'vue/valid-v-show': 'error',
         'vue/valid-v-slot': 'error',
         'vue/valid-v-text': 'error',
+
+        ...rules,
       },
     },
   ];

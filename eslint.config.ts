@@ -7,6 +7,11 @@ export default sobird({
     gitignore: true,
     ignores: [],
   },
+  javascript: {
+    rules: {
+      'accessor-pairs': 'error',
+    },
+  },
   typescript: true,
   import: {
     rules: {
@@ -18,5 +23,11 @@ export default sobird({
   },
   jsx: {
     a11y: true,
+  },
+  next: {
+    vitals: true,
+    rules: {
+      '@next/next/google-font-display': 'error',
+    },
   },
 });

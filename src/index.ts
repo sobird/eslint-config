@@ -11,15 +11,21 @@ import {
   ignores,
   vue,
   react,
+  next,
+  type JavaScriptOptions,
   type JsxOptions,
   type IgnoresOptions, type ImportOptions, type ReactOptions,
   type JsoncOptions, type TypeScriptOptions, type StylisticOptions,
+  type NextOptions,
+  type NodeOptions,
+  type VueOptions,
 } from './configs';
 
 import type { InferBuiltinRulesConfig, ESLintConfigObject } from './types';
 
 interface Options {
   ignores?: IgnoresOptions;
+  javascript?: JavaScriptOptions;
   stylistic?: StylisticOptions;
   jsx?: JsxOptions;
 
@@ -39,6 +45,9 @@ interface Options {
   import?: ImportOptions;
   react?: ReactOptions;
   jsonc?: JsoncOptions;
+  next?: NextOptions;
+  node?: NodeOptions;
+  vue?: VueOptions;
 }
 
 export function sobird<T extends Options>(
@@ -47,25 +56,30 @@ export function sobird<T extends Options>(
 ): Config[] {
   const {
     ignores: ignoresOptions,
+    javascript: javascriptOptions,
     stylistic: stylisticOptions,
     jsx: jsxOptions,
     import: importOptions,
     react: reactOptions,
     typescript: typescriptOptions,
     jsonc: jsoncOptions,
+    next: nextOptions,
+    node: nodeOptions,
+    vue: vueOptions,
   } = config || {};
 
   return defineConfig(
     ignores(ignoresOptions),
-    javascript(),
+    javascript(javascriptOptions),
     jsx(jsxOptions),
-    node(),
+    node(nodeOptions),
     imports(importOptions),
     stylistic(stylisticOptions),
     jsonc(jsoncOptions),
     typescript(typescriptOptions),
-    vue(),
+    vue(vueOptions),
     react(reactOptions),
+    next(nextOptions),
     ...configs,
   );
 }
