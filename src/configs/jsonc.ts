@@ -24,11 +24,10 @@ export const JSONC: ESLintPlugin = {
 };
 
 interface Options {
-  pkg?: boolean;
+  package?: boolean;
   tsconfig?: boolean;
   rules?: {};
 }
-
 export type JsoncOptions = Options | boolean;
 
 export function jsonc(options: JsoncOptions = true): ESLintConfigObject[] {
@@ -36,7 +35,7 @@ export function jsonc(options: JsoncOptions = true): ESLintConfigObject[] {
     return [];
   }
   const {
-    pkg = true,
+    package: pkg = true,
     tsconfig = true,
     rules = {},
   } = options === true ? {} : options;
@@ -111,8 +110,8 @@ export function jsonc(options: JsoncOptions = true): ESLintConfigObject[] {
     },
     pkg
       ? {
-          files: ['**/package.json'],
           name: 'sobird:sort/package',
+          files: ['**/package.json'],
           rules: {
             'jsonc/sort-array-values': [
               'error',
@@ -198,7 +197,6 @@ export function jsonc(options: JsoncOptions = true): ESLintConfigObject[] {
       : {},
 
     tsconfig
-      // eslint-disable-next-line @stylistic/multiline-ternary
       ? {
           name: 'sobird:sort/tsconfig',
           files: ['**/tsconfig.json', '**/tsconfig.*.json'],
@@ -327,6 +325,7 @@ export function jsonc(options: JsoncOptions = true): ESLintConfigObject[] {
               },
             ],
           },
-        } : {},
+        }
+      : {},
   ];
 }

@@ -6,9 +6,32 @@ import { includeIgnoreFile } from '@eslint/compat';
 
 import type { ESLintConfigObject } from '../types';
 
-export function gitignore(customPath: string): ESLintConfigObject {
+interface Options {
+  /**
+   * Name of the configuration.
+   * @default 'gitignore'
+   */
+  name?: string;
+  /**
+   * Path to `.gitignore` files, or files with compatible formats like `.eslintignore`.
+   * @default ['.gitignore'] // or findUpSync('.gitignore')
+   */
+  files?: string | string[];
+}
+
+export type GitignoreOptions = Options | boolean;
+
+export function gitignore(options: GitignoreOptions): ESLintConfigObject {
+  if (options === false) {
+    return {};
+  }
+  const {
+    name = 'gitignore',
+    files = [],
+  } = options === true ? {} : options;
+
   const possiblePaths = [
-    customPath,
+    ...(Array.isArray(files) ? files : [files]),
     path.resolve(process.cwd(), '.gitignore'),
     path.resolve(import.meta.dirname, '.gitignore'),
   ].filter(Boolean);
@@ -16,7 +39,7 @@ export function gitignore(customPath: string): ESLintConfigObject {
   for (const p of possiblePaths) {
     if (fs.existsSync(p)) {
       try {
-        return includeIgnoreFile(p);
+        return includeIgnoreFile(p, name);
       } catch {
         // eslint-disable-next-line no-console
         console.warn(`Get .gitignore file error: ${p}`);

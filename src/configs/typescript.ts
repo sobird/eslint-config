@@ -42,7 +42,6 @@ interface Options {
   parserOptions?: ParserOptions;
   rules?: ComposeRulesConfig<'typescript'>;
 }
-
 export type TypeScriptOptions = Options | boolean;
 
 export function typescript(options: TypeScriptOptions = env.isTypeScript): ESLintConfigObject<ParserOptions>[] {

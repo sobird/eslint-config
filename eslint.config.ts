@@ -3,13 +3,20 @@
 import { sobird } from './src';
 
 export default sobird({
-  stylistic: {
-    commaDangle: 'always',
+  ignores: {
+    gitignore: true,
+    ignores: [],
   },
   typescript: true,
   import: {
     rules: {
       //
     },
+  },
+  jsonc: {
+    package: false,
+  },
+  jsx: {
+    a11y: true,
   },
 });

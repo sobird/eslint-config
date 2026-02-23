@@ -1,14 +1,35 @@
 import { defineConfig, type Config } from 'eslint/config';
 
 import {
-  imports, javascript, jsonc, node, stylistic, typescript, ignores, vue, react,
-  type ImportOptions, type ReactOptions, type JsoncOptions, type TypeScriptOptions, type StylisticOptions,
+  imports,
+  javascript,
+  jsx,
+  jsonc,
+  node,
+  stylistic,
+  typescript,
+  ignores,
+  vue,
+  react,
+  type JsxOptions,
+  type IgnoresOptions, type ImportOptions, type ReactOptions,
+  type JsoncOptions, type TypeScriptOptions, type StylisticOptions,
 } from './configs';
 
 import type { InferBuiltinRulesConfig, ESLintConfigObject } from './types';
 
 interface Options {
+  ignores?: IgnoresOptions;
   stylistic?: StylisticOptions;
+  jsx?: JsxOptions;
+
+  /**
+   * Enable TypeScript support.
+   *
+   * Passing an object to enable TypeScript Language Server support.
+   *
+   * @default auto-detect based on the dependencies
+   */
   typescript?: TypeScriptOptions;
   /**
    * Options for eslint-plugin-import.
@@ -25,16 +46,23 @@ export function sobird<T extends Options>(
   ...configs: ESLintConfigObject[]
 ): Config[] {
   const {
-    stylistic: stylisticOptions, import: importOptions, react: reactOptions, typescript: typescriptOptions,
+    ignores: ignoresOptions,
+    stylistic: stylisticOptions,
+    jsx: jsxOptions,
+    import: importOptions,
+    react: reactOptions,
+    typescript: typescriptOptions,
+    jsonc: jsoncOptions,
   } = config || {};
 
   return defineConfig(
-    ignores(),
+    ignores(ignoresOptions),
     javascript(),
+    jsx(jsxOptions),
     node(),
     imports(importOptions),
     stylistic(stylisticOptions),
-    jsonc(),
+    jsonc(jsoncOptions),
     typescript(typescriptOptions),
     vue(),
     react(reactOptions),
