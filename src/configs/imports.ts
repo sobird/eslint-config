@@ -20,7 +20,6 @@ export const IMPORT: ESLintPlugin = {
 interface Options {
   rules?: ComposeRulesConfig<'import'>;
 }
-
 export type ImportOptions = Options | boolean;
 
 export function imports(options: ImportOptions = true): ESLintConfigObject[] {
