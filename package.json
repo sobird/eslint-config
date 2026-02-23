@@ -1,7 +1,7 @@
 {
   "name": "eslint-config-sobird",
   "type": "module",
-  "version": "0.2.16",
+  "version": "1.0.0",
   "description": "Sobird's ESLint config",
   "author": "sobird",
   "license": "MIT",
