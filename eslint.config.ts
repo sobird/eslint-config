@@ -3,6 +3,9 @@
 import { sobird } from './src';
 
 export default sobird({
+  stylistic: {
+    commaDangle: 'always',
+  },
   typescript: true,
   import: {
     rules: {
