@@ -432,7 +432,9 @@ export const JAVASCRIPT_RULES: NonNullable<ESLintConfigObject['rules']> = {
   'no-unused-private-class-members': 'error',
   'no-unused-vars': [
     'error',
-    { vars: 'all', args: 'after-used', ignoreRestSiblings: true },
+    {
+      vars: 'all', args: 'after-used', ignoreRestSiblings: true, caughtErrors: 'none',
+    },
   ],
   'no-use-before-define': [
     'error',

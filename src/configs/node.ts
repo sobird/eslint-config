@@ -81,7 +81,7 @@ export function node(options: NodeOptions = true): ESLintConfigObject[] {
         'n/prefer-global/console': 'error',
 
         // todo
-        'n/prefer-global/process': ['error', 'never'],
+        'n/prefer-global/process': 'error',
         'n/prefer-global/text-decoder': 'error',
         'n/prefer-global/text-encoder': 'error',
         'n/prefer-global/url-search-params': 'error',
