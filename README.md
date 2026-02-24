@@ -37,6 +37,7 @@ module.exports = {
 
 ## 参考
 [Share Configurations](https://eslint.org/docs/latest/extend/shareable-configs)
+[@antfu/eslint-config](https://github.com/antfu/eslint-config)
 
 
 
