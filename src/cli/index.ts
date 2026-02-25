@@ -97,14 +97,14 @@ const program = new Command(name)
     }
 
     const s = p.spinner();
-    s.start('Updating configurations...');
+    s.start(chalk.dim('Updating configurations...'));
 
     try {
       await updateESLintConfig(options);
       await updateVscodeSettings(options);
-      s.stop('Configurations updated.');
+
+      s.stop(chalk.dim('Configurations updated.'));
     } catch (error) {
-      console.log('error', error);
       s.stop('Update failed.');
       return;
     }

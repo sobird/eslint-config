@@ -63,7 +63,7 @@ export async function updateESLintConfig(options: Options): Promise<void> {
   const eslintConfigContent: string = genESLintConfig(mainConfig, additionalConfig);
 
   await fsp.writeFile(flatConfigFile, eslintConfigContent);
-  log.success(c.green`Created ${configFileName}`);
+  log.success(c.green(`Created ${configFileName}`));
 
   const files = await fsp.readdir(cwd);
   const legacyConfigs = files.filter(file => (/eslint|prettier/u).test(file) && !(/eslint\.config\./u).test(file));

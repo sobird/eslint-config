@@ -3,9 +3,9 @@ import path from 'node:path';
 
 import { log } from '@clack/prompts';
 import chalk from 'chalk';
-import { parse, modify, applyEdits } from 'jsonc-parser';
+import { modify, applyEdits } from 'jsonc-parser';
 
-import { vscodeSettingsString } from '../constants';
+import { vscodeSettings } from '../constants';
 
 import type { Options } from '../index';
 
@@ -19,18 +19,17 @@ export async function updateVscodeSettings(options: Options): Promise<void> {
   const settingsPath = path.join(dotVscodePath, 'settings.json');
   await fs.mkdir(dotVscodePath, { recursive: true });
 
-  // 这会自动忽略 vscodeSettingsString 里的注释，将其转为纯 JS 对象
-  const newSettings = parse(`{${vscodeSettingsString}}`);
-
   let content = '{}';
+  let isNewFile = true;
   try {
     content = await fs.readFile(settingsPath, 'utf8');
+    isNewFile = false;
   } catch {
     //
   }
 
   let updatedText = content;
-  for (const [key, value] of Object.entries(newSettings)) {
+  for (const [key, value] of Object.entries(vscodeSettings)) {
     const edits = modify(updatedText, [key], value, {
       formattingOptions: { insertSpaces: true, tabSize: 2 },
     });
@@ -38,6 +37,5 @@ export async function updateVscodeSettings(options: Options): Promise<void> {
   }
 
   await fs.writeFile(settingsPath, updatedText, 'utf-8');
-
-  log.success(chalk.green`Updated .vscode/settings.json`);
+  log.success(chalk.green(isNewFile ? 'Created .vscode/settings.json' : 'Updated .vscode/settings.json'));
 }
