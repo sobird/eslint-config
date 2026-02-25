@@ -8,7 +8,8 @@ import { devDependencies, name, version } from '../../../package.json';
 
 import type { Options } from '../index';
 
-export async function updatePackageJson(result: Options): Promise<void> {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export async function updatePackageJson(options: Options): Promise<void> {
   const cwd = process.cwd();
   const packageJSONFile = path.join(cwd, 'package.json');
 

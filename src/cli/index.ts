@@ -10,7 +10,9 @@ import { Command } from 'commander';
 import {
   extras, extraOptions, frameworkOptions, frameworks,
 } from './constants';
-import { isGitClean, updateESLintConfig, updateVscodeSettings } from './utils';
+import {
+  isGitClean, updateESLintConfig, updateVscodeSettings, updatePackageJson,
+} from './utils';
 import { name, version } from '../../package.json';
 
 export type Options = ReturnType<typeof program.opts>;
@@ -102,6 +104,7 @@ const program = new Command(name)
     try {
       await updateESLintConfig(options);
       await updateVscodeSettings(options);
+      await updatePackageJson(options);
 
       s.stop(chalk.dim('Configurations updated.'));
     } catch (error) {
