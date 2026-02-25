@@ -384,6 +384,7 @@ export type ObjectCurlySpacing = [
   {
     arraysInObjects?: boolean;
     objectsInObjects?: boolean;
+    emptyObjects?: "ignore" | "always" | "never";
   }
 ];
 /**
@@ -559,7 +560,7 @@ export type VueCustomBlockNoParsingError = [];
  *
  * @package `eslint-plugin-jsonc`
  * @namespace `jsonc`
- * @version 2.21.0
+ * @version 3.1.1
  */
 export interface JsoncRules {
   /**

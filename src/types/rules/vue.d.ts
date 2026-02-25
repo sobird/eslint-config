@@ -117,6 +117,7 @@ export type AttributesOrder = [
     )[];
     alphabetical?: boolean;
     sortLineLength?: boolean;
+    ignoreVBindObject?: boolean;
   }
 ];
 /**
@@ -308,7 +309,7 @@ export type DefinePropsDeclaration = ["type-based" | "runtime"];
  */
 export type DefinePropsDestructuring = [
   {
-    destructure?: "always" | "never";
+    destructure?: "only-when-assigned" | "always" | "never";
   }
 ];
 /**
@@ -2468,10 +2469,14 @@ export type ValidVElseIf = [];
  */
 export type ValidVElse = [];
 /**
- * @minItems 0
- * @maxItems 0
+ * @minItems 1
+ * @maxItems 1
  */
-export type ValidVFor = [];
+export type ValidVFor = [
+  {
+    allowEmptyAlias?: boolean;
+  }
+];
 /**
  * @minItems 0
  * @maxItems 0
@@ -2541,7 +2546,7 @@ export type ValidVText = [];
  *
  * @package `eslint-plugin-vue`
  * @namespace `vue`
- * @version 10.7.0
+ * @version 10.8.0
  */
 export interface VueRules {
   /**

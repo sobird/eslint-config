@@ -3129,6 +3129,11 @@ export type PreferGlobalConsole = ["always" | "never"];
  * @minItems 1
  * @maxItems 1
  */
+export type PreferGlobalCrypto = ["always" | "never"];
+/**
+ * @minItems 1
+ * @maxItems 1
+ */
 export type PreferGlobalProcess = ["always" | "never"];
 /**
  * @minItems 1
@@ -3150,6 +3155,11 @@ export type PreferGlobalUrlSearchParams = ["always" | "never"];
  * @maxItems 1
  */
 export type PreferGlobalUrl = ["always" | "never"];
+/**
+ * @minItems 1
+ * @maxItems 1
+ */
+export type PreferGlobalTimers = ["always" | "never"];
 /**
  * @minItems 1
  * @maxItems 1
@@ -3325,11 +3335,11 @@ export type Shebang = [
 ];
 
 /**
- * 41 ESLint rules for node
+ * 43 ESLint rules for node
  *
  * @package `eslint-plugin-n`
  * @namespace `n`
- * @version 17.23.2
+ * @version 17.24.0
  */
 export interface NodeRules {
   /**
@@ -3507,6 +3517,12 @@ export interface NodeRules {
    */
   "n/prefer-global/console"?: PreferGlobalConsole;
   /**
+   * enforce either `crypto` or `require("crypto").webcrypto`
+   *
+   * @see {@link https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/prefer-global/crypto.md prefer-global/crypto}
+   */
+  "n/prefer-global/crypto"?: PreferGlobalCrypto;
+  /**
    * enforce either `process` or `require("process")`
    *
    * @see {@link https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/prefer-global/process.md prefer-global/process}
@@ -3536,6 +3552,12 @@ export interface NodeRules {
    * @see {@link https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/prefer-global/url.md prefer-global/url}
    */
   "n/prefer-global/url"?: PreferGlobalUrl;
+  /**
+   * enforce either global timer functions or `require("timers")`
+   *
+   * @see {@link https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/prefer-global/timers.md prefer-global/timers}
+   */
+  "n/prefer-global/timers"?: PreferGlobalTimers;
   /**
    * enforce using the `node:` protocol when importing Node.js builtin modules.
    *

@@ -3838,10 +3838,17 @@ export type NoUseBeforeDefine = [
  */
 export type NoUselessConstructor = [];
 /**
- * @minItems 0
- * @maxItems 0
+ * @minItems 1
+ * @maxItems 1
  */
-export type NoUselessDefaultAssignment = [];
+export type NoUselessDefaultAssignment = [
+  {
+    /**
+     * Unless this is set to `true`, the rule will error on every file whose `tsconfig.json` does _not_ have the `strictNullChecks` compiler option (or `strict`) set to `true`.
+     */
+    allowRuleToRunWithoutStrictNullChecksIKnowWhatIAmDoing?: boolean;
+  }
+];
 /**
  * @minItems 0
  * @maxItems 0
@@ -4574,7 +4581,7 @@ export type UseUnknownInCatchCallbackVariable = [];
  *
  * @package `@typescript-eslint/eslint-plugin`
  * @namespace `@typescript-eslint`
- * @version 8.54.0
+ * @version 8.56.1
  */
 export interface TypescriptRules {
   /**

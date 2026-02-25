@@ -7,7 +7,7 @@
  * sobird<i@sobird.me> at 2024/10/23 23:08:17 created.
  */
 
-import { Linter } from 'eslint';
+import { builtinRules } from 'eslint/use-at-your-own-risk';
 import globals from 'globals';
 
 import versions from './versions.json';
@@ -22,11 +22,9 @@ export const JAVASCRIPT: ESLintPlugin = {
     title: 'ESLint',
   },
   get rules() {
-    const liner = new Linter({ configType: 'eslintrc' });
-    const eslintRules = liner.getRules();
     const { added } = versions;
 
-    const entries = Array.from(eslintRules, ([ruleName, ruleModel]) => {
+    const entries = Array.from(builtinRules, ([ruleName, ruleModel]) => {
       if (ruleName in added) {
         const version = added[ruleName as keyof typeof added];
         Object.assign(ruleModel.meta ?? {}, { version });

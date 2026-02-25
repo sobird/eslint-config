@@ -1120,6 +1120,10 @@ export type MaxParams = [
        * Whether to count a `this` declaration when the type is `void`.
        */
       countVoidThis?: boolean;
+      /**
+       * Whether to count a `this` declaration.
+       */
+      countThis?: "never" | "except-void" | "always";
     }
 ];
 /**
@@ -5271,7 +5275,7 @@ export interface ESLintRules {
    */
   quotes?: Quotes;
   /**
-   * Enforce the consistent use of the radix argument when using `parseInt()`
+   * Enforce the use of the radix argument when using `parseInt()`
    *
    * @since v0.0.7
    * @see {@link https://eslint.org/docs/latest/rules/radix radix}
