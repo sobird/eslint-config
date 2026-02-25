@@ -3,10 +3,10 @@ export function genESLintConfig(
   additionalConfigs?: string[],
 ): string {
   return `
-import { sobird } from 'eslint-config-sobird'
+import { sobird } from 'eslint-config-sobird';
 
 export default sobird({
 ${mainConfig}
-}${additionalConfigs?.map(config => `,{\n${config}\n}`)})
+}${additionalConfigs?.map(config => `,{\n${config}\n}`)});
 `.trimStart();
 }

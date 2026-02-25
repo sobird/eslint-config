@@ -8,7 +8,9 @@ import c from 'chalk';
 
 import { genESLintConfig } from './gen-eslint-config';
 
-export async function updateESLintConfig(result): Promise<void> {
+import type { Options } from '../index';
+
+export async function updateESLintConfig(options: Options): Promise<void> {
   const cwd = process.cwd();
 
   let isModule = false;
@@ -42,7 +44,7 @@ export async function updateESLintConfig(result): Promise<void> {
     configs.push(`ignores: ${JSON.stringify(eslintIgnores)},`);
   }
 
-  const { extra = [], frameworks = [] } = result;
+  const { extra = [], framework = [] } = options;
   if (extra.includes('formatter')) {
     configs.push('formatters: true,');
   }
@@ -51,8 +53,8 @@ export async function updateESLintConfig(result): Promise<void> {
     configs.push('unocss: true,');
   }
 
-  for (const framework of frameworks) {
-    configs.push(`${framework}: true,`);
+  for (const fw of framework) {
+    configs.push(`${fw}: true,`);
   }
 
   const mainConfig = configs.map(i => `  ${i}`).join('\n');

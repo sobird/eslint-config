@@ -93,7 +93,7 @@ export const extraOptions = [
   },
 ];
 
-export const extra = extraOptions.map(({ value }) => (value));
+export const extras = extraOptions.map(({ value }) => (value));
 
 export const dependenciesMap = {
   astro: [

@@ -8,76 +8,67 @@ import chalk from 'chalk';
 import { Command } from 'commander';
 
 import {
-  extra, extraOptions, frameworkOptions, frameworks,
+  extras, extraOptions, frameworkOptions, frameworks,
 } from './constants';
-import { isGitClean } from './utils';
+import { isGitClean, updateESLintConfig } from './utils';
 import { name, version } from '../../package.json';
 
+export type Options = ReturnType<typeof program.opts>;
+
 const program = new Command(name)
-
-  // .name(name)
-  .description('Run the initialization or migration');
-
-program.exitOverride();
-
-program
-  .option('-y, --yes', 'Skip prompts and use default values', Boolean(process.env.SKIP_PROMPT) || false)
-  .option('-t, --template <frameworks...>', 'Use the framework template for optimal customization: react, vue', [] as string[])
-  .option('-e, --extra <extra...>', 'Use the extra utils: formatter / perfectionist / unocss', [] as string[])
+  .description('Run the initialization or migration')
+  .exitOverride()
+  .option('-y, --yes', 'skip prompts and use default values', Boolean(process.env.SKIP_PROMPT) || false)
+  .option('-f, --framework <frameworks...>', 'use the framework template for optimal customization: react, vue', [] as string[])
+  .option('-e, --extra <extras...>', 'use the extra utils: formatter / perfectionist / unocss', [] as string[])
+  .option('-v, --update-vscode-settings', 'update VSCode settings', true)
+  .option('-u, --uncommitted-confirmed', 'git uncommitted confirmed', false)
   .version(version)
   .action(async (options) => {
     p.intro(`${chalk.green(name)} ${chalk.dim(`v${version}`)}`);
 
     if (fs.existsSync(path.join(process.cwd(), 'eslint.config.js'))) {
       p.log.warn(chalk.yellow`eslint.config.js already exists, migration wizard exited.`);
-      throw Error('dd');
+      return;
     }
 
-    const { yes, template, extra } = options;
+    const { yes, framework, extra } = options;
 
     if (!yes) {
       const result = await p.group({
-        uncommittedConfirmed: () => {
-          if (yes || isGitClean()) {
-            return Promise.resolve(true);
+        uncommittedConfirmed: async () => {
+          if (isGitClean()) {
+            return true;
           }
-
           return p.confirm({
             initialValue: false,
             message: 'There are uncommitted changes in the current repository, are you sure to continue?',
           });
         },
-        frameworks: ({ results }) => {
-          console.log('template', template);
-          const isArgTemplateValid = typeof template === 'string' && Boolean(frameworks.includes((template)));
+        framework: ({ results }) => {
+          const { uncommittedConfirmed } = results;
+          const isAllValid = framework.length > 0 && framework.every(f => frameworks.includes(f));
 
-          if (!results.uncommittedConfirmed || isArgTemplateValid) {
+          if (!uncommittedConfirmed || isAllValid) {
             return;
           }
 
-          const message = !isArgTemplateValid && template
-            ? `"${template}" isn't a valid template. Please choose from below: `
-            : 'Select a framework:';
-
           return p.multiselect({
-            message: chalk.reset(message),
+            message: chalk.reset('Select frameworks:'),
             options: frameworkOptions,
             required: false,
           });
         },
         extra: ({ results }) => {
-          const isArgExtraValid = extra?.length && !extra.filter(element => !extra.includes(element)).length;
+          const { uncommittedConfirmed } = results;
+          const isAllValid = extra.length > 0 && extra.every(e => extras.includes(e));
 
-          if (!results.uncommittedConfirmed || isArgExtraValid) {
+          if (!uncommittedConfirmed || isAllValid) {
             return;
           }
 
-          const message = !isArgExtraValid && extra
-            ? `"${extra}" isn't a valid extra util. Please choose from below: `
-            : 'Select a extra utils:';
-
           return p.multiselect({
-            message: chalk.reset(message),
+            message: chalk.reset('Select extra utils:'),
             options: extraOptions,
             required: false,
           });
@@ -95,11 +86,25 @@ program
       }, {
         onCancel: () => {
           p.cancel('Operation cancelled.');
-          process.exit(0);
+          throw Error('Operation cancelled.');
         },
       });
+      if (!result.uncommittedConfirmed) {
+        p.log.error(chalk.red`Operation aborted due to uncommitted changes.`);
+        return;
+      }
+      Object.assign(options, result);
+    }
 
-      console.log('result', result);
+    const s = p.spinner();
+    s.start('Updating configurations...');
+
+    try {
+      await updateESLintConfig(options);
+      s.stop('Configurations updated.');
+    } catch (error) {
+      s.stop('Update failed.');
+      return;
     }
 
     p.log.success(chalk.green('Setup completed'));
