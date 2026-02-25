@@ -1,5 +1,6 @@
 // https://github.com/import-js/eslint-plugin-import/blob/main/config/typescript.js
 
+import { fixupPluginRules } from '@eslint/compat';
 import eslintPluginImport from 'eslint-plugin-import';
 
 import type { ESLintConfigObject, ESLintPlugin, ComposeRulesConfig } from '../types';
@@ -34,7 +35,7 @@ export function imports(options: ImportOptions = true): ESLintConfigObject[] {
     {
       name: 'sobird:imports',
       plugins: {
-        [namespace]: eslintPluginImport,
+        [namespace]: fixupPluginRules(eslintPluginImport),
       },
       rules: {
         'import/no-unresolved': ['error', { commonjs: false, caseSensitive: true }],

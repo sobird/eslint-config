@@ -26,9 +26,7 @@
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "engines": {
     "node": ">=22.16.0"
   },
@@ -43,6 +41,9 @@
     "prepare": "husky",
     "typecheck": "tsc --noEmit"
   },
+  "peerDependencies": {
+    "eslint": "^9.10.0 || ^10.0.0"
+  },
   "dependencies": {
     "@clack/prompts": "^1.0.1",
     "@eslint/compat": "^2.0.2",
@@ -51,7 +52,6 @@
     "@typescript-eslint/parser": "^8.54.0",
     "chalk": "^5.6.2",
     "commander": "^14.0.3",
-    "eslint": "^9.39.2",
     "eslint-config-next": "^16.1.6",
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-jsonc": "^2.21.0",
@@ -75,6 +75,7 @@
     "@types/eslint-plugin-jsx-a11y": "^6.10.1",
     "@types/node": "^25.2.0",
     "camelcase": "^9.0.0",
+    "eslint": "^10.0.2",
     "husky": "^9.1.7",
     "json-schema-to-typescript": "^15.0.4",
     "prettier": "^3.8.1",

@@ -19,7 +19,7 @@ export default sobird({
     },
   },
   jsonc: {
-    package: false,
+    // package: false,
   },
   jsx: {
     a11y: true,
