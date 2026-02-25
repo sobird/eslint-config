@@ -143,6 +143,7 @@ export function imports(options: ImportOptions = true): ESLintConfigObject[] {
             // 脚本
             '**/scripts/**/*',
             '**/bin/**/*',
+            '**/*.d.ts',
           ],
           optionalDependencies: false,
         }],
