@@ -10,7 +10,7 @@ import { Command } from 'commander';
 import {
   extras, extraOptions, frameworkOptions, frameworks,
 } from './constants';
-import { isGitClean, updateESLintConfig } from './utils';
+import { isGitClean, updateESLintConfig, updateVscodeSettings } from './utils';
 import { name, version } from '../../package.json';
 
 export type Options = ReturnType<typeof program.opts>;
@@ -21,7 +21,7 @@ const program = new Command(name)
   .option('-y, --yes', 'skip prompts and use default values', Boolean(process.env.SKIP_PROMPT) || false)
   .option('-f, --framework <frameworks...>', 'use the framework template for optimal customization: react, vue', [] as string[])
   .option('-e, --extra <extras...>', 'use the extra utils: formatter / perfectionist / unocss', [] as string[])
-  .option('-v, --update-vscode-settings', 'update VSCode settings', true)
+  .option('-v, --update-vscode-settings', 'update VSCode settings', false)
   .option('-u, --uncommitted-confirmed', 'git uncommitted confirmed', false)
   .version(version)
   .action(async (options) => {
@@ -101,8 +101,10 @@ const program = new Command(name)
 
     try {
       await updateESLintConfig(options);
+      await updateVscodeSettings(options);
       s.stop('Configurations updated.');
     } catch (error) {
+      console.log('error', error);
       s.stop('Update failed.');
       return;
     }
