@@ -102,7 +102,10 @@ For example:
 
 <details>
 <summary>
-  <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMTMiIGhlaWdodD0iMjAiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0iVmlzdWFsIFN0dWRpbyBDb2RlIj48dGl0bGU+VmlzdWFsIFN0dWRpbyBDb2RlPC90aXRsZT48ZyBzaGFwZS1yZW5kZXJpbmc9ImNyaXNwRWRnZXMiPjxyZWN0IHdpZHRoPSIwIiBoZWlnaHQ9IjIwIiBmaWxsPSIjMDA3YWNjIi8+PHJlY3QgeD0iMCIgd2lkdGg9IjExMyIgaGVpZ2h0PSIyMCIgZmlsbD0iIzAwN2FjYyIvPjwvZz48ZyBmaWxsPSIjZmZmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iVmVyZGFuYSxHZW5ldmEsRGVqYVZ1IFNhbnMsc2Fucy1zZXJpZiIgdGV4dC1yZW5kZXJpbmc9Imdlb21ldHJpY1ByZWNpc2lvbiIgZm9udC1zaXplPSIxMTAiPjx0ZXh0IHg9IjU2NSIgeT0iMTQwIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgZmlsbD0iI2ZmZiIgdGV4dExlbmd0aD0iMTAzMCI+VmlzdWFsIFN0dWRpbyBDb2RlPC90ZXh0PjwvZz48L3N2Zz4=" align="center" />
+  <svg xmlns="http://www.w3.org/2000/svg" width="140" height="20" viewBox="0 0 140 20" align="center" style="display:inline-block; vertical-align:middle;">
+      <rect width="140" height="20" fill="#007ACC" rx="3"/>
+      <path fill="#fff" d="M11.5 5.3l-.9-.5L6 7.6V4.4L5 4v4.4l-4.5 2 .5.9L5 9.4v4.2l1 .4V9.4l4.6 2.1.9-.5-5-2.3 5-3.3z"/> <text x="75" y="14" fill="#fff" font-family="Verdana" font-size="11" text-anchor="middle">Visual Studio Code</text>
+    </svg>
 </summary>
 
 <br>
