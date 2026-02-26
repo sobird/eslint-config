@@ -60,9 +60,7 @@ export async function updateESLintConfig(options: Options): Promise<void> {
   const mainConfig = configs.map(i => `  ${i}`).join('\n');
   const additionalConfig: string[] = [];
 
-  const eslintConfigContent: string = genESLintConfig(mainConfig, additionalConfig);
-
-  await fsp.writeFile(flatConfigFile, eslintConfigContent);
+  await genESLintConfig(flatConfigFile, mainConfig, additionalConfig);
   log.success(c.green(`Created ${configFileName}`));
 
   const files = await fsp.readdir(cwd);

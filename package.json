@@ -27,7 +27,9 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "bin": "./bin/cli.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsup",
     "test": "vitest",
@@ -64,6 +66,7 @@
     "globals": "^17.3.0",
     "jsonc-eslint-parser": "^2.4.2",
     "jsonc-parser": "^3.3.1",
+    "ts-morph": "^27.0.2",
     "typescript-eslint": "^8.56.1",
     "vue-eslint-parser": "^10.4.0"
   },
