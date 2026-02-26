@@ -32,6 +32,7 @@ export function gitignore(options: GitignoreOptions): ESLintConfigObject {
   const possiblePaths = [
     ...(Array.isArray(files) ? files : [files]),
     path.resolve(process.cwd(), '.gitignore'),
+    // eslint-disable-next-line n/no-unsupported-features/node-builtins
     path.resolve(import.meta.dirname, '.gitignore'),
   ].filter(Boolean);
 

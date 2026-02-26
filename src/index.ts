@@ -66,7 +66,7 @@ export default function sobird<T extends Options>(
     next: nextOptions,
     node: nodeOptions,
     vue: vueOptions,
-  } = config || {};
+  } = config ?? {};
 
   return defineConfig(
     ignores(ignoresOptions),

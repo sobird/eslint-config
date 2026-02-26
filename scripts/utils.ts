@@ -59,6 +59,7 @@ export function describe(meta: Rule.RuleModule['meta'], ruleName: string, title:
   if (!meta) {
     return '';
   }
+  // eslint-disable-next-line @typescript-eslint/no-deprecated
   const { docs, deprecated, replacedBy } = meta;
 
   const desc: string[] = [];
@@ -68,8 +69,8 @@ export function describe(meta: Rule.RuleModule['meta'], ruleName: string, title:
     desc.push(`@since v${meta.version}`);
   }
 
-  if (docs?.url) {
-    desc.push(`@see {@link ${docs?.url} ${ruleName}}`);
+  if (docs?.url !== '' && docs?.url !== undefined) {
+    desc.push(`@see {@link ${docs.url} ${ruleName}}`);
   }
 
   const deprecation = formatDeprecation(deprecated, replacedBy, title);
@@ -91,7 +92,7 @@ export function ESlintPluginRulesToJSONSchema(plugin: ESLintPlugin): JSONSchema4
   } = pluginMeta;
 
   let prefix = '';
-  if (namespace) {
+  if (namespace !== '') {
     prefix = namespace.endsWith('/') ? namespace : `${namespace}/`;
   }
 
@@ -100,18 +101,19 @@ export function ESlintPluginRulesToJSONSchema(plugin: ESLintPlugin): JSONSchema4
 
     const { meta } = ruleModule;
     if (!meta) {
-      return [ruleNameWithPrefix, {}];
+      return [ruleNameWithPrefix, {}] as const;
     }
 
     const { schema } = meta;
     if (typeof schema !== 'object') {
-      return [ruleNameWithPrefix, {}];
+      return [ruleNameWithPrefix, {}] as const;
     }
 
     // replace $ref json pointer
     const oldRefPrefix = '"$ref":"#/';
     const newRefPrefix = `"$ref":"#/properties/${escapeJsonPointer(ruleNameWithPrefix)}/allOf/0/`;
 
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const ruleSchema: JSONSchema4[] | JSONSchema4 = JSON.parse(JSON.stringify(schema).replaceAll(oldRefPrefix, newRefPrefix));
 
     if (Array.isArray(ruleSchema)) {
@@ -127,7 +129,7 @@ export function ESlintPluginRulesToJSONSchema(plugin: ESLintPlugin): JSONSchema4
           },
         ],
       };
-      return [ruleNameWithPrefix, ruleJSONSchema];
+      return [ruleNameWithPrefix, ruleJSONSchema] as const;
     }
 
     const ruleJSONSchema: Rule.RuleMetaData['schema'] = {
@@ -139,18 +141,18 @@ export function ESlintPluginRulesToJSONSchema(plugin: ESLintPlugin): JSONSchema4
         },
       ],
     };
-    return [ruleNameWithPrefix, ruleJSONSchema];
+    return [ruleNameWithPrefix, ruleJSONSchema] as const;
   });
   const properties: Record<string, JSONSchema4> = Object.fromEntries(entries);
   const description = [`${entries.length} ESLint rules for ${title}\n`];
 
-  if (pkgname) {
+  if (pkgname !== undefined && pkgname !== '') {
     description.push(`@package \`${pkgname}\``);
   }
-  if (namespace) {
+  if (namespace !== '') {
     description.push(`@namespace \`${namespace}\``);
   }
-  if (version) {
+  if (version !== undefined && version !== '') {
     description.push(`@version ${version}`);
   }
 

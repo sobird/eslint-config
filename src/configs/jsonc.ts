@@ -52,9 +52,9 @@ export function jsonc(options: JsoncOptions = true): ESLintConfigObject[] {
         parserOptions: {},
       },
       rules: {
-        // strict: "off",
-        // "no-unused-expressions": "off",
-        // "no-unused-vars": "off",
+        'max-lines': 'off',
+        'no-unused-expressions': 'off',
+        'no-unused-vars': 'off',
         'jsonc/array-bracket-newline': 'error',
         'jsonc/array-bracket-spacing': 'error',
         'jsonc/array-element-newline': 'error',

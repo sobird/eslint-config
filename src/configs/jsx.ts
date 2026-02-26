@@ -5,12 +5,18 @@ import { JSX_FILES } from '../files';
 import type { ESLintConfigObject, ESLintPlugin } from '../types';
 import type { ESLint } from 'eslint';
 
+const {
+  name = 'eslint-plugin-jsx-a11y',
+  namespace = 'jsx-a11y',
+  version,
+} = (eslintPluginJsxA11y as ESLint.Plugin).meta ?? {};
+
 export const JSX_A11Y: ESLintPlugin = {
   meta: {
-    pkgname: (eslintPluginJsxA11y as ESLint.Plugin).meta?.name || 'eslint-plugin-jsx-a11y',
-    namespace: 'jsx-a11y',
+    pkgname: name,
+    namespace,
     title: 'jsx-a11y',
-    version: (eslintPluginJsxA11y as ESLint.Plugin).meta?.version || '',
+    version,
   },
   rules: eslintPluginJsxA11y.rules,
 };

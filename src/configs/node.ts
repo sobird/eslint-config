@@ -6,7 +6,7 @@ const {
   name = 'eslint-plugin-n',
   version,
   namespace = 'n',
-} = pluginNode.meta || {};
+} = pluginNode.meta ?? {};
 
 export const NODE: ESLintPlugin = {
   meta: {

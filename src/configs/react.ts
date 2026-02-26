@@ -22,7 +22,7 @@ export const REACT: ESLintPlugin = {
 };
 export const REACT_HOOKS: ESLintPlugin = {
   meta: {
-    pkgname: eslintPluginReactHooks.meta.name || 'eslint-plugin-react-hooks',
+    pkgname: eslintPluginReactHooks.meta.name,
     namespace: 'react-hooks',
     title: 'react-hooks',
     version: eslintPluginReactHooks.meta.version,
@@ -31,10 +31,10 @@ export const REACT_HOOKS: ESLintPlugin = {
 };
 export const REACT_REFRESH: ESLintPlugin = {
   meta: {
-    pkgname: (eslintPluginReactRefresh as ESLint.Plugin).meta?.name || 'eslint-plugin-react-refresh',
+    pkgname: (eslintPluginReactRefresh as ESLint.Plugin).meta?.name,
     namespace: 'react-refresh',
     title: 'react-refresh',
-    version: (eslintPluginReactRefresh as ESLint.Plugin).meta?.version || '',
+    version: (eslintPluginReactRefresh as ESLint.Plugin).meta?.version,
   },
   rules: eslintPluginReactRefresh.rules,
 };
@@ -65,6 +65,7 @@ export function react(options: ReactOptions = env.isReact): ESLintConfigObject[]
       name: 'sobird:react:setup',
       plugins: {
         'react': eslintPluginReact,
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
         'react-hooks': eslintPluginReactHooks as ESLint.Plugin,
         'react-refresh': eslintPluginReactRefresh,
       },

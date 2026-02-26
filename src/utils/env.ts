@@ -16,7 +16,7 @@ type PackageKey = keyof typeof PACKAGES;
 const cache = new Map<PackageKey, boolean>();
 export const detect = (key: PackageKey): boolean => {
   if (cache.has(key)) {
-    return cache.get(key) || false;
+    return cache.get(key) ?? false;
   }
 
   const packages = PACKAGES[key];

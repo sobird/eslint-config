@@ -29,12 +29,12 @@ export const JAVASCRIPT: ESLintPlugin = {
     }
 
     // eslint-disable-next-line @typescript-eslint/no-deprecated
-    const entries = Array.from(builtinRules, ([ruleName, ruleModel]) => {
+    const entries = Array.from(builtinRules, ([ruleName, ruleModule]) => {
       if (isAddedKey(ruleName)) {
         const version = added[ruleName];
-        Object.assign(ruleModel.meta ?? {}, { version });
+        Object.assign(ruleModule.meta ?? {}, { version });
       }
-      return [ruleName, ruleModel] as const;
+      return [ruleName, ruleModule] as const;
     });
 
     return Object.fromEntries(entries);
