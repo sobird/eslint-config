@@ -31,7 +31,7 @@
   "files": ["dist"],
   "scripts": {
     "build": "tsup",
-    "test": "vitest",
+    "test": "vitest run --passWithNoTests",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
     "rules:types": "tsx scripts/rules",
