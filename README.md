@@ -102,10 +102,14 @@ For example:
 
 <details>
 <summary>
-  <svg xmlns="http://www.w3.org/2000/svg" width="140" height="20" viewBox="0 0 140 20" align="center" style="display:inline-block; vertical-align:middle;">
-      <rect width="140" height="20" fill="#007ACC" rx="3"/>
-      <path fill="#fff" d="M11.5 5.3l-.9-.5L6 7.6V4.4L5 4v4.4l-4.5 2 .5.9L5 9.4v4.2l1 .4V9.4l4.6 2.1.9-.5-5-2.3 5-3.3z"/> <text x="75" y="14" fill="#fff" font-family="Verdana" font-size="11" text-anchor="middle">Visual Studio Code</text>
-    </svg>
+  <table display="inline">
+      <tr>
+        <td style="border:none;">
+          <img src="https://img.shields.io/badge/Visual%20Studio%20Code-007ACC?style=flat-square&logo=visual-studio-code&logoColor=white" height="20" align="center">
+          <b> VS Code 配置</b>
+        </td>
+      </tr>
+    </table>
 </summary>
 
 <br>
