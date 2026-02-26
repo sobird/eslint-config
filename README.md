@@ -28,7 +28,7 @@ pnpm i -D eslint-config-sobird
 
 ```js
 // eslint.config.ts
-import { sobird } from "eslint-config-sobird";
+import sobird from "eslint-config-sobird";
 
 export default sobird();
 ```

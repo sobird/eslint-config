@@ -50,7 +50,7 @@ interface Options {
   vue?: VueOptions;
 }
 
-export function sobird<T extends Options>(
+export default function sobird<T extends Options>(
   config?: Omit<T, 'rules'> & { rules?: InferBuiltinRulesConfig<T> },
   ...configs: ESLintConfigObject[]
 ): Config[] {
