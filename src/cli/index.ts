@@ -2,8 +2,9 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-// eslint-disable-next-line import/no-namespace
-import * as p from '@clack/prompts';
+import {
+  intro, log, group, confirm, multiselect, cancel, spinner, outro,
+} from '@clack/prompts';
 import chalk from 'chalk';
 import { Command } from 'commander';
 
@@ -27,22 +28,22 @@ const program = new Command(name)
   .option('-u, --uncommitted-confirmed', 'git uncommitted confirmed', false)
   .version(version)
   .action(async (options) => {
-    p.intro(`${chalk.green(name)} ${chalk.dim(`v${version}`)}`);
+    intro(`${chalk.green(name)} ${chalk.dim(`v${version}`)}`);
 
     if (fs.existsSync(path.join(process.cwd(), 'eslint.config.js'))) {
-      p.log.warn(chalk.yellow`eslint.config.js already exists, migration wizard exited.`);
+      log.warn(chalk.yellow`eslint.config.js already exists, migration wizard exited.`);
       return;
     }
 
     const { yes, framework, extra } = options;
 
     if (!yes) {
-      const result = await p.group({
+      const result = await group({
         uncommittedConfirmed: async () => {
           if (isGitClean()) {
             return true;
           }
-          return p.confirm({
+          return confirm({
             initialValue: false,
             message: 'There are uncommitted changes in the current repository, are you sure to continue?',
           });
@@ -55,7 +56,7 @@ const program = new Command(name)
             return;
           }
 
-          return p.multiselect({
+          return multiselect({
             message: chalk.reset('Select frameworks:'),
             options: frameworkOptions,
             required: false,
@@ -69,7 +70,7 @@ const program = new Command(name)
             return;
           }
 
-          return p.multiselect({
+          return multiselect({
             message: chalk.reset('Select extra utils:'),
             options: extraOptions,
             required: false,
@@ -80,25 +81,25 @@ const program = new Command(name)
             return;
           }
 
-          return p.confirm({
+          return confirm({
             initialValue: true,
             message: 'Update .vscode/settings.json for better VS Code experience?',
           });
         },
       }, {
         onCancel: () => {
-          p.cancel('Operation cancelled.');
+          cancel('Operation cancelled.');
           throw Error('Operation cancelled.');
         },
       });
       if (!result.uncommittedConfirmed) {
-        p.log.error(chalk.red`Operation aborted due to uncommitted changes.`);
+        log.error(chalk.red`Operation aborted due to uncommitted changes.`);
         return;
       }
       Object.assign(options, result);
     }
 
-    const s = p.spinner();
+    const s = spinner();
     s.start(chalk.dim('Updating configurations...'));
 
     try {
@@ -112,8 +113,8 @@ const program = new Command(name)
       return;
     }
 
-    p.log.success(chalk.green('Setup completed'));
-    p.outro(`Now you can update the dependencies by run ${chalk.blue('pnpm install')} and run ${chalk.blue('eslint --fix')}\n`);
+    log.success(chalk.green('Setup completed'));
+    outro(`Now you can update the dependencies by run ${chalk.blue('pnpm install')} and run ${chalk.blue('eslint --fix')}\n`);
   });
 
 try {

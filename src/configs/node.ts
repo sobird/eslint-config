@@ -90,11 +90,13 @@ export function node(options: NodeOptions = true): ESLintConfigObject[] {
         'n/prefer-promises/dns': 'error',
         'n/prefer-promises/fs': 'error',
         'n/process-exit-as-throw': 'error',
-        'n/hashbang': 'error',
+
+        // 'n/hashbang': 'error',
 
         // 废弃规则也添加前缀
         'n/no-hide-core-modules': 'error',
-        'n/shebang': 'error',
+
+        // 'n/shebang': 'error',
         ...rules,
       },
     },
