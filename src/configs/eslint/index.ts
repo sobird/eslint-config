@@ -40,6 +40,7 @@ export const JAVASCRIPT: ESLintPlugin = {
     return Object.fromEntries(entries);
   },
 };
+
 export const JAVASCRIPT_RULES: NonNullable<ESLintConfigObject['rules']> = {
   'accessor-pairs': [
     'error',
