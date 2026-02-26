@@ -25,7 +25,7 @@ export const YAML: ESLintPlugin = {
 
 interface Options {
   files?: string[];
-  rules?: ComposeRulesConfig<'vue'>;
+  rules?: ComposeRulesConfig<'yaml'>;
   stylistic?: boolean | Pick<StylisticOptions, 'indent' | 'quotes'>;
 }
 export type YamlOptions = Options | boolean;

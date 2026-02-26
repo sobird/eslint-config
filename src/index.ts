@@ -13,6 +13,7 @@ import {
   react,
   next,
   yaml,
+  markdown,
   type JavaScriptOptions,
   type JsxOptions,
   type IgnoresOptions, type ImportOptions, type ReactOptions,
@@ -85,6 +86,7 @@ export default function sobird<T extends Options>(
     react(reactOptions),
     next(nextOptions),
     yaml(yamlOptions),
+    markdown(),
     ...configs,
   );
 }

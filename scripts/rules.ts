@@ -19,6 +19,7 @@ import {
   TYPESCRIPT,
   VUE,
   YAML,
+  MARKDOWN,
 } from '../src/configs';
 
 const dir = path.join('src', 'types', 'rules');
@@ -39,6 +40,7 @@ const plugins = [
   JSONC,
   VUE,
   YAML,
+  MARKDOWN,
 ];
 
 for (const plugin of plugins) {

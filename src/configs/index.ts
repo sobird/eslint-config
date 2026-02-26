@@ -10,3 +10,4 @@ export * from './vue';
 export * from './ignores';
 export * from './jsx';
 export * from './yaml';
+export * from './markdown';

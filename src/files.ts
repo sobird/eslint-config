@@ -8,6 +8,9 @@ export const JS_FILES = [`**/*.${JS_EXT}`];
 export const TS_FILES = [`**/*.${TS_EXT}`];
 export const JSX_FILES = [`**/*.${JSX_EXT}`];
 export const YAML_FILES = ['**/*.y?(a)ml'];
+export const MARKDOWN_FILES = ['**/*.md'];
+export const MARKDOWN_IN_MARKDOWN_FILES = ['**/*.md/*.md'];
+export const MARKDOWN_CODE_FILES = ['**/*.md/**'];
 
 export const REACT_FILES = [`**/*.${SCRIPT_EXT}`];
 export const JSON_FILES = ['**/*.{json,json5,jsonc}'];

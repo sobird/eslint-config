@@ -2,6 +2,7 @@ import type { ESLintRules } from './eslint';
 import type { ImportRules } from './import';
 import type { JsoncRules } from './jsonc';
 import type { JsxA11YRules } from './jsx-a11y';
+import type { MarkdownRules } from './markdown';
 import type { NextRules } from './next';
 import type { NodeRules } from './node';
 import type { ReactRules } from './react';
@@ -26,6 +27,7 @@ interface Rules {
   typescript: TypescriptRules;
   vue: VueRules;
   yaml: YamlRules;
+  markdown: MarkdownRules;
 }
 
 export type RulesName = keyof Rules;
