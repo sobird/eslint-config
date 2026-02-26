@@ -1,3 +1,4 @@
+import { EXCLUDE_FILES } from '../files';
 import { gitignore } from '../utils';
 
 import type { ESLintConfigObject } from '../types';
@@ -48,6 +49,10 @@ export function ignores(options: IgnoresOptions = true): ESLintConfigObject[] {
   config.ignores?.push(...userIgnores);
 
   return [
+    {
+      name: 'sobird:ignores',
+      ignores: [...EXCLUDE_FILES],
+    },
     config,
   ];
 }

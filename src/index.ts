@@ -12,6 +12,7 @@ import {
   vue,
   react,
   next,
+  yaml,
   type JavaScriptOptions,
   type JsxOptions,
   type IgnoresOptions, type ImportOptions, type ReactOptions,
@@ -19,6 +20,7 @@ import {
   type NextOptions,
   type NodeOptions,
   type VueOptions,
+  type YamlOptions,
 } from './configs';
 
 import type { InferBuiltinRulesConfig, ESLintConfigObject } from './types';
@@ -48,6 +50,7 @@ interface Options {
   next?: NextOptions;
   node?: NodeOptions;
   vue?: VueOptions;
+  yaml?: YamlOptions;
 }
 
 export default function sobird<T extends Options>(
@@ -66,6 +69,7 @@ export default function sobird<T extends Options>(
     next: nextOptions,
     node: nodeOptions,
     vue: vueOptions,
+    yaml: yamlOptions,
   } = config ?? {};
 
   return defineConfig(
@@ -80,6 +84,7 @@ export default function sobird<T extends Options>(
     vue(vueOptions),
     react(reactOptions),
     next(nextOptions),
+    yaml(yamlOptions),
     ...configs,
   );
 }

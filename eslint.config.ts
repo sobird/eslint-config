@@ -32,4 +32,6 @@ export default sobird({
     },
   },
   vue: true,
+
+  yaml: true,
 });

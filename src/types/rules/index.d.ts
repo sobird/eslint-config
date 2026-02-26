@@ -10,6 +10,7 @@ import type { ReactRefreshRules } from './react-refresh';
 import type { StylisticRules } from './stylistic';
 import type { TypescriptRules } from './typescript';
 import type { VueRules } from './vue';
+import type { YamlRules } from './yaml';
 
 interface Rules {
   eslint: ESLintRules;
@@ -24,6 +25,7 @@ interface Rules {
   stylistic: StylisticRules;
   typescript: TypescriptRules;
   vue: VueRules;
+  yaml: YamlRules;
 }
 
 export type RulesName = keyof Rules;

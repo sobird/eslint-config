@@ -23,7 +23,7 @@ export const STYLISTIC: ESLintPlugin = {
 
 type IndentRuleOptions = NonNullable<StylisticRules['@stylistic/indent']>;
 
-interface Options {
+export interface Options {
   /**
    * When to enable arrow parenthesis
    * Similar to `arrowParens` option in Prettier

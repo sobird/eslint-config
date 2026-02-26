@@ -16,7 +16,6 @@ export type OnlyExportComponents = [
 /**
  * 1 ESLint rules for react-refresh
  *
- * @package `eslint-plugin-react-refresh`
  * @namespace `react-refresh`
  */
 export interface ReactRefreshRules {

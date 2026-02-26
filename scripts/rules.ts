@@ -18,6 +18,7 @@ import {
   STYLISTIC,
   TYPESCRIPT,
   VUE,
+  YAML,
 } from '../src/configs';
 
 const dir = path.join('src', 'types', 'rules');
@@ -37,6 +38,7 @@ const plugins = [
   NEXT,
   JSONC,
   VUE,
+  YAML,
 ];
 
 for (const plugin of plugins) {

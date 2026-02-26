@@ -8,12 +8,11 @@ import { env } from '../utils';
 import type { ESLintConfigObject, ESLintPlugin, ComposeRulesConfig } from '../types';
 import type { ESLint } from 'eslint';
 
-const { meta, rules: pluginRules } = pluginVue as ESLint.Plugin;
 const {
   name = 'eslint-plugin-vue',
   version,
   namespace = 'vue',
-} = meta ?? {};
+} = (pluginVue as ESLint.Plugin).meta ?? {};
 
 export const VUE: ESLintPlugin = {
   meta: {
@@ -22,7 +21,7 @@ export const VUE: ESLintPlugin = {
     title: namespace,
     version,
   },
-  rules: pluginRules,
+  rules: pluginVue.rules,
 };
 
 interface Options {
