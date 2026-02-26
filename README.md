@@ -102,7 +102,9 @@ For example:
 
 <details>
 <summary>
-  <img src="https://img.shields.io/badge/Visual%20Studio%20Code-007ACC?style=flat-square&logo=visual-studio-code&logoColor=white" style="pointer-events: none;" align="center"/>
+  <a href="#">
+    <img src="https://img.shields.io/badge/Visual%20Studio%20Code-007ACC?style=flat-square&logo=visual-studio-code&logoColor=white" align="center"/>
+  </a>
 </summary>
 
 <br>
@@ -168,7 +170,7 @@ For example:
 
 <details>
 <summary>
-  <img src="https://img.shields.io/badge/NeoVim-%2357A143.svg?style=flat-square&logo=neovim&logoColor=white" style="pointer-events: none;" align="center"/>
+  <img src="https://img.shields.io/badge/NeoVim-%2357A143.svg?style=flat-square&logo=neovim&logoColor=white" align="center"/>
 </summary>
 
 <br>
