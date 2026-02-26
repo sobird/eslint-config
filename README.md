@@ -1,14 +1,18 @@
 # eslint-config-sobird
 
-[![npm][npm]][npm-url] [![Build Status][build-status]][build-status-url] [![Install Size][size]][size-url]
+[![npm][npm]][npm-url]
+[![Build Status][build-status]][build-status-url]
+[![Install Size][size]][size-url]
+[![License][license]][license-url]
+[![javascript_code style][code-style-image]][code-style-url]
 
 - 自动修复格式（旨在独立使用 **无需** Prettier）
 - 合理的默认设置，最佳实践，只需一行配置
 - 开箱即用，支持 TypeScript、JSX、React、Vue、JSON 等多种格式。
 - 对json，yaml，toml，markdown等进行语法检查
-- 具有一定的设计理念，但[高度可定制](#customization)
+- 具有一定的设计理念，但[高度可定制](#自定义)
 - [ESLint Flat配置](https://eslint.org/docs/latest/use/configure/configuration-files-new)，轻松组合！
-- 可选的[React](#react), [Next.js](#next), [Vue](#vue)支持
+- 可选的[React](#react), [Next.js](#nextjs), [Vue](#vue)支持
 - 可选的[格式化程序](#formatters)支持CSS，HTML，XML等。
 - **风格原则**：简洁易读、稳定可靠、保持一致
   - 导入语句已排序，避免悬空逗号
@@ -512,10 +516,47 @@ pnpm i -D lint-staged husky
 pnpm exec husky init
 ```
 
-编辑文件 .husky/pre-commit（如果该文件不存在请手动创建），将其内容修改为：
+编辑文件 `.husky/pre-commit`（如果该文件不存在请手动创建），将其内容修改为：
 
 ```bash
 pnpm lint-staged
+```
+
+## 查看启用的规则
+
+我创建了一个可视化工具，帮助您查看项目中启用了哪些规则，并将它们应用于哪些文件，[@eslint/config-inspector](https://github.com/eslint/config-inspector)
+
+前往包含 `eslint.config.js` 的项目根目录，并运行：
+
+```bash
+npx @eslint/config-inspector
+```
+
+## 版本控制策略
+
+本项目遵循[语义化版本控制](https://semver.org/)用于发布。然而，由于这只是一个配置文件，涉及意见和许多不断变化的部分，我们不将规则更改视为破坏性更改。
+
+### 被视为破坏性更改的变化
+
+- Node.js 版本要求的更改
+- 可能破坏配置的大规模重构
+- 插件进行了可能破坏配置的重大更改
+- 可能影响大部分代码库的更改
+
+### 被视为非破坏性更改的变化
+
+- 启用/禁用规则和插件（可能更加严格）
+- 规则选项的更改
+- 依赖项的版本升级
+
+## 徽章
+
+在你的项目中使用此配置？在你的自述文件中包括以下徽章，以告知人们你的代码正在使用`sobird`的代码风格。
+
+[![javascript_code style][code-style-image]][code-style-url]
+
+```markdown
+[![sobird-code-style-image](https://img.shields.io/badge/code__style-eslint--config--sobird-3491fa?style=flat-square&colorA=080f12&colorB=3491fa)](https://github.com/sobird/eslint-config/)
 ```
 
 ## 参考
@@ -524,9 +565,13 @@ pnpm lint-staged
 
 <!-- Badges -->
 
-[npm]: https://img.shields.io/npm/v/eslint-config-sobird.svg
+[npm]: https://img.shields.io/npm/v/eslint-config-sobird.svg?style=flat-square
 [npm-url]: https://www.npmjs.com/package/eslint-config-sobird
-[build-status]: https://img.shields.io/github/actions/workflow/status/sobird/eslint-config/release.yaml?label=CI&logo=github
+[build-status]: https://img.shields.io/github/actions/workflow/status/sobird/eslint-config/release.yaml?label=CI&logo=github&style=flat-square
 [build-status-url]: https://github.com/sobird/eslint-config/actions
 [size]: https://packagephobia.com/badge?p=eslint-config-sobird
 [size-url]: https://packagephobia.com/result?p=eslint-config-sobird
+[license]: https://img.shields.io/github/license/sobird/eslint-config.svg?style=flat&colorA=080f12&colorB=3491fa
+[license-url]: https://github.com/sobird/eslint-config/blob/main/LICENSE
+[code-style-image]: https://img.shields.io/badge/code__style-eslint--config--sobird-3491fa?style=flat-square&colorA=080f12&colorB=3491fa
+[code-style-url]: https://github.com/sobird/eslint-config/
