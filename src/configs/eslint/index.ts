@@ -24,9 +24,14 @@ export const JAVASCRIPT: ESLintPlugin = {
   get rules() {
     const { added } = versions;
 
+    function isAddedKey(name: string): name is keyof typeof added {
+      return name in added;
+    }
+
+    // eslint-disable-next-line @typescript-eslint/no-deprecated
     const entries = Array.from(builtinRules, ([ruleName, ruleModel]) => {
-      if (ruleName in added) {
-        const version = added[ruleName as keyof typeof added];
+      if (isAddedKey(ruleName)) {
+        const version = added[ruleName];
         Object.assign(ruleModel.meta ?? {}, { version });
       }
       return [ruleName, ruleModel] as const;
@@ -205,7 +210,7 @@ export const JAVASCRIPT_RULES: NonNullable<ESLintConfigObject['rules']> = {
 
   // todo
   'no-magic-numbers': [
-    'error',
+    'off',
     {
       ignore: [0, 1, 2, -1],
       ignoreArrayIndexes: true,

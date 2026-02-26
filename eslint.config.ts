@@ -32,4 +32,5 @@ export default sobird({
       '@next/next/google-font-display': 'error',
     },
   },
+  vue: true,
 });

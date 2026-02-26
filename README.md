@@ -2,9 +2,9 @@
 
 [![npm][npm]][npm-url]
 [![Build Status][build-status]][build-status-url]
-[![Install Size][size]][size-url]
 [![License][license]][license-url]
 [![javascript_code style][code-style-image]][code-style-url]
+[![Install Size][size]][size-url]
 
 - 自动修复格式（旨在独立使用 **无需** Prettier）
 - 合理的默认设置，最佳实践，只需一行配置
@@ -559,9 +559,12 @@ npx @eslint/config-inspector
 [![sobird-code-style-image](https://img.shields.io/badge/code__style-eslint--config--sobird-3491fa?style=flat-square&colorA=080f12&colorB=3491fa)](https://github.com/sobird/eslint-config/)
 ```
 
+## 感谢
+
+该项目基于 [@antfu/eslint-config](https://github.com/antfu/eslint-config) 进行修改或演绎
+
 ## 参考
 * [Share Configurations](https://eslint.org/docs/latest/extend/shareable-configs)
-* [@antfu/eslint-config](https://github.com/antfu/eslint-config)
 
 <!-- Badges -->
 
@@ -571,7 +574,7 @@ npx @eslint/config-inspector
 [build-status-url]: https://github.com/sobird/eslint-config/actions
 [size]: https://packagephobia.com/badge?p=eslint-config-sobird
 [size-url]: https://packagephobia.com/result?p=eslint-config-sobird
-[license]: https://img.shields.io/github/license/sobird/eslint-config.svg?style=flat&colorA=080f12&colorB=3491fa
-[license-url]: https://github.com/sobird/eslint-config/blob/main/LICENSE
+[license]: https://img.shields.io/github/license/sobird/eslint-config.svg?style=flat-square
+[license-url]: https://github.com/sobird/eslint-config/blob/master/LICENSE
 [code-style-image]: https://img.shields.io/badge/code__style-eslint--config--sobird-3491fa?style=flat-square&colorA=080f12&colorB=3491fa
 [code-style-url]: https://github.com/sobird/eslint-config/
