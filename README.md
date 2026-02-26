@@ -101,7 +101,11 @@ For example:
 ## IDE 支持（保存时自动修复）
 
 <details>
-<summary><img src="https://img.shields.io/badge/Visual%20Studio%20Code-007ACC?style=flat-square&logo=visual-studio-code&logoColor=white" height="20" align="center"></summary>
+<summary>
+  <span>
+    <img src="https://img.shields.io/badge/Visual%20Studio%20Code-007ACC?style=flat-square&logo=visual-studio-code&logoColor=white" align="center">
+  </span>
+</summary>
 
 <br>
 
@@ -165,7 +169,11 @@ For example:
 </details>
 
 <details>
-<summary><img src="https://img.shields.io/badge/NeoVim-%2357A143.svg?style=flat-square&logo=neovim&logoColor=white" height="20" align="center"></summary>
+<summary>
+  <span>
+    <img src="https://img.shields.io/badge/NeoVim-%2357A143.svg?style=flat-square&logo=neovim&logoColor=white" align="center">
+  </span>
+</summary>
 
 <br>
 
