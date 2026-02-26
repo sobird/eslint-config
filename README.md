@@ -100,16 +100,14 @@ For example:
 
 ## IDE 支持（保存时自动修复）
 
+<svg width="200" height="60" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="60" rx="8" fill="#2563eb" />
+  <text x="100" y="38" font-size="20" fill="white" text-anchor="middle">Hello GitHub</text>
+</svg>
+
 <details>
 <summary>
-  <table display="inline">
-      <tr>
-        <td style="border:none;">
-          <img src="https://img.shields.io/badge/Visual%20Studio%20Code-007ACC?style=flat-square&logo=visual-studio-code&logoColor=white" height="20" align="center">
-          <b> VS Code 配置</b>
-        </td>
-      </tr>
-    </table>
+  <img src="https://img.shields.io/badge/Visual%20Studio%20Code-007ACC?style=flat-square&logo=visual-studio-code&logoColor=white" align="center">
 </summary>
 
 <br>
