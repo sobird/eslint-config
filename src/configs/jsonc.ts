@@ -6,11 +6,11 @@ import { JSON_FILES } from '../files';
 import type { ESLintConfigObject, ESLintPlugin } from '../types';
 import type { ESLint } from 'eslint';
 
-const { meta, rules: pluginRules } = eslintPluginJsonc;
+const { meta, rules: pluginRules } = eslintPluginJsonc as ESLint.Plugin;
 const {
   name = 'eslint-plugin-jsonc',
   version,
-} = meta;
+} = meta ?? {};
 const namespace = 'jsonc';
 
 export const JSONC: ESLintPlugin = {

@@ -31,7 +31,8 @@
   "scripts": {
     "build": "tsup",
     "test": "vitest",
-    "lint": "eslint src --ext ts --report-unused-disable-directives --max-warnings 10",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
     "rules:types": "tsx scripts/rules",
     "preversion": "yarn lint:eslint",
     "version": "git add -A .",
@@ -72,6 +73,7 @@
     "@commander-js/extra-typings": "^14.0.0",
     "@commitlint/cli": "^20.4.2",
     "@commitlint/config-conventional": "^20.4.2",
+    "@commitlint/types": "^20.4.0",
     "@types/eslint-plugin-jsx-a11y": "^6.10.1",
     "@types/node": "^25.3.1",
     "camelcase": "^9.0.0",

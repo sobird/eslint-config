@@ -1,15 +1,15 @@
 // https://github.com/eslint-stylistic/eslint-stylistic/blob/main/packages/eslint-plugin/configs/customize.ts
 import pluginStylistic from '@stylistic/eslint-plugin';
 
-import type { ESLintConfigObject, ESLintPlugin, ComposeRulesConfig, } from '../types';
-import type { StylisticRules, } from '../types/rules/stylistic';
-import type { ESLint, } from 'eslint';
+import type { ESLintConfigObject, ESLintPlugin, ComposeRulesConfig } from '../types';
+import type { StylisticRules } from '../types/rules/stylistic';
+import type { ESLint } from 'eslint';
 
 const {
   name = '@stylistic/eslint-plugin',
   namespace = '@stylistic',
   version,
-} = (pluginStylistic as ESLint.Plugin).meta || {};
+} = (pluginStylistic as ESLint.Plugin).meta ?? {};
 
 export const STYLISTIC: ESLintPlugin = {
   meta: {
@@ -98,7 +98,7 @@ export type StylisticOptions = Options | boolean;
 
 const TAB_LENGTH = 4;
 
-export function stylistic(options: StylisticOptions = true,): ESLintConfigObject[] {
+export function stylistic(options: StylisticOptions = true): ESLintConfigObject[] {
   if (options === false) {
     return [];
   }
@@ -119,10 +119,10 @@ export function stylistic(options: StylisticOptions = true,): ESLintConfigObject
     indentLevel = 2,
     indentOptions = {
       ArrayExpression: 1,
-      CallExpression: { arguments: 1, },
+      CallExpression: { arguments: 1 },
       flatTernaryExpressions: false,
-      FunctionDeclaration: { body: 1, parameters: 1, returnType: 1, },
-      FunctionExpression: { body: 1, parameters: 1, returnType: 1, },
+      FunctionDeclaration: { body: 1, parameters: 1, returnType: 1 },
+      FunctionExpression: { body: 1, parameters: 1, returnType: 1 },
       ignoreComments: false,
       ignoredNodes: [
         'TSUnionType',
@@ -158,7 +158,7 @@ export function stylistic(options: StylisticOptions = true,): ESLintConfigObject
       tabLength: indentLevel === 'tab' ? TAB_LENGTH : indentLevel,
       VariableDeclarator: 1,
     } satisfies IndentRuleOptions[1],
-  ] = Array.isArray(indent,) ? indent : [indent,];
+  ] = Array.isArray(indent) ? indent : [indent];
 
   return [
     {
@@ -168,27 +168,27 @@ export function stylistic(options: StylisticOptions = true,): ESLintConfigObject
       },
       rules: { // 96
         '@stylistic/array-bracket-newline': 'off',
-        '@stylistic/array-bracket-spacing': ['error', 'never',],
+        '@stylistic/array-bracket-spacing': ['error', 'never'],
         '@stylistic/array-element-newline': 'off',
-        '@stylistic/arrow-parens': ['error', arrowParens ? 'always' : 'as-needed', { requireForBlockBody: true, },],
-        '@stylistic/arrow-spacing': ['error', { before: true, after: true, },],
-        '@stylistic/block-spacing': ['error', blockSpacing ? 'always' : 'never',],
-        '@stylistic/brace-style': ['error', braceStyle, { allowSingleLine: false, },],
-        '@stylistic/comma-dangle': ['error', commaDangle,],
-        '@stylistic/comma-spacing': ['error', { before: false, after: true, },],
-        '@stylistic/comma-style': ['error', 'last',],
-        '@stylistic/computed-property-spacing': ['error', 'never', { enforceForClassMembers: true, },],
-        '@stylistic/curly-newline': ['error', { consistent: true, },],
-        '@stylistic/dot-location': ['error', 'property',],
+        '@stylistic/arrow-parens': ['error', arrowParens ? 'always' : 'as-needed', { requireForBlockBody: true }],
+        '@stylistic/arrow-spacing': ['error', { before: true, after: true }],
+        '@stylistic/block-spacing': ['error', blockSpacing ? 'always' : 'never'],
+        '@stylistic/brace-style': ['error', braceStyle, { allowSingleLine: false }],
+        '@stylistic/comma-dangle': ['error', commaDangle],
+        '@stylistic/comma-spacing': ['error', { before: false, after: true }],
+        '@stylistic/comma-style': ['error', 'last'],
+        '@stylistic/computed-property-spacing': ['error', 'never', { enforceForClassMembers: true }],
+        '@stylistic/curly-newline': ['error', { consistent: true }],
+        '@stylistic/dot-location': ['error', 'property'],
         '@stylistic/eol-last': 'error',
         '@stylistic/exp-list-style': 'off',
-        '@stylistic/function-call-argument-newline': ['error', 'consistent',],
+        '@stylistic/function-call-argument-newline': ['error', 'consistent'],
         '@stylistic/function-call-spacing': 'error',
-        '@stylistic/function-paren-newline': ['error', 'consistent',],
-        '@stylistic/generator-star-spacing': ['error', { before: false, after: true, },],
-        '@stylistic/implicit-arrow-linebreak': ['error', 'beside',],
-        '@stylistic/indent-binary-ops': ['error', indentLevel,],
-        '@stylistic/indent': ['error', indentLevel, indentOptions,],
+        '@stylistic/function-paren-newline': ['error', 'consistent'],
+        '@stylistic/generator-star-spacing': ['error', { before: false, after: true }],
+        '@stylistic/implicit-arrow-linebreak': ['error', 'beside'],
+        '@stylistic/indent-binary-ops': ['error', indentLevel],
+        '@stylistic/indent': ['error', indentLevel, indentOptions],
 
         ...jsx
           ? {
@@ -196,18 +196,18 @@ export function stylistic(options: StylisticOptions = true,): ESLintConfigObject
               '@stylistic/jsx-child-element-spacing': 'error',
               '@stylistic/jsx-closing-bracket-location': 'error',
               '@stylistic/jsx-closing-tag-location': 'error',
-              '@stylistic/jsx-curly-brace-presence': ['error', { propElementValues: 'always', },],
+              '@stylistic/jsx-curly-brace-presence': ['error', { propElementValues: 'always' }],
               '@stylistic/jsx-curly-newline': 'error',
-              '@stylistic/jsx-curly-spacing': ['error', 'never',],
+              '@stylistic/jsx-curly-spacing': ['error', 'never'],
               '@stylistic/jsx-equals-spacing': 'error',
               '@stylistic/jsx-first-prop-new-line': 'error',
               '@stylistic/jsx-function-call-newline': 'error',
-              '@stylistic/jsx-indent-props': ['error', indentLevel,],
+              '@stylistic/jsx-indent-props': ['error', indentLevel],
 
               // '@stylistic/jsx-indent': ['error', 2, { checkAttributes: true, indentLogicalExpressions: true }],
-              '@stylistic/jsx-max-props-per-line': ['error', { maximum: 1, when: 'multiline', },],
+              '@stylistic/jsx-max-props-per-line': ['error', { maximum: 1, when: 'multiline' }],
               '@stylistic/jsx-newline': 'error',
-              '@stylistic/jsx-one-expression-per-line': ['error', { allow: 'single-child', },],
+              '@stylistic/jsx-one-expression-per-line': ['error', { allow: 'single-child' }],
               '@stylistic/jsx-pascal-case': 'error',
 
               // '@stylistic/jsx-props-no-multi-spaces': 'error',
@@ -239,10 +239,10 @@ export function stylistic(options: StylisticOptions = true,): ESLintConfigObject
             }
           : {},
 
-        '@stylistic/key-spacing': ['error', { beforeColon: false, afterColon: true, },],
-        '@stylistic/keyword-spacing': ['error', { before: true, after: true, },],
+        '@stylistic/key-spacing': ['error', { beforeColon: false, afterColon: true }],
+        '@stylistic/keyword-spacing': ['error', { before: true, after: true }],
         '@stylistic/line-comment-position': 'off',
-        '@stylistic/linebreak-style': ['error', 'unix',],
+        '@stylistic/linebreak-style': ['error', 'unix'],
         // pragma
         '@stylistic/lines-around-comment': ['error', {
           beforeBlockComment: true,
@@ -255,17 +255,17 @@ export function stylistic(options: StylisticOptions = true,): ESLintConfigObject
           allowArrayStart: true,
           allowClassStart: true,
           ignorePattern: 'pragma|eslint|eslint-disable',
-        },],
-        '@stylistic/lines-between-class-members': ['error', 'always', { exceptAfterSingleLine: true, },],
-        // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+        }],
+        '@stylistic/lines-between-class-members': ['error', 'always', { exceptAfterSingleLine: true }],
+
         '@stylistic/max-len': ['error', 150, 2, {
           ignoreUrls: true,
           ignoreComments: false,
           ignoreRegExpLiterals: true,
           ignoreStrings: true,
           ignoreTemplateLiterals: true,
-        },],
-        '@stylistic/max-statements-per-line': ['error', { max: 1, },],
+        }],
+        '@stylistic/max-statements-per-line': ['error', { max: 1 }],
 
         // @see semi
         '@stylistic/member-delimiter-style': ['error', {
@@ -285,15 +285,15 @@ export function stylistic(options: StylisticOptions = true,): ESLintConfigObject
           singleline: {
             delimiter: semi ? 'semi' : 'comma',
           },
-        },],
+        }],
         '@stylistic/multiline-comment-style': 'off',
-        '@stylistic/multiline-ternary': ['error', 'always-multiline',],
+        '@stylistic/multiline-ternary': ['error', 'always-multiline'],
         '@stylistic/new-parens': 'error',
-        '@stylistic/newline-per-chained-call': ['error', { ignoreChainWithDepth: 4, },],
+        '@stylistic/newline-per-chained-call': ['error', { ignoreChainWithDepth: 4 }],
         '@stylistic/no-confusing-arrow': ['error', {
           allowParens: true,
-        },],
-        '@stylistic/no-extra-parens': ['error', 'functions',],
+        }],
+        '@stylistic/no-extra-parens': ['error', 'functions'],
         '@stylistic/no-extra-semi': 'error',
         '@stylistic/no-floating-decimal': 'error',
 
@@ -301,11 +301,11 @@ export function stylistic(options: StylisticOptions = true,): ESLintConfigObject
         '@stylistic/no-mixed-operators': ['error', {
           allowSamePrecedence: true,
           groups: [
-            ['==', '!=', '===', '!==', '>', '>=', '<', '<=',],
-            ['&&', '||',],
-            ['in', 'instanceof',],
+            ['==', '!=', '===', '!==', '>', '>=', '<', '<='],
+            ['&&', '||'],
+            ['in', 'instanceof'],
           ],
-        },],
+        }],
         '@stylistic/no-mixed-spaces-and-tabs': 'error',
 
         /*
@@ -314,68 +314,68 @@ export function stylistic(options: StylisticOptions = true,): ESLintConfigObject
          * }]
          */
         '@stylistic/no-multi-spaces': 'error',
-        '@stylistic/no-multiple-empty-lines': ['error', { max: 1, maxBOF: 0, maxEOF: 0, },],
+        '@stylistic/no-multiple-empty-lines': ['error', { max: 1, maxBOF: 0, maxEOF: 0 }],
         '@stylistic/no-tabs': indentLevel === 'tab' ? 'off' : 'error',
         '@stylistic/no-trailing-spaces': ['error', {
           ignoreComments: false,
-        },],
+        }],
         '@stylistic/no-whitespace-before-property': 'error',
 
         // @see eslint 'curly': ['error', 'all'],
-        '@stylistic/nonblock-statement-body-position': ['off', 'beside', { overrides: {}, },],
+        '@stylistic/nonblock-statement-body-position': ['off', 'beside', { overrides: {} }],
         '@stylistic/object-curly-newline': ['error', {
-          ObjectExpression: { minProperties: 4, multiline: true, consistent: true, },
-          ObjectPattern: { minProperties: 4, multiline: true, consistent: true, },
-          ImportDeclaration: { minProperties: 4, multiline: true, consistent: true, },
-          ExportDeclaration: { minProperties: 4, multiline: true, consistent: true, },
-        },],
-        '@stylistic/object-curly-spacing': ['error', 'always',],
+          ObjectExpression: { minProperties: 4, multiline: true, consistent: true },
+          ObjectPattern: { minProperties: 4, multiline: true, consistent: true },
+          ImportDeclaration: { minProperties: 4, multiline: true, consistent: true },
+          ExportDeclaration: { minProperties: 4, multiline: true, consistent: true },
+        }],
+        '@stylistic/object-curly-spacing': ['error', 'always'],
         '@stylistic/object-property-newline': ['error', {
           allowAllPropertiesOnSameLine: true,
-        },],
-        '@stylistic/one-var-declaration-per-line': ['error', 'always',],
-        '@stylistic/operator-linebreak': ['error', 'before', { overrides: { '=': 'none', }, },],
-        '@stylistic/padded-blocks': ['error', { blocks: 'never', classes: 'never', switches: 'never', },],
+        }],
+        '@stylistic/one-var-declaration-per-line': ['error', 'always'],
+        '@stylistic/operator-linebreak': ['error', 'before', { overrides: { '=': 'none' } }],
+        '@stylistic/padded-blocks': ['error', { blocks: 'never', classes: 'never', switches: 'never' }],
         '@stylistic/padding-line-between-statements': 'error',
 
         // ['error', 'as-needed', { keywords: false, unnecessary: true, numbers: false }]
-        '@stylistic/quote-props': ['error', quoteProps,],
-        '@stylistic/quotes': ['error', quotes, { allowTemplateLiterals: 'avoidEscape', avoidEscape: false, },],
-        '@stylistic/rest-spread-spacing': ['error', 'never',],
-        '@stylistic/semi-spacing': ['error', { before: false, after: true, },],
-        '@stylistic/semi-style': ['error', 'last',],
+        '@stylistic/quote-props': ['error', quoteProps],
+        '@stylistic/quotes': ['error', quotes, { allowTemplateLiterals: 'avoidEscape', avoidEscape: false }],
+        '@stylistic/rest-spread-spacing': ['error', 'never'],
+        '@stylistic/semi-spacing': ['error', { before: false, after: true }],
+        '@stylistic/semi-style': ['error', 'last'],
 
         // todo
-        '@stylistic/semi': ['error', semi ? 'always' : 'never',],
-        '@stylistic/space-before-blocks': ['error', 'always',],
-        '@stylistic/space-before-function-paren': ['error', { anonymous: 'always', asyncArrow: 'always', named: 'never', },],
-        '@stylistic/space-in-parens': ['error', 'never',],
+        '@stylistic/semi': ['error', semi ? 'always' : 'never'],
+        '@stylistic/space-before-blocks': ['error', 'always'],
+        '@stylistic/space-before-function-paren': ['error', { anonymous: 'always', asyncArrow: 'always', named: 'never' }],
+        '@stylistic/space-in-parens': ['error', 'never'],
         '@stylistic/space-infix-ops': 'error',
-        '@stylistic/space-unary-ops': ['error', { nonwords: false, words: true, },],
+        '@stylistic/space-unary-ops': ['error', { nonwords: false, words: true }],
 
         // todo
         '@stylistic/spaced-comment': ['error', 'always', {
           block: {
             balanced: true,
-            exceptions: ['*',],
-            markers: ['!',],
+            exceptions: ['*'],
+            markers: ['!'],
           },
           line: {
-            exceptions: ['/', '#',],
-            markers: ['/',],
+            exceptions: ['/', '#'],
+            markers: ['/'],
           },
-        },],
-        '@stylistic/switch-colon-spacing': ['error', { after: true, before: false, },],
+        }],
+        '@stylistic/switch-colon-spacing': ['error', { after: true, before: false }],
         '@stylistic/template-curly-spacing': 'error',
-        '@stylistic/template-tag-spacing': ['error', 'never',],
-        '@stylistic/type-annotation-spacing': ['error', {},],
+        '@stylistic/template-tag-spacing': ['error', 'never'],
+        '@stylistic/type-annotation-spacing': ['error', {}],
         '@stylistic/type-generic-spacing': 'error',
         '@stylistic/type-named-tuple-spacing': 'error',
-        '@stylistic/wrap-iife': ['error', 'outside', { functionPrototypeMethods: false, },],
+        '@stylistic/wrap-iife': ['error', 'outside', { functionPrototypeMethods: false }],
         '@stylistic/wrap-regex': 'error',
 
         // todo
-        '@stylistic/yield-star-spacing': ['error', 'both',],
+        '@stylistic/yield-star-spacing': ['error', 'both'],
 
         ...rules,
       },

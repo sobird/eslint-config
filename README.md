@@ -38,7 +38,7 @@ pnpm dlx eslint-config-sobird@latest
 如果您更喜欢手动设置：
 
 ```bash
-pnpm i -D eslint-config-sobird
+pnpm i -D eslint eslint-config-sobird
 ```
 
 然后在您的项目根目录下创建 `eslint.config.ts` 文件：

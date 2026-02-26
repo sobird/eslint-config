@@ -16,6 +16,7 @@ export async function updateESLintConfig(options: Options): Promise<void> {
   let isModule = false;
   try {
     const pkgContent = await fsp.readFile(path.join(cwd, 'package.json'), 'utf-8');
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     isModule = JSON.parse(pkgContent).type === 'module';
   } catch {
     log.warn('Could not find package.json, defaulting to CommonJS naming.');
@@ -34,17 +35,18 @@ export async function updateESLintConfig(options: Options): Promise<void> {
         eslintIgnores.push(...parsed.ignores);
       }
     } catch (e) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
       log.error(`Failed to parse .eslintignore: ${(e as Error).message}`);
     }
   }
 
   const configs: string[] = [];
 
-  if (eslintIgnores.length) {
+  if (eslintIgnores.length > 0) {
     configs.push(`ignores: ${JSON.stringify(eslintIgnores)},`);
   }
 
-  const { extra = [], framework = [] } = options;
+  const { extra, framework } = options;
   if (extra.includes('formatter')) {
     configs.push('formatters: true,');
   }
@@ -64,9 +66,9 @@ export async function updateESLintConfig(options: Options): Promise<void> {
   log.success(c.green(`Created ${configFileName}`));
 
   const files = await fsp.readdir(cwd);
-  const legacyConfigs = files.filter(file => (/eslint|prettier/u).test(file) && !(/eslint\.config\./u).test(file));
+  const legacyConfigs = files.filter(file => (/eslint|prettier/u).test(file) && !file.includes('eslint.config.'));
 
-  if (legacyConfigs.length) {
+  if (legacyConfigs.length > 0) {
     note(c.dim(legacyConfigs.join(', ')), 'You can now remove those files manually');
   }
 }

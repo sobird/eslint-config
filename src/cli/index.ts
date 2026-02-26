@@ -48,12 +48,12 @@ const program = new Command(name)
             message: 'There are uncommitted changes in the current repository, are you sure to continue?',
           });
         },
-        framework: ({ results }) => {
+        framework: async ({ results }) => {
           const { uncommittedConfirmed } = results;
           const isAllValid = framework.length > 0 && framework.every(f => frameworks.includes(f));
 
           if (!uncommittedConfirmed || isAllValid) {
-            return;
+            return [];
           }
 
           return multiselect({
@@ -62,12 +62,12 @@ const program = new Command(name)
             required: false,
           });
         },
-        extra: ({ results }) => {
+        extra: async ({ results }) => {
           const { uncommittedConfirmed } = results;
           const isAllValid = extra.length > 0 && extra.every(e => extras.includes(e));
 
           if (!uncommittedConfirmed || isAllValid) {
-            return;
+            return [];
           }
 
           return multiselect({
@@ -76,9 +76,9 @@ const program = new Command(name)
             required: false,
           });
         },
-        updateVscodeSettings: ({ results }) => {
+        updateVscodeSettings: async ({ results }) => {
           if (!results.uncommittedConfirmed) {
-            return;
+            return true;
           }
 
           return confirm({

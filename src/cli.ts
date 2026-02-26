@@ -1,3 +1,4 @@
 #!/usr/bin/env node
 
-export * from './cli/index';
+// eslint-disable-next-line import/no-unassigned-import
+import './cli/index';

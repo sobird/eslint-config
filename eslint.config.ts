@@ -27,7 +27,6 @@ export default sobird({
     a11y: true,
   },
   next: {
-    vitals: true,
     rules: {
       '@next/next/google-font-display': 'error',
     },
