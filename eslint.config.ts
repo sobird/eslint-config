@@ -12,7 +12,9 @@ export default sobird({
       'accessor-pairs': 'error',
     },
   },
-  typescript: true,
+  typescript: {
+    typed: true,
+  },
   import: {
     rules: {
       //
