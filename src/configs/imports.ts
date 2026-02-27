@@ -3,6 +3,8 @@
 import { fixupPluginRules } from '@eslint/compat';
 import eslintPluginImport from 'eslint-plugin-import';
 
+import { SCRIPT_FILES } from '../files';
+
 import type { ESLintConfigObject, ESLintPlugin, ComposeRulesConfig } from '../types';
 
 const namespace = 'import';
@@ -33,7 +35,8 @@ export function imports(options: ImportOptions = true): ESLintConfigObject[] {
 
   return [
     {
-      name: 'sobird:imports',
+      name: 'sobird:imports:rules',
+      files: [...SCRIPT_FILES],
       plugins: {
         [namespace]: fixupPluginRules(eslintPluginImport),
       },

@@ -1,17 +1,16 @@
-import eslintPluginJsonc from 'eslint-plugin-jsonc';
-import jsoncParser from 'jsonc-eslint-parser';
+import pluginJSONC from 'eslint-plugin-jsonc';
 
 import { JSON_FILES } from '../files';
 
 import type { ESLintConfigObject, ESLintPlugin } from '../types';
 import type { ESLint } from 'eslint';
 
-const { meta, rules: pluginRules } = eslintPluginJsonc as ESLint.Plugin;
+const { meta, rules: pluginRules } = pluginJSONC as ESLint.Plugin;
 const {
   name = 'eslint-plugin-jsonc',
+  namespace = 'jsonc',
   version,
 } = meta ?? {};
-const namespace = 'jsonc';
 
 export const JSONC: ESLintPlugin = {
   meta: {
@@ -45,13 +44,11 @@ export function jsonc(options: JsoncOptions = true): ESLintConfigObject[] {
       name: 'sobird:jsonc:rules',
       files: [...JSON_FILES],
       plugins: {
-        jsonc: eslintPluginJsonc as ESLint.Plugin,
+        jsonc: pluginJSONC as ESLint.Plugin,
       },
-      languageOptions: {
-        parser: jsoncParser,
-        parserOptions: {},
-      },
+      language: 'jsonc/x',
       rules: {
+        'strict': 'off',
         'max-lines': 'off',
         'no-unused-expressions': 'off',
         'no-unused-vars': 'off',
@@ -59,7 +56,7 @@ export function jsonc(options: JsoncOptions = true): ESLintConfigObject[] {
         'jsonc/array-bracket-spacing': 'error',
         'jsonc/array-element-newline': 'error',
 
-        // 'jsonc/auto': 'error',
+        'jsonc/auto': 'error',
         'jsonc/comma-dangle': 'error',
         'jsonc/comma-style': 'error',
 
