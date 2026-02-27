@@ -20,6 +20,7 @@ import {
   VUE,
   YAML,
   MARKDOWN,
+  COMMENTS,
 } from '../src/configs';
 
 const dir = path.join('src', 'types', 'rules');
@@ -41,11 +42,12 @@ const plugins = [
   VUE,
   YAML,
   MARKDOWN,
+  COMMENTS,
 ];
 
 for (const plugin of plugins) {
   const { meta: { title } } = plugin;
   const schema = ESlintPluginRulesToJSONSchema(plugin);
-  const result = await compile(schema, '', { bannerComment: '/* eslint-disable */' });
+  const result = await compile(schema, '', { bannerComment: '/* eslint-disable eslint-comments/no-unlimited-disable */\n/* eslint-disable */' });
   await fs.writeFile(path.join(dir, `${title.toLowerCase()}.d.ts`), result);
 }

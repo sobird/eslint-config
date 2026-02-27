@@ -1,6 +1,7 @@
 import { defineConfig, type Config } from 'eslint/config';
 
 import {
+  comments,
   imports,
   javascript,
   jsx,
@@ -14,6 +15,7 @@ import {
   next,
   yaml,
   markdown,
+  type CommentsOptions,
   type JavaScriptOptions,
   type JsxOptions,
   type IgnoresOptions, type ImportOptions, type ReactOptions,
@@ -54,6 +56,7 @@ interface Options {
   vue?: VueOptions;
   yaml?: YamlOptions;
   markdown?: MarkdownOptions;
+  comments?: CommentsOptions;
 }
 
 export default function sobird<T extends Options>(
@@ -63,6 +66,7 @@ export default function sobird<T extends Options>(
   const {
     ignores: ignoresOptions,
     javascript: javascriptOptions,
+    comments: commentsOptions,
     stylistic: stylisticOptions,
     jsx: jsxOptions,
     import: importOptions,
@@ -79,6 +83,7 @@ export default function sobird<T extends Options>(
   return defineConfig(
     ignores(ignoresOptions),
     javascript(javascriptOptions),
+    comments(commentsOptions),
     jsx(jsxOptions),
     node(nodeOptions),
     imports(importOptions),

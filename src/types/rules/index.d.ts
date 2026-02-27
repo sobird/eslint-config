@@ -1,3 +1,4 @@
+import type { CommentsRules } from './comments';
 import type { ESLintRules } from './eslint';
 import type { ImportRules } from './import';
 import type { JsoncRules } from './jsonc';
@@ -14,6 +15,7 @@ import type { VueRules } from './vue';
 import type { YamlRules } from './yaml';
 
 interface Rules {
+  comments: CommentsRules;
   eslint: ESLintRules;
   import: ImportRules;
   jsonc: JsoncRules;
