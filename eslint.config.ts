@@ -34,4 +34,13 @@ export default sobird({
   vue: true,
 
   yaml: true,
+  markdown: {
+    gfm: false,
+    rules: {
+
+    },
+    blockRules: {
+
+    },
+  },
 });

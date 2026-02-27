@@ -3,7 +3,9 @@ import pluginMarkdown from '@eslint/markdown';
 
 import { MARKDOWN_FILES, MARKDOWN_IN_MARKDOWN_FILES, MARKDOWN_CODE_FILES } from '../files';
 
-import type { ESLintConfigObject, ESLintPlugin, ComposeRulesConfig } from '../types';
+import type {
+  ESLintConfigObject, ESLintPlugin, ComposeRulesConfig, RulesName,
+} from '../types';
 import type { ESLint } from 'eslint';
 
 const {
@@ -24,6 +26,7 @@ export const MARKDOWN: ESLintPlugin = {
 interface Options {
   files?: string[];
   rules?: ComposeRulesConfig<'yaml'>;
+  blockRules?: ComposeRulesConfig<Exclude<RulesName, 'yaml'>>;
 
   /**
    * Enable GFM (GitHub Flavored Markdown) support.
@@ -43,6 +46,7 @@ export function markdown(options: MarkdownOptions = true): ESLintConfigObject[] 
     files = [...MARKDOWN_FILES],
     gfm = true,
     rules = {},
+    blockRules = {},
   } = options === true ? {} : options;
 
   const { processors } = pluginMarkdown;
@@ -58,11 +62,9 @@ export function markdown(options: MarkdownOptions = true): ESLintConfigObject[] 
       name: 'sobird:markdown:processor',
       files,
       ignores: [...MARKDOWN_IN_MARKDOWN_FILES],
-      language: gfm ? 'markdown/gfm' : 'markdown/commonmark',
       processor: {
         preprocess(text, filename) {
-          const blocks = processors.markdown.preprocess(text, filename);
-          return [...blocks, { text, filename: 'self.md' }];
+          return [...processors.markdown.preprocess(text, filename), { text, filename: 'self.md' }];
         },
         postprocess(messages, filename) {
           const blockMessages = processors.markdown.postprocess(messages.slice(0, -1), filename);
@@ -73,18 +75,23 @@ export function markdown(options: MarkdownOptions = true): ESLintConfigObject[] 
       },
     },
     {
+      name: 'sobird:markdown:parser',
+      files,
+      language: gfm ? 'markdown/gfm' : 'markdown/commonmark',
+    },
+    {
       files,
       name: 'sobird:markdown:rules',
       rules: {
         'markdown/fenced-code-language': 'error',
         'markdown/heading-increment': 'error',
-        'markdown/no-bare-urls': 'error',
+        'markdown/no-bare-urls': 'off',
         'markdown/no-duplicate-definitions': 'error',
-        'markdown/no-duplicate-headings': 'error',
+        'markdown/no-duplicate-headings': 'off',
         'markdown/no-empty-definitions': 'error',
         'markdown/no-empty-images': 'error',
         'markdown/no-empty-links': 'error',
-        'markdown/no-html': 'error',
+        'markdown/no-html': 'off',
         'markdown/no-invalid-label-refs': 'error',
         'markdown/no-missing-atx-heading-space': 'error',
         // https://github.com/eslint/markdown/issues/294
@@ -206,7 +213,10 @@ export function markdown(options: MarkdownOptions = true): ESLintConfigObject[] 
         '@typescript-eslint/no-unused-vars': 'off',
         '@typescript-eslint/no-use-before-define': 'off',
 
-        // ...overrides,
+        'import/no-extraneous-dependencies': 'off',
+        'import/no-unresolved': 'off',
+
+        ...blockRules,
       },
     },
   ];

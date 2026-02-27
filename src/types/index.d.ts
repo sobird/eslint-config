@@ -3,6 +3,8 @@ import type {
 } from './rules';
 import type { Linter, ESLint, Rule } from 'eslint';
 
+export type * from './rules';
+
 export type BuiltinRulesConfig = WrapRuleConfig<BuiltinRules>;
 export type InferBuiltinRulesConfig<T> = WrapRuleConfig<InferBuiltinRules<T>>;
 export type ComposeRulesConfig<T extends RulesName = RulesName> = WrapRuleConfig<ComposeRules<T>>;

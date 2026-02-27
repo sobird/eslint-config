@@ -13,7 +13,7 @@
 - 具有一定的设计理念，但[高度可定制](#自定义)
 - [ESLint Flat配置](https://eslint.org/docs/latest/use/configure/configuration-files-new)，轻松组合！
 - 可选的[React](#react), [Next.js](#nextjs), [Vue](#vue)支持
-- 可选的[格式化程序](#formatters)支持CSS，HTML，XML等。
+<!-- - 可选的[格式化程序](#formatters)支持CSS，HTML，XML等。 -->
 - **风格原则**：简洁易读、稳定可靠、保持一致
   - 导入语句已排序，避免悬空逗号
   - 使用单引号，必须使用分号
@@ -45,7 +45,7 @@ pnpm i -D eslint eslint-config-sobird
 
 ```js
 // eslint.config.ts
-import sobird from "eslint-config-sobird";
+import sobird from 'eslint-config-sobird';
 
 export default sobird();
 ```
@@ -58,9 +58,8 @@ export default sobird();
 如果您仍然使用旧版`eslintrc`的一些配置，您可以使用[`@eslint/eslintrc`](https://www.npmjs.com/package/@eslint/eslintrc)将它们转换为flat config
 
 ```js
-import { FlatCompat } from "@eslint/eslintrc";
-// eslint.config.ts
-import sobird from "eslint-config-sobird";
+import { FlatCompat } from '@eslint/eslintrc';
+import sobird from 'eslint-config-sobird';
 
 const compat = new FlatCompat();
 
@@ -72,7 +71,8 @@ export default sobird(
   // Legacy config
   ...compat.config({
     extends: [
-      "eslint:recommended",
+      'eslint:recommended',
+
       // Other extends...
     ],
   })
@@ -102,7 +102,7 @@ For example:
 
 <details>
 <summary>
-  <img src="https://img.shields.io/badge/Visual%20Studio%20Code-007ACC?style=flat-square&logo=visual-studio-code&logoColor=white" align="center">
+  <img src="https://img.shields.io/badge/Visual%20Studio%20Code-007ACC?style=flat-square&logo=visual-studio-code&logoColor=white" alt="visual studio code" align="center" />
 </summary>
 
 <br>
@@ -125,16 +125,36 @@ For example:
 
   // 在IDE中静默样式规则，但仍然自动修复
   "eslint.rules.customizations": [
-    { "rule": "style/*", "severity": "off", "fixable": true },
-    { "rule": "format/*", "severity": "off", "fixable": true },
-    { "rule": "*-indent", "severity": "off", "fixable": true },
-    { "rule": "*-spacing", "severity": "off", "fixable": true },
-    { "rule": "*-spaces", "severity": "off", "fixable": true },
-    { "rule": "*-order", "severity": "off", "fixable": true },
-    { "rule": "*-dangle", "severity": "off", "fixable": true },
-    { "rule": "*-newline", "severity": "off", "fixable": true },
-    { "rule": "*quotes", "severity": "off", "fixable": true },
-    { "rule": "*semi", "severity": "off", "fixable": true }
+    {"rule": "style/*",
+      "severity": "off",
+      "fixable": true},
+    {"rule": "format/*",
+      "severity": "off",
+      "fixable": true},
+    {"rule": "*-indent",
+      "severity": "off",
+      "fixable": true},
+    {"rule": "*-spacing",
+      "severity": "off",
+      "fixable": true},
+    {"rule": "*-spaces",
+      "severity": "off",
+      "fixable": true},
+    {"rule": "*-order",
+      "severity": "off",
+      "fixable": true},
+    {"rule": "*-dangle",
+      "severity": "off",
+      "fixable": true},
+    {"rule": "*-newline",
+      "severity": "off",
+      "fixable": true},
+    {"rule": "*quotes",
+      "severity": "off",
+      "fixable": true},
+    {"rule": "*semi",
+      "severity": "off",
+      "fixable": true}
   ],
 
   // 为所有支持的语言启用 eslint
@@ -168,7 +188,7 @@ For example:
 
 <details>
 <summary>
-  <img src="https://img.shields.io/badge/NeoVim-%2357A143.svg?style=flat-square&logo=neovim&logoColor=white" align="center"/>
+  <img src="https://img.shields.io/badge/NeoVim-%2357A143.svg?style=flat-square&logo=neovim&logoColor=white" alt="neovim" align="center"/>
 </summary>
 
 <br>
@@ -258,7 +278,7 @@ lspconfig.eslint.setup({
 
 ```js
 // eslint.config.js
-import sobird from "eslint-config-sobird";
+import sobird from 'eslint-config-sobird';
 
 export default sobird();
 ```
@@ -267,7 +287,7 @@ export default sobird();
 
 ```js
 // eslint.config.js
-import sobird from "eslint-config-sobird";
+import sobird from 'eslint-config-sobird';
 
 export default sobird({
   // 启用风格格式规则
@@ -276,7 +296,7 @@ export default sobird({
   // 或自定义风格规则
   stylistic: {
     indent: 2, // 4或'tab'
-    quotes: "double", // 或'single'
+    quotes: 'double', // 或'single'
   },
 
   // TypeScript和Vue会自动检测，您也可以显式启用它们：
@@ -289,7 +309,8 @@ export default sobird({
 
   // 在Flat配置中不再支持`.eslintignore`，请使用`ignores`代替
   ignores: [
-    "**/fixtures",
+    '**/fixtures',
+
     // ...globs
   ]
 });
@@ -299,7 +320,7 @@ export default sobird({
 
 ```js
 // eslint.config.js
-import sobird from "eslint-config-sobird";
+import sobird from 'eslint-config-sobird';
 
 export default sobird(
   {
@@ -309,7 +330,7 @@ export default sobird(
   // From the second arguments they are ESLint Flat Configs
   // you can have multiple configs
   {
-    files: ["**/*.ts"],
+    files: ['**/*.ts'],
     rules: {},
   },
   {
@@ -324,7 +345,7 @@ export default sobird(
 
 ```js
 // eslint.config.js
-import sobird from "eslint-config-sobird";
+import sobird from 'eslint-config-sobird';
 
 export default sobird(
   {
@@ -333,15 +354,15 @@ export default sobird(
   },
   {
     // 记得在这里指定文件glob，否则可能会导致vue插件处理非vue文件
-    files: ["**/*.vue"],
+    files: ['**/*.vue'],
     rules: {
-      "vue/operator-linebreak": ["error", "before"],
+      'vue/operator-linebreak': ['error', 'before'],
     },
   },
   {
     // 没有`files`，它们是所有文件的一般规则
     rules: {
-      "style/semi": ["error", "never"],
+      'style/semi': ['error', 'never'],
     },
   }
 );
@@ -351,17 +372,17 @@ export default sobird(
 
 ```js
 // eslint.config.js
-import sobird from "eslint-config-sobird";
+import sobird from 'eslint-config-sobird';
 
 export default sobird({
   vue: {
     rules: {
-      "vue/operator-linebreak": ["error", "before"],
+      'vue/operator-linebreak': ['error', 'before'],
     },
   },
   typescript: {
     rules: {
-      "@typescript-eslint/consistent-type-definitions": ["error", "interface"],
+      '@typescript-eslint/consistent-type-definitions': ['error', 'interface'],
     },
   },
   yaml: {
@@ -378,7 +399,7 @@ export default sobird({
 
 ```js
 // eslint.config.js
-import sobird from "eslint-config-sobird";
+import sobird from 'eslint-config-sobird';
 
 export default sobird({
   vue: true
@@ -391,7 +412,7 @@ export default sobird({
 
 ```js
 // eslint.config.js
-import sobird from "eslint-config-sobird";
+import sobird from 'eslint-config-sobird';
 
 export default sobird({
   vue: {
@@ -412,7 +433,7 @@ export default sobird({
 
 ```js
 // eslint.config.js
-import sobird from "eslint-config-sobird";
+import sobird from 'eslint-config-sobird';
 
 export default sobird({
   formatters: {
@@ -421,17 +442,19 @@ export default sobird({
      * 默认情况下使用Prettier
      */
     css: true,
+
     /**
      * 格式化HTML文件
      * 默认情况下使用Prettier
      */
     html: true,
+
     /**
      * 格式化Markdown文件
      * 支持Prettier和dprint
      * 默认情况下使用Prettier
      */
-    markdown: "prettier"
+    markdown: 'prettier'
   }
 });
 ```
@@ -448,7 +471,7 @@ npm i -D eslint-plugin-format
 
 ```js
 // eslint.config.js
-import sobird from "eslint-config-sobird";
+import sobird from 'eslint-config-sobird';
 
 export default sobird({
   react: true,
@@ -467,7 +490,7 @@ npm i -D @eslint-react/eslint-plugin eslint-plugin-react-hooks eslint-plugin-rea
 
 ```js
 // eslint.config.js
-import sobird from "eslint-config-sobird";
+import sobird from 'eslint-config-sobird';
 
 export default sobird({
   nextjs: true,
@@ -486,7 +509,7 @@ npm i -D @next/eslint-plugin-next
 
 ```js
 // eslint.config.js
-import sobird from "eslint-config-sobird";
+import sobird from 'eslint-config-sobird';
 
 export default sobird({
   typescript: {

@@ -22,6 +22,7 @@ import {
   type NodeOptions,
   type VueOptions,
   type YamlOptions,
+  type MarkdownOptions,
 } from './configs';
 
 import type { InferBuiltinRulesConfig, ESLintConfigObject } from './types';
@@ -52,6 +53,7 @@ interface Options {
   node?: NodeOptions;
   vue?: VueOptions;
   yaml?: YamlOptions;
+  markdown?: MarkdownOptions;
 }
 
 export default function sobird<T extends Options>(
@@ -71,6 +73,7 @@ export default function sobird<T extends Options>(
     node: nodeOptions,
     vue: vueOptions,
     yaml: yamlOptions,
+    markdown: markdownOptions,
   } = config ?? {};
 
   return defineConfig(
@@ -86,7 +89,7 @@ export default function sobird<T extends Options>(
     react(reactOptions),
     next(nextOptions),
     yaml(yamlOptions),
-    markdown(),
+    markdown(markdownOptions),
     ...configs,
   );
 }
