@@ -36,11 +36,8 @@
     "lint": "eslint",
     "lint:fix": "eslint --fix",
     "rules:types": "tsx scripts/rules",
-    "preversion": "yarn lint:eslint",
-    "version": "git add -A .",
-    "postversion": "git push && git push --tags",
-    "prepare": "husky",
     "typecheck": "tsc --noEmit",
+    "prepare": "husky",
     "prepublishOnly": "tsx scripts/prepublish.ts"
   },
   "peerDependencies": {
