@@ -31,7 +31,7 @@
   "files": ["dist"],
   "scripts": {
     "build": "tsup",
-    "build:eslint": "eslint-config-inspector build",
+    "build:eslint": "eslint-config-inspector build --base /eslint-config",
     "test": "vitest run --passWithNoTests",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
