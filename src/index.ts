@@ -14,6 +14,7 @@ import {
   react,
   next,
   yaml,
+  toml,
   markdown,
   type CommentsOptions,
   type JavaScriptOptions,
@@ -24,6 +25,7 @@ import {
   type NodeOptions,
   type VueOptions,
   type YamlOptions,
+  type TomlOptions,
   type MarkdownOptions,
 } from './configs';
 
@@ -55,6 +57,7 @@ interface Options {
   node?: NodeOptions;
   vue?: VueOptions;
   yaml?: YamlOptions;
+  toml?: TomlOptions;
   markdown?: MarkdownOptions;
   comments?: CommentsOptions;
 }
@@ -77,6 +80,7 @@ export default function sobird<T extends Options>(
     node: nodeOptions,
     vue: vueOptions,
     yaml: yamlOptions,
+    toml: tomlOptions,
     markdown: markdownOptions,
   } = config ?? {};
 
@@ -94,6 +98,7 @@ export default function sobird<T extends Options>(
     react(reactOptions),
     next(nextOptions),
     yaml(yamlOptions),
+    toml(tomlOptions),
     markdown(markdownOptions),
     ...configs,
   );

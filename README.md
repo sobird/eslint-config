@@ -6,9 +6,9 @@
 [![javascript_code style][code-style-image]][code-style-url]
 [![Install Size][size]][size-url]
 
-- 自动修复格式（旨在独立使用 **无需** Prettier）
-- 合理的默认设置，最佳实践，只需一行配置
 - 开箱即用，支持 TypeScript、JSX、React、Vue、JSON 等多种格式。
+- 合理的默认设置，最佳实践，只需一行配置
+- 自动修复格式（旨在独立使用 **无需** Prettier）
 - 对json，yaml，toml，markdown等进行语法检查
 - 具有一定的设计理念，但[高度可定制](#自定义)
 - [ESLint Flat配置](https://eslint.org/docs/latest/use/configure/configuration-files-new)，轻松组合！
@@ -16,7 +16,7 @@
 <!-- - 可选的[格式化程序](#formatters)支持CSS，HTML，XML等。 -->
 - **风格原则**：简洁易读、稳定可靠、保持一致
   - 导入语句已排序，避免悬空逗号
-  - 使用单引号，必须使用分号
+  - 使用单引号，使用分号
   - 使用 [ESLint Stylistic](https://github.com/eslint-stylistic/eslint-stylistic)
 - 默认遵循 `.gitignore` 文件
 - 需要 ESLint `v9.5.0` 或更高版本
@@ -92,8 +92,8 @@ For example:
 ```json
 {
   "scripts": {
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint": "eslint",
+    "lint:fix": "eslint --fix"
   }
 }
 ```
@@ -272,7 +272,7 @@ lspconfig.eslint.setup({
 
 ## 自定义
 
-从v1.0开始，我们迁移到了[ESLint Flat 配置](https://eslint.org/docs/latest/use/configure/configuration-files-new)。它提供了更好的组织和组合。
+从v1.0.0开始，我们迁移到了[ESLint Flat 配置](https://eslint.org/docs/latest/use/configure/configuration-files-new)。它提供了更好的组织和组合。
 
 通常，您只需要导入 `sobird` 预设：
 
@@ -341,7 +341,7 @@ export default sobird(
 
 ### 规则覆盖
 
-某些规则仅在特定文件中启用，例如， `ts/*` 规则仅在 `.ts` 文件中启用， `vue/*` 规则仅在 `.vue` 文件中启用。如果要覆盖规则，需要指定文件扩展名：
+某些规则仅在特定文件中启用，例如， `@typescript-eslint/*` 规则仅在 `.ts` 文件中启用， `vue/*` 规则仅在 `.vue` 文件中启用。如果要覆盖规则，需要指定文件扩展名：
 
 ```js
 // eslint.config.js
@@ -362,7 +362,7 @@ export default sobird(
   {
     // 没有`files`，它们是所有文件的一般规则
     rules: {
-      'style/semi': ['error', 'never'],
+      '@stylistic/semi': ['error', 'never'],
     },
   }
 );

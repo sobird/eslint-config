@@ -19,6 +19,7 @@ import {
   TYPESCRIPT,
   VUE,
   YAML,
+  TOML,
   MARKDOWN,
   COMMENTS,
 } from '../src/configs';
@@ -41,6 +42,7 @@ const plugins = [
   JSONC,
   VUE,
   YAML,
+  TOML,
   MARKDOWN,
   COMMENTS,
 ];

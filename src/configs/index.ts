@@ -12,3 +12,4 @@ export * from './jsx';
 export * from './yaml';
 export * from './markdown';
 export * from './comments';
+export * from './toml';

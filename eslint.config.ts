@@ -34,6 +34,11 @@ export default sobird({
   vue: true,
 
   yaml: true,
+  toml: {
+    stylistic: {
+      indent: 2,
+    },
+  },
   markdown: {
     gfm: false,
     rules: {

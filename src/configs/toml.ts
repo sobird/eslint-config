@@ -1,0 +1,99 @@
+/* eslint-disable import/no-namespace */
+import pluginToml from 'eslint-plugin-toml';
+import * as parserToml from 'toml-eslint-parser';
+
+import { TOML_FILES } from '../files';
+
+import type { ESLintConfigObject, ESLintPlugin, ComposeRulesConfig } from '../types';
+import type { Options as StylisticOptions } from './stylistic';
+import type { ESLint } from 'eslint';
+
+const {
+  name,
+  version,
+  namespace = 'toml',
+} = (pluginToml as ESLint.Plugin).meta ?? {};
+
+export const TOML: ESLintPlugin = {
+  meta: {
+    pkgname: name,
+    namespace,
+    title: namespace,
+    version,
+  },
+  rules: pluginToml.rules,
+};
+
+interface Options {
+  files?: string[];
+  rules?: ComposeRulesConfig<'toml'>;
+  stylistic?: boolean | Pick<StylisticOptions, 'indent'>;
+}
+export type TomlOptions = boolean | Options;
+
+export function toml(options: TomlOptions = false): ESLintConfigObject[] {
+  if (options === false) {
+    return [];
+  }
+
+  const {
+    files = [...TOML_FILES],
+    rules = {},
+    stylistic = true,
+  } = options === true ? {} : options;
+
+  const {
+    indent = 2,
+  } = typeof stylistic === 'boolean' ? {} : stylistic;
+
+  return [
+    {
+      name: 'sobird:toml:setup',
+      plugins: {
+        toml: pluginToml,
+      },
+    },
+    {
+      files,
+      languageOptions: {
+        parser: parserToml,
+      },
+
+      // language: 'toml/toml',
+      name: 'sobird:toml:rules',
+      rules: {
+        '@stylistic/spaced-comment': 'off',
+
+        'toml/comma-style': 'error',
+        'toml/keys-order': 'error',
+        'toml/no-space-dots': 'error',
+        'toml/no-unreadable-number-separator': 'error',
+        'toml/precision-of-fractional-seconds': 'error',
+        'toml/precision-of-integer': 'error',
+        'toml/tables-order': 'error',
+
+        'toml/vue-custom-block/no-parsing-error': 'error',
+
+        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+        ...stylistic
+          ? {
+              'toml/array-bracket-newline': 'error',
+              'toml/array-bracket-spacing': 'error',
+              'toml/array-element-newline': 'error',
+              // eslint-disable-next-line no-nested-ternary
+              'toml/indent': ['error', typeof indent === 'number' ? indent : indent === 'tab' ? 'tab' : 2],
+              'toml/inline-table-curly-spacing': 'error',
+              'toml/key-spacing': 'error',
+              'toml/padding-line-between-pairs': 'error',
+              'toml/padding-line-between-tables': 'error',
+              'toml/quoted-keys': 'error',
+              'toml/spaced-comment': 'error',
+              'toml/table-bracket-spacing': 'error',
+            }
+          : {},
+
+        ...rules,
+      },
+    },
+  ];
+}

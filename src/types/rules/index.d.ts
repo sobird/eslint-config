@@ -10,6 +10,7 @@ import type { ReactRules } from './react';
 import type { ReactHooksRules } from './react-hooks';
 import type { ReactRefreshRules } from './react-refresh';
 import type { StylisticRules } from './stylistic';
+import type { TomlRules } from './toml';
 import type { TypescriptRules } from './typescript';
 import type { VueRules } from './vue';
 import type { YamlRules } from './yaml';
@@ -29,6 +30,7 @@ interface Rules {
   typescript: TypescriptRules;
   vue: VueRules;
   yaml: YamlRules;
+  toml: TomlRules;
   markdown: MarkdownRules;
 }
 
