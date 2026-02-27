@@ -32,7 +32,7 @@ export function next(options: NextOptions = env.isNext): ESLintConfigObject[] {
     return [];
   }
 
-  const { vitals = true, rules = {} } = options === true ? {} : options;
+  const { vitals = false, rules = {} } = options === true ? {} : options;
 
   const files = [...SCRIPT_FILES];
 
