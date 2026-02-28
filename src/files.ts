@@ -32,7 +32,7 @@ export const MISC_FILES = [
   ...CONF_FILES,
 ];
 
-export const EXCLUDE_FILES = [
+export const IGNORES_FILES = [
   '**/node_modules',
   '**/dist',
   '**/package-lock.json',

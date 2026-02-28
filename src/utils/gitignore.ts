@@ -25,7 +25,7 @@ export function gitignore(options: GitignoreOptions): ESLintConfigObject {
     return {};
   }
   const {
-    name = 'gitignore',
+    name = 'sobird:gitignore',
     files = [],
   } = options === true ? {} : options;
 

@@ -5,7 +5,7 @@ import { log } from '@clack/prompts';
 import chalk from 'chalk';
 import { modify, applyEdits } from 'jsonc-parser';
 
-import { vscodeSettings } from '../constants';
+import { VSCODE_SETTINGS } from '../constants';
 
 import type { Options } from '../index';
 
@@ -29,7 +29,7 @@ export async function updateVscodeSettings(options: Options): Promise<void> {
   }
 
   let updatedText = content;
-  for (const [key, value] of Object.entries(vscodeSettings)) {
+  for (const [key, value] of Object.entries(VSCODE_SETTINGS)) {
     const edits = modify(updatedText, [key], value, {
       formattingOptions: { insertSpaces: true, tabSize: 2 },
     });

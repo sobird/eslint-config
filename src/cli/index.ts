@@ -9,7 +9,7 @@ import chalk from 'chalk';
 import { Command } from 'commander';
 
 import {
-  extras, extraOptions, frameworkOptions, frameworks,
+  EXTRAS, EXTRA_OPTIONS, FRAMEWORK_OPTIONS, FRAMEWORKS,
 } from './constants';
 import {
   isGitClean, updateESLintConfig, updateVscodeSettings, updatePackageJson,
@@ -50,7 +50,7 @@ const program = new Command(name)
         },
         framework: async ({ results }) => {
           const { uncommittedConfirmed } = results;
-          const isAllValid = framework.length > 0 && framework.every(f => frameworks.includes(f));
+          const isAllValid = framework.length > 0 && framework.every(f => FRAMEWORKS.includes(f));
 
           if (!uncommittedConfirmed || isAllValid) {
             return [];
@@ -58,13 +58,13 @@ const program = new Command(name)
 
           return multiselect({
             message: chalk.reset('Select frameworks:'),
-            options: frameworkOptions,
+            options: FRAMEWORK_OPTIONS,
             required: false,
           });
         },
         extra: async ({ results }) => {
           const { uncommittedConfirmed } = results;
-          const isAllValid = extra.length > 0 && extra.every(e => extras.includes(e));
+          const isAllValid = extra.length > 0 && extra.every(e => EXTRAS.includes(e));
 
           if (!uncommittedConfirmed || isAllValid) {
             return [];
@@ -72,7 +72,7 @@ const program = new Command(name)
 
           return multiselect({
             message: chalk.reset('Select extra utils:'),
-            options: extraOptions,
+            options: EXTRA_OPTIONS,
             required: false,
           });
         },

@@ -1,6 +1,6 @@
 import c from 'chalk';
 
-export const vscodeSettings = {
+export const VSCODE_SETTINGS = {
   // Disable the default formatter, use eslint instead
   'prettier.enable': false,
   'editor.formatOnSave': false,
@@ -52,7 +52,7 @@ export const vscodeSettings = {
   ],
 };
 
-export const frameworkOptions = [
+export const FRAMEWORK_OPTIONS = [
   {
     label: c.green('Vue'),
     value: 'vue',
@@ -62,70 +62,39 @@ export const frameworkOptions = [
     value: 'react',
   },
   {
-    label: c.red('Svelte'),
-    value: 'svelte',
+    label: c.magenta('Next.js'),
+    value: 'next',
+  },
+
+  // {
+  //   label: c.red('Svelte'),
+  //   value: 'svelte',
+  // },
+  // {
+  //   label: c.magenta('Astro'),
+  //   value: 'astro',
+  // },
+  // {
+  //   label: c.cyan('Solid'),
+  //   value: 'solid',
+  // },
+  // {
+  //   label: c.blue('Slidev'),
+  //   value: 'slidev',
+  // },
+];
+
+export const FRAMEWORKS = FRAMEWORK_OPTIONS.map(({ value }) => (value));
+
+export const EXTRA_OPTIONS = [
+  {
+    label: c.red('Markdown'),
+    value: 'markdown',
   },
   {
-    label: c.magenta('Astro'),
-    value: 'astro',
-  },
-  {
-    label: c.cyan('Solid'),
-    value: 'solid',
-  },
-  {
-    label: c.blue('Slidev'),
-    value: 'slidev',
+    label: c.cyan('JSONC'),
+    value: 'jsonc',
   },
 ];
 
-export const frameworks = frameworkOptions.map(({ value }) => (value));
-
-export const extraOptions = [
-  {
-    hint: 'Use external formatters (Prettier and/or dprint) to format files that ESLint cannot handle yet (.css, .html, etc)',
-    label: c.red('Formatter'),
-    value: 'formatter',
-  },
-  {
-    label: c.cyan('UnoCSS'),
-    value: 'unocss',
-  },
-];
-
-export const extras = extraOptions.map(({ value }) => (value));
-
-export const dependenciesMap = {
-  astro: [
-    'eslint-plugin-astro',
-    'astro-eslint-parser',
-  ],
-  formatter: [
-    'eslint-plugin-format',
-  ],
-  formatterAstro: [
-    'prettier-plugin-astro',
-  ],
-  nextjs: [
-    '@next/eslint-plugin-next',
-  ],
-  react: [
-    '@eslint-react/eslint-plugin',
-    'eslint-plugin-react-hooks',
-    'eslint-plugin-react-refresh',
-  ],
-  slidev: [
-    'prettier-plugin-slidev',
-  ],
-  solid: [
-    'eslint-plugin-solid',
-  ],
-  svelte: [
-    'eslint-plugin-svelte',
-    'svelte-eslint-parser',
-  ],
-  unocss: [
-    '@unocss/eslint-plugin',
-  ],
-  vue: [],
-} as const;
+export const EXTRAS = EXTRA_OPTIONS.map(({ value }) => (value));
