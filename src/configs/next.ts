@@ -15,7 +15,7 @@ const { rules: pluginRules } = ESLintPluginNext;
 
 export const NEXT: ESLintPlugin = {
   meta: {
-    pkgname: '@next/eslint-plugin-next',
+    name: '@next/eslint-plugin-next',
     namespace: '@next/next',
     title: 'next',
   },

@@ -17,7 +17,7 @@ import type { ESLintConfigObject, ESLintPlugin, ComposeRulesConfig } from '../..
 
 export const JAVASCRIPT: ESLintPlugin = {
   meta: {
-    pkgname: 'eslint',
+    name: 'eslint',
     namespace: '',
     title: 'ESLint',
   },

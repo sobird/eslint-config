@@ -13,7 +13,7 @@ const {
 
 export const JSX_A11Y: ESLintPlugin = {
   meta: {
-    pkgname: name,
+    name,
     namespace,
     title: 'jsx-a11y',
     version,

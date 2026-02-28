@@ -15,7 +15,7 @@ const {
 } = (pluginMarkdown as ESLint.Plugin).meta ?? {};
 export const MARKDOWN: ESLintPlugin = {
   meta: {
-    pkgname: name,
+    name,
     namespace,
     title: namespace,
     version,

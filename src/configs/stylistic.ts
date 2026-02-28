@@ -5,20 +5,20 @@ import type { ESLintConfigObject, ESLintPlugin, ComposeRulesConfig } from '../ty
 import type { StylisticRules } from '../types/rules/stylistic';
 import type { ESLint } from 'eslint';
 
+const { meta, rules: pluginRules } = pluginStylistic as ESLint.Plugin;
 const {
   name = '@stylistic/eslint-plugin',
   namespace = '@stylistic',
   version,
-} = (pluginStylistic as ESLint.Plugin).meta ?? {};
-
+} = meta ?? {};
 export const STYLISTIC: ESLintPlugin = {
   meta: {
-    pkgname: name,
+    name,
+    title: 'stylistic',
     namespace,
     version,
-    title: 'stylistic',
   },
-  rules: pluginStylistic.rules,
+  rules: pluginRules,
 };
 
 type IndentRuleOptions = NonNullable<StylisticRules['@stylistic/indent']>;
@@ -96,8 +96,6 @@ export interface Options {
 }
 export type StylisticOptions = Options | boolean;
 
-const TAB_LENGTH = 4;
-
 export function stylistic(options: StylisticOptions = true): ESLintConfigObject[] {
   if (options === false) {
     return [];
@@ -155,7 +153,7 @@ export function stylistic(options: StylisticOptions = true): ESLintConfigObject[
       offsetTernaryExpressions: true,
       outerIIFEBody: 1,
       SwitchCase: 1,
-      tabLength: indentLevel === 'tab' ? TAB_LENGTH : indentLevel,
+      tabLength: indentLevel === 'tab' ? 4 : indentLevel,
       VariableDeclarator: 1,
     } satisfies IndentRuleOptions[1],
   ] = Array.isArray(indent) ? indent : [indent];

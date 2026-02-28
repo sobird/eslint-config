@@ -10,7 +10,7 @@ const {
 } = (pluginComments as ESLint.Plugin).meta ?? {};
 export const COMMENTS: ESLintPlugin = {
   meta: {
-    pkgname: name,
+    name,
     namespace,
     title: 'comments',
     version,

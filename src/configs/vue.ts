@@ -16,7 +16,7 @@ const {
 
 export const VUE: ESLintPlugin = {
   meta: {
-    pkgname: name,
+    name,
     namespace,
     title: namespace,
     version,

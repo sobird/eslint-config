@@ -7,19 +7,22 @@ import type { Options as StylisticOptions } from './stylistic';
 import type { ESLint } from 'eslint';
 
 const {
+  meta,
+  rules: pluginRules,
+} = pluginToml as ESLint.Plugin;
+const {
   name,
   version,
   namespace = 'toml',
-} = (pluginToml as ESLint.Plugin).meta ?? {};
-
+} = meta ?? {};
 export const TOML: ESLintPlugin = {
   meta: {
-    pkgname: name,
+    name,
     namespace,
     title: namespace,
     version,
   },
-  rules: pluginToml.rules,
+  rules: pluginRules,
 };
 
 interface Options {

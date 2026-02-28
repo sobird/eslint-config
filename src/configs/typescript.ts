@@ -26,7 +26,7 @@ const {
 
 export const TYPESCRIPT: ESLintPlugin = {
   meta: {
-    pkgname: name,
+    name,
     namespace,
     version,
     title: 'typescript',

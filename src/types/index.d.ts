@@ -33,14 +33,10 @@ export type ExactProps<T> = {
 
 export type ESLintPlugin = Pick<ESLint.Plugin, 'rules'> & {
   meta: {
-    pkgname?: string;
-    version?: string;
-
-    /**
-     * rule prefix
-     */
-    namespace: string;
+    name?: string;
     title: string;
+    version?: string;
+    namespace: string;
   };
 
 };

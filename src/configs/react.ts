@@ -14,7 +14,7 @@ const { rules } = eslintPluginReact;
 
 export const REACT: ESLintPlugin = {
   meta: {
-    pkgname: 'eslint-plugin-react',
+    name: 'eslint-plugin-react',
     namespace: 'react',
     title: 'react',
   },
@@ -22,7 +22,7 @@ export const REACT: ESLintPlugin = {
 };
 export const REACT_HOOKS: ESLintPlugin = {
   meta: {
-    pkgname: eslintPluginReactHooks.meta.name,
+    name: eslintPluginReactHooks.meta.name,
     namespace: 'react-hooks',
     title: 'react-hooks',
     version: eslintPluginReactHooks.meta.version,
@@ -31,7 +31,7 @@ export const REACT_HOOKS: ESLintPlugin = {
 };
 export const REACT_REFRESH: ESLintPlugin = {
   meta: {
-    pkgname: (eslintPluginReactRefresh as ESLint.Plugin).meta?.name,
+    name: (eslintPluginReactRefresh as ESLint.Plugin).meta?.name,
     namespace: 'react-refresh',
     title: 'react-refresh',
     version: (eslintPluginReactRefresh as ESLint.Plugin).meta?.version,

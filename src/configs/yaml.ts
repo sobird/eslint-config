@@ -15,7 +15,7 @@ const {
 } = (eslintPluginYml as ESLint.Plugin).meta ?? {};
 export const YAML: ESLintPlugin = {
   meta: {
-    pkgname: name,
+    name,
     namespace,
     title: namespace,
     version,

@@ -10,7 +10,7 @@ const {
 
 export const NODE: ESLintPlugin = {
   meta: {
-    pkgname: name,
+    name,
     namespace,
     version,
     title: 'node',

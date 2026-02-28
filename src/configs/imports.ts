@@ -13,7 +13,7 @@ const { rules: pluginRules } = eslintPluginImport;
 
 export const IMPORT: ESLintPlugin = {
   meta: {
-    pkgname: 'eslint-plugin-import',
+    name: 'eslint-plugin-import',
     namespace,
     title: 'import',
   },

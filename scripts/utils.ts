@@ -88,7 +88,7 @@ function escapeJsonPointer(str: string): string {
 export function ESlintPluginRulesToJSONSchema(plugin: ESLintPlugin): JSONSchema4 {
   const { meta: pluginMeta, rules = {} } = plugin;
   const {
-    pkgname, version, namespace, title,
+    name, version, namespace, title,
   } = pluginMeta;
 
   let prefix = '';
@@ -146,8 +146,8 @@ export function ESlintPluginRulesToJSONSchema(plugin: ESLintPlugin): JSONSchema4
   const properties: Record<string, JSONSchema4> = Object.fromEntries(entries);
   const description = [`${entries.length} ESLint rules for ${title}\n`];
 
-  if (pkgname !== undefined && pkgname !== '') {
-    description.push(`@package \`${pkgname}\``);
+  if (name !== undefined && name !== '') {
+    description.push(`@package \`${name}\``);
   }
   if (namespace !== '') {
     description.push(`@namespace \`${namespace}\``);

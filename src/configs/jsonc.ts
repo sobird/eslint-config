@@ -15,9 +15,9 @@ const {
 
 export const JSONC: ESLintPlugin = {
   meta: {
-    pkgname: name,
-    namespace,
+    name,
     title: namespace,
+    namespace,
     version,
   },
   rules: pluginRules,
