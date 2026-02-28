@@ -110,9 +110,9 @@ export function jsonc(options: JsoncOptions = true): ESLintConfigObject[] {
         // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
         ...stylistic
           ? {
-              'jsonc/array-bracket-newline': 'error',
+              'jsonc/array-bracket-newline': 'off',
               'jsonc/array-bracket-spacing': ['error', 'never'],
-              'jsonc/array-element-newline': 'error',
+              'jsonc/array-element-newline': 'off',
               'jsonc/comma-dangle': ['error', 'never'],
               'jsonc/comma-style': ['error', 'last'],
               // eslint-disable-next-line no-nested-ternary
