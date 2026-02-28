@@ -125,36 +125,56 @@ For example:
 
   // 在IDE中静默样式规则，但仍然自动修复
   "eslint.rules.customizations": [
-    {"rule": "style/*",
+    {
+      "rule": "style/*",
       "severity": "off",
-      "fixable": true},
-    {"rule": "format/*",
+      "fixable": true
+    },
+    {
+      "rule": "format/*",
       "severity": "off",
-      "fixable": true},
-    {"rule": "*-indent",
+      "fixable": true
+    },
+    {
+      "rule": "*-indent",
       "severity": "off",
-      "fixable": true},
-    {"rule": "*-spacing",
+      "fixable": true
+    },
+    {
+      "rule": "*-spacing",
       "severity": "off",
-      "fixable": true},
-    {"rule": "*-spaces",
+      "fixable": true
+    },
+    {
+      "rule": "*-spaces",
       "severity": "off",
-      "fixable": true},
-    {"rule": "*-order",
+      "fixable": true
+    },
+    {
+      "rule": "*-order",
       "severity": "off",
-      "fixable": true},
-    {"rule": "*-dangle",
+      "fixable": true
+    },
+    {
+      "rule": "*-dangle",
       "severity": "off",
-      "fixable": true},
-    {"rule": "*-newline",
+      "fixable": true
+    },
+    {
+      "rule": "*-newline",
       "severity": "off",
-      "fixable": true},
-    {"rule": "*quotes",
+      "fixable": true
+    },
+    {
+      "rule": "*quotes",
       "severity": "off",
-      "fixable": true},
-    {"rule": "*semi",
+      "fixable": true
+    },
+    {
+      "rule": "*semi",
       "severity": "off",
-      "fixable": true}
+      "fixable": true
+    }
   ],
 
   // 为所有支持的语言启用 eslint

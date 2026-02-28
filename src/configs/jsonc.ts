@@ -12,7 +12,6 @@ const {
   namespace = 'jsonc',
   version,
 } = meta ?? {};
-
 export const JSONC: ESLintPlugin = {
   meta: {
     name,
@@ -37,11 +36,7 @@ export function jsonc(options: JsoncOptions = true): ESLintConfigObject[] {
     return [];
   }
   const {
-    files = [...JSON_FILES],
-    rules = {},
-    stylistic = true,
-    package: pkg = true,
-    tsconfig = true,
+    files = [...JSON_FILES], rules = {}, stylistic = true, package: pkg = true, tsconfig = true,
   } = options === true ? {} : options;
 
   const {
@@ -64,7 +59,6 @@ export function jsonc(options: JsoncOptions = true): ESLintConfigObject[] {
         'max-lines': 'off',
         'no-unused-expressions': 'off',
         'no-unused-vars': 'off',
-
         'jsonc/auto': 'error',
 
         // 'jsonc/comma-dangle': 'error',
