@@ -3,11 +3,12 @@ import pluginComments from '@eslint-community/eslint-plugin-eslint-comments';
 import type { ESLintConfigObject, ESLintPlugin, ComposeRulesConfig } from '../types';
 import type { ESLint } from 'eslint';
 
+const { meta, rules: pluginRules } = pluginComments as ESLint.Plugin;
 const {
   name = '@eslint-community/eslint-plugin-eslint-comments',
   namespace = 'eslint-comments',
   version,
-} = (pluginComments as ESLint.Plugin).meta ?? {};
+} = meta ?? {};
 export const COMMENTS: ESLintPlugin = {
   meta: {
     name,
@@ -15,7 +16,7 @@ export const COMMENTS: ESLintPlugin = {
     title: 'comments',
     version,
   },
-  rules: pluginComments.rules,
+  rules: pluginRules,
 };
 
 interface Options {

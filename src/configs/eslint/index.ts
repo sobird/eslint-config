@@ -56,7 +56,7 @@ export const JAVASCRIPT_RULES: NonNullable<ESLintConfigObject['rules']> = {
     // },
   ],
   'block-scoped-var': 'error',
-  'camelcase': ['error', { properties: 'never', ignoreDestructuring: true }],
+  'camelcase': ['error', { properties: 'never', ignoreDestructuring: true, ignoreImports: true }],
   'capitalized-comments': [
     'off',
     'never',

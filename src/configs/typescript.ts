@@ -172,15 +172,64 @@ export function typescript(options: TypeScriptOptions = env.isTypeScript): ESLin
           allowFunctionsWithoutTypeParameters: true,
           allowIIFEs: true,
         }],
-        '@typescript-eslint/explicit-member-accessibility': 'error',
-
-        // todo
-        '@typescript-eslint/explicit-module-boundary-types': 'warn',
+        '@typescript-eslint/explicit-member-accessibility': ['error', {
+          accessibility: 'explicit', // 总体要求显式声明
+          overrides: {
+            accessors: 'explicit', // getter/setter 必须写
+            constructors: 'no-public', // 构造函数没必要写 public（它是默认的且唯一的）
+            methods: 'explicit', // 方法必须写
+            properties: 'explicit', // 属性必须写
+            parameterProperties: 'explicit', // 参数属性（构造函数里的简写）也必须写
+          },
+        }],
+        '@typescript-eslint/explicit-module-boundary-types': ['error', {
+          allowArgumentsExplicitlyTypedAsAny: false, // 不允许直接写 any 作为参数类型
+          allowDirectConstAssertionInArrowFunctions: true, // 允许箭头函数使用 as const 推断
+          allowHigherOrderFunctions: true, // 允许高阶函数返回一个不需要显式类型的函数
+          allowTypedFunctionExpressions: true, // 如果变量已经定义了类型，函数表达式就不必重复写
+        }],
         'init-declarations': 'off',
         '@typescript-eslint/init-declarations': JAVASCRIPT_RULES['init-declarations'],
         'max-params': 'off',
         '@typescript-eslint/max-params': ['off'],
-        '@typescript-eslint/member-ordering': 'error',
+        '@typescript-eslint/member-ordering': ['error',
+          {
+            default: [
+              // 静态
+              'static-readonly-field',
+              'static-field',
+              'static-get',
+              'static-set',
+              'static-method',
+
+              // 公共实例
+              'public-readonly-field',
+              'public-field',
+              'public-get',
+              'public-set',
+
+              // 受保护实例
+              'protected-readonly-field',
+              'protected-field',
+              'protected-get',
+              'protected-set',
+
+              // 私有实例
+              'private-readonly-field',
+              'private-field',
+              'private-get',
+              'private-set',
+
+              // 构造器
+              'constructor',
+
+              // 方法
+              'public-method',
+              'protected-method',
+              'private-method',
+            ],
+          },
+        ],
         '@typescript-eslint/method-signature-style': 'error',
 
         // This rule requires type information to run, which comes with performance tradeoffs.
@@ -370,7 +419,14 @@ export function typescript(options: TypeScriptOptions = env.isTypeScript): ESLin
 
         // This rule requires type information to run, which comes with performance tradeoffs.
         '@typescript-eslint/only-throw-error': JAVASCRIPT_RULES['no-throw-literal'],
-        '@typescript-eslint/parameter-properties': 'error',
+        '@typescript-eslint/parameter-properties': ['error', {
+          prefer: 'class-property',
+          allow: [
+            'private readonly',
+            'protected readonly',
+            'public readonly',
+          ],
+        }],
         '@typescript-eslint/prefer-as-const': 'error',
         'prefer-destructuring': 'off',
 

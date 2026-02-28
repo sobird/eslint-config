@@ -42,11 +42,11 @@ export function imports(options: ImportOptions = true): ESLintConfigObject[] {
       },
       rules: {
         'import/no-unresolved': ['error', { commonjs: false, caseSensitive: true }],
-        'import/named': 'error',
-        'import/default': 'error',
-        'import/namespace': 'error',
+        'import/named': 'off',
+        'import/default': 'off',
+        'import/namespace': 'off',
         'import/no-namespace': 'error',
-        'import/export': 'error',
+        'import/export': 'off',
         'import/no-mutable-exports': 'error',
         'import/extensions': ['error', 'ignorePackages',
           {
@@ -60,7 +60,7 @@ export function imports(options: ImportOptions = true): ESLintConfigObject[] {
             css: 'always',
           },
         ],
-        'import/no-restricted-paths': 'error',
+        'import/no-restricted-paths': 'off',
         'import/no-internal-modules': 'off',
 
         // If you do not mind having your exports spread across the file, you can safely turn this rule off.
@@ -71,21 +71,21 @@ export function imports(options: ImportOptions = true): ESLintConfigObject[] {
         // @see @typescript-eslint/no-import-type-side-effects
         // 'import/consistent-type-specifier-style': ['error', 'prefer-inline'],
         'import/no-self-import': 'error',
-        'import/no-cycle': 'error',
+        'import/no-cycle': ['error', { maxDepth: 10 }],
         'import/no-named-default': 'error',
         'import/no-named-as-default': 'error',
-        'import/no-named-as-default-member': 'warn',
+        'import/no-named-as-default-member': 'off',
         'import/no-anonymous-default-export': ['error', {
           allowArray: false,
-          allowArrowFunction: true,
-          allowAnonymousClass: true,
-          allowAnonymousFunction: true,
+          allowArrowFunction: false,
+          allowAnonymousClass: false,
+          allowAnonymousFunction: false,
           allowCallExpression: true, // The true value here is for backward compatibility
-          allowNew: false,
-          allowLiteral: false,
-          allowObject: false,
+          // allowNew: false,
+          // allowLiteral: false,
+          allowObject: true,
         }],
-        'import/no-unused-modules': 'error',
+        'import/no-unused-modules': 'off',
         // see @typescript-eslint/no-require-imports
         'import/no-commonjs': 'error',
         'import/no-amd': 'error',
@@ -93,7 +93,7 @@ export function imports(options: ImportOptions = true): ESLintConfigObject[] {
         // 'no-duplicate-imports': 'off',
         'import/no-duplicates': ['error', { 'considerQueryString': true, 'prefer-inline': true }],
         'import/first': 'error',
-        'import/max-dependencies': ['warn', {
+        'import/max-dependencies': ['off', {
           max: 15,
           ignoreTypeImports: true,
         }],
@@ -121,9 +121,7 @@ export function imports(options: ImportOptions = true): ESLintConfigObject[] {
             '**/rollup.config.{js,ts}',
             '**/rollup.config.*.{js,ts}',
             '**/tsup.config.*',
-            '**/gulpfile.{js,ts}', // ⚠️ Gulp 很少用了
-            '**/gulpfile.*.{js,ts}', // ⚠️ Gulp 很少用了
-            '**/Gruntfile{,.js}', // ❌ Grunt 已过时
+
             // 框架
             '**/next.config.{js,ts}',
             '**/nuxt.config.{js,ts}',
@@ -141,9 +139,7 @@ export function imports(options: ImportOptions = true): ESLintConfigObject[] {
             // 其他
             '**/eslint.config.{js,mjs,cjs,ts}',
             '**/prisma/seed.{js,ts}',
-            '**/protractor.conf.{js,ts}', // ❌ Protractor 已弃用（Angular 官方放弃）
-            '**/protractor.conf.*.{js,ts}',
-            '**/karma.conf.{js,ts}', // ⚠️ Karma 很少用了（现代用 Vitest/Jest）
+
             // 脚本
             '**/scripts/**/*',
             '**/bin/**/*',
@@ -201,19 +197,21 @@ export function imports(options: ImportOptions = true): ESLintConfigObject[] {
         }],
         'import/newline-after-import': ['error', { considerComments: true, count: 1 }],
 
-        //
         'import/prefer-default-export': 'off',
-
-        // this is a terrible rule, do not use it. todo?
         'import/no-default-export': 'off',
-
-        // this is a terrible rule, do not use it.
         'import/no-named-export': 'off',
-        'import/no-dynamic-require': 'error',
+
+        // see import/no-commonjs: 'error'
+        'import/no-dynamic-require': 'off',
         'import/unambiguous': 'off',
-        'import/no-unassigned-import': 'error',
-        'import/no-useless-path-segments': 'error',
-        'import/dynamic-import-chunkname': 'error',
+        'import/no-unassigned-import': 'off',
+        'import/no-useless-path-segments': ['error', { commonjs: true }],
+        'import/dynamic-import-chunkname': ['off',
+          {
+            importFunctions: ['import'],
+            webpackChunkNameMatch: '[0-9a-zA-Z-_/.]+',
+          },
+        ],
         'import/no-import-module-exports': 'error',
         'import/no-empty-named-blocks': 'error',
         'import/enforce-node-protocol-usage': ['error', 'always'],
@@ -221,7 +219,7 @@ export function imports(options: ImportOptions = true): ESLintConfigObject[] {
         'import/no-deprecated': 'error',
 
         // 废弃的别名规则也保留并添加前缀
-        'import/imports-first': 'error',
+        // 'import/imports-first': 'error',
 
         ...rules,
       },
@@ -229,7 +227,7 @@ export function imports(options: ImportOptions = true): ESLintConfigObject[] {
     {
       files: ['**/*.test.ts', '**/*.spec.ts'],
       rules: {
-        'import/no-named-as-default-member': 'off',
+
       },
     },
   ];

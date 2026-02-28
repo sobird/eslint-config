@@ -1,15 +1,15 @@
 import { defineConfig, type Config } from 'eslint/config';
 
 import {
-  comments,
-  imports,
+  ignores,
   javascript,
+  comments,
+  stylistic,
+  imports,
   jsx,
   jsonc,
   node,
-  stylistic,
   typescript,
-  ignores,
   vue,
   react,
   next,

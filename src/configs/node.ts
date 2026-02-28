@@ -77,7 +77,7 @@ export function node(options: NodeOptions = true): ESLintConfigObject[] {
         'n/no-unsupported-features/es-builtins': 'error',
         'n/no-unsupported-features/es-syntax': 'error',
         'n/no-unsupported-features/node-builtins': 'error',
-        'n/prefer-global/buffer': ['error', 'never'],
+        'n/prefer-global/buffer': 'error',
         'n/prefer-global/console': 'error',
 
         // todo

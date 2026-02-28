@@ -256,9 +256,9 @@ export function stylistic(options: StylisticOptions = true): ESLintConfigObject[
         }],
         '@stylistic/lines-between-class-members': ['error', 'always', { exceptAfterSingleLine: true }],
 
-        '@stylistic/max-len': ['error', 150, 2, {
+        '@stylistic/max-len': ['error', 120, 2, {
           ignoreUrls: true,
-          ignoreComments: false,
+          ignoreComments: true,
           ignoreRegExpLiterals: true,
           ignoreStrings: true,
           ignoreTemplateLiterals: true,
