@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/sobird/eslint-config/compare/v1.0.0...v1.0.1) (2026-02-28)
+
+
+### Bug Fixes
+
+* add tsx devDeps ([9aede68](https://github.com/sobird/eslint-config/commit/9aede687f53c0a360e31ed1f48c52cbe396d7209))
+
 ## 1.0.0 (2026-02-28)
 
 
