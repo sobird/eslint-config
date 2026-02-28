@@ -22,6 +22,7 @@ export default sobird({
   },
   jsonc: {
     // package: false,
+    stylistic: true,
   },
   jsx: {
     a11y: true,

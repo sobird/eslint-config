@@ -2,7 +2,8 @@ import pluginJSONC from 'eslint-plugin-jsonc';
 
 import { JSON_FILES } from '../files';
 
-import type { ESLintConfigObject, ESLintPlugin } from '../types';
+import type { ESLintConfigObject, ESLintPlugin, ComposeRulesConfig } from '../types';
+import type { Options as StylisticOptions } from './stylistic';
 import type { ESLint } from 'eslint';
 
 const { meta, rules: pluginRules } = pluginJSONC as ESLint.Plugin;
@@ -23,9 +24,11 @@ export const JSONC: ESLintPlugin = {
 };
 
 interface Options {
+  files?: string[];
+  rules?: ComposeRulesConfig<'jsonc'>;
+  stylistic?: boolean | Pick<StylisticOptions, 'indent'>;
   package?: boolean;
   tsconfig?: boolean;
-  rules?: {};
 }
 export type JsoncOptions = Options | boolean;
 
@@ -34,36 +37,43 @@ export function jsonc(options: JsoncOptions = true): ESLintConfigObject[] {
     return [];
   }
   const {
+    files = [...JSON_FILES],
+    rules = {},
+    stylistic = true,
     package: pkg = true,
     tsconfig = true,
-    rules = {},
   } = options === true ? {} : options;
+
+  const {
+    indent = 2,
+  } = typeof stylistic === 'boolean' ? {} : stylistic;
 
   return [
     {
-      name: 'sobird:jsonc:rules',
-      files: [...JSON_FILES],
+      name: 'sobird:jsonc:setup',
       plugins: {
         jsonc: pluginJSONC as ESLint.Plugin,
       },
+    },
+    {
+      name: 'sobird:jsonc:rules',
+      files,
       language: 'jsonc/x',
       rules: {
         'strict': 'off',
         'max-lines': 'off',
         'no-unused-expressions': 'off',
         'no-unused-vars': 'off',
-        'jsonc/array-bracket-newline': 'error',
-        'jsonc/array-bracket-spacing': 'error',
-        'jsonc/array-element-newline': 'error',
 
         'jsonc/auto': 'error',
-        'jsonc/comma-dangle': 'error',
-        'jsonc/comma-style': 'error',
 
-        // todo
-        'jsonc/indent': ['error', 2],
+        // 'jsonc/comma-dangle': 'error',
+        // 'jsonc/comma-style': 'error',
+
+        // 'jsonc/indent': ['error', typeof indent === 'number' ? indent : indent === 'tab' ? 'tab' : 2],
         'jsonc/key-name-casing': 'off',
-        'jsonc/key-spacing': ['error', { afterColon: true, beforeColon: false }],
+
+        // 'jsonc/key-spacing': ['error', { afterColon: true, beforeColon: false }],
         'jsonc/no-bigint-literals': 'error',
         'jsonc/no-binary-expression': 'error',
         'jsonc/no-binary-numeric-literals': 'error',
@@ -90,17 +100,39 @@ export function jsonc(options: JsoncOptions = true): ESLintConfigObject[] {
         'jsonc/no-undefined-value': 'error',
         'jsonc/no-unicode-codepoint-escapes': 'error',
         'jsonc/no-useless-escape': 'error',
-        'jsonc/object-curly-newline': 'error',
-        'jsonc/object-curly-spacing': 'error',
-        'jsonc/object-property-newline': 'error',
-        'jsonc/quote-props': 'error',
-        'jsonc/quotes': 'error',
+
+        // 'jsonc/object-curly-newline': 'error',
+        // 'jsonc/object-curly-spacing': 'error',
+        // 'jsonc/object-property-newline': 'error',
+        // 'jsonc/quote-props': 'error',
+        // 'jsonc/quotes': 'error',
 
         // 'jsonc/sort-array-values': 'error',
         // 'jsonc/sort-keys': 'error',
         'jsonc/space-unary-ops': 'error',
         'jsonc/valid-json-number': 'error',
         'jsonc/vue-custom-block/no-parsing-error': 'error',
+
+        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+        ...stylistic
+          ? {
+              'jsonc/array-bracket-newline': 'error',
+              'jsonc/array-bracket-spacing': ['error', 'never'],
+              'jsonc/array-element-newline': 'error',
+              'jsonc/comma-dangle': ['error', 'never'],
+              'jsonc/comma-style': ['error', 'last'],
+              // eslint-disable-next-line no-nested-ternary
+              'jsonc/indent': ['error', typeof indent === 'number' ? indent : indent === 'tab' ? 'tab' : 2],
+              'jsonc/key-spacing': ['error', { afterColon: true, beforeColon: false }],
+              'jsonc/object-curly-newline': ['error', { consistent: true, multiline: true }],
+              'jsonc/object-curly-spacing': ['error', 'always'],
+              'jsonc/object-property-newline': ['error', { allowAllPropertiesOnSameLine: true }],
+              'jsonc/quote-props': 'error',
+
+              // must use double
+              'jsonc/quotes': 'error',
+            }
+          : {},
 
         ...rules,
       },
