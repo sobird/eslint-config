@@ -1,6 +1,4 @@
-/* eslint-disable import/no-namespace */
 import pluginToml from 'eslint-plugin-toml';
-import * as parserToml from 'toml-eslint-parser';
 
 import { TOML_FILES } from '../files';
 
@@ -55,12 +53,8 @@ export function toml(options: TomlOptions = false): ESLintConfigObject[] {
     },
     {
       files,
-      languageOptions: {
-        parser: parserToml,
-      },
-
-      // language: 'toml/toml',
       name: 'sobird:toml:rules',
+      language: 'toml/toml',
       rules: {
         '@stylistic/spaced-comment': 'off',
 
