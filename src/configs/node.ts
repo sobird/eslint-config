@@ -2,12 +2,12 @@ import pluginNode from 'eslint-plugin-n';
 
 import type { ESLintConfigObject, ESLintPlugin, ComposeRulesConfig } from '../types';
 
+const { meta = {}, rules: pluginRules } = pluginNode;
 const {
   name = 'eslint-plugin-n',
-  version,
   namespace = 'n',
-} = pluginNode.meta ?? {};
-
+  version,
+} = meta;
 export const NODE: ESLintPlugin = {
   meta: {
     name,
@@ -15,7 +15,7 @@ export const NODE: ESLintPlugin = {
     version,
     title: 'node',
   },
-  rules: pluginNode.rules,
+  rules: pluginRules,
 };
 
 interface Options {
@@ -31,10 +31,13 @@ export function node(options: NodeOptions = true): ESLintConfigObject[] {
 
   return [
     {
-      name: 'sobird:node',
+      name: 'sobird:node:setup',
       plugins: {
         [namespace]: pluginNode,
       },
+    },
+    {
+      name: 'sobird:node:rules',
       rules: {
         'n/callback-return': 'error',
         'n/exports-style': 'error',
@@ -100,8 +103,8 @@ export function node(options: NodeOptions = true): ESLintConfigObject[] {
         ...rules,
       },
     },
-
     {
+      name: 'sobird:node:disables',
       files: ['**/*.test.ts', '**/*.test.js', 'scripts/**/*'],
       rules: {
         // 测试/脚本文件不检查「未发布导入」（因为这些文件本身不会被发布）

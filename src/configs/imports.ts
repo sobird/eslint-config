@@ -225,6 +225,7 @@ export function imports(options: ImportOptions = true): ESLintConfigObject[] {
       },
     },
     {
+      name: 'sobird:imports:disables',
       files: ['**/*.test.ts', '**/*.spec.ts'],
       rules: {
 
