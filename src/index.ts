@@ -33,7 +33,7 @@ import {
   type MarkdownOptions,
 } from './configs';
 
-import type { InferBuiltinRulesConfig, ESLintConfigObject } from './types';
+import type { ESLintConfigObject } from './types';
 
 interface Options {
   ignores?: IgnoresOptions;
@@ -66,10 +66,7 @@ interface Options {
   comments?: CommentsOptions;
 }
 
-export default function sobird<T extends Options>(
-  config?: Omit<T, 'rules'> & { rules?: InferBuiltinRulesConfig<T> },
-  ...configs: ESLintConfigObject[]
-): Config[] {
+export default function sobird(config?: Options, ...configs: ESLintConfigObject[]): Config[] {
   const {
     ignores: ignoresOptions,
     javascript: javascriptOptions,
