@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.4](https://github.com/sobird/eslint-config/compare/v1.0.3...v1.0.4) (2026-03-01)
+
+
+### Bug Fixes
+
+* remove formatter related functions docs ([22e0976](https://github.com/sobird/eslint-config/commit/22e09765cb8894b6d23eedb107f187c54d26e8f0))
+
 ## [1.0.3](https://github.com/sobird/eslint-config/compare/v1.0.2...v1.0.3) (2026-03-01)
 
 
