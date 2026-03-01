@@ -5,7 +5,7 @@ import sobird from './src';
 export default sobird({
   ignores: {
     gitignore: true,
-    ignores: ['**/*.sobird'],
+    ignores: ['src/types/rules/**'],
   },
   javascript: {
     rules: {

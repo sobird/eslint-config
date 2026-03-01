@@ -50,6 +50,6 @@ const plugins = [
 for (const plugin of plugins) {
   const { meta: { title } } = plugin;
   const schema = ESlintPluginRulesToJSONSchema(plugin);
-  const result = await compile(schema, '', { bannerComment: '/* eslint-disable eslint-comments/no-unlimited-disable */\n/* eslint-disable */' });
+  const result = await compile(schema, '', { bannerComment: '/* GENERATED, DO NOT EDIT DIRECTLY */' });
   await fs.writeFile(path.join(dir, `${title.toLowerCase()}.d.ts`), result);
 }
