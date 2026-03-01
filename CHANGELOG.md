@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.0.3](https://github.com/sobird/eslint-config/compare/v1.0.2...v1.0.3) (2026-03-01)
+
+
+### Bug Fixes
+
+* ignores src/types/rules/** ([f1f6674](https://github.com/sobird/eslint-config/commit/f1f6674c6d9f01435ac26c289fabc26ea132ade9))
+* name: typescript disable type checked ([dfa7b32](https://github.com/sobird/eslint-config/commit/dfa7b321afdb1ec9900066dd3df28dc2ee1dd8ab))
+* remove package exports ([e424a53](https://github.com/sobird/eslint-config/commit/e424a53f2e6b6c4899751751a32299826142886f))
+
 ## [1.0.2](https://github.com/sobird/eslint-config/compare/v1.0.1...v1.0.2) (2026-03-01)
 
 
