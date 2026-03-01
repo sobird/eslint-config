@@ -1,24 +1,25 @@
-import eslintPluginJsxA11y from 'eslint-plugin-jsx-a11y';
+import pluginJSXA11y from 'eslint-plugin-jsx-a11y';
 
 import { JSX_FILES } from '../files';
 
 import type { ESLintConfigObject, ESLintPlugin } from '../types';
 import type { ESLint } from 'eslint';
 
+const { meta = {}, rules: pluginRules } = pluginJSXA11y as ESLint.Plugin;
 const {
   name = 'eslint-plugin-jsx-a11y',
   namespace = 'jsx-a11y',
   version,
-} = (eslintPluginJsxA11y as ESLint.Plugin).meta ?? {};
+} = meta;
 
 export const JSX_A11Y: ESLintPlugin = {
   meta: {
     name,
     namespace,
-    title: 'jsx-a11y',
+    title: namespace,
     version,
   },
-  rules: eslintPluginJsxA11y.rules,
+  rules: pluginRules,
 };
 
 export interface JsxOptions {
@@ -52,7 +53,7 @@ export function jsx(options: JsxOptions = {}): ESLintConfigObject[] {
       name: 'sobird:jsx-a11y:rules',
       files: [...JSX_FILES],
       plugins: {
-        'jsx-a11y': eslintPluginJsxA11y,
+        'jsx-a11y': pluginJSXA11y,
       },
       // https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/main/src/index.js
       rules: {

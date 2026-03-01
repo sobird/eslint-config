@@ -1,8 +1,8 @@
 /* eslint-disable max-lines */
-
-import eslintPluginReact from 'eslint-plugin-react';
-import eslintPluginReactHooks from 'eslint-plugin-react-hooks';
-import eslintPluginReactRefresh from 'eslint-plugin-react-refresh';
+import { fixupPluginRules } from '@eslint/compat';
+import pluginReact from 'eslint-plugin-react';
+import pluginReactHooks from 'eslint-plugin-react-hooks';
+import pluginReactRefresh from 'eslint-plugin-react-refresh';
 
 import { REACT_FILES, TS_FILES } from '../files';
 import { env } from '../utils';
@@ -10,7 +10,7 @@ import { env } from '../utils';
 import type { ESLintConfigObject, ESLintPlugin } from '../types';
 import type { ESLint } from 'eslint';
 
-const { rules } = eslintPluginReact;
+const { rules } = pluginReact;
 
 export const REACT: ESLintPlugin = {
   meta: {
@@ -22,21 +22,21 @@ export const REACT: ESLintPlugin = {
 };
 export const REACT_HOOKS: ESLintPlugin = {
   meta: {
-    name: eslintPluginReactHooks.meta.name,
+    name: pluginReactHooks.meta.name,
     namespace: 'react-hooks',
     title: 'react-hooks',
-    version: eslintPluginReactHooks.meta.version,
+    version: pluginReactHooks.meta.version,
   },
-  rules: eslintPluginReactHooks.rules,
+  rules: pluginReactHooks.rules,
 };
 export const REACT_REFRESH: ESLintPlugin = {
   meta: {
-    name: (eslintPluginReactRefresh as ESLint.Plugin).meta?.name,
+    name: (pluginReactRefresh as ESLint.Plugin).meta?.name,
     namespace: 'react-refresh',
     title: 'react-refresh',
-    version: (eslintPluginReactRefresh as ESLint.Plugin).meta?.version,
+    version: (pluginReactRefresh as ESLint.Plugin).meta?.version,
   },
-  rules: eslintPluginReactRefresh.rules,
+  rules: pluginReactRefresh.rules,
 };
 
 interface Options {
@@ -64,10 +64,10 @@ export function react(options: ReactOptions = env.isReact): ESLintConfigObject[]
     {
       name: 'sobird:react:setup',
       plugins: {
-        'react': eslintPluginReact,
+        'react': fixupPluginRules(pluginReact),
         // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
-        'react-hooks': eslintPluginReactHooks as ESLint.Plugin,
-        'react-refresh': eslintPluginReactRefresh,
+        'react-hooks': pluginReactHooks as ESLint.Plugin,
+        'react-refresh': pluginReactRefresh,
       },
       settings: {
         react: {
@@ -450,6 +450,7 @@ export function react(options: ReactOptions = env.isReact): ESLintConfigObject[]
           },
         } : {},
     {
+      name: 'sobird:react:disables',
       files: [...TS_FILES],
       rules: {
         'react/jsx-uses-vars': 'off',

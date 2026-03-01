@@ -8,11 +8,12 @@ import { env } from '../utils';
 import type { ESLintConfigObject, ESLintPlugin, ComposeRulesConfig } from '../types';
 import type { ESLint } from 'eslint';
 
+const { meta = {}, rules } = pluginVue as ESLint.Plugin;
 const {
   name = 'eslint-plugin-vue',
   version,
   namespace = 'vue',
-} = (pluginVue as ESLint.Plugin).meta ?? {};
+} = meta;
 
 export const VUE: ESLintPlugin = {
   meta: {
@@ -21,7 +22,7 @@ export const VUE: ESLintPlugin = {
     title: namespace,
     version,
   },
-  rules: pluginVue.rules,
+  rules,
 };
 
 interface Options {
@@ -34,7 +35,7 @@ export function vue(options: VueOptions = env.isVue): ESLintConfigObject[] {
   if (options === false) {
     return [];
   }
-  const { rules = {}, version: vueVersion = 3 } = options === true ? {} : options;
+  const { rules: overrides = {}, version: vueVersion = 3 } = options === true ? {} : options;
   const files = [...VUE_FILES];
 
   return [
@@ -409,7 +410,7 @@ export function vue(options: VueOptions = env.isVue): ESLintConfigObject[] {
         'vue/quote-props': ['error', 'consistent-as-needed'],
         'vue/space-in-parens': ['error', 'never'],
         'vue/template-curly-spacing': 'error',
-        ...rules,
+        ...overrides,
       },
     },
   ];

@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import pluginJSONC from 'eslint-plugin-jsonc';
 
 import { JSON_FILES } from '../files';
@@ -6,12 +7,12 @@ import type { ESLintConfigObject, ESLintPlugin, ComposeRulesConfig } from '../ty
 import type { Options as StylisticOptions } from './stylistic';
 import type { ESLint } from 'eslint';
 
-const { meta, rules: pluginRules } = pluginJSONC as ESLint.Plugin;
+const { meta = {}, rules: pluginRules } = pluginJSONC as ESLint.Plugin;
 const {
   name = 'eslint-plugin-jsonc',
   namespace = 'jsonc',
   version,
-} = meta ?? {};
+} = meta;
 export const JSONC: ESLintPlugin = {
   meta: {
     name,
@@ -47,7 +48,7 @@ export function jsonc(options: JsoncOptions = true): ESLintConfigObject[] {
     {
       name: 'sobird:jsonc:setup',
       plugins: {
-        jsonc: pluginJSONC as ESLint.Plugin,
+        jsonc: pluginJSONC,
       },
     },
     {
@@ -131,9 +132,10 @@ export function jsonc(options: JsoncOptions = true): ESLintConfigObject[] {
         ...rules,
       },
     },
+
     pkg
       ? {
-          name: 'sobird:sort/package',
+          name: 'sobird:jsonc:package.json',
           files: ['**/package.json'],
           rules: {
             'jsonc/sort-array-values': [
@@ -221,7 +223,7 @@ export function jsonc(options: JsoncOptions = true): ESLintConfigObject[] {
 
     tsconfig
       ? {
-          name: 'sobird:sort/tsconfig',
+          name: 'sobird:jsonc:tsconfig.json',
           files: ['**/tsconfig.json', '**/tsconfig.*.json'],
           rules: {
             'jsonc/sort-keys': [

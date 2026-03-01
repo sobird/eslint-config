@@ -520,13 +520,17 @@ export function javascript(options: JavaScriptOptions = {}): ESLintConfigObject[
   const { rules } = options;
   return [
     {
-      name: 'sobird:javascript:rules',
+      name: 'sobird:javascript:setup',
       languageOptions: {
         ecmaVersion: 'latest',
         sourceType: 'module',
         globals: {
           ...globals.browser,
+          ...globals.es2021,
           ...globals.node,
+          document: 'readonly',
+          navigator: 'readonly',
+          window: 'readonly',
         },
         parserOptions: {
           ecmaVersion: 'latest',
@@ -539,13 +543,17 @@ export function javascript(options: JavaScriptOptions = {}): ESLintConfigObject[
       linterOptions: {
         reportUnusedDisableDirectives: true,
       },
+
+    },
+    {
+      name: 'sobird:javascript:rules',
       rules: {
         ...JAVASCRIPT_RULES,
         ...rules,
       },
     },
     {
-      name: 'sobird:javascript:test',
+      name: 'sobird:javascript:disables',
       files: [...MISC_FILES],
       rules: {
         'no-console': 'off',

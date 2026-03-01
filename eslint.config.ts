@@ -32,8 +32,8 @@ export default sobird({
       '@next/next/google-font-display': 'error',
     },
   },
+  react: true,
   vue: true,
-
   yaml: true,
   toml: {
     stylistic: {

@@ -8,11 +8,12 @@ import type {
 } from '../types';
 import type { ESLint } from 'eslint';
 
+const { meta = {}, rules: pluginRules } = pluginMarkdown as ESLint.Plugin;
 const {
   name,
   version,
   namespace = 'markdown',
-} = (pluginMarkdown as ESLint.Plugin).meta ?? {};
+} = meta;
 export const MARKDOWN: ESLintPlugin = {
   meta: {
     name,
@@ -20,13 +21,13 @@ export const MARKDOWN: ESLintPlugin = {
     title: namespace,
     version,
   },
-  rules: (pluginMarkdown as ESLint.Plugin).rules,
+  rules: pluginRules,
 };
 
 interface Options {
   files?: string[];
-  rules?: ComposeRulesConfig<'yaml'>;
-  blockRules?: ComposeRulesConfig<Exclude<RulesName, 'yaml'>>;
+  rules?: ComposeRulesConfig<'markdown'>;
+  blockRules?: ComposeRulesConfig<Exclude<RulesName, 'markdown'>>;
 
   /**
    * Enable GFM (GitHub Flavored Markdown) support.

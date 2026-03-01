@@ -160,11 +160,11 @@ export function stylistic(options: StylisticOptions = true): ESLintConfigObject[
 
   return [
     {
-      name: 'sobird:stylistic',
+      name: 'sobird:stylistic:rules',
       plugins: {
         [namespace]: pluginStylistic,
       },
-      rules: { // 96
+      rules: {
         '@stylistic/array-bracket-newline': 'off',
         '@stylistic/array-bracket-spacing': ['error', 'never'],
         '@stylistic/array-element-newline': 'off',

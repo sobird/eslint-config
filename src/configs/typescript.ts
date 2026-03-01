@@ -19,7 +19,7 @@ import type { ESLint } from 'eslint';
 
 const { rules: pluginRules, meta = {} } = plugin as ESLint.Plugin;
 const {
-  name = 'eslint-plugin-n',
+  name = 'typescript-eslint',
   version = '',
   namespace = '@typescript-eslint',
 } = meta;
@@ -35,7 +35,6 @@ export const TYPESCRIPT: ESLintPlugin = {
 };
 
 interface Options {
-
   /**
    * Enable typescript type checking
    */

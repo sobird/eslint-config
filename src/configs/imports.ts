@@ -1,21 +1,26 @@
 // https://github.com/import-js/eslint-plugin-import/blob/main/config/typescript.js
 
 import { fixupPluginRules } from '@eslint/compat';
-import eslintPluginImport from 'eslint-plugin-import';
+import pluginImport from 'eslint-plugin-import';
 
 import { SCRIPT_FILES } from '../files';
 
 import type { ESLintConfigObject, ESLintPlugin, ComposeRulesConfig } from '../types';
+import type { ESLint } from 'eslint';
 
-const namespace = 'import';
-
-const { rules: pluginRules } = eslintPluginImport;
+const { meta = {}, rules: pluginRules } = pluginImport as ESLint.Plugin;
+const {
+  name = 'eslint-plugin-import',
+  namespace = 'import',
+  version,
+} = meta;
 
 export const IMPORT: ESLintPlugin = {
   meta: {
-    name: 'eslint-plugin-import',
+    name,
     namespace,
-    title: 'import',
+    title: namespace,
+    version,
   },
   rules: pluginRules,
 };
@@ -35,11 +40,14 @@ export function imports(options: ImportOptions = true): ESLintConfigObject[] {
 
   return [
     {
+      name: 'sobird:imports:setup',
+      plugins: {
+        [namespace]: fixupPluginRules(pluginImport),
+      },
+    },
+    {
       name: 'sobird:imports:rules',
       files: [...SCRIPT_FILES],
-      plugins: {
-        [namespace]: fixupPluginRules(eslintPluginImport),
-      },
       rules: {
         'import/no-unresolved': ['error', { commonjs: false, caseSensitive: true }],
         'import/named': 'off',
