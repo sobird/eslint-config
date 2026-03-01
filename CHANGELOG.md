@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.0.2](https://github.com/sobird/eslint-config/compare/v1.0.1...v1.0.2) (2026-03-01)
+
+
+### Bug Fixes
+
+* eslint plugin meta, rules deconstruct ([56082c3](https://github.com/sobird/eslint-config/commit/56082c3aaea82e269b2a8c562c5b5a7920326500))
+* eslint plugin use independent configuration ([527d57a](https://github.com/sobird/eslint-config/commit/527d57af2f0024961873869c33321ae9b32228bc))
+* eslint-plugin-yml use language: yml/yaml ([6494f38](https://github.com/sobird/eslint-config/commit/6494f384c0daac2de60a2852b5180422b30e537d))
+* **imports:** 📏 make rules more elegant ([4d05de7](https://github.com/sobird/eslint-config/commit/4d05de7d34762883f81ba6b8e163ee1bc03ff0f2))
+* update markdown codeRules ([07662a9](https://github.com/sobird/eslint-config/commit/07662a95c63deeeaac2c5cd8fd6198fde96c550c))
+
 ## [1.0.1](https://github.com/sobird/eslint-config/compare/v1.0.0...v1.0.1) (2026-02-28)
 
 
