@@ -6,10 +6,7 @@ import type { ESLintConfigObject, ESLintPlugin, ComposeRulesConfig } from '../ty
 import type { Options as StylisticOptions } from './stylistic';
 import type { ESLint } from 'eslint';
 
-const {
-  meta,
-  rules: pluginRules,
-} = pluginToml as ESLint.Plugin;
+const { meta, rules: pluginRules } = pluginToml as ESLint.Plugin;
 const {
   name,
   version,

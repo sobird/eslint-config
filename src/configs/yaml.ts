@@ -1,6 +1,4 @@
-/* eslint-disable import/no-namespace */
-import eslintPluginYml from 'eslint-plugin-yml';
-import * as yamlParser from 'yaml-eslint-parser';
+import pluginYaml from 'eslint-plugin-yml';
 
 import { YAML_FILES } from '../files';
 
@@ -8,11 +6,13 @@ import type { ESLintConfigObject, ESLintPlugin, ComposeRulesConfig } from '../ty
 import type { Options as StylisticOptions } from './stylistic';
 import type { ESLint } from 'eslint';
 
+const { meta = {}, rules } = pluginYaml as ESLint.Plugin;
 const {
   name,
   version,
   namespace = 'yaml',
-} = (eslintPluginYml as ESLint.Plugin).meta ?? {};
+} = meta;
+
 export const YAML: ESLintPlugin = {
   meta: {
     name,
@@ -20,7 +20,7 @@ export const YAML: ESLintPlugin = {
     title: namespace,
     version,
   },
-  rules: eslintPluginYml.rules,
+  rules,
 };
 
 interface Options {
@@ -37,7 +37,7 @@ export function yaml(options: YamlOptions = false): ESLintConfigObject[] {
 
   const {
     files = [...YAML_FILES],
-    rules = {},
+    rules: overrides = {},
     stylistic = true,
   } = options === true ? {} : options;
 
@@ -50,15 +50,13 @@ export function yaml(options: YamlOptions = false): ESLintConfigObject[] {
     {
       name: 'sobird:yaml:setup',
       plugins: {
-        yaml: eslintPluginYml,
+        yaml: pluginYaml,
       },
     },
     {
-      files,
-      languageOptions: {
-        parser: yamlParser,
-      },
       name: 'sobird:yaml:rules',
+      files,
+      language: 'yaml/yaml',
       rules: {
         '@stylistic/spaced-comment': 'off',
 
@@ -88,7 +86,7 @@ export function yaml(options: YamlOptions = false): ESLintConfigObject[] {
             }
           : {},
 
-        ...rules,
+        ...overrides,
       },
     },
   ];

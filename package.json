@@ -37,7 +37,7 @@
     "test": "vitest run --passWithNoTests",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
-    "rules:types": "tsx scripts/rules",
+    "generate:ruleTypes": "tsx scripts/rules",
     "typecheck": "tsc --noEmit",
     "prepare": "husky",
     "prepublishOnly": "tsx scripts/prepublish.ts"
@@ -71,8 +71,7 @@
     "jsonc-parser": "^3.3.1",
     "ts-morph": "^27.0.2",
     "typescript-eslint": "^8.56.1",
-    "vue-eslint-parser": "^10.4.0",
-    "yaml-eslint-parser": "^2.0.0"
+    "vue-eslint-parser": "^10.4.0"
   },
   "devDependencies": {
     "@commander-js/extra-typings": "^14.0.0",

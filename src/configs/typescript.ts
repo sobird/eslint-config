@@ -17,7 +17,7 @@ import type { ESLintConfigObject, ESLintPlugin, ComposeRulesConfig } from '../ty
 import type { ParserOptions } from '@typescript-eslint/parser';
 import type { ESLint } from 'eslint';
 
-const { rules: pluginRules, meta = {} } = plugin as ESLint.Plugin;
+const { meta = {}, rules } = plugin as ESLint.Plugin;
 const {
   name = 'typescript-eslint',
   version = '',
@@ -31,7 +31,7 @@ export const TYPESCRIPT: ESLintPlugin = {
     version,
     title: 'typescript',
   },
-  rules: pluginRules,
+  rules,
 };
 
 interface Options {
@@ -49,7 +49,7 @@ export function typescript(options: TypeScriptOptions = env.isTypeScript): ESLin
     return [];
   }
 
-  const { typed = false, parserOptions = {}, rules = {} } = options === true ? {} : options;
+  const { typed = false, parserOptions = {}, rules: overrides = {} } = options === true ? {} : options;
   const { disableTypeChecked } = configs;
 
   const files = [...TS_FILES];
@@ -128,7 +128,6 @@ export function typescript(options: TypeScriptOptions = env.isTypeScript): ESLin
         'prefer-const': 'error', // ts provides better types with const
         'prefer-rest-params': 'error', // ts provides better types with rest args over arguments
         'prefer-spread': 'error', // ts transpiles spread to apply, so no need for manual apply
-        ...rules,
       },
     },
     {
@@ -172,20 +171,20 @@ export function typescript(options: TypeScriptOptions = env.isTypeScript): ESLin
           allowIIFEs: true,
         }],
         '@typescript-eslint/explicit-member-accessibility': ['error', {
-          accessibility: 'explicit', // 总体要求显式声明
+          accessibility: 'explicit',
           overrides: {
-            accessors: 'explicit', // getter/setter 必须写
-            constructors: 'no-public', // 构造函数没必要写 public（它是默认的且唯一的）
-            methods: 'explicit', // 方法必须写
-            properties: 'explicit', // 属性必须写
-            parameterProperties: 'explicit', // 参数属性（构造函数里的简写）也必须写
+            accessors: 'explicit',
+            constructors: 'no-public',
+            methods: 'explicit',
+            properties: 'explicit',
+            parameterProperties: 'explicit',
           },
         }],
         '@typescript-eslint/explicit-module-boundary-types': ['error', {
-          allowArgumentsExplicitlyTypedAsAny: false, // 不允许直接写 any 作为参数类型
-          allowDirectConstAssertionInArrowFunctions: true, // 允许箭头函数使用 as const 推断
-          allowHigherOrderFunctions: true, // 允许高阶函数返回一个不需要显式类型的函数
-          allowTypedFunctionExpressions: true, // 如果变量已经定义了类型，函数表达式就不必重复写
+          allowArgumentsExplicitlyTypedAsAny: false,
+          allowDirectConstAssertionInArrowFunctions: true,
+          allowHigherOrderFunctions: true,
+          allowTypedFunctionExpressions: true,
         }],
         'init-declarations': 'off',
         '@typescript-eslint/init-declarations': JAVASCRIPT_RULES['init-declarations'],
@@ -237,6 +236,7 @@ export function typescript(options: TypeScriptOptions = env.isTypeScript): ESLin
           {
             selector: 'variable',
             format: ['camelCase', 'PascalCase', 'UPPER_CASE'],
+            leadingUnderscore: 'allowSingleOrDouble',
           },
 
           // Allow camelCase functions (23.2), and PascalCase functions (23.8)
@@ -250,7 +250,8 @@ export function typescript(options: TypeScriptOptions = env.isTypeScript): ESLin
           {
             selector: 'typeLike',
             format: ['PascalCase'],
-          }],
+          },
+        ],
         'no-array-constructor': 'off',
         '@typescript-eslint/no-array-constructor': JAVASCRIPT_RULES['no-array-constructor'],
 
@@ -520,6 +521,8 @@ export function typescript(options: TypeScriptOptions = env.isTypeScript): ESLin
 
         // This rule requires type information to run, which comes with performance tradeoffs.
         '@typescript-eslint/use-unknown-in-catch-callback-variable': 'error',
+
+        ...overrides,
       },
     },
     (typed ? {} : disableTypeChecked),
