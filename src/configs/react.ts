@@ -53,7 +53,7 @@ export function react(options: ReactOptions = env.isReact): ESLintConfigObject[]
     return [];
   }
   const {
-    hooks = true, refresh = true, files = REACT_FILES, rules: userRules = {},
+    hooks = true, refresh = true, files = REACT_FILES, rules: overrides = {},
   } = options === true ? {} : options;
 
   const {
@@ -460,7 +460,7 @@ export function react(options: ReactOptions = env.isReact): ESLintConfigObject[]
       name: 'sobird:react:overrides',
       files,
       rules: {
-        ...userRules,
+        ...overrides,
       },
     },
   ];

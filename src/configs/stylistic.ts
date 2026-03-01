@@ -5,7 +5,7 @@ import type { ESLintConfigObject, ESLintPlugin, ComposeRulesConfig } from '../ty
 import type { StylisticRules } from '../types/rules/stylistic';
 import type { ESLint } from 'eslint';
 
-const { meta, rules: pluginRules } = pluginStylistic as ESLint.Plugin;
+const { meta, rules } = pluginStylistic as ESLint.Plugin;
 const {
   name = '@stylistic/eslint-plugin',
   namespace = '@stylistic',
@@ -18,7 +18,7 @@ export const STYLISTIC: ESLintPlugin = {
     namespace,
     version,
   },
-  rules: pluginRules,
+  rules,
 };
 
 type IndentRuleOptions = NonNullable<StylisticRules['@stylistic/indent']>;
@@ -110,7 +110,7 @@ export function stylistic(options: StylisticOptions = true): ESLintConfigObject[
     semi = true,
     quotes = 'single',
     jsx = true,
-    rules = {},
+    rules: overrides = {},
   } = options === true ? {} : options;
 
   const [
@@ -375,7 +375,7 @@ export function stylistic(options: StylisticOptions = true): ESLintConfigObject[
         // todo
         '@stylistic/yield-star-spacing': ['error', 'both'],
 
-        ...rules,
+        ...overrides,
       },
     },
   ];

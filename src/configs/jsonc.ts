@@ -7,7 +7,7 @@ import type { ESLintConfigObject, ESLintPlugin, ComposeRulesConfig } from '../ty
 import type { Options as StylisticOptions } from './stylistic';
 import type { ESLint } from 'eslint';
 
-const { meta = {}, rules: pluginRules } = pluginJSONC as ESLint.Plugin;
+const { meta = {}, rules } = pluginJSONC as ESLint.Plugin;
 const {
   name = 'eslint-plugin-jsonc',
   namespace = 'jsonc',
@@ -20,7 +20,7 @@ export const JSONC: ESLintPlugin = {
     namespace,
     version,
   },
-  rules: pluginRules,
+  rules,
 };
 
 interface Options {
@@ -37,7 +37,7 @@ export function jsonc(options: JsoncOptions = true): ESLintConfigObject[] {
     return [];
   }
   const {
-    files = [...JSON_FILES], rules = {}, stylistic = true, package: pkg = true, tsconfig = true,
+    files = [...JSON_FILES], rules: overrides = {}, stylistic = true, package: pkg = true, tsconfig = true,
   } = options === true ? {} : options;
 
   const {
@@ -129,7 +129,7 @@ export function jsonc(options: JsoncOptions = true): ESLintConfigObject[] {
             }
           : {},
 
-        ...rules,
+        ...overrides,
       },
     },
 

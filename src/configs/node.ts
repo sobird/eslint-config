@@ -2,7 +2,7 @@ import pluginNode from 'eslint-plugin-n';
 
 import type { ESLintConfigObject, ESLintPlugin, ComposeRulesConfig } from '../types';
 
-const { meta = {}, rules: pluginRules } = pluginNode;
+const { meta = {}, rules } = pluginNode;
 const {
   name = 'eslint-plugin-n',
   namespace = 'n',
@@ -15,7 +15,7 @@ export const NODE: ESLintPlugin = {
     version,
     title: 'node',
   },
-  rules: pluginRules,
+  rules,
 };
 
 interface Options {
@@ -27,7 +27,7 @@ export function node(options: NodeOptions = true): ESLintConfigObject[] {
   if (options === false) {
     return [];
   }
-  const { rules = {} } = options === true ? {} : options;
+  const { rules: overrides = {} } = options === true ? {} : options;
 
   return [
     {
@@ -100,7 +100,7 @@ export function node(options: NodeOptions = true): ESLintConfigObject[] {
         'n/no-hide-core-modules': 'error',
 
         // 'n/shebang': 'error',
-        ...rules,
+        ...overrides,
       },
     },
     {

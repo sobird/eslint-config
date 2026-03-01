@@ -3,7 +3,7 @@ import pluginComments from '@eslint-community/eslint-plugin-eslint-comments';
 import type { ESLintConfigObject, ESLintPlugin, ComposeRulesConfig } from '../types';
 import type { ESLint } from 'eslint';
 
-const { meta = {}, rules: pluginRules } = pluginComments as ESLint.Plugin;
+const { meta = {}, rules } = pluginComments as ESLint.Plugin;
 const {
   name = '@eslint-community/eslint-plugin-eslint-comments',
   namespace = 'eslint-comments',
@@ -16,7 +16,7 @@ export const COMMENTS: ESLintPlugin = {
     title: 'comments',
     version,
   },
-  rules: pluginRules,
+  rules,
 };
 
 interface Options {
@@ -29,7 +29,7 @@ export function comments(options: CommentsOptions = true): ESLintConfigObject[] 
     return [];
   }
   const {
-    rules = {},
+    rules: overrides = {},
   } = options === true ? {} : options;
 
   return [
@@ -44,7 +44,7 @@ export function comments(options: CommentsOptions = true): ESLintConfigObject[] 
         'eslint-comments/no-unlimited-disable': 'error',
         'eslint-comments/no-unused-enable': 'error',
 
-        ...rules,
+        ...overrides,
       },
     },
   ];

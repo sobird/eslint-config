@@ -6,7 +6,7 @@ import type { ESLintConfigObject, ESLintPlugin, ComposeRulesConfig } from '../ty
 import type { Options as StylisticOptions } from './stylistic';
 import type { ESLint } from 'eslint';
 
-const { meta, rules: pluginRules } = pluginToml as ESLint.Plugin;
+const { meta, rules } = pluginToml as ESLint.Plugin;
 const {
   name,
   version,
@@ -19,7 +19,7 @@ export const TOML: ESLintPlugin = {
     title: namespace,
     version,
   },
-  rules: pluginRules,
+  rules,
 };
 
 interface Options {
@@ -36,7 +36,7 @@ export function toml(options: TomlOptions = false): ESLintConfigObject[] {
 
   const {
     files = [...TOML_FILES],
-    rules = {},
+    rules: overrides = {},
     stylistic = true,
   } = options === true ? {} : options;
 
@@ -86,7 +86,7 @@ export function toml(options: TomlOptions = false): ESLintConfigObject[] {
             }
           : {},
 
-        ...rules,
+        ...overrides,
       },
     },
   ];

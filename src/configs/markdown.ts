@@ -8,7 +8,7 @@ import type {
 } from '../types';
 import type { ESLint } from 'eslint';
 
-const { meta = {}, rules: pluginRules } = pluginMarkdown as ESLint.Plugin;
+const { meta = {}, rules } = pluginMarkdown as ESLint.Plugin;
 const {
   name,
   version,
@@ -21,7 +21,7 @@ export const MARKDOWN: ESLintPlugin = {
     title: namespace,
     version,
   },
-  rules: pluginRules,
+  rules,
 };
 
 interface Options {
@@ -46,7 +46,7 @@ export function markdown(options: MarkdownOptions = true): ESLintConfigObject[] 
   const {
     files = [...MARKDOWN_FILES],
     gfm = true,
-    rules = {},
+    rules: overrides = {},
     blockRules = {},
   } = options === true ? {} : options;
 
@@ -106,7 +106,7 @@ export function markdown(options: MarkdownOptions = true): ESLintConfigObject[] 
         'markdown/require-alt-text': 'error',
         'markdown/table-column-count': 'error',
 
-        ...rules,
+        ...overrides,
       },
     },
     {

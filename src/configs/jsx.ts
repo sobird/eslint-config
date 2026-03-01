@@ -5,7 +5,7 @@ import { JSX_FILES } from '../files';
 import type { ESLintConfigObject, ESLintPlugin } from '../types';
 import type { ESLint } from 'eslint';
 
-const { meta = {}, rules: pluginRules } = pluginJSXA11y as ESLint.Plugin;
+const { meta = {}, rules } = pluginJSXA11y as ESLint.Plugin;
 const {
   name = 'eslint-plugin-jsx-a11y',
   namespace = 'jsx-a11y',
@@ -19,7 +19,7 @@ export const JSX_A11Y: ESLintPlugin = {
     title: namespace,
     version,
   },
-  rules: pluginRules,
+  rules,
 };
 
 export interface JsxOptions {

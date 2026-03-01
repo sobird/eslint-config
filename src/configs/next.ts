@@ -11,7 +11,7 @@ import { env } from '../utils';
 
 import type { ESLintConfigObject, ESLintPlugin, ComposeRulesConfig } from '../types';
 
-const { rules: pluginRules } = ESLintPluginNext;
+const { rules } = ESLintPluginNext;
 
 export const NEXT: ESLintPlugin = {
   meta: {
@@ -19,7 +19,7 @@ export const NEXT: ESLintPlugin = {
     namespace: '@next/next',
     title: 'next',
   },
-  rules: pluginRules,
+  rules,
 };
 
 interface Options {
@@ -32,7 +32,7 @@ export function next(options: NextOptions = env.isNext): ESLintConfigObject[] {
     return [];
   }
 
-  const { vitals = false, rules = {} } = options === true ? {} : options;
+  const { vitals = false, rules: overrides = {} } = options === true ? {} : options;
 
   const files = [...SCRIPT_FILES];
 
@@ -87,7 +87,7 @@ export function next(options: NextOptions = env.isNext): ESLintConfigObject[] {
             }
           : {}),
 
-        ...rules,
+        ...overrides,
       },
     },
   ];

@@ -5,7 +5,7 @@ import sobird from './src';
 export default sobird({
   ignores: {
     gitignore: true,
-    ignores: [],
+    ignores: ['**/*.sobird'],
   },
   javascript: {
     rules: {
@@ -15,38 +15,35 @@ export default sobird({
   typescript: {
     typed: true,
   },
+  comments: true,
   import: {
-    rules: {
-      //
-    },
+    rules: {},
   },
   jsonc: {
-    // package: false,
     stylistic: true,
   },
   jsx: {
     a11y: true,
   },
+  markdown: {
+    gfm: false,
+    rules: {},
+    blockRules: {},
+  },
   next: {
+    vitals: true,
     rules: {
       '@next/next/google-font-display': 'error',
     },
   },
+  node: true,
   react: true,
+  stylistic: true,
   vue: true,
-  yaml: true,
   toml: {
     stylistic: {
       indent: 2,
     },
   },
-  markdown: {
-    gfm: false,
-    rules: {
-
-    },
-    blockRules: {
-
-    },
-  },
+  yaml: true,
 });

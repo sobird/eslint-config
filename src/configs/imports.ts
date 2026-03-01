@@ -8,7 +8,7 @@ import { SCRIPT_FILES } from '../files';
 import type { ESLintConfigObject, ESLintPlugin, ComposeRulesConfig } from '../types';
 import type { ESLint } from 'eslint';
 
-const { meta = {}, rules: pluginRules } = pluginImport as ESLint.Plugin;
+const { meta = {}, rules } = pluginImport as ESLint.Plugin;
 const {
   name = 'eslint-plugin-import',
   namespace = 'import',
@@ -22,7 +22,7 @@ export const IMPORT: ESLintPlugin = {
     title: namespace,
     version,
   },
-  rules: pluginRules,
+  rules,
 };
 
 interface Options {
@@ -35,7 +35,7 @@ export function imports(options: ImportOptions = true): ESLintConfigObject[] {
     return [];
   }
   const {
-    rules = {},
+    rules: overrides = {},
   } = options === true ? {} : options;
 
   return [
@@ -229,7 +229,7 @@ export function imports(options: ImportOptions = true): ESLintConfigObject[] {
         // 废弃的别名规则也保留并添加前缀
         // 'import/imports-first': 'error',
 
-        ...rules,
+        ...overrides,
       },
     },
     {
