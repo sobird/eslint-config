@@ -40,7 +40,7 @@ export function vue(options: VueOptions = env.isVue): ESLintConfigObject[] {
 
   return [
     {
-      name: 'sobird:vue',
+      name: 'sobird:vue:setup',
       plugins: {
         [namespace]: pluginVue,
       },

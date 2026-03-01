@@ -525,6 +525,9 @@ export function typescript(options: TypeScriptOptions = env.isTypeScript): ESLin
         ...overrides,
       },
     },
-    (typed ? {} : disableTypeChecked),
+    {
+      name: 'sobird:typescript:disable:typeChecked',
+      ...(typed ? {} : disableTypeChecked),
+    },
   ];
 }
