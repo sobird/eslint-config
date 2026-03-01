@@ -28,7 +28,7 @@ export default sobird({
   markdown: {
     gfm: false,
     rules: {},
-    blockRules: {},
+    codeRules: {},
   },
   next: {
     vitals: true,
