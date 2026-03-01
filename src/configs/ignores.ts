@@ -46,12 +46,14 @@ export function ignores(options: IgnoresOptions = true): ESLintConfigObject[] {
     : (options === true ? {} : options);
 
   const config = gitignore(gitignoreOptions);
-  config.ignores?.push(...userIgnores);
 
   return [
     {
       name: 'sobird:ignores',
-      ignores: [...IGNORES_FILES],
+      ignores: [
+        ...IGNORES_FILES,
+        ...userIgnores,
+      ],
     },
     config,
   ];

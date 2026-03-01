@@ -13,7 +13,7 @@
 - 具有一定的设计理念，但[高度可定制](#自定义)
 - [ESLint Flat配置](https://eslint.org/docs/latest/use/configure/configuration-files-new)，轻松组合！
 - 可选的[React](#react), [Next.js](#nextjs), [Vue](#vue)支持
-<!-- - 可选的[格式化程序](#formatters)支持CSS，HTML，XML等。 -->
+<!-- - 可选的[格式化程序](#格式化器)支持CSS，HTML，XML等。 -->
 - **风格原则**：简洁易读、稳定可靠、保持一致
   - 导入语句已排序，避免悬空逗号
   - 使用单引号，使用分号
@@ -447,7 +447,7 @@ export default sobird({
 
 我们为特定的使用场景提供了一些可选的配置，默认情况下不包含它们的依赖。这些可选配置允许您根据项目的具体需求来选择性地引入和使用，从而避免不必要的依赖引入和性能开销。您可以根据项目需要，选择启用或禁用这些可选配置。如果您想了解更多关于如何使用这些可选配置的信息，可以查阅相关文档或在社区中寻求帮助。
 
-#### 格式化器
+<!-- #### 格式化器
 
 使用外部格式化器格式化ESLint无法处理的文件（`.css`，`.html`等）。由[`eslint-plugin-format`](https://github.com/antfu/eslint-plugin-format)提供支持。
 
@@ -483,7 +483,7 @@ export default sobird({
 
 ```bash
 npm i -D eslint-plugin-format
-```
+``` -->
 
 #### React
 
