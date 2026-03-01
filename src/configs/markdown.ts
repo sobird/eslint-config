@@ -27,7 +27,7 @@ export const MARKDOWN: ESLintPlugin = {
 interface Options {
   files?: string[];
   rules?: ComposeRulesConfig<'markdown'>;
-  blockRules?: ComposeRulesConfig<Exclude<RulesName, 'markdown'>>;
+  codeRules?: ComposeRulesConfig<Exclude<RulesName, 'markdown'>>;
 
   /**
    * Enable GFM (GitHub Flavored Markdown) support.
@@ -47,7 +47,7 @@ export function markdown(options: MarkdownOptions = true): ESLintConfigObject[] 
     files = [...MARKDOWN_FILES],
     gfm = true,
     rules: overrides = {},
-    blockRules = {},
+    codeRules = {},
   } = options === true ? {} : options;
 
   const { processors } = pluginMarkdown;
@@ -179,7 +179,7 @@ export function markdown(options: MarkdownOptions = true): ESLintConfigObject[] 
         'import/no-extraneous-dependencies': 'off',
         'import/no-unresolved': 'off',
 
-        ...blockRules,
+        ...codeRules,
       },
     },
   ];
