@@ -498,7 +498,6 @@ export const JAVASCRIPT_RULES: NonNullable<ESLintConfigObject['rules']> = {
 interface Options {
   rules?: ComposeRulesConfig<'eslint'>;
 }
-
 export type JavaScriptOptions = Options;
 
 export function javascript(options: JavaScriptOptions = {}): ESLintConfigObject[] {

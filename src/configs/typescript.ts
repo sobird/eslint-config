@@ -10,7 +10,7 @@
 import { parser, plugin } from 'typescript-eslint';
 
 import { JAVASCRIPT_RULES } from './eslint';
-import { TS_FILES, SCRIPT_FILES } from '../files';
+import { TS_FILES, SCRIPT_FILES, MISC_FILES } from '../files';
 import { env } from '../utils';
 
 import type { ESLintConfigObject, ESLintPlugin, ComposeRulesConfig } from '../types';
@@ -309,7 +309,7 @@ export function typescript(options: TypeScriptOptions = env.isTypeScript): ESLin
 
     typed
       ? {
-          name: 'sobird:typescript:typed:rules',
+          name: 'sobird:typescript:typed',
           files,
           rules: {
             // This rule requires type information to run, which comes with performance tradeoffs.
@@ -547,5 +547,13 @@ export function typescript(options: TypeScriptOptions = env.isTypeScript): ESLin
           },
         }
       : {},
+
+    {
+      name: 'sobird:typescript:misc',
+      files: [...MISC_FILES],
+      rules: {
+        '@typescript-eslint/no-non-null-assertion': 'off',
+      },
+    },
   ];
 }
