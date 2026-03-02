@@ -73,9 +73,10 @@ export const JAVASCRIPT_RULES: NonNullable<ESLintConfigObject['rules']> = {
       },
     },
   ],
-  'class-methods-use-this': [
-    'error',
+  'class-methods-use-this': ['error',
     {
+      ignoreOverrideMethods: true,
+      enforceForClassFields: true,
       exceptMethods: [],
     },
   ],
@@ -359,13 +360,11 @@ export const JAVASCRIPT_RULES: NonNullable<ESLintConfigObject['rules']> = {
     'error',
     {
       selector: 'ForInStatement',
-      message:
-        'for..in loops iterate over the entire prototype chain, which is virtually never what you want. Use Object.{keys,values,entries}, and iterate over the resulting array.',
+      message: 'for..in loops iterate over the entire prototype chain, which is virtually never what you want. Use Object.{keys,values,entries}, and iterate over the resulting array.',
     },
     {
       selector: 'ForStatement',
-      message:
-        'Prohibit the use of the original for loop. It is recommended to use modern traversal methods such as for of/Array. prototype. forEach/map/filter',
+      message: 'Prohibit the use of the original for loop. It is recommended to use modern traversal methods such as for of/Array. prototype. forEach/map/filter',
     },
 
     // {
@@ -375,13 +374,11 @@ export const JAVASCRIPT_RULES: NonNullable<ESLintConfigObject['rules']> = {
     // },
     {
       selector: 'LabeledStatement',
-      message:
-        'Labels are a form of GOTO; using them makes code confusing and hard to maintain and understand.',
+      message: 'Labels are a form of GOTO; using them makes code confusing and hard to maintain and understand.',
     },
     {
       selector: 'WithStatement',
-      message:
-        '`with` is disallowed in strict mode because it makes code impossible to predict and optimize.',
+      message: '`with` is disallowed in strict mode because it makes code impossible to predict and optimize.',
     },
   ],
   'no-return-assign': 'error',

@@ -143,7 +143,12 @@ export function typescript(options: TypeScriptOptions = env.isTypeScript): ESLin
         '@typescript-eslint/ban-tslint-comment': 'error',
         '@typescript-eslint/class-literal-property-style': 'error',
         'class-methods-use-this': 'off',
-        '@typescript-eslint/class-methods-use-this': JAVASCRIPT_RULES['class-methods-use-this'],
+        '@typescript-eslint/class-methods-use-this': ['error', {
+          ignoreOverrideMethods: true,
+          ignoreClassesThatImplementAnInterface: true,
+          enforceForClassFields: true,
+          exceptMethods: [],
+        }],
         '@typescript-eslint/consistent-generic-constructors': 'error',
         '@typescript-eslint/consistent-indexed-object-style': 'error',
         'consistent-return': 'off',
