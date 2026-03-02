@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.0.4](https://github.com/sobird/eslint-config/compare/v1.0.3...v1.0.4) (2026-03-02)
+
+
+### Bug Fixes
+
+* remove formatter related functions docs ([22e0976](https://github.com/sobird/eslint-config/commit/22e09765cb8894b6d23eedb107f187c54d26e8f0))
+* typescript set typed default: true & update no-unused-vars & naming-convention rules ([a259df9](https://github.com/sobird/eslint-config/commit/a259df905c299fb551caf012547c26133551c21c))
+* update typescript typed rules ([7338394](https://github.com/sobird/eslint-config/commit/73383944335aa59a637ada352f93f2cdcf43eb35))
+
 ## [1.0.3](https://github.com/sobird/eslint-config/compare/v1.0.2...v1.0.3) (2026-03-01)
 
 
