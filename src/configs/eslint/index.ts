@@ -42,15 +42,17 @@ export const JAVASCRIPT: ESLintPlugin = {
 };
 
 export const JAVASCRIPT_RULES: NonNullable<ESLintConfigObject['rules']> = {
-  'accessor-pairs': [
-    'error',
-    { enforceForClassMembers: true, setWithoutGet: true },
+  'accessor-pairs': ['error',
+    {
+      enforceForClassMembers: true,
+      setWithoutGet: true,
+    },
   ],
-  'array-callback-return': ['error', { allowImplicit: true }],
-  'arrow-body-style': [
-    'error',
-    'as-needed',
-
+  'array-callback-return': ['error', {
+    allowImplicit: true,
+    checkForEach: true,
+  }],
+  'arrow-body-style': ['error', 'as-needed',
     // {
     //   requireReturnForObjectLiteral: false,
     // },
@@ -62,9 +64,7 @@ export const JAVASCRIPT_RULES: NonNullable<ESLintConfigObject['rules']> = {
     ignoreImports: true,
     ignoreGlobals: true,
   }],
-  'capitalized-comments': [
-    'off',
-    'never',
+  'capitalized-comments': ['off', 'never',
     {
       line: {
         ignorePattern: '.*',
@@ -96,18 +96,14 @@ export const JAVASCRIPT_RULES: NonNullable<ESLintConfigObject['rules']> = {
   'dot-notation': ['error', { allowKeywords: false }],
   'eqeqeq': ['error', 'always', { null: 'ignore' }],
   'for-direction': 'error',
-  'func-name-matching': [
-    'off',
-    'always',
+  'func-name-matching': ['off', 'always',
     {
       includeCommonJSModuleExports: false,
       considerPropertyDescriptor: true,
     },
   ],
   'func-names': 'warn',
-  'func-style': [
-    'error',
-    'declaration',
+  'func-style': ['error', 'declaration',
     { allowArrowFunctions: true, allowTypeAnnotation: true },
   ],
   'getter-return': ['error', { allowImplicit: true }],
@@ -120,16 +116,14 @@ export const JAVASCRIPT_RULES: NonNullable<ESLintConfigObject['rules']> = {
   'logical-assignment-operators': 'error',
   'max-classes-per-file': 'error',
   'max-depth': 'error',
-  'max-lines': [
-    'warn',
+  'max-lines': ['warn',
     {
       max: 300,
       skipBlankLines: true,
       skipComments: true,
     },
   ],
-  'max-lines-per-function': [
-    'off',
+  'max-lines-per-function': ['off',
     {
       max: 50,
       skipBlankLines: true,
@@ -140,8 +134,7 @@ export const JAVASCRIPT_RULES: NonNullable<ESLintConfigObject['rules']> = {
   'max-nested-callbacks': 'error',
   'max-params': 'off',
   'max-statements': 'off',
-  'new-cap': [
-    'error',
+  'new-cap': ['error',
     {
       newIsCap: true,
       newIsCapExceptions: [],
@@ -180,8 +173,7 @@ export const JAVASCRIPT_RULES: NonNullable<ESLintConfigObject['rules']> = {
   'no-else-return': ['error', { allowElseIf: false }],
   'no-empty': 'error',
   'no-empty-character-class': 'error',
-  'no-empty-function': [
-    'error',
+  'no-empty-function': ['error',
     {
       allow: ['arrowFunctions', 'functions', 'methods'],
     },
@@ -216,8 +208,7 @@ export const JAVASCRIPT_RULES: NonNullable<ESLintConfigObject['rules']> = {
   'no-loss-of-precision': 'error',
 
   // todo
-  'no-magic-numbers': [
-    'off',
+  'no-magic-numbers': ['off',
     {
       ignore: [0, 1, 2, -1],
       ignoreArrayIndexes: true,
@@ -247,8 +238,7 @@ export const JAVASCRIPT_RULES: NonNullable<ESLintConfigObject['rules']> = {
   'no-object-constructor': 'error',
   'no-octal': 'error',
   'no-octal-escape': 'error',
-  'no-param-reassign': [
-    'error',
+  'no-param-reassign': ['error',
     {
       props: true,
       ignorePropertyModificationsFor: [
@@ -272,8 +262,7 @@ export const JAVASCRIPT_RULES: NonNullable<ESLintConfigObject['rules']> = {
   'no-prototype-builtins': 'error',
   'no-redeclare': 'error',
   'no-regex-spaces': 'error',
-  'no-restricted-exports': [
-    'error',
+  'no-restricted-exports': ['error',
     {
       restrictedNamedExports: [
         'default', // use `export default` to provide a default export
@@ -283,8 +272,7 @@ export const JAVASCRIPT_RULES: NonNullable<ESLintConfigObject['rules']> = {
   ],
 
   // todo confusingBrowserGlobals
-  'no-restricted-globals': [
-    'error',
+  'no-restricted-globals': ['error',
     { message: 'Use `globalThis` instead.', name: 'global' },
     { message: 'Use `globalThis` instead.', name: 'self' },
     {
@@ -297,8 +285,7 @@ export const JAVASCRIPT_RULES: NonNullable<ESLintConfigObject['rules']> = {
     },
   ],
   'no-restricted-imports': 'off',
-  'no-restricted-properties': [
-    'error',
+  'no-restricted-properties': ['error',
     {
       object: 'arguments',
       property: 'callee',
@@ -361,8 +348,7 @@ export const JAVASCRIPT_RULES: NonNullable<ESLintConfigObject['rules']> = {
       property: '__lookupSetter__',
     },
   ],
-  'no-restricted-syntax': [
-    'error',
+  'no-restricted-syntax': ['error',
     {
       selector: 'ForInStatement',
       message: 'for..in loops iterate over the entire prototype chain, which is virtually never what you want. Use Object.{keys,values,entries}, and iterate over the resulting array.',
@@ -420,14 +406,12 @@ export const JAVASCRIPT_RULES: NonNullable<ESLintConfigObject['rules']> = {
   'no-unreachable-loop': 'error',
   'no-unsafe-finally': 'error',
   'no-unsafe-negation': 'error',
-  'no-unsafe-optional-chaining': [
-    'error',
+  'no-unsafe-optional-chaining': ['error',
     { disallowArithmeticOperators: true },
   ],
 
   // todo
-  'no-unused-expressions': [
-    'error',
+  'no-unused-expressions': ['error',
     {
       allowShortCircuit: true,
       allowTaggedTemplates: true,
@@ -436,8 +420,7 @@ export const JAVASCRIPT_RULES: NonNullable<ESLintConfigObject['rules']> = {
   ],
   'no-unused-labels': 'error',
   'no-unused-private-class-members': 'error',
-  'no-unused-vars': [
-    'error',
+  'no-unused-vars': ['error',
     {
       vars: 'all',
       varsIgnorePattern: '^_',
@@ -449,8 +432,7 @@ export const JAVASCRIPT_RULES: NonNullable<ESLintConfigObject['rules']> = {
       caughtErrorsIgnorePattern: '^_',
     },
   ],
-  'no-use-before-define': [
-    'error',
+  'no-use-before-define': ['error',
     { functions: true, classes: true, variables: true },
   ],
   'no-useless-assignment': 'error',
@@ -465,8 +447,7 @@ export const JAVASCRIPT_RULES: NonNullable<ESLintConfigObject['rules']> = {
   'no-useless-return': 'error',
   'no-var': 'error',
   'no-void': 'error',
-  'no-warning-comments': [
-    'error',
+  'no-warning-comments': ['error',
     {
       terms: ['fixme', 'xxx'],
       location: 'start',
@@ -477,8 +458,7 @@ export const JAVASCRIPT_RULES: NonNullable<ESLintConfigObject['rules']> = {
   'one-var': ['error', 'never'],
   'operator-assignment': 'error',
   'prefer-arrow-callback': 'error',
-  'prefer-const': [
-    'error',
+  'prefer-const': ['error',
     {
       destructuring: 'any',
       ignoreReadBeforeAssign: false,
@@ -501,8 +481,6 @@ export const JAVASCRIPT_RULES: NonNullable<ESLintConfigObject['rules']> = {
   'require-await': 'error',
   'require-unicode-regexp': 'error',
   'require-yield': 'error',
-
-  // todo
   'sort-imports': ['error', { ignoreDeclarationSort: true }],
   'sort-keys': 'off',
   'sort-vars': 'off',
@@ -513,8 +491,6 @@ export const JAVASCRIPT_RULES: NonNullable<ESLintConfigObject['rules']> = {
   'valid-typeof': ['error', { requireStringLiterals: true }],
   'vars-on-top': 'error',
   'yoda': 'error',
-
-  // todo
   'no-return-await': 'off',
   'prefer-reflect': 'error',
 };
