@@ -52,7 +52,7 @@ export function typescript(options: TypeScriptOptions = env.isTypeScript): ESLin
   }
 
   const {
-    files = [...TS_FILES], typed = false, parserOptions = {}, rules: overrides = {},
+    files = [...TS_FILES], typed = true, parserOptions = {}, rules: overrides = {},
   } = options === true ? {} : options;
 
   return [
@@ -330,24 +330,31 @@ export function typescript(options: TypeScriptOptions = env.isTypeScript): ESLin
 
             // This rule requires type information to run, which comes with performance tradeoffs.
             '@typescript-eslint/naming-convention': ['error',
-              // Allow camelCase variables (23.2), PascalCase variables (23.8), and UPPER_CASE variables (23.10)
               {
                 selector: 'variable',
                 format: ['camelCase', 'PascalCase', 'UPPER_CASE'],
                 leadingUnderscore: 'allowSingleOrDouble',
               },
-
-              // Allow camelCase functions (23.2), and PascalCase functions (23.8)
+              {
+                selector: 'variable',
+                modifiers: ['destructured'],
+                format: ['camelCase', 'snake_case'],
+              },
               {
                 selector: 'function',
                 format: ['camelCase', 'PascalCase'],
               },
-
-              // Airbnb recommends PascalCase for classes (23.3), and although Airbnb does not make TypeScript recommendations,
-              // we are assuming this rule would similarly apply to anything "type like", including interfaces, type aliases, and enums
               {
                 selector: 'typeLike',
                 format: ['PascalCase'],
+              },
+              {
+                selector: 'interface',
+                format: ['PascalCase'],
+                custom: {
+                  regex: '^I[A-Z]',
+                  match: false,
+                },
               },
             ],
 

@@ -439,7 +439,14 @@ export const JAVASCRIPT_RULES: NonNullable<ESLintConfigObject['rules']> = {
   'no-unused-vars': [
     'error',
     {
-      vars: 'all', args: 'after-used', ignoreRestSiblings: true, caughtErrors: 'none',
+      vars: 'all',
+      varsIgnorePattern: '^_',
+      destructuredArrayIgnorePattern: '^_',
+      args: 'after-used',
+      argsIgnorePattern: '^_',
+      ignoreRestSiblings: true,
+      caughtErrors: 'none',
+      caughtErrorsIgnorePattern: '^_',
     },
   ],
   'no-use-before-define': [
