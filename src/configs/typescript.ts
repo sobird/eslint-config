@@ -7,7 +7,7 @@
 
 // https://github.com/import-js/eslint-plugin-import/blob/main/config/typescript.js
 
-import { configs, parser, plugin } from 'typescript-eslint';
+import { parser, plugin } from 'typescript-eslint';
 
 import { JAVASCRIPT_RULES } from './eslint';
 import { TS_FILES, SCRIPT_FILES } from '../files';
@@ -35,6 +35,8 @@ export const TYPESCRIPT: ESLintPlugin = {
 };
 
 interface Options {
+  files?: string[];
+
   /**
    * Enable typescript type checking
    */
@@ -49,10 +51,9 @@ export function typescript(options: TypeScriptOptions = env.isTypeScript): ESLin
     return [];
   }
 
-  const { typed = false, parserOptions = {}, rules: overrides = {} } = options === true ? {} : options;
-  const { disableTypeChecked } = configs;
-
-  const files = [...TS_FILES];
+  const {
+    files = [...TS_FILES], typed = false, parserOptions = {}, rules: overrides = {},
+  } = options === true ? {} : options;
 
   return [
     {
@@ -136,9 +137,6 @@ export function typescript(options: TypeScriptOptions = env.isTypeScript): ESLin
       rules: {
         '@typescript-eslint/adjacent-overload-signatures': 'error',
         '@typescript-eslint/array-type': 'error',
-
-        // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/await-thenable': 'error',
         '@typescript-eslint/ban-ts-comment': 'error',
         '@typescript-eslint/ban-tslint-comment': 'error',
         '@typescript-eslint/class-literal-property-style': 'error',
@@ -151,22 +149,11 @@ export function typescript(options: TypeScriptOptions = env.isTypeScript): ESLin
         }],
         '@typescript-eslint/consistent-generic-constructors': 'error',
         '@typescript-eslint/consistent-indexed-object-style': 'error',
-        'consistent-return': 'off',
-
-        // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/consistent-return': JAVASCRIPT_RULES['consistent-return'],
         '@typescript-eslint/consistent-type-assertions': 'error',
         '@typescript-eslint/consistent-type-definitions': 'error',
-
-        // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/consistent-type-exports': 'error',
         '@typescript-eslint/consistent-type-imports': 'error',
         'default-param-last': 'off',
         '@typescript-eslint/default-param-last': JAVASCRIPT_RULES['default-param-last'],
-        'dot-notation': 'off',
-
-        // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/dot-notation': JAVASCRIPT_RULES['dot-notation'],
         '@typescript-eslint/explicit-function-return-type': ['warn', {
           allowExpressions: true,
           allowTypedFunctionExpressions: true,
@@ -234,54 +221,14 @@ export function typescript(options: TypeScriptOptions = env.isTypeScript): ESLin
           },
         ],
         '@typescript-eslint/method-signature-style': 'error',
-
-        // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/naming-convention': ['error',
-          // Allow camelCase variables (23.2), PascalCase variables (23.8), and UPPER_CASE variables (23.10)
-          {
-            selector: 'variable',
-            format: ['camelCase', 'PascalCase', 'UPPER_CASE'],
-            leadingUnderscore: 'allowSingleOrDouble',
-          },
-
-          // Allow camelCase functions (23.2), and PascalCase functions (23.8)
-          {
-            selector: 'function',
-            format: ['camelCase', 'PascalCase'],
-          },
-
-          // Airbnb recommends PascalCase for classes (23.3), and although Airbnb does not make TypeScript recommendations,
-          // we are assuming this rule would similarly apply to anything "type like", including interfaces, type aliases, and enums
-          {
-            selector: 'typeLike',
-            format: ['PascalCase'],
-          },
-        ],
         'no-array-constructor': 'off',
         '@typescript-eslint/no-array-constructor': JAVASCRIPT_RULES['no-array-constructor'],
-
-        // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/no-array-delete': 'error',
-
-        // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/no-base-to-string': 'error',
         '@typescript-eslint/no-confusing-non-null-assertion': 'error',
-
-        // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/no-confusing-void-expression': 'error',
-
-        // 💭 This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/no-deprecated': 'error',
         'no-dupe-class-members': 'off',
         '@typescript-eslint/no-dupe-class-members': JAVASCRIPT_RULES['no-dupe-class-members'],
         '@typescript-eslint/no-duplicate-enum-values': 'error',
-
-        // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/no-duplicate-type-constituents': 'error',
         '@typescript-eslint/no-dynamic-delete': 'error',
         'no-empty-function': 'off',
-
-        // @see no-empty-function
         '@typescript-eslint/no-empty-function': [
           'error',
           {
@@ -298,16 +245,6 @@ export function typescript(options: TypeScriptOptions = env.isTypeScript): ESLin
         }],
         '@typescript-eslint/no-extra-non-null-assertion': 'error',
         '@typescript-eslint/no-extraneous-class': 'error',
-
-        // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/no-floating-promises': 'error',
-
-        // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/no-for-in-array': 'error',
-        'no-implied-eval': 'off',
-
-        // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/no-implied-eval': JAVASCRIPT_RULES['no-implied-eval'],
         '@typescript-eslint/no-import-type-side-effects': 'error',
         '@typescript-eslint/no-inferrable-types': 'error',
         'no-invalid-this': 'off',
@@ -317,28 +254,13 @@ export function typescript(options: TypeScriptOptions = env.isTypeScript): ESLin
         '@typescript-eslint/no-loop-func': JAVASCRIPT_RULES['no-loop-func'],
         'no-magic-numbers': 'off',
         '@typescript-eslint/no-magic-numbers': JAVASCRIPT_RULES['no-magic-numbers'],
-
-        // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/no-meaningless-void-operator': 'error',
         '@typescript-eslint/no-misused-new': 'error',
-
-        // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/no-misused-promises': 'error',
-
-        // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/no-misused-spread': 'error',
-
-        // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/no-mixed-enums': 'error',
         '@typescript-eslint/no-namespace': 'error',
         '@typescript-eslint/no-non-null-asserted-nullish-coalescing': 'error',
         '@typescript-eslint/no-non-null-asserted-optional-chain': 'error',
         '@typescript-eslint/no-non-null-assertion': 'error',
         'no-redeclare': 'off',
         '@typescript-eslint/no-redeclare': JAVASCRIPT_RULES['no-redeclare'],
-
-        // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/no-redundant-type-constituents': 'error',
         'import/no-commonjs': 'off',
         '@typescript-eslint/no-require-imports': 'error',
         'no-restricted-imports': 'off',
@@ -347,61 +269,10 @@ export function typescript(options: TypeScriptOptions = env.isTypeScript): ESLin
         'no-shadow': 'off',
         '@typescript-eslint/no-shadow': JAVASCRIPT_RULES['no-shadow'],
         '@typescript-eslint/no-this-alias': 'error',
-
-        // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/no-unnecessary-boolean-literal-compare': 'error',
-
-        // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/no-unnecessary-condition': ['error', {
-          allowConstantLoopConditions: 'never',
-          checkTypePredicates: true,
-        }],
         '@typescript-eslint/no-unnecessary-parameter-property-assignment': 'error',
-
-        // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/no-unnecessary-qualifier': 'error',
-
-        // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/no-unnecessary-template-expression': 'error',
-
-        // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/no-unnecessary-type-arguments': 'error',
-
-        // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/no-unnecessary-type-assertion': 'error',
         '@typescript-eslint/no-unnecessary-type-constraint': 'error',
-
-        // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/no-unnecessary-type-conversion': 'error',
-
-        // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/no-unnecessary-type-parameters': 'error',
-
-        // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/no-unsafe-argument': 'error',
-
-        // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/no-unsafe-assignment': 'error',
-
-        // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/no-unsafe-call': 'error',
         '@typescript-eslint/no-unsafe-declaration-merging': 'error',
-
-        // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/no-unsafe-enum-comparison': 'error',
         '@typescript-eslint/no-unsafe-function-type': 'error',
-
-        // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/no-unsafe-member-access': 'error',
-
-        // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/no-unsafe-return': 'error',
-
-        // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/no-unsafe-type-assertion': 'error',
-
-        // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/no-unsafe-unary-minus': 'error',
         'no-unused-expressions': 'off',
         '@typescript-eslint/no-unused-expressions': JAVASCRIPT_RULES['no-unused-expressions'],
         'no-unused-private-class-members': 'off',
@@ -412,18 +283,8 @@ export function typescript(options: TypeScriptOptions = env.isTypeScript): ESLin
         '@typescript-eslint/no-use-before-define': JAVASCRIPT_RULES['no-use-before-define'],
         'no-useless-constructor': 'off',
         '@typescript-eslint/no-useless-constructor': JAVASCRIPT_RULES['no-useless-constructor'],
-
-        // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/no-useless-default-assignment': 'error',
         '@typescript-eslint/no-useless-empty-export': 'error',
         '@typescript-eslint/no-wrapper-object-types': 'error',
-
-        // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/non-nullable-type-assertion-style': 'error',
-        'no-throw-literal': 'off',
-
-        // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/only-throw-error': JAVASCRIPT_RULES['no-throw-literal'],
         '@typescript-eslint/parameter-properties': ['error', {
           prefer: 'class-property',
           allow: [
@@ -434,105 +295,250 @@ export function typescript(options: TypeScriptOptions = env.isTypeScript): ESLin
         }],
         '@typescript-eslint/prefer-as-const': 'error',
         'prefer-destructuring': 'off',
-
-        // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/prefer-destructuring': JAVASCRIPT_RULES['prefer-destructuring'],
         '@typescript-eslint/prefer-enum-initializers': 'error',
-
-        // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/prefer-find': 'error',
         '@typescript-eslint/prefer-for-of': 'error',
         '@typescript-eslint/prefer-function-type': 'error',
-
-        // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/prefer-includes': 'error',
         '@typescript-eslint/prefer-literal-enum-member': 'error',
         '@typescript-eslint/prefer-namespace-keyword': 'error',
-
-        // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/prefer-nullish-coalescing': 'error',
-
-        // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/prefer-optional-chain': 'error',
-        'prefer-promise-reject-errors': 'off',
-
-        // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/prefer-promise-reject-errors': JAVASCRIPT_RULES['prefer-promise-reject-errors'],
-
-        // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/prefer-readonly': 'error',
-
-        // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/prefer-readonly-parameter-types': 'off',
-
-        // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/prefer-reduce-type-parameter': 'error',
-
-        // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/prefer-regexp-exec': 'error',
-
-        // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/prefer-return-this-type': 'error',
-
-        // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/prefer-string-starts-ends-with': 'error',
-
-        // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/promise-function-async': 'error',
-
-        // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/related-getter-setter-pairs': 'error',
-
-        // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/require-array-sort-compare': 'error',
-        'require-await': 'off',
-
-        // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/require-await': JAVASCRIPT_RULES['require-await'],
-
-        // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/restrict-plus-operands': 'error',
-
-        // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/restrict-template-expressions': 'error',
-        'no-return-await': 'off',
-
-        // This rule requires type information to run, which comes with performance tradeoffs.
-        // JAVASCRIPT_RULES['no-return-await']
-        '@typescript-eslint/return-await': ['off', 'in-try-catch'],
-
-        // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/strict-boolean-expressions': ['error', {
-          allowString: false,
-          allowNumber: false,
-          allowNullableObject: true,
-          allowNullableBoolean: true,
-          allowNullableString: false,
-          allowNullableNumber: false,
-          allowNullableEnum: false,
-          allowAny: false,
-        }],
-
-        // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/strict-void-return': 'error',
-
-        // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/switch-exhaustiveness-check': 'error',
         '@typescript-eslint/triple-slash-reference': 'error',
-
-        // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/unbound-method': 'error',
         '@typescript-eslint/unified-signatures': 'error',
-
-        // This rule requires type information to run, which comes with performance tradeoffs.
-        '@typescript-eslint/use-unknown-in-catch-callback-variable': 'error',
 
         ...overrides,
       },
     },
-    {
-      name: 'sobird:typescript:disable:typeChecked',
-      ...(typed ? {} : disableTypeChecked),
-    },
+
+    typed
+      ? {
+          name: 'sobird:typescript:typed:rules',
+          files,
+          rules: {
+            // This rule requires type information to run, which comes with performance tradeoffs.
+            '@typescript-eslint/await-thenable': 'error',
+            'consistent-return': 'off',
+
+            // This rule requires type information to run, which comes with performance tradeoffs.
+            '@typescript-eslint/consistent-return': JAVASCRIPT_RULES['consistent-return'],
+
+            // This rule requires type information to run, which comes with performance tradeoffs.
+            '@typescript-eslint/consistent-type-exports': 'error',
+            'dot-notation': 'off',
+
+            // This rule requires type information to run, which comes with performance tradeoffs.
+            '@typescript-eslint/dot-notation': JAVASCRIPT_RULES['dot-notation'],
+
+            'camelcase': 'off',
+
+            // This rule requires type information to run, which comes with performance tradeoffs.
+            '@typescript-eslint/naming-convention': ['error',
+              // Allow camelCase variables (23.2), PascalCase variables (23.8), and UPPER_CASE variables (23.10)
+              {
+                selector: 'variable',
+                format: ['camelCase', 'PascalCase', 'UPPER_CASE'],
+                leadingUnderscore: 'allowSingleOrDouble',
+              },
+
+              // Allow camelCase functions (23.2), and PascalCase functions (23.8)
+              {
+                selector: 'function',
+                format: ['camelCase', 'PascalCase'],
+              },
+
+              // Airbnb recommends PascalCase for classes (23.3), and although Airbnb does not make TypeScript recommendations,
+              // we are assuming this rule would similarly apply to anything "type like", including interfaces, type aliases, and enums
+              {
+                selector: 'typeLike',
+                format: ['PascalCase'],
+              },
+            ],
+
+            // This rule requires type information to run, which comes with performance tradeoffs.
+            '@typescript-eslint/no-array-delete': 'error',
+
+            // This rule requires type information to run, which comes with performance tradeoffs.
+            '@typescript-eslint/no-base-to-string': 'error',
+
+            // This rule requires type information to run, which comes with performance tradeoffs.
+            '@typescript-eslint/no-confusing-void-expression': 'error',
+
+            // 💭 This rule requires type information to run, which comes with performance tradeoffs.
+            '@typescript-eslint/no-deprecated': 'error',
+
+            // This rule requires type information to run, which comes with performance tradeoffs.
+            '@typescript-eslint/no-duplicate-type-constituents': 'error',
+
+            // This rule requires type information to run, which comes with performance tradeoffs.
+            '@typescript-eslint/no-floating-promises': 'error',
+
+            // This rule requires type information to run, which comes with performance tradeoffs.
+            '@typescript-eslint/no-for-in-array': 'error',
+            'no-implied-eval': 'off',
+
+            // This rule requires type information to run, which comes with performance tradeoffs.
+            '@typescript-eslint/no-implied-eval': JAVASCRIPT_RULES['no-implied-eval'],
+
+            // This rule requires type information to run, which comes with performance tradeoffs.
+            '@typescript-eslint/no-meaningless-void-operator': 'error',
+
+            // This rule requires type information to run, which comes with performance tradeoffs.
+            '@typescript-eslint/no-misused-promises': 'error',
+
+            // This rule requires type information to run, which comes with performance tradeoffs.
+            '@typescript-eslint/no-misused-spread': 'error',
+
+            // This rule requires type information to run, which comes with performance tradeoffs.
+            '@typescript-eslint/no-mixed-enums': 'error',
+
+            // This rule requires type information to run, which comes with performance tradeoffs.
+            '@typescript-eslint/no-redundant-type-constituents': 'error',
+
+            // This rule requires type information to run, which comes with performance tradeoffs.
+            '@typescript-eslint/no-unnecessary-boolean-literal-compare': 'error',
+
+            // This rule requires type information to run, which comes with performance tradeoffs.
+            '@typescript-eslint/no-unnecessary-condition': ['error', {
+              allowConstantLoopConditions: 'never',
+              checkTypePredicates: true,
+            }],
+
+            // This rule requires type information to run, which comes with performance tradeoffs.
+            '@typescript-eslint/no-unnecessary-qualifier': 'error',
+
+            // This rule requires type information to run, which comes with performance tradeoffs.
+            '@typescript-eslint/no-unnecessary-template-expression': 'error',
+
+            // This rule requires type information to run, which comes with performance tradeoffs.
+            '@typescript-eslint/no-unnecessary-type-arguments': 'error',
+
+            // This rule requires type information to run, which comes with performance tradeoffs.
+            '@typescript-eslint/no-unnecessary-type-assertion': 'error',
+
+            // This rule requires type information to run, which comes with performance tradeoffs.
+            '@typescript-eslint/no-unnecessary-type-conversion': 'error',
+
+            // This rule requires type information to run, which comes with performance tradeoffs.
+            '@typescript-eslint/no-unnecessary-type-parameters': 'error',
+
+            // This rule requires type information to run, which comes with performance tradeoffs.
+            '@typescript-eslint/no-unsafe-argument': 'error',
+
+            // This rule requires type information to run, which comes with performance tradeoffs.
+            '@typescript-eslint/no-unsafe-assignment': 'error',
+
+            // This rule requires type information to run, which comes with performance tradeoffs.
+            '@typescript-eslint/no-unsafe-call': 'error',
+
+            // This rule requires type information to run, which comes with performance tradeoffs.
+            '@typescript-eslint/no-unsafe-enum-comparison': 'error',
+
+            // This rule requires type information to run, which comes with performance tradeoffs.
+            '@typescript-eslint/no-unsafe-member-access': 'error',
+
+            // This rule requires type information to run, which comes with performance tradeoffs.
+            '@typescript-eslint/no-unsafe-return': 'error',
+
+            // This rule requires type information to run, which comes with performance tradeoffs.
+            '@typescript-eslint/no-unsafe-type-assertion': 'error',
+
+            // This rule requires type information to run, which comes with performance tradeoffs.
+            '@typescript-eslint/no-unsafe-unary-minus': 'error',
+
+            // This rule requires type information to run, which comes with performance tradeoffs.
+            '@typescript-eslint/no-useless-default-assignment': 'error',
+
+            // This rule requires type information to run, which comes with performance tradeoffs.
+            '@typescript-eslint/non-nullable-type-assertion-style': 'error',
+            'no-throw-literal': 'off',
+
+            // This rule requires type information to run, which comes with performance tradeoffs.
+            '@typescript-eslint/only-throw-error': JAVASCRIPT_RULES['no-throw-literal'],
+
+            // This rule requires type information to run, which comes with performance tradeoffs.
+            '@typescript-eslint/prefer-destructuring': JAVASCRIPT_RULES['prefer-destructuring'],
+
+            // This rule requires type information to run, which comes with performance tradeoffs.
+            '@typescript-eslint/prefer-find': 'error',
+
+            // This rule requires type information to run, which comes with performance tradeoffs.
+            '@typescript-eslint/prefer-includes': 'error',
+
+            // This rule requires type information to run, which comes with performance tradeoffs.
+            '@typescript-eslint/prefer-nullish-coalescing': 'error',
+
+            // This rule requires type information to run, which comes with performance tradeoffs.
+            '@typescript-eslint/prefer-optional-chain': 'error',
+
+            'prefer-promise-reject-errors': 'off',
+
+            // This rule requires type information to run, which comes with performance tradeoffs.
+            '@typescript-eslint/prefer-promise-reject-errors': JAVASCRIPT_RULES['prefer-promise-reject-errors'],
+
+            // This rule requires type information to run, which comes with performance tradeoffs.
+            '@typescript-eslint/prefer-readonly': 'error',
+
+            // This rule requires type information to run, which comes with performance tradeoffs.
+            '@typescript-eslint/prefer-readonly-parameter-types': 'off',
+
+            // This rule requires type information to run, which comes with performance tradeoffs.
+            '@typescript-eslint/prefer-reduce-type-parameter': 'error',
+
+            // This rule requires type information to run, which comes with performance tradeoffs.
+            '@typescript-eslint/prefer-regexp-exec': 'error',
+
+            // This rule requires type information to run, which comes with performance tradeoffs.
+            '@typescript-eslint/prefer-return-this-type': 'error',
+
+            // This rule requires type information to run, which comes with performance tradeoffs.
+            '@typescript-eslint/prefer-string-starts-ends-with': 'error',
+
+            // This rule requires type information to run, which comes with performance tradeoffs.
+            '@typescript-eslint/promise-function-async': 'error',
+
+            // This rule requires type information to run, which comes with performance tradeoffs.
+            '@typescript-eslint/related-getter-setter-pairs': 'error',
+
+            // This rule requires type information to run, which comes with performance tradeoffs.
+            '@typescript-eslint/require-array-sort-compare': 'error',
+            'require-await': 'off',
+
+            // This rule requires type information to run, which comes with performance tradeoffs.
+            '@typescript-eslint/require-await': JAVASCRIPT_RULES['require-await'],
+
+            // This rule requires type information to run, which comes with performance tradeoffs.
+            '@typescript-eslint/restrict-plus-operands': 'error',
+
+            // This rule requires type information to run, which comes with performance tradeoffs.
+            '@typescript-eslint/restrict-template-expressions': 'error',
+            'no-return-await': 'off',
+
+            // This rule requires type information to run, which comes with performance tradeoffs.
+            // JAVASCRIPT_RULES['no-return-await']
+            '@typescript-eslint/return-await': ['off', 'in-try-catch'],
+
+            // This rule requires type information to run, which comes with performance tradeoffs.
+            '@typescript-eslint/strict-boolean-expressions': ['error', {
+              allowString: false,
+              allowNumber: false,
+              allowNullableObject: true,
+              allowNullableBoolean: true,
+              allowNullableString: false,
+              allowNullableNumber: false,
+              allowNullableEnum: false,
+              allowAny: false,
+            }],
+
+            // This rule requires type information to run, which comes with performance tradeoffs.
+            '@typescript-eslint/strict-void-return': 'error',
+
+            // This rule requires type information to run, which comes with performance tradeoffs.
+            '@typescript-eslint/switch-exhaustiveness-check': 'error',
+
+            // This rule requires type information to run, which comes with performance tradeoffs.
+            '@typescript-eslint/unbound-method': 'error',
+
+            // This rule requires type information to run, which comes with performance tradeoffs.
+            '@typescript-eslint/use-unknown-in-catch-callback-variable': 'error',
+          },
+        }
+      : {},
   ];
 }
