@@ -525,7 +525,7 @@ npm i -D @next/eslint-plugin-next
 
 ### 类型感知规则
 
-您可以通过将选项对象传递给`typescript`配置来选择启用[类型感知规则](https://typescript-eslint.io/linting/typed-linting/)：
+您可以通过将选项对象传递给`typescript`配置来选择启用（默认启用）[类型感知规则](https://typescript-eslint.io/linting/typed-linting/)：
 
 ```js
 // eslint.config.js
