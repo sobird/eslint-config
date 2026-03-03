@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.5](https://github.com/sobird/eslint-config/compare/v1.0.4...v1.0.5) (2026-03-03)
+
+
+### Bug Fixes
+
+* @typescript-eslint/strict-boolean-expressions set allowString: true ([ead5c8f](https://github.com/sobird/eslint-config/commit/ead5c8f5a8ea6b2919b4d9fe9178c118e1a3d674))
+* typescript set 'no-extra-boolean-cast': 'off' ([1826bb2](https://github.com/sobird/eslint-config/commit/1826bb26a3afeacb01fd3c90cbdbc7df21a795a9))
+
 ## [1.0.4](https://github.com/sobird/eslint-config/compare/v1.0.3...v1.0.4) (2026-03-02)
 
 
