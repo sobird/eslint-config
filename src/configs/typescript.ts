@@ -523,7 +523,7 @@ export function typescript(options: TypeScriptOptions = env.isTypeScript): ESLin
 
             // This rule requires type information to run, which comes with performance tradeoffs.
             '@typescript-eslint/strict-boolean-expressions': ['error', {
-              allowString: false,
+              allowString: true,
               allowNumber: false,
               allowNullableObject: true,
               allowNullableBoolean: true,
