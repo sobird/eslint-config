@@ -240,7 +240,6 @@ export function typescript(options: TypeScriptOptions = env.isTypeScript): ESLin
           allowObjectTypes: 'always',
         }],
         '@typescript-eslint/no-explicit-any': ['error', {
-          fixToUnknown: true,
           ignoreRestArgs: true,
         }],
         '@typescript-eslint/no-extra-non-null-assertion': 'error',
