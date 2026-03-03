@@ -521,6 +521,8 @@ export function typescript(options: TypeScriptOptions = env.isTypeScript): ESLin
             // JAVASCRIPT_RULES['no-return-await']
             '@typescript-eslint/return-await': ['off', 'in-try-catch'],
 
+            'no-extra-boolean-cast': 'off',
+
             // This rule requires type information to run, which comes with performance tradeoffs.
             '@typescript-eslint/strict-boolean-expressions': ['error', {
               allowString: true,
