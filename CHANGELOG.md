@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.6](https://github.com/sobird/eslint-config/compare/v1.0.5...v1.0.6) (2026-03-05)
+
+
+### Bug Fixes
+
+* set eslint-plugin-n default not enabled ([aef06fd](https://github.com/sobird/eslint-config/commit/aef06fd5d5e42368f19ad4790f360b35d621c79e))
+* update @typescript-eslint/explicit-member-accessibility rule config ([f14bd72](https://github.com/sobird/eslint-config/commit/f14bd72e46b94c4202b2e09ea0434a19216c3e6e))
+
 ## [1.0.5](https://github.com/sobird/eslint-config/compare/v1.0.4...v1.0.5) (2026-03-03)
 
 
