@@ -7,7 +7,7 @@ import pluginReactRefresh from 'eslint-plugin-react-refresh';
 import { REACT_FILES, TS_FILES } from '../files';
 import { env } from '../utils';
 
-import type { ESLintConfigObject, ESLintPlugin } from '../types';
+import type { ESLintConfigObject, ESLintPlugin, ComposeRulesConfig } from '../types';
 import type { ESLint } from 'eslint';
 
 const { rules } = pluginReact;
@@ -43,7 +43,7 @@ interface Options {
   hooks?: boolean;
   refresh?: boolean;
   files?: string[];
-  rules: string[];
+  rules?: ComposeRulesConfig<'vue'>;
 }
 
 export type ReactOptions = Options | boolean;
@@ -115,8 +115,8 @@ export function react(options: ReactOptions = env.isReact): ESLintConfigObject[]
         // }],
         'react/forward-ref-uses-ref': 'error',
         'react/function-component-definition': ['error', {
-          namedComponents: ['function-declaration', 'function-expression'],
-          unnamedComponents: 'function-expression',
+          namedComponents: ['function-declaration', 'arrow-function'],
+          unnamedComponents: 'arrow-function',
         }],
         'react/hook-use-state': 'error',
         'react/iframe-missing-sandbox': 'error',
@@ -148,8 +148,7 @@ export function react(options: ReactOptions = env.isReact): ESLintConfigObject[]
         ],
         'react/jsx-indent': ['error', 2],
         'react/jsx-indent-props': ['error', 2],
-        'react/jsx-key': [
-          'error',
+        'react/jsx-key': ['error',
           {
             checkFragmentShorthand: true,
             checkKeyMustBeforeSpread: true,

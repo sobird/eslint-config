@@ -66,4 +66,5 @@ export const IGNORES_FILES = [
   '**/__snapshots__',
   '**/auto-import?(s).d.ts',
   '**/components.d.ts',
+  '**/next-env.d.ts',
 ];

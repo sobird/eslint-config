@@ -23,7 +23,7 @@ interface Options {
 }
 export type NodeOptions = Options | boolean;
 
-export function node(options: NodeOptions = true): ESLintConfigObject[] {
+export function node(options: NodeOptions = false): ESLintConfigObject[] {
   if (options === false) {
     return [];
   }
@@ -67,13 +67,11 @@ export function node(options: NodeOptions = true): ESLintConfigObject[] {
         // 'n/no-sync': 'error',
         // 'n/no-top-level-await': 'error',
         'n/no-unpublished-bin': 'error',
-        'n/no-unpublished-import': [
-          'error',
+        'n/no-unpublished-import': ['error',
           {
             ignorePrivate: true,
             ignoreTypeImport: true,
             tryExtensions: ['.js', '.ts', '.tsx', '.json'],
-            allowModules: [],
           },
         ],
         'n/no-unpublished-require': 'error',
