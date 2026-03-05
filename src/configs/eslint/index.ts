@@ -146,7 +146,11 @@ export const JAVASCRIPT_RULES: NonNullable<ESLintConfigObject['rules']> = {
   'no-array-constructor': 'error',
   'no-async-promise-executor': 'error',
   'no-await-in-loop': 'error',
-  'no-bitwise': 'error',
+
+  // todo
+  'no-bitwise': ['error', {
+    int32Hint: true,
+  }],
   'no-caller': 'error',
   'no-case-declarations': 'error',
   'no-class-assign': 'error',

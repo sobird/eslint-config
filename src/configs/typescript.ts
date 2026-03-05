@@ -163,14 +163,15 @@ export function typescript(options: TypeScriptOptions = env.isTypeScript): ESLin
           allowIIFEs: true,
         }],
         '@typescript-eslint/explicit-member-accessibility': ['error', {
-          accessibility: 'explicit',
-          overrides: {
-            accessors: 'explicit',
-            constructors: 'no-public',
-            methods: 'explicit',
-            properties: 'explicit',
-            parameterProperties: 'explicit',
-          },
+          accessibility: 'no-public',
+
+          // overrides: {
+          //   accessors: 'explicit',
+          //   constructors: 'no-public',
+          //   methods: 'explicit',
+          //   properties: 'explicit',
+          //   parameterProperties: 'explicit',
+          // },
         }],
         '@typescript-eslint/explicit-module-boundary-types': ['error', {
           allowArgumentsExplicitlyTypedAsAny: false,
@@ -471,7 +472,9 @@ export function typescript(options: TypeScriptOptions = env.isTypeScript): ESLin
             '@typescript-eslint/prefer-nullish-coalescing': 'error',
 
             // This rule requires type information to run, which comes with performance tradeoffs.
-            '@typescript-eslint/prefer-optional-chain': 'error',
+            '@typescript-eslint/prefer-optional-chain': ['error', {
+              requireNullish: true,
+            }],
 
             'prefer-promise-reject-errors': 'off',
 
