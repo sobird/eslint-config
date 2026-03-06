@@ -260,7 +260,7 @@ export function typescript(options: TypeScriptOptions = env.isTypeScript): ESLin
           allowInterfaces: 'always',
           allowObjectTypes: 'always',
         }],
-        '@typescript-eslint/no-explicit-any': ['error', {
+        '@typescript-eslint/no-explicit-any': ['warn', {
           ignoreRestArgs: true,
         }],
         '@typescript-eslint/no-extra-non-null-assertion': 'error',
@@ -452,13 +452,13 @@ export function typescript(options: TypeScriptOptions = env.isTypeScript): ESLin
             '@typescript-eslint/no-unsafe-assignment': 'error',
 
             // This rule requires type information to run, which comes with performance tradeoffs.
-            '@typescript-eslint/no-unsafe-call': 'error',
+            '@typescript-eslint/no-unsafe-call': 'warn',
 
             // This rule requires type information to run, which comes with performance tradeoffs.
             '@typescript-eslint/no-unsafe-enum-comparison': 'error',
 
             // This rule requires type information to run, which comes with performance tradeoffs.
-            '@typescript-eslint/no-unsafe-member-access': 'error',
+            '@typescript-eslint/no-unsafe-member-access': 'warn',
 
             // This rule requires type information to run, which comes with performance tradeoffs.
             '@typescript-eslint/no-unsafe-return': 'error',
