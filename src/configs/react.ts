@@ -120,23 +120,25 @@ export function react(options: ReactOptions = env.isReact): ESLintConfigObject[]
         }],
         'react/hook-use-state': 'error',
         'react/iframe-missing-sandbox': 'error',
+
+        // jsx
         'react/jsx-boolean-value': ['error', 'never', { always: [] }],
-        'react/jsx-child-element-spacing': 'error', // done
-        'react/jsx-closing-bracket-location': ['error', 'line-aligned'],
-        'react/jsx-closing-tag-location': ['error'],
-        'react/jsx-curly-spacing': ['error', 'never', { allowMultiline: true }],
-        'react/jsx-curly-newline': ['error', {
-          multiline: 'consistent',
-          singleline: 'consistent',
-        }],
-        'react/jsx-equals-spacing': ['error', 'never'],
+        // 'react/jsx-child-element-spacing': 'error',
+        // 'react/jsx-closing-bracket-location': ['error', 'line-aligned'],
+        // 'react/jsx-closing-tag-location': ['error'],
+        // 'react/jsx-curly-spacing': ['error', 'never', { allowMultiline: true }],
+        // 'react/jsx-curly-newline': ['error', {
+        //   multiline: 'consistent',
+        //   singleline: 'consistent',
+        // }],
+        // 'react/jsx-equals-spacing': ['error', 'never'],
         'react/jsx-filename-extension': [
           'error',
           {
             extensions: ['.jsx', '.tsx'],
           },
         ],
-        'react/jsx-first-prop-new-line': ['error', 'multiline-multiprop'],
+        // 'react/jsx-first-prop-new-line': ['error', 'multiline-multiprop'],
         'react/jsx-handler-names': [
           'error',
           {
@@ -146,8 +148,8 @@ export function react(options: ReactOptions = env.isReact): ESLintConfigObject[]
             checkInlineFunction: false,
           },
         ],
-        'react/jsx-indent': ['error', 2],
-        'react/jsx-indent-props': ['error', 2],
+        // 'react/jsx-indent': ['error', 2],
+        // 'react/jsx-indent-props': ['error', 2],
         'react/jsx-key': ['error',
           {
             checkFragmentShorthand: true,
@@ -156,7 +158,7 @@ export function react(options: ReactOptions = env.isReact): ESLintConfigObject[]
           },
         ],
         'react/jsx-max-depth': ['warn', { max: 5 }],
-        'react/jsx-max-props-per-line': ['error', { maximum: 1, when: 'multiline' }],
+        // 'react/jsx-max-props-per-line': ['error', { maximum: 1, when: 'multiline' }],
 
         // 'react/jsx-newline': 'error',
         // todo
@@ -188,16 +190,16 @@ export function react(options: ReactOptions = env.isReact): ESLintConfigObject[]
           warnOnSpreadAttributes: true,
         }],
         'react/jsx-no-useless-fragment': 'error', // done
-        'react/jsx-one-expression-per-line': ['error', { allow: 'single-child' }],
+        // 'react/jsx-one-expression-per-line': ['error', { allow: 'single-child' }],
         'react/jsx-no-undef': 'error', // done
-        'react/jsx-curly-brace-presence': ['error', { props: 'never', children: 'never', propElementValues: 'always' }],
-        'react/jsx-pascal-case': ['error', {
-          allowAllCaps: true,
-          allowNamespace: true,
-          ignore: [],
-        }],
+        // 'react/jsx-curly-brace-presence': ['error', { props: 'never', children: 'never', propElementValues: 'always' }],
+        // 'react/jsx-pascal-case': ['error', {
+        //   allowAllCaps: true,
+        //   allowNamespace: true,
+        //   ignore: [],
+        // }],
         'react/jsx-fragments': ['error', 'syntax'],
-        'react/jsx-props-no-multi-spaces': 'error', // done
+        // 'react/jsx-props-no-multi-spaces': 'error',
         'react/jsx-props-no-spreading': ['error', {
           html: 'ignore',
           custom: 'enforce',
@@ -207,34 +209,34 @@ export function react(options: ReactOptions = env.isReact): ESLintConfigObject[]
         'react/jsx-props-no-spread-multi': 'error',
 
         // 'react/jsx-sort-default-props': 'error',
-        'react/jsx-sort-props': ['error', {
-          ignoreCase: true,
-          callbacksLast: true,
-          shorthandFirst: true,
-          noSortAlphabetically: false,
-          reservedFirst: true,
-          multiline: 'last',
-        }],
+        // 'react/jsx-sort-props': ['error', {
+        //   ignoreCase: true,
+        //   callbacksLast: true,
+        //   shorthandFirst: true,
+        //   noSortAlphabetically: false,
+        //   reservedFirst: true,
+        //   multiline: 'last',
+        // }],
 
         // 'react/jsx-space-before-closing': 'error',
-        'react/jsx-tag-spacing': ['error', {
-          closingSlash: 'never',
-          beforeSelfClosing: 'always',
-          afterOpening: 'never',
-          beforeClosing: 'never',
-        }],
+        // 'react/jsx-tag-spacing': ['error', {
+        //   closingSlash: 'never',
+        //   beforeSelfClosing: 'always',
+        //   afterOpening: 'never',
+        //   beforeClosing: 'never',
+        // }],
 
         // 'react/jsx-uses-react': 'error',
         'react/jsx-uses-vars': 'error', // done
-        'react/jsx-wrap-multilines': ['error', {
-          declaration: 'parens-new-line',
-          assignment: 'parens-new-line',
-          return: 'parens-new-line',
-          arrow: 'parens-new-line',
-          condition: 'parens-new-line',
-          logical: 'parens-new-line',
-          prop: 'ignore',
-        }],
+        // 'react/jsx-wrap-multilines': ['error', {
+        //   declaration: 'parens-new-line',
+        //   assignment: 'parens-new-line',
+        //   return: 'parens-new-line',
+        //   arrow: 'parens-new-line',
+        //   condition: 'parens-new-line',
+        //   logical: 'parens-new-line',
+        //   prop: 'ignore',
+        // }],
         'react/no-invalid-html-attribute': 'error', // done
         'react/no-access-state-in-setstate': 'error', // done
         // 'react/no-adjacent-inline-elements': 'error',

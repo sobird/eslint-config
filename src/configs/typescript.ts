@@ -344,7 +344,6 @@ export function typescript(options: TypeScriptOptions = env.isTypeScript): ESLin
             // This rule requires type information to run, which comes with performance tradeoffs.
             '@typescript-eslint/consistent-type-exports': 'error',
             'dot-notation': 'off',
-
             // This rule requires type information to run, which comes with performance tradeoffs.
             '@typescript-eslint/dot-notation': JAVASCRIPT_RULES['dot-notation'],
 

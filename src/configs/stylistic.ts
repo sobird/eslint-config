@@ -192,29 +192,45 @@ export function stylistic(options: StylisticOptions = true): ESLintConfigObject[
           ? {
               // jsx
               '@stylistic/jsx-child-element-spacing': 'error',
-              '@stylistic/jsx-closing-bracket-location': 'error',
+              '@stylistic/jsx-closing-bracket-location': ['error', 'line-aligned'],
               '@stylistic/jsx-closing-tag-location': 'error',
-              '@stylistic/jsx-curly-brace-presence': ['error', { propElementValues: 'always' }],
-              '@stylistic/jsx-curly-newline': 'error',
-              '@stylistic/jsx-curly-spacing': ['error', 'never'],
-              '@stylistic/jsx-equals-spacing': 'error',
-              '@stylistic/jsx-first-prop-new-line': 'error',
+              '@stylistic/jsx-curly-brace-presence': ['error', {
+                props: 'never',
+                children: 'never',
+                propElementValues: 'always',
+              }],
+              '@stylistic/jsx-curly-newline': ['error', {
+                multiline: 'consistent',
+                singleline: 'consistent',
+              }],
+              '@stylistic/jsx-curly-spacing': ['error', 'never', {
+                allowMultiline: true,
+              }],
+              '@stylistic/jsx-equals-spacing': ['error', 'never'],
+              '@stylistic/jsx-first-prop-new-line': ['error', 'multiline-multiprop'],
               '@stylistic/jsx-function-call-newline': 'error',
               '@stylistic/jsx-indent-props': ['error', indentLevel],
-
-              // '@stylistic/jsx-indent': ['error', 2, { checkAttributes: true, indentLogicalExpressions: true }],
+              '@stylistic/jsx-indent': ['error', 2, { checkAttributes: true, indentLogicalExpressions: true }],
               '@stylistic/jsx-max-props-per-line': ['error', { maximum: 1, when: 'multiline' }],
               '@stylistic/jsx-newline': 'error',
               '@stylistic/jsx-one-expression-per-line': ['error', { allow: 'single-child' }],
-              '@stylistic/jsx-pascal-case': 'error',
-
-              // '@stylistic/jsx-props-no-multi-spaces': 'error',
+              '@stylistic/jsx-pascal-case': ['error', {
+                allowAllCaps: true,
+                allowNamespace: true,
+                ignore: [],
+              }],
+              '@stylistic/jsx-props-no-multi-spaces': 'error',
               '@stylistic/jsx-quotes': 'error',
               '@stylistic/jsx-self-closing-comp': 'error',
-
-              // '@stylistic/jsx-sort-props': 'error',
-              '@stylistic/jsx-tag-spacing': [
-                'error',
+              '@stylistic/jsx-sort-props': ['error', {
+                ignoreCase: true,
+                callbacksLast: true,
+                shorthandFirst: true,
+                noSortAlphabetically: false,
+                reservedFirst: true,
+                multiline: 'last',
+              }],
+              '@stylistic/jsx-tag-spacing': ['error',
                 {
                   afterOpening: 'never',
                   beforeClosing: 'never',
@@ -222,8 +238,7 @@ export function stylistic(options: StylisticOptions = true): ESLintConfigObject[
                   closingSlash: 'never',
                 },
               ],
-              '@stylistic/jsx-wrap-multilines': [
-                'error',
+              '@stylistic/jsx-wrap-multilines': ['error',
                 {
                   arrow: 'parens-new-line',
                   assignment: 'parens-new-line',
@@ -244,7 +259,7 @@ export function stylistic(options: StylisticOptions = true): ESLintConfigObject[
         // pragma
         '@stylistic/lines-around-comment': ['error', {
           beforeBlockComment: true,
-          beforeLineComment: true,
+          beforeLineComment: false,
           allowInterfaceStart: true,
           afterHashbangComment: true,
           allowBlockStart: true,
