@@ -464,7 +464,7 @@ export function typescript(options: TypeScriptOptions = env.isTypeScript): ESLin
             '@typescript-eslint/no-unsafe-return': 'error',
 
             // This rule requires type information to run, which comes with performance tradeoffs.
-            '@typescript-eslint/no-unsafe-type-assertion': 'error',
+            '@typescript-eslint/no-unsafe-type-assertion': 'warn',
 
             // This rule requires type information to run, which comes with performance tradeoffs.
             '@typescript-eslint/no-unsafe-unary-minus': 'error',
@@ -489,7 +489,13 @@ export function typescript(options: TypeScriptOptions = env.isTypeScript): ESLin
             '@typescript-eslint/prefer-includes': 'error',
 
             // This rule requires type information to run, which comes with performance tradeoffs.
-            '@typescript-eslint/prefer-nullish-coalescing': 'error',
+            '@typescript-eslint/prefer-nullish-coalescing': ['error', {
+              ignoreConditionalTests: true,
+              ignoreMixedLogicalExpressions: true,
+              ignorePrimitives: {
+                string: true,
+              },
+            }],
 
             // This rule requires type information to run, which comes with performance tradeoffs.
             '@typescript-eslint/prefer-optional-chain': ['error', {
