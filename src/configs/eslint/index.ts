@@ -446,7 +446,7 @@ export const JAVASCRIPT_RULES: NonNullable<ESLintConfigObject['rules']> = {
   'no-use-before-define': ['error',
     { functions: true, classes: true, variables: true },
   ],
-  'no-useless-assignment': 'error',
+  'no-useless-assignment': 'warn',
   'no-useless-backreference': 'error',
   'no-useless-call': 'error',
   'no-useless-catch': 'error',

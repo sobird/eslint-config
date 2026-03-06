@@ -254,8 +254,11 @@ export function stylistic(options: StylisticOptions = true): ESLintConfigObject[
           allowClassStart: true,
           ignorePattern: 'pragma|eslint|eslint-disable',
         }],
-        '@stylistic/lines-between-class-members': ['error', 'always', { exceptAfterSingleLine: true }],
-
+        '@stylistic/lines-between-class-members': ['error', 'always',
+          {
+            exceptAfterSingleLine: true,
+          },
+        ],
         '@stylistic/max-len': ['error', 120, 2, {
           ignoreUrls: true,
           ignoreComments: true,
