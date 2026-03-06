@@ -389,7 +389,7 @@ export const JAVASCRIPT_RULES: NonNullable<ESLintConfigObject['rules']> = {
   'no-self-compare': 'error',
   'no-sequences': 'error',
   'no-setter-return': 'error',
-  'no-shadow': 'error',
+  'no-shadow': 'warn',
   'no-shadow-restricted-names': 'error',
   'no-sparse-arrays': 'error',
   'no-template-curly-in-string': 'error',

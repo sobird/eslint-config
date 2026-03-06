@@ -85,13 +85,13 @@ export function imports(options: ImportOptions = true): ESLintConfigObject[] {
         'import/no-named-as-default-member': 'off',
         'import/no-anonymous-default-export': ['error', {
           allowArray: false,
+          allowObject: true,
+          allowLiteral: true,
           allowArrowFunction: false,
           allowAnonymousClass: false,
           allowAnonymousFunction: false,
           allowCallExpression: true, // The true value here is for backward compatibility
           // allowNew: false,
-          // allowLiteral: false,
-          allowObject: true,
         }],
         'import/no-unused-modules': 'off',
         // see @typescript-eslint/no-require-imports
