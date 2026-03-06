@@ -173,7 +173,9 @@ export function typescript(options: TypeScriptOptions = env.isTypeScript): ESLin
           //   parameterProperties: 'explicit',
           // },
         }],
-        '@typescript-eslint/explicit-module-boundary-types': ['error', {
+
+        // todo lib err app off
+        '@typescript-eslint/explicit-module-boundary-types': ['off', {
           allowArgumentsExplicitlyTypedAsAny: false,
           allowDirectConstAssertionInArrowFunctions: true,
           allowHigherOrderFunctions: true,
