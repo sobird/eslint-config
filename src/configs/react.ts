@@ -43,7 +43,7 @@ interface Options {
   hooks?: boolean;
   refresh?: boolean;
   files?: string[];
-  rules?: ComposeRulesConfig<'vue'>;
+  rules?: ComposeRulesConfig<'react'>;
 }
 
 export type ReactOptions = Options | boolean;

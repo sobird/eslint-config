@@ -358,16 +358,22 @@ export const JAVASCRIPT_RULES: NonNullable<ESLintConfigObject['rules']> = {
       selector: 'ForInStatement',
       message: 'for..in loops iterate over the entire prototype chain, which is virtually never what you want. Use Object.{keys,values,entries}, and iterate over the resulting array.',
     },
-    {
-      selector: 'ForStatement',
-      message: 'Prohibit the use of the original for loop. It is recommended to use modern traversal methods such as for of/Array. prototype. forEach/map/filter',
-    },
+
+    // {
+    //   selector: 'ForStatement',
+    //   message: 'Prohibit the use of the original for loop. It is recommended to use modern traversal methods such as for of/Array. prototype. forEach/map/filter',
+    // },
 
     // {
     //   selector: 'ForOfStatement',
     //   message: `iterators/generators require regenerator-runtime, which is too heavyweight for this guide to allow them.
     //   Separately, loops should be avoided in favor of array iterations.`,
     // },
+
+    {
+      selector: 'PropertyDefinition > PrivateIdentifier',
+      message: 'Please use the TypeScript \'private\' modifier rather than the native JavaScript \'#\' private identifier to keep the codebase consistent.',
+    },
     {
       selector: 'LabeledStatement',
       message: 'Labels are a form of GOTO; using them makes code confusing and hard to maintain and understand.',

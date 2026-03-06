@@ -178,6 +178,7 @@ export function typescript(options: TypeScriptOptions = env.isTypeScript): ESLin
           allowDirectConstAssertionInArrowFunctions: true,
           allowHigherOrderFunctions: true,
           allowTypedFunctionExpressions: true,
+          allowOverloadFunctions: true,
         }],
         'init-declarations': 'off',
         '@typescript-eslint/init-declarations': JAVASCRIPT_RULES['init-declarations'],
@@ -185,6 +186,25 @@ export function typescript(options: TypeScriptOptions = env.isTypeScript): ESLin
         '@typescript-eslint/max-params': ['off'],
         '@typescript-eslint/member-ordering': ['error',
           {
+            // default: [
+            //   // 第一部分：静态成员（类的全局上下文）
+            //   'public-static-field',
+            //   'private-static-field',
+            //   'public-static-method',
+            //   'private-static-method',
+
+            //   // 第二部分：实例属性与初始化（对象的状态）
+            //   'public-instance-field',
+            //   'protected-instance-field',
+            //   'private-instance-field',
+            //   'constructor',
+
+            //   // 第三部分：实例方法（对象的行为）
+            //   'public-instance-method',
+            //   'protected-instance-method',
+            //   'private-instance-method',
+            // ],
+
             default: [
               // 静态
               'static-readonly-field',
