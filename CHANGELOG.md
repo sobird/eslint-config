@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.0.7](https://github.com/sobird/eslint-config/compare/v1.0.6...v1.0.7) (2026-03-06)
+
+
+### Bug Fixes
+
+* allow use ForStatement ([a319008](https://github.com/sobird/eslint-config/commit/a3190089c583392ca6064e924d959e5af23b9dba))
+* downgrade ts no-unsafe-call & ts no-unsafe-member-access as warn ([30f3eae](https://github.com/sobird/eslint-config/commit/30f3eae119f9b7ce3c5dd4406a7a79e3dde22bd3))
+* **typescript:** no-unsafe-type-assertion set warn & update prefer-nullish-coalescing config ([595d427](https://github.com/sobird/eslint-config/commit/595d4271f0c995065eb7ad907febf2326eac1ca9))
+
 ## [1.0.6](https://github.com/sobird/eslint-config/compare/v1.0.5...v1.0.6) (2026-03-05)
 
 
