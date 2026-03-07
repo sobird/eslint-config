@@ -355,7 +355,7 @@ export function typescript(options: TypeScriptOptions = env.isTypeScript): ESLin
             '@typescript-eslint/dot-notation': JAVASCRIPT_RULES['dot-notation'],
 
             'camelcase': 'off',
-
+            'no-underscore-dangle': 'off',
             // This rule requires type information to run, which comes with performance tradeoffs.
             '@typescript-eslint/naming-convention': ['error',
               {
