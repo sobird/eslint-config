@@ -31,7 +31,7 @@ interface Options {
   package?: boolean;
   tsconfig?: boolean;
 }
-export type JsoncOptions = Options | boolean;
+export type JsoncOptions = boolean | Options;
 
 export function jsonc(options: JsoncOptions = true): ESLintConfigObject[] {
   if (options === false) {

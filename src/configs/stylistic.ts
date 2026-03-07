@@ -43,7 +43,7 @@ export interface Options {
    * Which brace style to use
    * @default 'stroustrup'
    */
-  braceStyle?: '1tbs' | 'stroustrup' | 'allman';
+  braceStyle?: '1tbs' | 'allman' | 'stroustrup';
 
   /**
    * Whether to require spaces around braces
@@ -67,7 +67,7 @@ export interface Options {
    *
    * @default 'always-multiline'
    */
-  commaDangle?: 'never' | 'always' | 'always-multiline' | 'only-multiline';
+  commaDangle?: 'always' | 'always-multiline' | 'never' | 'only-multiline';
 
   /**
    * Indentation level
@@ -75,7 +75,7 @@ export interface Options {
    *
    * @default 2
    */
-  indent?: IndentRuleOptions[0] | IndentRuleOptions;
+  indent?: IndentRuleOptions | IndentRuleOptions[0];
 
   /**
    * Quote style
@@ -83,7 +83,7 @@ export interface Options {
    *
    * @default 'single'
    */
-  quotes?: 'single' | 'double' | 'backtick';
+  quotes?: 'backtick' | 'double' | 'single';
 
   /**
    * Whether to enable semicolons
@@ -101,7 +101,7 @@ export interface Options {
 
   rules?: ComposeRulesConfig<'stylistic'>;
 }
-export type StylisticOptions = Options | boolean;
+export type StylisticOptions = boolean | Options;
 
 export function stylistic(options: StylisticOptions = true): ESLintConfigObject[] {
   if (options === false) {
@@ -229,14 +229,14 @@ export function stylistic(options: StylisticOptions = true): ESLintConfigObject[
               // '@stylistic/jsx-props-no-multi-spaces': 'error',
               '@stylistic/jsx-quotes': 'error',
               '@stylistic/jsx-self-closing-comp': 'error',
-              '@stylistic/jsx-sort-props': ['error', {
-                ignoreCase: true,
-                callbacksLast: true,
-                shorthandFirst: true,
-                noSortAlphabetically: false,
-                reservedFirst: true,
-                multiline: 'last',
-              }],
+              // '@stylistic/jsx-sort-props': ['error', {
+              //   ignoreCase: true,
+              //   callbacksLast: true,
+              //   shorthandFirst: true,
+              //   noSortAlphabetically: false,
+              //   reservedFirst: true,
+              //   multiline: 'last',
+              // }],
               '@stylistic/jsx-tag-spacing': ['error',
                 {
                   afterOpening: 'never',

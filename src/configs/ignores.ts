@@ -28,7 +28,7 @@ interface Options {
   ignores?: string[];
 }
 
-export type IgnoresOptions = Options | boolean | string[];
+export type IgnoresOptions = boolean | Options | string[];
 
 export function ignores(options: IgnoresOptions = true): ESLintConfigObject[] {
   if (options === false) {

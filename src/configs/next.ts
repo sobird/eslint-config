@@ -26,7 +26,7 @@ interface Options {
   vitals?: boolean;
   rules?: ComposeRulesConfig<'next'>;
 }
-export type NextOptions = Options | boolean;
+export type NextOptions = boolean | Options;
 export function next(options: NextOptions = env.isNext): ESLintConfigObject[] {
   if (options === false) {
     return [];

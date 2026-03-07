@@ -29,7 +29,7 @@ interface Options {
   rules?: ComposeRulesConfig<'yaml'>;
   stylistic?: boolean | Pick<StylisticOptions, 'indent' | 'quotes'>;
 }
-export type YamlOptions = Options | boolean;
+export type YamlOptions = boolean | Options;
 
 export function yaml(options: YamlOptions = false): ESLintConfigObject[] {
   if (options === false) {

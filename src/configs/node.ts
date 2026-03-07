@@ -21,7 +21,7 @@ export const NODE: ESLintPlugin = {
 interface Options {
   rules?: ComposeRulesConfig<'node'>;
 }
-export type NodeOptions = Options | boolean;
+export type NodeOptions = boolean | Options;
 
 export function node(options: NodeOptions = false): ESLintConfigObject[] {
   if (options === false) {

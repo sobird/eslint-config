@@ -29,7 +29,7 @@ export const IMPORT: ESLintPlugin = {
 interface Options {
   rules?: ComposeRulesConfig<'import'>;
 }
-export type ImportOptions = Options | boolean;
+export type ImportOptions = boolean | Options;
 
 export function imports(options: ImportOptions = true): ESLintConfigObject[] {
   if (options === false) {

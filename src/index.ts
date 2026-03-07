@@ -39,7 +39,6 @@ import {
   typescript,
   vue,
   yaml,
-
 } from './configs';
 
 interface Options {

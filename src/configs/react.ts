@@ -47,7 +47,7 @@ interface Options {
   rules?: ComposeRulesConfig<'react'>;
 }
 
-export type ReactOptions = Options | boolean;
+export type ReactOptions = boolean | Options;
 
 export function react(options: ReactOptions = env.isReact): ESLintConfigObject[] {
   if (options === false) {

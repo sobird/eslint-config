@@ -22,7 +22,7 @@ interface Options {
   files?: string[];
   rules?: ComposeRulesConfig<'perfectionist'>;
 }
-export type PerfectionistOptions = Options | boolean;
+export type PerfectionistOptions = boolean | Options;
 
 /**
  * Perfectionist plugin for props and items sorting.
@@ -72,11 +72,35 @@ export function perfectionist(options: PerfectionistOptions = true): ESLintConfi
             'ts-equals-import',
             'unknown',
           ],
-          // newlinesBetween: 1,
-          // newlinesInside: 0,
         }],
+        // 'perfectionist/sort-interfaces': 'error',
+        'perfectionist/sort-intersection-types': ['error', { order: 'asc', type: 'natural' }],
+        'perfectionist/sort-jsx-props': ['error', {
+          order: 'asc',
+          type: 'natural',
+          groups: [
+            'shorthand-prop',
+            'unknown',
+            'multiline-prop',
+            'callback',
+          ],
+          customGroups: [
+            {
+              groupName: 'callback',
+              elementNamePattern: '^on.+',
+            },
+          ],
+        }],
+        // 'perfectionist/sort-maps': 'error',
+        // 'perfectionist/sort-modules': 'error',
         'perfectionist/sort-named-exports': ['error', { order: 'asc', type: 'natural' }],
         'perfectionist/sort-named-imports': ['error', { order: 'asc', type: 'natural' }],
+        // 'perfectionist/sort-object-types': 'error',
+        // 'perfectionist/sort-objects': 'error',
+        // 'perfectionist/sort-sets': 'error',
+        // 'perfectionist/sort-switch-case': 'error',
+        'perfectionist/sort-union-types': ['error', { order: 'asc', type: 'natural' }],
+        // 'perfectionist/sort-variable-declarations': 'error'
 
         ...overrides,
       },

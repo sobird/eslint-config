@@ -5,7 +5,7 @@ import type { JSONSchema4 } from 'json-schema';
 import type { ESLintPlugin } from '../src/types';
 
 function formatDeprecation(
-  deprecated?: DeprecatedInfo | boolean,
+  deprecated?: boolean | DeprecatedInfo,
   legacyReplacedBy?: readonly string[],
   title?: string,
 ): string {
@@ -120,7 +120,7 @@ export function ESlintPluginRulesToJSONSchema(plugin: ESLintPlugin): JSONSchema4
 
     const schemaString = JSON.stringify(schema).replaceAll(oldRefPrefix, newRefPrefix);
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    const ruleSchema: JSONSchema4[] | JSONSchema4 = JSON.parse(schemaString);
+    const ruleSchema: JSONSchema4 | JSONSchema4[] = JSON.parse(schemaString);
 
     if (Array.isArray(ruleSchema)) {
       const ruleJSONSchema: Rule.RuleMetaData['schema'] = {

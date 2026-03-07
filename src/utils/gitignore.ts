@@ -18,7 +18,7 @@ interface Options {
   files?: string | string[];
 }
 
-export type GitignoreOptions = Options | boolean;
+export type GitignoreOptions = boolean | Options;
 
 export function gitignore(options: GitignoreOptions): ESLintConfigObject {
   if (options === false) {

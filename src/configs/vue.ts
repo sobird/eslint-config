@@ -30,7 +30,7 @@ interface Options {
   rules?: ComposeRulesConfig<'vue'>;
   version?: 2 | 3;
 }
-export type VueOptions = Options | boolean;
+export type VueOptions = boolean | Options;
 
 export function vue(options: VueOptions = env.isVue): ESLintConfigObject[] {
   if (options === false) {
