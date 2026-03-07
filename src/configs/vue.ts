@@ -1,12 +1,13 @@
+import type { ESLint } from 'eslint';
+
+import type { ComposeRulesConfig, ESLintConfigObject, ESLintPlugin } from '../types';
+
 import pluginVue from 'eslint-plugin-vue';
 import { parser } from 'typescript-eslint';
 import parserVue from 'vue-eslint-parser';
 
 import { VUE_FILES } from '../files';
 import { env } from '../utils';
-
-import type { ESLintConfigObject, ESLintPlugin, ComposeRulesConfig } from '../types';
-import type { ESLint } from 'eslint';
 
 const { meta = {}, rules } = pluginVue as ESLint.Plugin;
 const {

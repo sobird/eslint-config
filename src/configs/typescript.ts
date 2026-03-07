@@ -7,15 +7,16 @@
 
 // https://github.com/import-js/eslint-plugin-import/blob/main/config/typescript.js
 
-import { parser, plugin } from 'typescript-eslint';
-
-import { JAVASCRIPT_RULES } from './eslint';
-import { TS_FILES, SCRIPT_FILES, MISC_FILES } from '../files';
-import { env } from '../utils';
-
-import type { ESLintConfigObject, ESLintPlugin, ComposeRulesConfig } from '../types';
 import type { ParserOptions } from '@typescript-eslint/parser';
 import type { ESLint } from 'eslint';
+
+import type { ComposeRulesConfig, ESLintConfigObject, ESLintPlugin } from '../types';
+
+import { parser, plugin } from 'typescript-eslint';
+
+import { MISC_FILES, SCRIPT_FILES, TS_FILES } from '../files';
+import { env } from '../utils';
+import { JAVASCRIPT_RULES } from './eslint';
 
 const { meta = {}, rules } = plugin as ESLint.Plugin;
 const {
@@ -151,7 +152,13 @@ export function typescript(options: TypeScriptOptions = env.isTypeScript): ESLin
         '@typescript-eslint/consistent-indexed-object-style': 'error',
         '@typescript-eslint/consistent-type-assertions': 'error',
         '@typescript-eslint/consistent-type-definitions': 'error',
-        '@typescript-eslint/consistent-type-imports': 'error',
+        '@typescript-eslint/consistent-type-imports': ['error',
+          {
+            prefer: 'type-imports',
+            fixStyle: 'separate-type-imports',
+            disallowTypeAnnotations: true,
+          },
+        ],
         'default-param-last': 'off',
         '@typescript-eslint/default-param-last': JAVASCRIPT_RULES['default-param-last'],
         '@typescript-eslint/explicit-function-return-type': ['warn', {
@@ -395,7 +402,9 @@ export function typescript(options: TypeScriptOptions = env.isTypeScript): ESLin
             '@typescript-eslint/no-duplicate-type-constituents': 'error',
 
             // This rule requires type information to run, which comes with performance tradeoffs.
-            '@typescript-eslint/no-floating-promises': 'error',
+            '@typescript-eslint/no-floating-promises': ['error', {
+              ignoreVoid: true,
+            }],
 
             // This rule requires type information to run, which comes with performance tradeoffs.
             '@typescript-eslint/no-for-in-array': 'error',
@@ -408,7 +417,11 @@ export function typescript(options: TypeScriptOptions = env.isTypeScript): ESLin
             '@typescript-eslint/no-meaningless-void-operator': 'error',
 
             // This rule requires type information to run, which comes with performance tradeoffs.
-            '@typescript-eslint/no-misused-promises': 'error',
+            '@typescript-eslint/no-misused-promises': ['error', {
+              checksVoidReturn: {
+                attributes: false,
+              },
+            }],
 
             // This rule requires type information to run, which comes with performance tradeoffs.
             '@typescript-eslint/no-misused-spread': 'error',
@@ -565,7 +578,7 @@ export function typescript(options: TypeScriptOptions = env.isTypeScript): ESLin
             }],
 
             // This rule requires type information to run, which comes with performance tradeoffs.
-            '@typescript-eslint/strict-void-return': 'error',
+            '@typescript-eslint/strict-void-return': 'off',
 
             // This rule requires type information to run, which comes with performance tradeoffs.
             '@typescript-eslint/switch-exhaustiveness-check': 'error',

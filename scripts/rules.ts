@@ -4,25 +4,26 @@ import path from 'node:path';
 
 import { compile } from 'json-schema-to-typescript';
 
-import { ESlintPluginRulesToJSONSchema } from './utils';
 import {
-  JAVASCRIPT,
+  COMMENTS,
   IMPORT,
+  JAVASCRIPT,
   JSONC,
+  JSX_A11Y,
+  MARKDOWN,
   NEXT,
   NODE,
+  PERFECTIONIST,
   REACT,
   REACT_HOOKS,
   REACT_REFRESH,
-  JSX_A11Y,
   STYLISTIC,
+  TOML,
   TYPESCRIPT,
   VUE,
   YAML,
-  TOML,
-  MARKDOWN,
-  COMMENTS,
 } from '../src/configs';
+import { ESlintPluginRulesToJSONSchema } from './utils';
 
 const dir = path.join('src', 'types', 'rules');
 
@@ -45,6 +46,7 @@ const plugins = [
   TOML,
   MARKDOWN,
   COMMENTS,
+  PERFECTIONIST,
 ];
 
 for (const plugin of plugins) {

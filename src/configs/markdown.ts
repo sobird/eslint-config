@@ -1,12 +1,14 @@
 /* eslint-disable @typescript-eslint/no-unsafe-type-assertion */
-import pluginMarkdown from '@eslint/markdown';
 
-import { MARKDOWN_FILES, MARKDOWN_IN_MARKDOWN_FILES, MARKDOWN_CODE_FILES } from '../files';
+import type { ESLint } from 'eslint';
 
 import type {
-  ESLintConfigObject, ESLintPlugin, ComposeRulesConfig, RulesName,
+  ComposeRulesConfig, ESLintConfigObject, ESLintPlugin, RulesName,
 } from '../types';
-import type { ESLint } from 'eslint';
+
+import pluginMarkdown from '@eslint/markdown';
+
+import { MARKDOWN_CODE_FILES, MARKDOWN_FILES, MARKDOWN_IN_MARKDOWN_FILES } from '../files';
 
 const { meta = {}, rules } = pluginMarkdown as ESLint.Plugin;
 const {
@@ -120,6 +122,8 @@ export function markdown(options: MarkdownOptions = true): ESLintConfigObject[] 
         'n/no-unsupported-features/node-builtins': 'off',
         '@stylistic/indent': 'off',
         '@stylistic/lines-around-comment': 'off',
+        'perfectionist/sort-exports': 'off',
+        'perfectionist/sort-imports': 'off',
       },
     },
     {

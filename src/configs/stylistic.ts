@@ -1,9 +1,16 @@
+import type {
+  ESLint,
+} from 'eslint';
+
+import type {
+  ComposeRulesConfig, ESLintConfigObject, ESLintPlugin,
+} from '../types';
+import type {
+  StylisticRules,
+} from '../types/rules/stylistic';
+
 // https://github.com/eslint-stylistic/eslint-stylistic/blob/main/packages/eslint-plugin/configs/customize.ts
 import pluginStylistic from '@stylistic/eslint-plugin';
-
-import type { ESLintConfigObject, ESLintPlugin, ComposeRulesConfig } from '../types';
-import type { StylisticRules } from '../types/rules/stylistic';
-import type { ESLint } from 'eslint';
 
 const { meta, rules } = pluginStylistic as ESLint.Plugin;
 const {
@@ -210,7 +217,7 @@ export function stylistic(options: StylisticOptions = true): ESLintConfigObject[
               '@stylistic/jsx-first-prop-new-line': ['error', 'multiline-multiprop'],
               '@stylistic/jsx-function-call-newline': 'error',
               '@stylistic/jsx-indent-props': ['error', indentLevel],
-              '@stylistic/jsx-indent': ['error', 2, { checkAttributes: true, indentLogicalExpressions: true }],
+              // '@stylistic/jsx-indent': ['error', 2, { checkAttributes: true, indentLogicalExpressions: true }],
               '@stylistic/jsx-max-props-per-line': ['error', { maximum: 1, when: 'multiline' }],
               '@stylistic/jsx-newline': 'error',
               '@stylistic/jsx-one-expression-per-line': ['error', { allow: 'single-child' }],
@@ -219,7 +226,7 @@ export function stylistic(options: StylisticOptions = true): ESLintConfigObject[
                 allowNamespace: true,
                 ignore: [],
               }],
-              '@stylistic/jsx-props-no-multi-spaces': 'error',
+              // '@stylistic/jsx-props-no-multi-spaces': 'error',
               '@stylistic/jsx-quotes': 'error',
               '@stylistic/jsx-self-closing-comp': 'error',
               '@stylistic/jsx-sort-props': ['error', {

@@ -1,10 +1,11 @@
+import type { ESLint } from 'eslint';
+
+import type { ComposeRulesConfig, ESLintConfigObject, ESLintPlugin } from '../types';
+import type { Options as StylisticOptions } from './stylistic';
+
 import pluginToml from 'eslint-plugin-toml';
 
 import { TOML_FILES } from '../files';
-
-import type { ESLintConfigObject, ESLintPlugin, ComposeRulesConfig } from '../types';
-import type { Options as StylisticOptions } from './stylistic';
-import type { ESLint } from 'eslint';
 
 const { meta, rules } = pluginToml as ESLint.Plugin;
 const {

@@ -4,12 +4,12 @@
  * sobird<i@sobird.me> at 2023/11/27 16:58:36 created.
  */
 
+import type { ComposeRulesConfig, ESLintConfigObject, ESLintPlugin } from '../types';
+
 import ESLintPluginNext from '@next/eslint-plugin-next';
 
 import { SCRIPT_FILES } from '../files';
 import { env } from '../utils';
-
-import type { ESLintConfigObject, ESLintPlugin, ComposeRulesConfig } from '../types';
 
 const { rules } = ESLintPluginNext;
 

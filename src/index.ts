@@ -1,39 +1,46 @@
-import { defineConfig, type Config } from 'eslint/config';
+import type { Config } from 'eslint/config';
+
+import type {
+  CommentsOptions,
+  IgnoresOptions,
+  ImportOptions,
+  JavaScriptOptions,
+  JsoncOptions,
+  JsxOptions,
+  MarkdownOptions,
+  NextOptions,
+  NodeOptions,
+  PerfectionistOptions,
+  ReactOptions,
+  StylisticOptions,
+  TomlOptions,
+  TypeScriptOptions,
+  VueOptions,
+  YamlOptions,
+} from './configs';
+import type { ESLintConfigObject } from './types';
+
+import { defineConfig } from 'eslint/config';
 
 import {
-  ignores,
-  javascript,
-  typescript,
   comments,
-  stylistic,
+  ignores,
   imports,
-  jsx,
+  javascript,
   jsonc,
-  node,
-  vue,
-  react,
-  next,
-  yaml,
-  toml,
+  jsx,
   markdown,
-  type CommentsOptions,
-  type JavaScriptOptions,
-  type JsxOptions,
-  type IgnoresOptions,
-  type ImportOptions,
-  type ReactOptions,
-  type JsoncOptions,
-  type TypeScriptOptions,
-  type StylisticOptions,
-  type NextOptions,
-  type NodeOptions,
-  type VueOptions,
-  type YamlOptions,
-  type TomlOptions,
-  type MarkdownOptions,
-} from './configs';
+  next,
+  node,
+  perfectionist,
+  react,
+  stylistic,
+  toml,
+  typescript,
+  vue,
+  yaml,
 
-import type { ESLintConfigObject } from './types';
+} from './configs';
 
 interface Options {
   ignores?: IgnoresOptions;
@@ -64,6 +71,7 @@ interface Options {
   toml?: TomlOptions;
   markdown?: MarkdownOptions;
   comments?: CommentsOptions;
+  perfectionist?: PerfectionistOptions;
 }
 
 export default function sobird(config?: Options, ...configs: ESLintConfigObject[]): Config[] {
@@ -83,6 +91,7 @@ export default function sobird(config?: Options, ...configs: ESLintConfigObject[
     yaml: yamlOptions,
     toml: tomlOptions,
     markdown: markdownOptions,
+    perfectionist: perfectionistOptions,
   } = config ?? {};
 
   return defineConfig(
@@ -95,12 +104,14 @@ export default function sobird(config?: Options, ...configs: ESLintConfigObject[
     stylistic(stylisticOptions),
     jsonc(jsoncOptions),
     typescript(typescriptOptions),
+    perfectionist(perfectionistOptions),
     vue(vueOptions),
     react(reactOptions),
     next(nextOptions),
     yaml(yamlOptions),
     toml(tomlOptions),
     markdown(markdownOptions),
+
     ...configs,
   );
 }

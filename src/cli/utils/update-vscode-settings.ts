@@ -1,13 +1,13 @@
+import type { Options } from '../index';
+
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
 import { log } from '@clack/prompts';
 import chalk from 'chalk';
-import { modify, applyEdits } from 'jsonc-parser';
+import { applyEdits, modify } from 'jsonc-parser';
 
 import { VSCODE_SETTINGS } from '../constants';
-
-import type { Options } from '../index';
 
 export async function updateVscodeSettings(options: Options): Promise<void> {
   if (!options.updateVscodeSettings) {

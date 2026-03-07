@@ -1,6 +1,6 @@
-import pluginNode from 'eslint-plugin-n';
+import type { ComposeRulesConfig, ESLintConfigObject, ESLintPlugin } from '../types';
 
-import type { ESLintConfigObject, ESLintPlugin, ComposeRulesConfig } from '../types';
+import pluginNode from 'eslint-plugin-n';
 
 const { meta = {}, rules } = pluginNode;
 const {

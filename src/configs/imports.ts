@@ -1,12 +1,13 @@
 // https://github.com/import-js/eslint-plugin-import/blob/main/config/typescript.js
 
+import type { ESLint } from 'eslint';
+
+import type { ComposeRulesConfig, ESLintConfigObject, ESLintPlugin } from '../types';
+
 import { fixupPluginRules } from '@eslint/compat';
 import pluginImport from 'eslint-plugin-import';
 
 import { SCRIPT_FILES } from '../files';
-
-import type { ESLintConfigObject, ESLintPlugin, ComposeRulesConfig } from '../types';
-import type { ESLint } from 'eslint';
 
 const { meta = {}, rules } = pluginImport as ESLint.Plugin;
 const {
@@ -77,7 +78,7 @@ export function imports(options: ImportOptions = true): ESLintConfigObject[] {
         'import/no-relative-parent-imports': 'off',
 
         // @see @typescript-eslint/no-import-type-side-effects
-        // 'import/consistent-type-specifier-style': ['error', 'prefer-inline'],
+        'import/consistent-type-specifier-style': ['error', 'prefer-top-level'],
         'import/no-self-import': 'error',
         'import/no-cycle': ['error', { maxDepth: 10 }],
         'import/no-named-default': 'error',
@@ -99,7 +100,10 @@ export function imports(options: ImportOptions = true): ESLintConfigObject[] {
         'import/no-amd': 'error',
 
         // 'no-duplicate-imports': 'off',
-        'import/no-duplicates': ['error', { 'considerQueryString': true, 'prefer-inline': true }],
+        'import/no-duplicates': ['error', {
+          'prefer-inline': false,
+          'considerQueryString': true,
+        }],
         'import/first': 'error',
         'import/max-dependencies': ['off', {
           max: 15,

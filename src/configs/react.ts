@@ -1,4 +1,8 @@
 /* eslint-disable max-lines */
+import type { ESLint } from 'eslint';
+
+import type { ComposeRulesConfig, ESLintConfigObject, ESLintPlugin } from '../types';
+
 import { fixupPluginRules } from '@eslint/compat';
 import pluginReact from 'eslint-plugin-react';
 import pluginReactHooks from 'eslint-plugin-react-hooks';
@@ -6,9 +10,6 @@ import pluginReactRefresh from 'eslint-plugin-react-refresh';
 
 import { REACT_FILES, TS_FILES } from '../files';
 import { env } from '../utils';
-
-import type { ESLintConfigObject, ESLintPlugin, ComposeRulesConfig } from '../types';
-import type { ESLint } from 'eslint';
 
 const { rules } = pluginReact;
 
@@ -197,7 +198,7 @@ export function react(options: ReactOptions = env.isReact): ESLintConfigObject[]
         //   ignore: [],
         // }],
         'react/jsx-fragments': ['error', 'syntax'],
-        // 'react/jsx-props-no-multi-spaces': 'error',
+        'react/jsx-props-no-multi-spaces': 'error',
         'react/jsx-props-no-spreading': ['error', {
           html: 'ignore',
           custom: 'enforce',

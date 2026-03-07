@@ -1,3 +1,5 @@
+import type { Options } from '../index';
+
 import fs from 'node:fs';
 import fsp from 'node:fs/promises';
 import path from 'node:path';
@@ -7,8 +9,6 @@ import { includeIgnoreFile } from '@eslint/compat';
 import c from 'chalk';
 
 import { genESLintConfig } from './gen-eslint-config';
-
-import type { Options } from '../index';
 
 export async function updateESLintConfig(options: Options): Promise<void> {
   const cwd = process.cwd();

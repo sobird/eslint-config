@@ -3,18 +3,18 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 import {
-  intro, log, group, confirm, multiselect, cancel, spinner, outro,
+  cancel, confirm, group, intro, log, multiselect, outro, spinner,
 } from '@clack/prompts';
 import chalk from 'chalk';
 import { Command } from 'commander';
 
+import { name, version } from '../../package.json';
 import {
-  EXTRAS, EXTRA_OPTIONS, FRAMEWORK_OPTIONS, FRAMEWORKS,
+  EXTRA_OPTIONS, EXTRAS, FRAMEWORK_OPTIONS, FRAMEWORKS,
 } from './constants';
 import {
-  isGitClean, updateESLintConfig, updateVscodeSettings, updatePackageJson,
+  isGitClean, updateESLintConfig, updatePackageJson, updateVscodeSettings,
 } from './utils';
-import { name, version } from '../../package.json';
 
 export type Options = ReturnType<typeof program.opts>;
 

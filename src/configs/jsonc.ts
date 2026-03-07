@@ -1,11 +1,12 @@
 /* eslint-disable max-lines */
+import type { ESLint } from 'eslint';
+
+import type { ComposeRulesConfig, ESLintConfigObject, ESLintPlugin } from '../types';
+import type { Options as StylisticOptions } from './stylistic';
+
 import pluginJSONC from 'eslint-plugin-jsonc';
 
 import { JSON_FILES } from '../files';
-
-import type { ESLintConfigObject, ESLintPlugin, ComposeRulesConfig } from '../types';
-import type { Options as StylisticOptions } from './stylistic';
-import type { ESLint } from 'eslint';
 
 const { meta = {}, rules } = pluginJSONC as ESLint.Plugin;
 const {

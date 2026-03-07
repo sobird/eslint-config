@@ -1,10 +1,11 @@
+import type { ESLint } from 'eslint';
+
+import type { ComposeRulesConfig, ESLintConfigObject, ESLintPlugin } from '../types';
+import type { Options as StylisticOptions } from './stylistic';
+
 import pluginYaml from 'eslint-plugin-yml';
 
 import { YAML_FILES } from '../files';
-
-import type { ESLintConfigObject, ESLintPlugin, ComposeRulesConfig } from '../types';
-import type { Options as StylisticOptions } from './stylistic';
-import type { ESLint } from 'eslint';
 
 const { meta = {}, rules } = pluginYaml as ESLint.Plugin;
 const {

@@ -1,7 +1,7 @@
+import type { ESLintConfigObject } from '../types';
+
 import { IGNORES_FILES } from '../files';
 import { gitignore } from '../utils';
-
-import type { ESLintConfigObject } from '../types';
 
 interface GitignoreOptions {
   /**

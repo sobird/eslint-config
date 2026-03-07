@@ -1,7 +1,8 @@
+import type { ESLint, Linter, Rule } from 'eslint';
+
 import type {
-  BuiltinRules, InferBuiltinRules, ComposeRules, RulesName,
+  BuiltinRules, ComposeRules, InferBuiltinRules, RulesName,
 } from './rules';
-import type { Linter, ESLint, Rule } from 'eslint';
 
 export type * from './rules';
 

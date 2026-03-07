@@ -1,9 +1,10 @@
+import type { ESLint } from 'eslint';
+
+import type { ESLintConfigObject, ESLintPlugin } from '../types';
+
 import pluginJSXA11y from 'eslint-plugin-jsx-a11y';
 
 import { JSX_FILES } from '../files';
-
-import type { ESLintConfigObject, ESLintPlugin } from '../types';
-import type { ESLint } from 'eslint';
 
 const { meta = {}, rules } = pluginJSXA11y as ESLint.Plugin;
 const {

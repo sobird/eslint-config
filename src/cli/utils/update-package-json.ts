@@ -1,5 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
+import type { Options } from '../index';
+
 import fsp from 'node:fs/promises';
 import path from 'node:path';
 
@@ -7,8 +9,6 @@ import { log } from '@clack/prompts';
 import c from 'chalk';
 
 import { devDependencies, name, version } from '../../../package.json';
-
-import type { Options } from '../index';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export async function updatePackageJson(options: Options): Promise<void> {

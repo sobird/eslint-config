@@ -1,5 +1,5 @@
-export * from './is-git-clean';
 export * from './gen-eslint-config';
+export * from './is-git-clean';
 export * from './update-eslint-config';
-export * from './update-vscode-settings';
 export * from './update-package-json';
+export * from './update-vscode-settings';

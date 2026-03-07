@@ -7,13 +7,13 @@
  * sobird<i@sobird.me> at 2024/10/23 23:08:17 created.
  */
 
+import type { ComposeRulesConfig, ESLintConfigObject, ESLintPlugin } from '../../types';
+
 import { builtinRules } from 'eslint/use-at-your-own-risk';
 import globals from 'globals';
 
-import versions from './versions.json';
 import { MISC_FILES } from '../../files';
-
-import type { ESLintConfigObject, ESLintPlugin, ComposeRulesConfig } from '../../types';
+import versions from './versions.json';
 
 export const JAVASCRIPT: ESLintPlugin = {
   meta: {
@@ -142,7 +142,7 @@ export const JAVASCRIPT_RULES: NonNullable<ESLintConfigObject['rules']> = {
       capIsNewExceptions: ['Immutable.Map', 'Immutable.Set', 'Immutable.List'],
     },
   ],
-  'no-alert': 'warn',
+  'no-alert': 'error',
   'no-array-constructor': 'error',
   'no-async-promise-executor': 'error',
   'no-await-in-loop': 'error',
@@ -173,7 +173,10 @@ export const JAVASCRIPT_RULES: NonNullable<ESLintConfigObject['rules']> = {
   'no-dupe-else-if': 'error',
   'no-dupe-keys': 'error',
   'no-duplicate-case': 'error',
-  'no-duplicate-imports': 'error',
+  'no-duplicate-imports': ['error', {
+    includeExports: true,
+    allowSeparateTypeImports: true,
+  }],
   'no-else-return': ['error', { allowElseIf: false }],
   'no-empty': 'error',
   'no-empty-character-class': 'error',

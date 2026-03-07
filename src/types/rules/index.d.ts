@@ -14,7 +14,8 @@ import type { TomlRules } from './toml';
 import type { TypescriptRules } from './typescript';
 import type { VueRules } from './vue';
 import type { YamlRules } from './yaml';
-
+import type {PerfectionistRules} from './perfectionist'
+ 
 interface Rules {
   comments: CommentsRules;
   eslint: ESLintRules;
@@ -32,6 +33,7 @@ interface Rules {
   yaml: YamlRules;
   toml: TomlRules;
   markdown: MarkdownRules;
+  perfectionist: PerfectionistRules;
 }
 
 export type RulesName = keyof Rules;

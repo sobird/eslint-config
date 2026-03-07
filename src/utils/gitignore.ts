@@ -1,9 +1,9 @@
+import type { ESLintConfigObject } from '../types';
+
 import fs from 'node:fs';
 import path from 'node:path';
 
 import { includeIgnoreFile } from '@eslint/compat';
-
-import type { ESLintConfigObject } from '../types';
 
 interface Options {
   /**

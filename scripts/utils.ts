@@ -1,7 +1,8 @@
-import type { ESLintPlugin } from '../src/types';
 import type { DeprecatedInfo } from '@eslint/core';
 import type { Rule } from 'eslint';
 import type { JSONSchema4 } from 'json-schema';
+
+import type { ESLintPlugin } from '../src/types';
 
 function formatDeprecation(
   deprecated?: DeprecatedInfo | boolean,

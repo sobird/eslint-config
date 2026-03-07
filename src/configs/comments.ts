@@ -1,7 +1,8 @@
-import pluginComments from '@eslint-community/eslint-plugin-eslint-comments';
-
-import type { ESLintConfigObject, ESLintPlugin, ComposeRulesConfig } from '../types';
 import type { ESLint } from 'eslint';
+
+import type { ComposeRulesConfig, ESLintConfigObject, ESLintPlugin } from '../types';
+
+import pluginComments from '@eslint-community/eslint-plugin-eslint-comments';
 
 const { meta = {}, rules } = pluginComments as ESLint.Plugin;
 const {
