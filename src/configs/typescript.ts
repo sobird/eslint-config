@@ -331,8 +331,6 @@ export function typescript(options: TypeScriptOptions = env.isTypeScript): ESLin
         '@typescript-eslint/prefer-namespace-keyword': 'error',
         '@typescript-eslint/triple-slash-reference': 'error',
         '@typescript-eslint/unified-signatures': 'error',
-
-        ...overrides,
       },
     },
 
@@ -352,7 +350,9 @@ export function typescript(options: TypeScriptOptions = env.isTypeScript): ESLin
             '@typescript-eslint/consistent-type-exports': 'error',
             'dot-notation': 'off',
             // This rule requires type information to run, which comes with performance tradeoffs.
-            '@typescript-eslint/dot-notation': JAVASCRIPT_RULES['dot-notation'],
+            '@typescript-eslint/dot-notation': ['error', {
+              allowIndexSignaturePropertyAccess: true,
+            }],
 
             'camelcase': 'off',
             'no-underscore-dangle': 'off',
@@ -592,6 +592,11 @@ export function typescript(options: TypeScriptOptions = env.isTypeScript): ESLin
         }
       : {},
 
+    {
+      name: 'sobird:typescript:overrides',
+      files,
+      rules: overrides,
+    },
     {
       name: 'sobird:typescript:misc',
       files: [...MISC_FILES],

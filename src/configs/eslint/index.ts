@@ -93,7 +93,7 @@ export const JAVASCRIPT_RULES: NonNullable<ESLintConfigObject['rules']> = {
   'default-case': ['error', { commentPattern: '^no default$' }],
   'default-case-last': 'error',
   'default-param-last': 'error',
-  'dot-notation': ['error', { allowKeywords: false }],
+  'dot-notation': 'error',
   'eqeqeq': ['error', 'always', { null: 'ignore' }],
   'for-direction': 'error',
   'func-name-matching': ['off', 'always',
