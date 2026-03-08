@@ -156,9 +156,7 @@ export const JAVASCRIPT_RULES: NonNullable<ESLintConfigObject['rules']> = {
   'no-class-assign': 'error',
   'no-compare-neg-zero': 'error',
   'no-cond-assign': 'error',
-
-  // todo
-  'no-console': 'error',
+  'no-console': ['error', { allow: ['warn', 'error'] }],
   'no-const-assign': 'error',
   'no-constant-binary-expression': 'error',
   'no-constant-condition': 'warn',

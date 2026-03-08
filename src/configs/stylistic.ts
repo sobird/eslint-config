@@ -197,8 +197,7 @@ export function stylistic(options: StylisticOptions = true): ESLintConfigObject[
 
         ...jsx
           ? {
-              // jsx
-              '@stylistic/jsx-child-element-spacing': 'error',
+              // '@stylistic/jsx-child-element-spacing': 'error',
               '@stylistic/jsx-closing-bracket-location': ['error', 'line-aligned'],
               '@stylistic/jsx-closing-tag-location': 'error',
               '@stylistic/jsx-curly-brace-presence': ['error', {
@@ -214,12 +213,12 @@ export function stylistic(options: StylisticOptions = true): ESLintConfigObject[
                 allowMultiline: true,
               }],
               '@stylistic/jsx-equals-spacing': ['error', 'never'],
-              '@stylistic/jsx-first-prop-new-line': ['error', 'multiline-multiprop'],
+              '@stylistic/jsx-first-prop-new-line': 'error',
               '@stylistic/jsx-function-call-newline': 'error',
               '@stylistic/jsx-indent-props': ['error', indentLevel],
               // '@stylistic/jsx-indent': ['error', 2, { checkAttributes: true, indentLogicalExpressions: true }],
               '@stylistic/jsx-max-props-per-line': ['error', { maximum: 1, when: 'multiline' }],
-              '@stylistic/jsx-newline': 'error',
+              // '@stylistic/jsx-newline': 'error',
               '@stylistic/jsx-one-expression-per-line': ['error', { allow: 'single-child' }],
               '@stylistic/jsx-pascal-case': ['error', {
                 allowAllCaps: true,
@@ -253,6 +252,7 @@ export function stylistic(options: StylisticOptions = true): ESLintConfigObject[
                   declaration: 'parens-new-line',
                   logical: 'parens-new-line',
                   prop: 'parens-new-line',
+                  propertyValue: 'parens-new-line',
                   return: 'parens-new-line',
                 },
               ],
