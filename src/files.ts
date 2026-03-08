@@ -49,7 +49,6 @@ export const IGNORES_FILES = [
   '**/.history',
   '**/.vitepress/cache',
   '**/.nuxt',
-  '**/.next',
   '**/.svelte-kit',
   '**/.vercel',
   '**/.changeset',
@@ -66,5 +65,4 @@ export const IGNORES_FILES = [
   '**/__snapshots__',
   '**/auto-import?(s).d.ts',
   '**/components.d.ts',
-  '**/next-env.d.ts',
 ];

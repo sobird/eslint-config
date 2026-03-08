@@ -39,6 +39,12 @@ export function next(options: NextOptions = env.isNext): ESLintConfigObject[] {
   return [
     {
       name: 'sobird:next:setup',
+      ignores: [
+        '.next/**',
+        'out/**',
+        'build/**',
+        'next-env.d.ts',
+      ],
       plugins: {
         '@next/next': ESLintPluginNext,
       },

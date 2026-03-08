@@ -100,9 +100,9 @@ export function react(options: ReactOptions = env.isReact): ESLintConfigObject[]
         }],
         'react/checked-requires-onchange-or-readonly': 'error',
         'react/default-props-match-prop-types': ['error', { allowRequiredDefaults: false }],
-        'react/destructuring-assignment': ['warn', 'always',
-          { ignoreClassFields: true },
-        ],
+        'react/destructuring-assignment': ['warn', 'always', {
+          ignoreClassFields: true,
+        }],
 
         // 'react/display-name': 'error',
         // 'react/forbid-component-props': 'error',
@@ -121,8 +121,6 @@ export function react(options: ReactOptions = env.isReact): ESLintConfigObject[]
         }],
         'react/hook-use-state': 'error',
         'react/iframe-missing-sandbox': 'error',
-
-        // jsx
         'react/jsx-boolean-value': ['error', 'never', { always: [] }],
         // 'react/jsx-child-element-spacing': 'error',
         // 'react/jsx-closing-bracket-location': ['error', 'line-aligned'],
@@ -133,21 +131,16 @@ export function react(options: ReactOptions = env.isReact): ESLintConfigObject[]
         //   singleline: 'consistent',
         // }],
         // 'react/jsx-equals-spacing': ['error', 'never'],
-        'react/jsx-filename-extension': [
-          'error',
-          {
-            extensions: ['.jsx', '.tsx'],
-          },
-        ],
+        'react/jsx-filename-extension': ['error', {
+          extensions: ['.jsx', '.tsx'],
+        }],
         // 'react/jsx-first-prop-new-line': ['error', 'multiline-multiprop'],
-        'react/jsx-handler-names': ['off',
-          {
-            eventHandlerPropPrefix: 'on',
-            handlerNamePrefix: 'handle',
-            checkLocalVariables: false,
-            checkInlineFunction: false,
-          },
-        ],
+        'react/jsx-handler-names': ['off', {
+          eventHandlerPropPrefix: 'on',
+          handlerNamePrefix: 'handle',
+          checkLocalVariables: false,
+          checkInlineFunction: false,
+        }],
         // 'react/jsx-indent': ['error', 2],
         // 'react/jsx-indent-props': ['error', 2],
         'react/jsx-key': ['error', {
@@ -174,15 +167,12 @@ export function react(options: ReactOptions = env.isReact): ESLintConfigObject[]
         'react/jsx-no-leaked-render': 'error',
 
         // 'react/jsx-no-literals': 'error',
-        'react/jsx-no-script-url': [
-          'error',
-          [
-            {
-              name: 'Link',
-              props: ['to'],
-            },
-          ],
-        ],
+        'react/jsx-no-script-url': ['error', [
+          {
+            name: 'Link',
+            props: ['to'],
+          },
+        ]],
         'react/jsx-no-target-blank': ['error', {
           allowReferrer: false,
           enforceDynamicLinks: 'always',
@@ -250,12 +240,9 @@ export function react(options: ReactOptions = env.isReact): ESLintConfigObject[]
         'react/no-direct-mutation-state': 'error', // done
         'react/no-find-dom-node': 'error', // done
         'react/no-is-mounted': 'error', // done
-        'react/no-multi-comp': [
-          'warn',
-          {
-            ignoreStateless: true,
-          },
-        ],
+        'react/no-multi-comp': ['warn', {
+          ignoreStateless: true,
+        }],
         'react/no-namespace': 'error', // done
         // 'react/no-set-state': 'error',
         'react/no-string-refs': 'error', // done
@@ -272,7 +259,9 @@ export function react(options: ReactOptions = env.isReact): ESLintConfigObject[]
           ],
         }],
         'react/no-unknown-property': 'error', // done
-        'react/no-unsafe': ['error', { checkAliases: true }],
+        'react/no-unsafe': ['error', {
+          checkAliases: true,
+        }],
         'react/no-unstable-nested-components': 'error', // done
         'react/no-unused-class-component-methods': 'error', // done
         'react/no-unused-prop-types': ['error', {
@@ -286,16 +275,16 @@ export function react(options: ReactOptions = env.isReact): ESLintConfigObject[]
 
         // 'react/prefer-exact-props': 'error',
         'react/prefer-read-only-props': 'error', // done
-        'react/prefer-stateless-function': ['error', { ignorePureComponents: true }],
+        'react/prefer-stateless-function': ['error', {
+          ignorePureComponents: true,
+        }],
 
         // 'react/prop-types': 'error',
         // 'react/react-in-jsx-scope': 'error',
-        'react/require-default-props': ['error',
-          {
-            forbidDefaultForRequired: true,
-            functions: 'ignore',
-          },
-        ],
+        'react/require-default-props': ['error', {
+          forbidDefaultForRequired: true,
+          functions: 'ignore',
+        }],
         'react/require-optimization': ['warn', {
           allowDecorators: [],
         }],
@@ -351,16 +340,13 @@ export function react(options: ReactOptions = env.isReact): ESLintConfigObject[]
           },
         }],
         'react/sort-default-props': 'error',
-        'react/sort-prop-types': [
-          'off',
-          {
-            callbacksLast: true,
-            ignoreCase: true,
-            requiredFirst: true,
-            sortShapeProp: true,
-            noSortAlphabetically: false,
-          },
-        ],
+        'react/sort-prop-types': ['off', {
+          callbacksLast: true,
+          ignoreCase: true,
+          requiredFirst: true,
+          sortShapeProp: true,
+          noSortAlphabetically: false,
+        }],
         'react/state-in-constructor': ['error', 'never'],
         'react/static-property-placement': ['error', 'property assignment'],
         'react/style-prop-object': 'error', // done
