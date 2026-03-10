@@ -207,7 +207,7 @@ export function imports(options: ImportOptions = true): ESLintConfigObject[] {
           },
           'warnOnUnassignedImports': true,
         }],
-        'import/newline-after-import': ['error', { considerComments: true, count: 1 }],
+        'import/newline-after-import': ['error', { count: 1 }],
 
         'import/prefer-default-export': 'off',
         'import/no-default-export': 'off',

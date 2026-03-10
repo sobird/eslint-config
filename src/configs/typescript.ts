@@ -14,7 +14,9 @@ import type { ComposeRulesConfig, ESLintConfigObject, ESLintPlugin } from '../ty
 
 import { parser, plugin } from 'typescript-eslint';
 
-import { MISC_FILES, SCRIPT_FILES, TS_FILES } from '../files';
+import {
+  MARKDOWN_CODE_FILES, MISC_FILES, SCRIPT_FILES, TS_FILES,
+} from '../files';
 import { env } from '../utils';
 import { JAVASCRIPT_RULES } from './eslint';
 
@@ -56,6 +58,8 @@ export function typescript(options: TypeScriptOptions = env.isTypeScript): ESLin
     files = [...TS_FILES], typed = true, parserOptions = {}, rules: overrides = {},
   } = options === true ? {} : options;
 
+  const typedIgnores = [...MARKDOWN_CODE_FILES];
+
   return [
     {
       name: 'sobird:typescript:setup',
@@ -66,6 +70,9 @@ export function typescript(options: TypeScriptOptions = env.isTypeScript): ESLin
     {
       name: 'sobird:typescript:reset',
       files,
+      ...typed && {
+        ignores: [...MARKDOWN_CODE_FILES],
+      },
       languageOptions: {
         parser,
         // https://typescript-eslint.io/packages/parser/#configuration
@@ -338,6 +345,7 @@ export function typescript(options: TypeScriptOptions = env.isTypeScript): ESLin
       ? {
           name: 'sobird:typescript:typed',
           files,
+          ignores: typedIgnores,
           rules: {
             // This rule requires type information to run, which comes with performance tradeoffs.
             '@typescript-eslint/await-thenable': 'error',
