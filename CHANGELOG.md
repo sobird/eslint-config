@@ -1,5 +1,28 @@
 # Changelog
 
+## [1.1.0](https://github.com/sobird/eslint-config/compare/v1.0.7...v1.1.0) (2026-03-10)
+
+
+### Features
+
+* **import:** separate type import for perfectionist ([31467be](https://github.com/sobird/eslint-config/commit/31467be89b853c858477762ba356614fa444de92))
+* **perfectionist:** support perfectionist ([9be1ff8](https://github.com/sobird/eslint-config/commit/9be1ff863cc25d0c1990ba82b3f0bf8e43d95a7a))
+
+
+### Bug Fixes
+
+* disable react jsx rules & use stylistic jsx rules ([46d2582](https://github.com/sobird/eslint-config/commit/46d2582f02c0d5e37605b9b3777fad516e316650))
+* **eslint:** set no-shadow warn ([6ce815a](https://github.com/sobird/eslint-config/commit/6ce815a1c002fd94ac611b81ad8cece08dd5bd08))
+* **react:** support reactCompiler rules ([d16726a](https://github.com/sobird/eslint-config/commit/d16726ac85d91470d1a2dd9488b4aff774534c4f))
+* set no-useless-assignment warn ([91c6913](https://github.com/sobird/eslint-config/commit/91c691328a5fcd986662b60c991df6342dbab68e))
+* set react/jsx-handler-names off ([38138d6](https://github.com/sobird/eslint-config/commit/38138d685bb448023ced208d867b92c8d1f300d3))
+* **stylistic:** set jsx-child-element-spacing jsx-newline off ([79af89f](https://github.com/sobird/eslint-config/commit/79af89fd80a59c7a90b8da302ec8055a88406295))
+* **typescript:** auto add vue files ([c3c5673](https://github.com/sobird/eslint-config/commit/c3c5673aca54c12789bffdbbc858706bb42ba520))
+* **typescript:** naming-convention & set no-underscore-dangle off ([5e39788](https://github.com/sobird/eslint-config/commit/5e39788e79bc1f68bc7ec3a12a6f69da15640bbb))
+* **typescript:** overrides config ([34083c1](https://github.com/sobird/eslint-config/commit/34083c1f9404f33121d4018381843fe5f73ee923))
+* **typescript:** set explicit-module-boundary-types off in apps ([afeb675](https://github.com/sobird/eslint-config/commit/afeb6758a3c782549434e9ff23e9f5db2df314a5))
+* **typescript:** typed ignore markdown code blocks ([55b360e](https://github.com/sobird/eslint-config/commit/55b360ea5d76728c4bd61ae8b205376bab70c0f1))
+
 ## [1.0.7](https://github.com/sobird/eslint-config/compare/v1.0.6...v1.0.7) (2026-03-06)
 
 
