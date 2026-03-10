@@ -15,7 +15,7 @@ import type { ComposeRulesConfig, ESLintConfigObject, ESLintPlugin } from '../ty
 import { parser, plugin } from 'typescript-eslint';
 
 import {
-  MARKDOWN_CODE_FILES, MISC_FILES, SCRIPT_FILES, TS_FILES,
+  MARKDOWN_CODE_FILES, MISC_FILES, SCRIPT_FILES, TS_FILES, VUE_FILES,
 } from '../files';
 import { env } from '../utils';
 import { JAVASCRIPT_RULES } from './eslint';
@@ -59,6 +59,10 @@ export function typescript(options: TypeScriptOptions = env.isTypeScript): ESLin
   } = options === true ? {} : options;
 
   const typedIgnores = [...MARKDOWN_CODE_FILES];
+
+  if (env.isVue) {
+    files.push(...VUE_FILES);
+  }
 
   return [
     {

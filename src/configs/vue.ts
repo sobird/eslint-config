@@ -45,10 +45,6 @@ export function vue(options: VueOptions = env.isVue): ESLintConfigObject[] {
       plugins: {
         [namespace]: pluginVue,
       },
-    },
-    {
-      files,
-      name: 'sobird:vue:rules',
       languageOptions: {
         globals: {
           computed: 'readonly',
@@ -66,6 +62,12 @@ export function vue(options: VueOptions = env.isVue): ESLintConfigObject[] {
           watch: 'readonly',
           watchEffect: 'readonly',
         },
+      },
+    },
+    {
+      files,
+      name: 'sobird:vue:rules',
+      languageOptions: {
         parser: parserVue,
         parserOptions: {
           ecmaFeatures: {
