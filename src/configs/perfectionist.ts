@@ -36,7 +36,7 @@ export function perfectionist(options: PerfectionistOptions = true): ESLintConfi
   const { rules: overrides = {} } = options === true ? {} : options;
   return [
     {
-      name: 'antfu/perfectionist/setup',
+      name: 'sobird:perfectionist:setup',
       plugins: {
         perfectionist: pluginPerfectionist,
       },

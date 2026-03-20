@@ -95,7 +95,7 @@ export function node(options: NodeOptions = false): ESLintConfigObject[] {
         // 'n/hashbang': 'error',
 
         // 废弃规则也添加前缀
-        'n/no-hide-core-modules': 'error',
+        // 'n/no-hide-core-modules': 'error',
 
         // 'n/shebang': 'error',
         ...overrides,

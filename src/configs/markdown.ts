@@ -139,14 +139,14 @@ export function markdown(options: MarkdownOptions = true): ESLintConfigObject[] 
       rules: {
         // The Markdown parser automatically trims trailing
         // newlines from code blocks.
-        'eol-last': 'off',
+        // 'eol-last': 'off',
 
         // In code snippets and examples, these rules are often
         // counterproductive to clarity and brevity.
         'no-undef': 'off',
         'no-unused-expressions': 'off',
         'no-unused-vars': 'off',
-        'padded-blocks': 'off',
+        '@stylistic/padded-blocks': 'off',
 
         // Adding a "use strict" directive at the top of every
         // code block is tedious and distracting. The config

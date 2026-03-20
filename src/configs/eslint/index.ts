@@ -501,8 +501,8 @@ export const JAVASCRIPT_RULES: NonNullable<ESLintConfigObject['rules']> = {
   'valid-typeof': ['error', { requireStringLiterals: true }],
   'vars-on-top': 'error',
   'yoda': 'error',
-  'no-return-await': 'off',
-  'prefer-reflect': 'error',
+  // 'no-return-await': 'off',
+  // 'prefer-reflect': 'error',
 };
 
 interface Options {

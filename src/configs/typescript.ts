@@ -128,7 +128,7 @@ export function typescript(options: TypeScriptOptions = env.isTypeScript): ESLin
          * ESlint 8. See:
          * https://github.com/typescript-eslint/typescript-eslint/pull/8895
          */
-        'no-new-symbol': 'off', // ts(7009)
+        // 'no-new-symbol': 'off', // ts(7009)
         'no-obj-calls': 'off', // ts(2349)
         'no-redeclare': 'off', // ts(2451)
         'no-setter-return': 'off', // ts(2408)
