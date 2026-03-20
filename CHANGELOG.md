@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.1](https://github.com/sobird/eslint-config/compare/v1.1.0...v1.1.1) (2026-03-20)
+
+
+### Bug Fixes
+
+* remove deprecated rules ([0feebb8](https://github.com/sobird/eslint-config/commit/0feebb84844435822e7611e46e38cdf4bda47c98))
+* remove next react version detect settings ([43a11e9](https://github.com/sobird/eslint-config/commit/43a11e90f7a21b82d01ce599064761e62446ef54))
+
 ## [1.1.0](https://github.com/sobird/eslint-config/compare/v1.0.7...v1.1.0) (2026-03-10)
 
 
