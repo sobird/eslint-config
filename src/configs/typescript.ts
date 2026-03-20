@@ -569,7 +569,7 @@ export function typescript(options: TypeScriptOptions = env.isTypeScript): ESLin
 
             // This rule requires type information to run, which comes with performance tradeoffs.
             '@typescript-eslint/restrict-template-expressions': 'error',
-            'no-return-await': 'off',
+            // 'no-return-await': 'off',
 
             // This rule requires type information to run, which comes with performance tradeoffs.
             // JAVASCRIPT_RULES['no-return-await']
