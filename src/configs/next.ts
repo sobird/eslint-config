@@ -60,11 +60,11 @@ export function next(options: NextOptions = env.isNext): ESLintConfigObject[] {
         },
         sourceType: 'module',
       },
-      settings: {
-        react: {
-          version: 'detect',
-        },
-      },
+      // settings: {
+      //   react: {
+      //     version: 'detect',
+      //   },
+      // },
       rules: {
         '@next/next/google-font-display': 'warn',
         '@next/next/google-font-preconnect': 'warn',
