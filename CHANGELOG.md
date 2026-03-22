@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.2](https://github.com/sobird/eslint-config/compare/v1.1.1...v1.1.2) (2026-03-22)
+
+
+### Bug Fixes
+
+* remove deprecated no-return-await rule ([99b248d](https://github.com/sobird/eslint-config/commit/99b248da822fe36c9e2b761923e56dec425936c8))
+* update import/no-extraneous-dependencies devDependencies ([2a4f218](https://github.com/sobird/eslint-config/commit/2a4f218f2de5efed30103d267652f58c975c3e39))
+
 ## [1.1.1](https://github.com/sobird/eslint-config/compare/v1.1.0...v1.1.1) (2026-03-20)
 
 
