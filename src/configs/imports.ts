@@ -112,7 +112,8 @@ export function imports(options: ImportOptions = true): ESLintConfigObject[] {
         'import/no-extraneous-dependencies': ['error', {
           devDependencies: [
             // 测试文件
-            '**/*.{test,spec}.{js,jsx,ts,tsx}',
+            '**/*.{test,spec}.?(c|m)[jt]s?(x)',
+            '**/*.{bench,benchmark}.?(c|m)[jt]s?(x)',
             'test.{js,jsx}',
             'test-*.{js,jsx}',
 
