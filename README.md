@@ -579,6 +579,11 @@ pnpm lint-staged
 npx @eslint/config-inspector
 ```
 
+### 调试ESLint
+```bash
+DEBUG=eslint:* npx eslint README.md
+```
+
 ## 版本控制策略
 
 本项目遵循[语义化版本控制](https://semver.org/)用于发布。然而，由于这只是一个配置文件，涉及意见和许多不断变化的部分，我们不将规则更改视为破坏性更改。

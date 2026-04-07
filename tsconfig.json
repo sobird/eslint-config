@@ -19,7 +19,7 @@
       "DOM.Iterable",
       "ESNext"
     ], /* Specify a set of bundled library declaration files that describe the target runtime environment. */
-    "baseUrl": ".", /* Specify the base directory to resolve non-relative module names. */
+    // "baseUrl": ".", /* Specify the base directory to resolve non-relative module names. */
     // "experimentalDecorators": true,                   /* Enable experimental support for legacy experimental decorators. */
     // "emitDecoratorMetadata": true,                    /* Emit design-type metadata for decorated declarations in source files. */
     // "jsxFactory": "",                                 /* Specify the JSX factory function used when targeting React JSX emit, e.g. 'React.createElement' or 'h'. */

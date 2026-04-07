@@ -1,4 +1,3 @@
-/* eslint-disable max-lines */
 /*
  * https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/src/configs/flat/all.ts
  * https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/src/configs/eslint-recommended-raw.ts
@@ -74,23 +73,14 @@ export function typescript(options: TypeScriptOptions = env.isTypeScript): ESLin
     {
       name: 'sobird:typescript:reset',
       files,
-      ...typed && {
-        ignores: [...MARKDOWN_CODE_FILES],
-      },
       languageOptions: {
         parser,
-        // https://typescript-eslint.io/packages/parser/#configuration
         parserOptions: {
           ecmaVersion: 'latest',
           ecmaFeatures: {
             jsx: true,
           },
           sourceType: 'module',
-
-          // project: './tsconfig.json',
-          // tsconfigRootDir: process.cwd(),
-          // We now recommend using projectService instead of project for easier configuration and faster linting.
-          ...typed ? { projectService: true } : {},
           ...parserOptions,
         },
       },
@@ -141,6 +131,17 @@ export function typescript(options: TypeScriptOptions = env.isTypeScript): ESLin
         'prefer-const': 'error', // ts provides better types with const
         'prefer-rest-params': 'error', // ts provides better types with rest args over arguments
         'prefer-spread': 'error', // ts transpiles spread to apply, so no need for manual apply
+      },
+    },
+    {
+      name: 'sobird:typescript:markdown:code',
+      files,
+      ...typed && { ignores: [...MARKDOWN_CODE_FILES] },
+      languageOptions: {
+        parserOptions: {
+          // We now recommend using projectService instead of project for easier configuration and faster linting.
+          ...typed ? { projectService: true } : {},
+        },
       },
     },
     {

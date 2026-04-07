@@ -76,8 +76,8 @@ export function perfectionist(options: PerfectionistOptions = true): ESLintConfi
         // 'perfectionist/sort-interfaces': 'error',
         'perfectionist/sort-intersection-types': ['error', { order: 'asc', type: 'natural' }],
         'perfectionist/sort-jsx-props': ['error', {
-          order: 'asc',
           type: 'natural',
+          order: 'asc',
           groups: [
             'shorthand-prop',
             'unknown',

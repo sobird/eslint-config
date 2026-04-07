@@ -1,4 +1,3 @@
-/* eslint-disable max-lines */
 /**
  * @see https://github.com/eslint/eslint/blob/main/packages/js/src/configs/eslint-all.js
  * @see https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb-base
@@ -116,13 +115,13 @@ export const JAVASCRIPT_RULES: NonNullable<ESLintConfigObject['rules']> = {
   'logical-assignment-operators': 'error',
   'max-classes-per-file': 'error',
   'max-depth': 'error',
-  'max-lines': ['warn',
-    {
-      max: 300,
-      skipBlankLines: true,
-      skipComments: true,
-    },
-  ],
+  // 'max-lines': ['warn',
+  //   {
+  //     max: 300,
+  //     skipBlankLines: true,
+  //     skipComments: true,
+  //   },
+  // ],
   'max-lines-per-function': ['off',
     {
       max: 50,
