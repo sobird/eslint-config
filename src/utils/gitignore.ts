@@ -41,7 +41,6 @@ export function gitignore(options: GitignoreOptions): ESLintConfigObject {
       try {
         return includeIgnoreFile(p, name);
       } catch {
-        // eslint-disable-next-line no-console
         console.warn(`Get .gitignore file error: ${p}`);
         return {};
       }

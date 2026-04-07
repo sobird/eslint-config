@@ -1,4 +1,3 @@
-/* eslint-disable max-lines */
 import type { ESLint } from 'eslint';
 
 import type { ComposeRulesConfig, ESLintConfigObject, ESLintPlugin } from '../types';
