@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.3](https://github.com/sobird/eslint-config/compare/v1.1.2...v1.1.3) (2026-04-07)
+
+
+### Bug Fixes
+
+* fix eslint for release a version ([e557f53](https://github.com/sobird/eslint-config/commit/e557f53414bcde4e7ebfac08fbba757c5018fdb2))
+
 ## [1.1.2](https://github.com/sobird/eslint-config/compare/v1.1.1...v1.1.2) (2026-03-22)
 
 
